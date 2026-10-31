@@ -233,9 +233,9 @@ button,.hs{touch-action:manipulation}
   .hs .nv{display:block;font-style:normal;font-size:.85em;opacity:.9}
   /* faixa de baixo: cresce com o texto */
   #bot{order:3;display:flex;flex-direction:column;flex:1 1 auto;min-height:0;gap:8px;padding:8px max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:#0a0705}
-  #logp{position:static;max-width:none;width:100%;max-height:clamp(84px,calc(var(--vh,100dvh)*0.19),230px);gap:4px;pointer-events:auto}
-  #logp.cb{position:static;bottom:auto;max-width:none;max-height:clamp(70px,calc(var(--vh,100dvh)*0.15),170px);font-size:var(--fs)}
-  #logp p,#logp.cb p{font-size:var(--fs);line-height:1.35;padding:5px 10px;background:rgba(30,22,14,.9)}
+  #logp{position:static;max-width:none;width:100%;max-height:clamp(60px,calc(var(--vh,100dvh)*0.13),150px);gap:3px;pointer-events:auto}
+  #logp.cb{position:static;bottom:auto;max-width:none;max-height:clamp(54px,calc(var(--vh,100dvh)*0.11),120px)}
+  #logp p,#logp.cb p{font-size:clamp(12px,calc(var(--vw,100vw)*0.032),15px);line-height:1.3;padding:3px 8px}
   #bar{position:static;margin-top:auto;padding:0;background:none;flex-wrap:wrap;gap:8px;align-items:stretch;justify-content:flex-start}
   #bar .bt{flex:1 1 100%;min-width:0;font-size:clamp(14px,calc(var(--vw,100vw)*0.036),17px);line-height:1.3}
   #bar .bt small{font-size:clamp(12px,calc(var(--vw,100vw)*0.031),15px)}
@@ -263,6 +263,7 @@ button,.hs{touch-action:manipulation}
   .ml{font-size:clamp(10px,calc(var(--vw,100vw)*0.03),14px)!important}
 }
 </style>
+<style>#logp p,#logp.cb p{background:rgba(14,10,6,.3)!important}</style>
 <script>
 (()=>{
 /* ===== i18n: Português (BR) <-> English ===== */
@@ -584,7 +585,7 @@ const IT={
  bread:{n:'Pão',i:'🍞',w:.5,food:22,sell:2},apple:{n:'Maçã',i:'🍎',w:.5,food:8,water:5,sell:1},
  wheat:{n:'Trigo',i:'🌾',w:.5,food:6,sell:1},rotten:{n:'Comida estragada',i:'🤢',w:.5,food:6,hp:-4,sell:0},
  water:{n:"Odre d'água",i:'💧',w:0,water:35,sell:2,d:'Carrega 100% de água; cada gole usa 5%.'},wood:{n:'Lenha',i:'🪵',w:.5,sell:1},
- iron:{n:'Ferro',i:'⛓️',w:.5,sell:3},leather:{n:'Couro',i:'🟫',w:.5,sell:2},cloth:{n:'Pano',i:'🧵',w:.5,sell:1},
+ iron:{n:'Ferro',i:'⛓️',w:.5,sell:3},arrow:{n:'Flecha',i:'🏹',w:.1,sell:1,d:'Munição de besta. Equipe no lugar do escudo.'},leather:{n:'Couro',i:'🟫',w:.5,sell:2},cloth:{n:'Pano',i:'🧵',w:.5,sell:1},
  herb:{n:'Ervas',i:'🌿',w:.5,sell:2},sleepbag:{n:'Saco de dormir',i:'🛏️',w:2,sell:12},hpot:{n:'Poção de vida',i:'❤️',w:1,heal:45,sell:22},bandage:{n:'Bandagem',i:'🩹',w:.5,d:'Estanca sangramento em batalha.',sell:5},
  holy:{n:'Água benta',i:'✨',w:.5,sell:15},stew:{n:'Ensopado',i:'🍲',w:1,food:40,water:8,sell:7},soup:{n:'Sopa de ervas',i:'🥣',w:1,food:14,water:22,heal:6,sell:4},fang:{n:'Presa',i:'🦷',w:.5,sell:8},pelt:{n:'Pele de lobisomem',i:'🐾',w:.5,sell:24}
 };
@@ -711,6 +712,7 @@ const RECIPES=[
  {id:'skin',n:"Odre d'água (+100% de capacidade)",need:{leather:3,cloth:1},skin:1,h:1},
  {id:'hpot',n:'Poção de vida',need:{herb:3,water:1},give:{hpot:1},h:1},
  {id:'band',n:'Bandagem',need:{cloth:2,herb:1},give:{bandage:1},h:0},
+ {id:'arrows',n:'Flechas (x10)',need:{iron:1,wood:1},give:{arrow:10},h:1},
  {id:'holy',n:'Água benta (oferenda de 8 cobre)',need:{herb:3,water:2,coins:8},give:{holy:1},h:1},
  {id:'gamb',n:'Gambeson (defesa 1)',need:{cloth:4,leather:2},gear:()=>mkArmor(0),h:1},
  {id:'mail',n:'Cota de malha (defesa 3)',need:{iron:8,leather:2},forge:1,gear:()=>mkArmor(1),h:2},
@@ -750,7 +752,7 @@ let fx={p:0,e:{},nums:[]}; // efeitos de combate
 const isNight=()=>G&&(G.hour>=18||G.hour<6);
 const lg=t=>{if(!t)return;G.log.unshift(t);if(G.log.length>80)G.log.pop()};
 function save(){try{if(G&&G.view!=='over'){localStorage.setItem(KEY,JSON.stringify(G));localStorage.setItem(KEY+'-t',String(Date.now()));cloudPush()}}catch(e){}}
-function load(){try{const s=localStorage.getItem(KEY);const o=s?JSON.parse(s):null;if(o&&o.turned&&o.vamp)o.vamp=false;if(o&&!o.cv2){o.coins=(o.coins||0)%10;o.cv2=1}if(o&&o.wep&&o.wep.n==='Faca enferrujada'&&!o.swv){o.wep={k:'w',id:o.wep.id,n:'Espada longa de aço',ri:1,lvl:1,kills:o.wep.kills||0,dur:40,max:40,a:5,b:9,fx:null};o.swv=1}if(o&&o.inv){delete o.inv.dart;delete o.inv.arrow}if(o&&!o.hpv3){const m=(o.turned?200:50)+((o.lvl||1)-1)+5*((o.at&&o.at.vit)||0);o.mhp=m;o.hp=Math.min(o.hp||m,m);o.hpv3=1;o.hpv2=1}if(false){const m=100+((o.lvl||1)-1)*10+(o.turned?12:0);o.hp=Math.min(m,(o.hp||0)+(m-(o.mhp||40)));o.mhp=m;o.hpv2=1}if(o&&Array.isArray(o.log))o.log=o.log.map(l=>l==='Você acorda num campo de batalha coberto de cinzas. Não lembra quem foi. Só o frio e a fome lembram que você está vivo.'?'Você está em seu acampamento, um refúgio seguro. Em até 3 dias, um mercante viajante virá negociar com você.':l);if(o&&o.turned){o.at=o.at||{};if(o.at.vamp==null)o.at.vamp=10}if(o&&!o.kit1){o.inv=o.inv||{};o.inv.hpot=(o.inv.hpot||0)+5;if(!o.arm)o.arm={k:'a',id:'k'+Math.random().toString(36).slice(2,8),n:'Armadura de couro leve',def:1,dur:30,max:30,v:10,tier:0};o.kit1=1}if(o){o.mode='casual';if(o.inv)delete o.inv.knife;o.anvv2=1;o.mods=o.mods||{};o.mods.dark=true;o.diff=o.diff||'hard'}if(o&&o.at&&o.at.int){o.pts=(o.pts||0)+o.at.int;o.at.int=0}if(o&&!o.atv){o.pts=(o.pts||0)+5*((o.lvl||1)-1);o.atv=1}return o}catch(e){return null}}
+function load(){try{const s=localStorage.getItem(KEY);const o=s?JSON.parse(s):null;if(o&&o.turned&&o.vamp)o.vamp=false;if(o&&!o.cv2){o.coins=(o.coins||0)%10;o.cv2=1}if(o&&o.wep&&o.wep.n==='Faca enferrujada'&&!o.swv){o.wep={k:'w',id:o.wep.id,n:'Espada longa de aço',ri:1,lvl:1,kills:o.wep.kills||0,dur:40,max:40,a:5,b:9,fx:null};o.swv=1}if(o&&o.inv){delete o.inv.dart}if(o&&!o.hpv3){const m=(o.turned?200:50)+((o.lvl||1)-1)+5*((o.at&&o.at.vit)||0);o.mhp=m;o.hp=Math.min(o.hp||m,m);o.hpv3=1;o.hpv2=1}if(false){const m=100+((o.lvl||1)-1)*10+(o.turned?12:0);o.hp=Math.min(m,(o.hp||0)+(m-(o.mhp||40)));o.mhp=m;o.hpv2=1}if(o&&Array.isArray(o.log))o.log=o.log.map(l=>l==='Você acorda num campo de batalha coberto de cinzas. Não lembra quem foi. Só o frio e a fome lembram que você está vivo.'?'Você está em seu acampamento, um refúgio seguro. Em até 3 dias, um mercante viajante virá negociar com você.':l);if(o&&o.turned){o.at=o.at||{};if(o.at.vamp==null)o.at.vamp=10}if(o&&!o.kit1){o.inv=o.inv||{};o.inv.hpot=(o.inv.hpot||0)+5;if(!o.arm)o.arm={k:'a',id:'k'+Math.random().toString(36).slice(2,8),n:'Armadura de couro leve',def:1,dur:30,max:30,v:10,tier:0};o.kit1=1}if(o){o.mode='casual';if(o.inv)delete o.inv.knife;if(o.wep&&o.shield&&/besta|lança|machado/i.test(o.wep.n)){(o.bag=o.bag||[]).push(o.shield);o.shield=null}o.anvv2=1;o.mods=o.mods||{};o.mods.dark=true;o.diff=o.diff||'hard'}if(o&&o.at&&o.at.int){o.pts=(o.pts||0)+o.at.int;o.at.int=0}if(o&&!o.atv){o.pts=(o.pts||0)+5*((o.lvl||1)-1);o.atv=1}return o}catch(e){return null}}
 function hasSave(){try{return !!localStorage.getItem(KEY)}catch(e){return false}}
 function newGame(mode,mods,gender){
   G={mode,mods,lvl:1,xp:0,gender:gender||'m',day:1,hour:8,hp:50,mhp:50,diff:'hard',food:80,water:80,vamp:false,coins:5,
@@ -906,8 +908,9 @@ function pAct(a){
   if(S.hs&&S.hs.stun>0){S.hs.stun--;cl('Você está atordoado e perde a vez.');ENEXT(0);return}
   const hp0=G.hp,eh=S.en.map(e=>e.hp);let HT=nowMs(),DUR=0;S.hold=eh;
   if(a==='atk'||a==='heavy'){
+    if(wepOk()&&/besta/i.test(G.wep.n)){if(!(G.quiver>0)){cl('Sem flechas equipadas: equipe flechas no lugar do escudo.');return}G.quiver--}
     const swings=1+(turnedNight()&&ch(.3)?1:0);
-    fx.atk=nowMs();HT=fx.atk+200;DUR=520;{const t1=alive()[0];if(t1&&wepOk()&&/besta/i.test(G.wep.n))fx.proj={t:nowMs(),kind:'arrow',ti:S.en.indexOf(t1),hit:true,d:420}}
+    fx.atk=nowMs();HT=fx.atk+200;DUR=520;{const t1=alive()[0];if(t1&&wepOk()&&/besta/i.test(G.wep.n))fx.proj={t:nowMs(),kind:'bolt',ti:S.en.indexOf(t1),hit:true,d:230}}
     for(let sn=0;sn<swings;sn++){
       if(!alive().length)break;
       const e=TGT(),D=ENM[e.k],heavy=a==='heavy';
@@ -915,7 +918,7 @@ function pAct(a){
       if(S.fgn){cl('A névoa roxa embaça sua visão: você erra o golpe.');if(e.hp>0)fx.nums.push({x:225,y:70,v:'errou',t:nowMs()+200,c:'#b08ad8'})}else if(ch(mDodge(e.k))){cl(`${D.n} esquiva do seu ataque!`);fx.nums.push({x:225+S.en.indexOf(e)*30,y:70,v:'esquivou',t:nowMs()+200,c:'#9ad0ff'})}else if(!ch(heavy?.6:Math.min(.97,.85+.01*AT('agi'))))cl('Você erra o golpe.');
       else{
         let dmg=wepOk()?rnd(G.wep.a,G.wep.b)+(G.wep.lvl-1):rnd(1,3);
-        if(S.hs&&S.hs.frost>0)dmg=Math.round(dmg*.7);if(heavy)dmg=Math.round(dmg*1.7);dmg=Math.round(dmg*(1+.04*AT('for')));
+        if(S.hs&&S.hs.frost>0)dmg=Math.round(dmg*.7);if(heavy)dmg=Math.round(dmg*1.7);dmg=Math.round(dmg*(1+.04*AT((wepOk()&&/besta/i.test(G.wep.n))?'des':'for')));
         if(turnedNight())dmg=Math.round(dmg*1.5);else if(turnedDay())dmg=Math.round(dmg*.7);
         const crit=ch(.1);if(crit)dmg=Math.round(dmg*1.5);
         if(wepOk()&&G.wep.fx==='trovao'){if(e.k==='dragon'){dmg+=Math.round(dmg*.6)+4;cl(D.n+' é fraco contra trovão!')}else dmg+=3}if(wepOk()&&G.wep.fx==='fogo'){dmg+=(e.k==='vampire'||e.k==='fledgling')?8:3;if(e.k==='vampire'||e.k==='fledgling')cl(D.n+' é fraco contra o fogo!')}
@@ -1168,7 +1171,7 @@ const A={
  shop(){
    if(!merchHere())return;
    if(!G.shop||G.shop.day!==merchKey()){
-     const st=[{key:'water',p:4,q:5},{key:'bread',p:4,q:5},{key:'hpot',p:28,q:2},{key:'bandage',p:12,q:3},{key:'wood',p:3,q:8},{key:'holy',p:30,q:1},{key:'cloth',p:3,q:5},{key:'iron',p:6,q:5}];
+     const st=[{key:'water',p:4,q:5},{key:'bread',p:4,q:5},{key:'hpot',p:28,q:2},{key:'bandage',p:12,q:3},{key:'wood',p:3,q:8},{key:'holy',p:30,q:1},{key:'arrow',p:2,q:30},{key:'cloth',p:3,q:5},{key:'iron',p:6,q:5}];
      for(let i=0;i<2;i++){const o=ch(.5)?mkWeapon():mkGear();st.push({gear:o,p:Math.round(gv(o)*1.4),q:1})}
      if(ch(.7)){const sc=mkScroll();st.push({gear:sc,p:Math.round(gv(sc)*1.4),q:1})}
      G.shop={day:merchKey(),name:'Mercante viajante',tc:350,stock:st};
@@ -1226,7 +1229,7 @@ const A={
  drop(k){if(!G.inv[k])return;G.inv[k]--;if(!G.inv[k])delete G.inv[k]},
  equip(id){
    if(G.view==='combat')return;
-   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;const o=G.bag.splice(i,1)[0];
+   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança|machado/i;if(o0.k==='w'&&TH.test(o0.n)&&(G.shield||(G.quiver&&!/besta/i.test(o0.n)))){lg('Arma de duas mãos: tire o escudo antes de equipar.');return}if(o0.k==='s'&&((G.wep&&TH.test(G.wep.n))||G.quiver)){lg(G.quiver?'As flechas ocupam o lugar do escudo.':'Impossível usar escudo com arma de duas mãos.');return}}const o=G.bag.splice(i,1)[0];
    if(o.k==='w'){if(G.wep)G.bag.push(G.wep);G.wep=o}else{const sl=SLOT[o.k]||'arm';if(G[sl])G.bag.push(G[sl]);G[sl]=o}
  },
  unequip(sl){if(G.view==='combat')return;if(SLOTS_EQ.includes(sl)&&G[sl]){G.bag.push(G[sl]);G[sl]=null}},
@@ -1847,6 +1850,20 @@ function buildHuman(o,K){
     paint([['p',[sx0-4,shY-2,sx0+1.5,shY-2,sx0+1,shY+10,sx0-2-sway,py+len-8,sx0-9-sway*1.5,py+len,sx0-15-sway,py+len-5,sx0-12,shY+6]]],'#1a1020',{side:.2});
     paint([['p',[sx0-3,shY,sx0+.5,shY,sx0+.4,shY+10,sx0-2-sway,py+len-10,sx0-8-sway*1.4,py+len-3,sx0-12-sway,py+len-7,sx0-9,shY+7]]],o.capeCol||'#a01a3e',{side:.3,fn:(i,j,T)=>((i*2+j)%9===0?'m':null)});
   }
+  const shO=!!eq.shield&&!sit;
+  const shCX=sx0-4.2,shCY=py-9.4;
+  // ---- escudo ----
+  if(shO){
+    const ts=eq.shield.tier||0,scol=ts===0?mix(P.wood,P.orL,.28):ts===1?ARM_COL(1):mix(P.pinkR,P.earth,.15);
+    const cx=shCX,cy=shCY;
+    paint([['e',cx,cy,6.8,7.8]],scol,{side:.3,top:.18,fn:ts===0?((i,j)=>(Math.abs(i-Pn.X(cx))%3<.9?'m':null)):null});
+    paint([['e',cx,cy,2.3,2.3]],ts===0?P.grayB:P.gold,{});
+    paint([['r',cx-.5,cy-7.4,1,14.8]],ts===2?P.gold:shade(scol,-20),{nohi:true});
+    if(ts===2)paint([['r',cx-6.2,cy-.5,12.4,1.2]],P.gold,{});
+    if(ts>0){dot(cx-4.2,cy-4.8,[255,255,255],2.4,1)}
+    // braço de trás por cima do escudo, segurando a borda
+    {}
+  }
   // ---- braço de trás ----
   const shB=[sx0-.6,shY+1.2],shF=[sx0+.8,shY+1];
   const armPts=(S,tu,tf,lu,lf)=>{const e=fk(S[0],S[1],tu,lu),hnd=fk(e[0],e[1],tf,lf);return{s:S,e,h:hnd}};
@@ -1854,12 +1871,12 @@ function buildHuman(o,K){
   const wp=o.wep;
   // cinemática inversa de 2 segmentos: braço sempre ligado ao ponto de empunhadura (arma/escudo)
   const ik=(S,T,l1,l2,sg)=>{let dx=T[0]-S[0],dy=T[1]-S[1],d=Math.hypot(dx,dy);const m=l1+l2-.05;if(d>m){dx*=m/d;dy*=m/d;d=m}d=Math.max(d,2);const a=Math.atan2(dy,dx),A=Math.acos(Math.max(-1,Math.min(1,(l1*l1+d*d-l2*l2)/(2*l1*d)))),an=a+sg*A;const e=[S[0]+Math.cos(an)*l1,S[1]+Math.sin(an)*l1];return{s:S,e,h:[S[0]+dx,S[1]+dy]}};
-  const shO=!!eq.shield&&!sit;
-  const shCX=sx0+4.8,shCY=py-8.6;
+
   if(walk){const a=26*Math.sin(ph*Math.PI/2);AF=armPts(shF,-a*.9,-a*.9+18,8.6,8);AB=armPts(shB,a*.9,a*.9+14,8.6,8)}
   else if(sit){AF=armPts(shF,12,92,8.4,7.4);AB=armPts(shB,8,88,8.4,7)}
+  else if(atk&&o.wep&&o.wep.kind==='spear'){const a=-.12;const ln=6+Math.sin(Math.min(1,sw)*Math.PI/2)*11;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
   else if(atk){const a=-2.3+sw*3.4;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-30,-10,8.4,8)}
-  else if(thr){const a=-1.0-sw*.3;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
+  else if(thr){const a=(o.wep&&o.wep.kind==='xbow')?-.1:-1.0-sw*.3;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
   else{AF=armPts(shF,6,26,8.6,8);AB=armPts(shB,-4,10,8.6,8)}
   // arma empunhada: braço da frente estendido à frente, mão no cabo (humanos armados e jogador)
   if(wp&&!sit&&!atk&&!thr){const sw2=walk?Math.sin(ph*Math.PI/2):0;AF=ik(shF,[sx0+(shO?13.4:12.6)+sw2*1.2,py-(shO?13.4:11.6)+(walk?Math.abs(sw2)*-.8:0)],8.6,8,1)}
@@ -2008,18 +2025,6 @@ function buildHuman(o,K){
     dot(hdx-4,hdy-4.2,[255,255,255],1.4,5);
     paint([['p',[hdx-2,hdy-7.8,hdx+1,hdy-12,hdx+4,hdy-8.5,hdx+1,hdy-8]]],'#a8283e',{});
   }
-  // ---- escudo ----
-  if(shO){
-    const ts=eq.shield.tier||0,scol=ts===0?mix(P.wood,P.orL,.28):ts===1?ARM_COL(1):mix(P.pinkR,P.earth,.15);
-    const cx=shCX,cy=shCY;
-    paint([['e',cx,cy,6.8,7.8]],scol,{side:.3,top:.18,fn:ts===0?((i,j)=>(Math.abs(i-Pn.X(cx))%3<.9?'m':null)):null});
-    paint([['e',cx,cy,2.3,2.3]],ts===0?P.grayB:P.gold,{});
-    paint([['r',cx-.5,cy-7.4,1,14.8]],ts===2?P.gold:shade(scol,-20),{nohi:true});
-    if(ts===2)paint([['r',cx-6.2,cy-.5,12.4,1.2]],P.gold,{});
-    if(ts>0){dot(cx-4.2,cy-4.8,[255,255,255],2.4,1)}
-    // braço de trás por cima do escudo, segurando a borda
-    {}
-  }
   // ---- braço da frente ----
   const sleevePaint=vamp?o.coat||'#2a1a2c':sleeveCol;
   darkArm(AF,sleevePaint,skin,false,true);
@@ -2055,12 +2060,12 @@ function buildHuman(o,K){
       const cc=along(26.5,0);paint([['e',cc[0],cc[1],4,4]],wc,{});dot(cc[0]-2,cc[1]-2.4,[255,255,255],1.6,1.2);
       for(const s of[[0,-4.8],[0,4.8],[-4.8,0],[4.8,0]]){const q2=along(26.5+s[0],s[1]);dot(q2[0]-.5,q2[1]-.5,shade(wc,-30),1.3,1.3)}
     }else if(kind==='spear'){
-      paint([mk(along(-9),along(40),1,1)],mix(P.wood,P.orL,.18),{});
-      const a=along(37,-2.2),b=along(47,0),c2=along(37,2.2);paint([['p',[a[0],a[1],b[0],b[1],c2[0],c2[1]]]],wc,{hi:.55,sh:.3});
+      paint([mk(along(-25),along(24),1,1)],mix(P.wood,P.orL,.18),{});
+      const a=along(21,-2.2),b=along(31,0),c2=along(21,2.2);paint([['p',[a[0],a[1],b[0],b[1],c2[0],c2[1]]]],wc,{hi:.55,sh:.3});
     }else if(kind==='xbow'){
       paint([mk(along(-4),along(21),1.3,1.1)],mix(P.wood,P.orL,.18),{});
-      paint([mk(along(17,-10),along(13,0),.9,.9),mk(along(13,0),along(17,10),.9,.9)],mix(P.wood,P.earth,.2),{});
-      paint([mk(along(17,-10),along(17,10),.3,.3)],P.mist,{nohi:true,nosh:true});
+      paint([mk(along(13,-10),along(18,0),.9,.9),mk(along(18,0),along(13,10),.9,.9)],mix(P.wood,P.earth,.2),{});
+      paint([mk(along(13,-10),along(13,10),.3,.3)],P.mist,{nohi:true,nosh:true});
       paint([mk(along(8),along(22),.55,.55)],wc,{nohi:true,nosh:true});
     }else{ // arco
       const bx=along(4,0);const top=along(2,-15),bot=along(2,15);
@@ -2219,9 +2224,9 @@ function buildFront(o,K){
     paint([['c',hx,hy+3,1.1,hx,hy-2,1.1]],mix(P.wood,P.earth,.3),{});
     if(k==='sword'||k==='dagger'){const L=k==='sword'?26:12;paint([['c',hx,hy-2.6,.9,hx,hy-2.6,.9],['r',hx-3.6,hy-3.4,7.2,1.6]],P.gold,{});paint([['p',[hx-1.5,hy-4,hx+1.5,hy-4,hx+1.3,hy-4-L,hx,hy-7-L,hx-1.3,hy-4-L]]],wc,{hi:.55,sh:.3});dot(hx-.8,hy-5,[255,255,255],.7,L-2)}
     else if(k==='axe'){paint([['c',hx,hy+4,1.1,hx,hy-26,1.1]],wood,{});paint([['p',[hx,hy-12,hx+9,hy-14,hx+9,hy-26,hx,hy-23]]],wc,{hi:.55,sh:.3})}
-    else if(k==='xbow'){paint([['c',hx,hy+4,1.2,hx,hy-14,1.1]],wood,{});paint([['c',hx-8,hy-16,.9,hx,hy-12,.9],['c',hx,hy-12,.9,hx+8,hy-16,.9]],wood,{});paint([['c',hx,hy-4,.5,hx,hy-18,.5]],wc,{})}
+    else if(k==='xbow'){paint([['c',hx,hy+4,1.2,hx,hy-14,1.1]],wood,{});paint([['c',hx-8,hy-12,.9,hx,hy-16,.9],['c',hx,hy-16,.9,hx+8,hy-12,.9]],wood,{});paint([['c',hx-8,hy-12,.4,hx+8,hy-12,.4]],P.mist,{})}
     else if(k==='mace'){paint([['c',hx,hy+4,1.1,hx,hy-22,1.1]],wood,{});paint([['e',hx,hy-27,4,4]],wc,{});dot(hx-2,hy-29,[255,255,255],1.4,1.2)}
-    else if(k==='spear'){paint([['c',hx,hy+8,1,hx,hy-34,1]],wood,{});paint([['p',[hx-2.2,hy-34,hx+2.2,hy-34,hx,hy-44]]],wc,{hi:.55,sh:.3})}
+    else if(k==='spear'){paint([['c',hx,hy+21,1,hx,hy-21,1]],wood,{});paint([['p',[hx-2.2,hy-21,hx+2.2,hy-21,hx,hy-31]]],wc,{hi:.55,sh:.3})}
     else{paint([['c',hx,hy-14,.9,hx+3,hy-2,.9],['c',hx+3,hy-2,.9,hx,hy+10,.9]],wood,{})}
     paint([['e',hx,hy,2.3,2.3]],skin,{});
   }
@@ -3153,7 +3158,7 @@ function drawBattle(t,ms){
     else if(d<1450){const q=(d-1100)/350,e2=q*q*(3-2*q);batFx(ex+(HX-ex)*e2,ey+(hy-ey)*e2,700,t,1)}
     else{const q=Math.min(1,(d-1450)/250);batFx(HX,hy,Math.max(0,700-(d-1450)*2),t,1);c.save();c.translate(HX,HY);c.globalAlpha=q;heroSprite(0,0,t,'stand',false,0,1);c.restore();c.globalAlpha=1}
   }
-  else if(!ph){const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide,HY);heroSprite(0,0,t,sm||sw>0?'atk':th?'throw':'stand',false,sm?.6:sw,1);
+  else if(!ph){const xbw=G.wep&&wepOk()&&/besta/i.test(G.wep.n);const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide,HY);heroSprite(0,0,t,sm||sw>0?(xbw?'throw':'atk'):(th||xbw)?'throw':'stand',false,sm?.6:sw,1);
     stDraw(S.hs,46,t);c.restore()}
   if(S.ally&&S.ally.hp>0){const al=S.ally,sd=ms-(fx.psum||0);let ax=HX+38,ay=HY-66+Math.sin(t*4)*3;
     if(al.at&&ms>=al.at&&ms-al.at<600&&pos[al.ti]){const q3=Math.sin((ms-al.at)/600*Math.PI),tp=pos[al.ti];ax+=(tp[0]+slide-34-ax)*q3;ay+=(tp[1]-30-ay)*q3}
@@ -3187,11 +3192,11 @@ function drawBattle(t,ms){
   const pj=fx.proj;if(pj&&pos[pj.ti]){const pp=(ms-pj.t)/pj.d;
     if(pp>=0&&pp<=(pj.hit?1:1.5)){
       const [tx,ty]=pos[pj.ti],sx0=HX+16,sy0=HY-32,ex=tx+slide,ey=ty-26;
-      const draw=(u,al)=>{const x0=sx0+(ex-sx0)*u,arc=pj.kind==='arrow'?10:pj.kind==='knife'?16:4,y0=sy0+(ey-sy0)*u-Math.sin(Math.min(1,u)*Math.PI)*arc;
+      const draw=(u,al)=>{const x0=sx0+(ex-sx0)*u,arc=pj.kind==='bolt'?0:pj.kind==='arrow'?10:pj.kind==='knife'?16:4,y0=sy0+(ey-sy0)*u-Math.sin(Math.min(1,u)*Math.PI)*arc;
         const dx=ex-sx0,dy=(ey-sy0)-Math.cos(Math.min(1,u)*Math.PI)*arc*Math.PI/1.0*0,ang=Math.atan2(dy,dx)+(pj.kind==='knife'?u*18:0),ca=Math.cos(ang),sa=Math.sin(ang);
         c.globalAlpha=al;
         if(pj.kind==='magic'){disc(x0,y0,3,'#5a86ff');disc(x0,y0,2,'#9ad0ff');rc(x0-1,y0-1,2,2,P.white);rc(x0-ca*5,y0-sa*5,2,2,'#5a86ff')}
-        else if(pj.kind==='arrow'){for(let i=-6;i<=5;i++)rc(x0+ca*i,y0+sa*i,2,2,i>3?P.white:i<-4?P.pinkL:P.wood);rc(x0+ca*6,y0+sa*6,2,2,P.mist);rc(x0-ca*6,y0-sa*6-1,2,1,P.pinkR)}
+        else if(pj.kind==='arrow'||pj.kind==='bolt'){for(let i=-6;i<=5;i++)rc(x0+ca*i,y0+sa*i,2,2,i>3?P.white:i<-4?P.pinkL:P.wood);rc(x0+ca*6,y0+sa*6,2,2,P.mist);rc(x0-ca*6,y0-sa*6-1,2,1,P.pinkR)}
         else{for(let i=-3;i<=3;i++)rc(x0+ca*i,y0+sa*i,2,1,i<0?P.pinkL:i>2?P.white:P.mist);rc(x0+ca*3,y0+sa*3,1,1,P.sun)}
         c.globalAlpha=1};
       const u=Math.min(1.5,pp);draw(u,1);draw(Math.max(0,u-.08),.45);draw(Math.max(0,u-.16),.22);
@@ -3228,7 +3233,6 @@ function drawSleepBag(x,y,t,d){
 function WCH(e,ix,LT,S){const D=ENM.witch;fx.lunge=fx.lunge||{};fx.lunge[ix]=LT;
   const hit=(dmg,ms,txt)=>{const d=hurtMe(dmg,S);(S.hl=S.hl||[]).push([LT+ms,G.hp]);fx.p=LT+ms;fx.nums.push({x:70,y:100,v:'-'+d,t:LT+ms,c:'#b6e06a'});cl(txt.replace('#',d))};
   if(S.pois>0){S.pois--;G.hp-=2;(S.hl=S.hl||[]).push([LT,G.hp]);fx.nums.push({x:70,y:100,v:'-2',t:LT,c:'#9ad45a'});cl('O veneno queima suas veias: -2 de vida.');if(G.hp<=0)return}
-  if(!(S.fog>0)&&Math.random()<.45){fx.fg={t:LT,ix};S.fog=rnd(2,3);cl(`A bruxa sopra uma névoa roxa sobre você: seus ataques vão errar nos próximos ${S.fog} turnos.`);return}
   fx.wf={t:LT,ix};
   if(!ch(.85)||ch(pDodge('witch'))){fx.wf.miss=1;cl('O frasco de veneno se estilhaça no chão, longe de você.');return}
   hit(rnd(D.a,D.b),750,'A bruxa joga um frasco de veneno: -# de vida.');S.pois=Math.max(S.pois||0,3);cl('Você está envenenado!');
@@ -3475,7 +3479,7 @@ coin:[
 pouch:["................",".....kk..kk.....","......kkkk......",".....kjjjjk.....","....kkgggkkk....",".....kiiiik.....","...kkiiiiiikk...","..kiiBiiiiiiik..",".kiiBEiiiiiiik..",".kiiiiiiggiiik..",".kiiiiiggggiik..",".kiiiiiiggiiik..",".kiiiiiiiiiilk..","..kiiiiiiiillk..","...kkllllllkk...",".....kkkkkk....."],
 sword:["..............kk","............kknk","...........knmk.","..........knmk..",".........knmk...","........knmk....",".......knmk.....","...kk.knmk......","...kgknmk.......","....kgmk........",".....kgk........","....kbgbk.......","...kbk.kbk......","..kbk....k......",".kak............",".kk............."],
 dagger:["................","................","..........kk....",".........knk....","........knmk....",".......knmk.....","......knmk......",".....knmk.......","....kgmk........","...kghk.........","..kbkgk.........",".kbak...........",".kak............","..k.............","................","................"],
-xbow:["................","................",".kk..........kk.",".kmk........kmk.","..kmk......kmk..","...kmkkkkkkmk...","....kmnnnnmk....",".....kkkkkk.....","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......",".......kk.......","................"],
+xbow:["................","................","....kkkkkkkk....","..kkmmmmmmmmkk..",".kmmkkkbakkkmmk.",".kk...kbak...kk.","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......",".......kk.......","................"],
 axe:["................","......kkkkk.....","....kkmnnmmk....","...kmnnmmmmok...","..kmnmmmmmook...","..kmmmmmmookk...","..kkmmmmookakk..","...kkmmookabk...","....kkkkkabk....",".........kak....",".........kbk....",".........kak....",".........kbk....",".........kak....","..........kk....","................"],
 spear:["..............kk","............kknk","...........knmk.","..........knmk..",".........kkmk...","........kkak....",".......kbak.....","......kbak......",".....kbak.......","....kbak........","...kbak.........","..kbak..........",".kbak...........",".kak............",".kk.............","................"],
 mace:["................",".....kkkkkk.....","....kmnnmmok....","...kmnmmmmook...","...kmmmmmmook...","...kmmmmmmook...","....kmmmmook....",".....kkkkkk.....","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......","......kbak......",".......kk.......","................"],
@@ -3569,7 +3573,7 @@ V.info=()=>{
   if(G.food<=0||G.water<=0)st.push(`⚠️ <b>Sem ${G.food<=0&&G.water<=0?'comida e água':G.food<=0?'comida':'água'}</b> · perdendo vida a cada 2h`);
   if(S&&S.hs){const h=S.hs;if(h.bleed>0)st.push(`🩸 <b>Sangrando</b> · ${h.bleed} turno(s), −2 por turno (use bandagem)`);if(h.stun>0)st.push(`💫 <b>Atordoado</b> · ${h.stun} turno(s)`);if(h.burn>0)st.push(`🔥 <b>Queimando</b> · ${h.burn} turno(s), −3 por turno`);if(h.poison>0)st.push(`☠️ <b>Envenenado</b> · ${h.poison} turno(s), −2 por turno`);if(h.frost>0)st.push(`❄️ <b>Congelado</b> · ${h.frost} turno(s), −30% de dano`)}
   if(G.bat)st.push('🦇 <b>Forma de morcego</b>');
-  const w=G.wep&&G.wep.dur>0?G.wep:null,fo=AT('for'),de=AT('des'),ag=AT('agi'),vi=AT('vit'),it=AT('int');
+  const w=G.wep&&G.wep.dur>0?G.wep:null,rg=!!(w&&/besta/i.test(w.n)),fo=rg?AT('des'):AT('for'),de=AT('des'),ag=AT('agi'),vi=AT('vit'),it=AT('int');
   const ps=[['Peitoral',G.arm],['Elmo',G.helm],['Capa',G.cape],['Escudo',G.shield],['Calça',G.pants],['Botas',G.boots]];
   const def=ps.reduce((s,[,p])=>s+(p&&p.dur>0?p.def:0),0);
   const mul=1+.04*fo,nm=G.turned?(isNight()?1.5:.7):1;
@@ -3585,7 +3589,7 @@ V.info=()=>{
   ${st.length?`<h3>Status</h3>${st.map(s=>`<p style="margin:3px 0">${s}</p>`).join('')}`:''}
   <div class="stg">
   ${tile('❤️','Vida máxima',G.mhp,[`<span class="bn z">base ${hpBase}</span>`,bon(lvB,'nível'),bon(5*vi,'vitalidade')])}
-  ${tile('⚔️','Dano corpo a corpo',`${dmin}-${dmax}`,[`<span class="bn z">${w?'arma':'punhos'} ${wA}-${wB}</span>`,bon(Math.round(4*fo),'% força'),G.turned?(isNight()?'<span class="bn">+50% noite</span>':'<span class="bn bad">−30% dia</span>'):'',w&&w.fx?`<span class="bn">${w.fx==='trovao'?'trovão':w.fx}</span>`:''])}
+  ${tile('⚔️','Dano corpo a corpo',`${dmin}-${dmax}`,[`<span class="bn z">${w?'arma':'punhos'} ${wA}-${wB}</span>`,bon(Math.round(4*fo),rg?'% destreza':'% força'),G.turned?(isNight()?'<span class="bn">+50% noite</span>':'<span class="bn bad">−30% dia</span>'):'',w&&w.fx?`<span class="bn">${w.fx==='trovao'?'trovão':w.fx}</span>`:''])}
   ${tile('🛡️','Defesa',`−${def}`,eqList.length?eqList:[])}
   ${tile('💨','Esquiva',`${Math.min(50,ag)}%`,[bon(ag,'% agilidade')])}
   ${tile('🏹','Distância',`+${de}%`,[bon(de*4,'% dano (destreza)')])}
@@ -3642,6 +3646,8 @@ V.attr=()=>`<section class="card"><h2>Atributos</h2><p class="dim">Nível ${lv()
 /* ===== Inventário estilo bloco (grade de slots) ===== */
 let PSEL=null,HPK='',HPU='';
 function heroPic(){const key=[G.gender,G.turned,G.wep&&wepOk()&&G.wep.n,['arm','helm','cape','shield','pants','boots'].map(s=>G[s]&&G[s].n).join('|')].join('/');if(key===HPK&&HPU)return HPU;try{const cv=layer(64,72,()=>heroFront(32,66));HPU=cv.toDataURL();HPK=key}catch(_){HPU=''}return HPU}
+A.eqarrow=()=>{if(G.view==='combat')return;if(G.shield){lg('Tire o escudo antes: as flechas ocupam o lugar dele.');return}const n=G.inv.arrow||0;if(!n)return;G.quiver=(G.quiver||0)+n;delete G.inv.arrow;PSEL='q:q'};
+A.unquiver=()=>{if(G.view==='combat'||!G.quiver)return;G.inv.arrow=(G.inv.arrow||0)+G.quiver;G.quiver=0;PSEL=null};
 A.psel=v=>{PSEL=(PSEL===v)?null:v};
 const GS={wep:'sword',arm:'chest',helm:'helm',cape:'cape',shield:'shield',pants:'pants',boots:'boots'};
 const durBar=o=>o.max?`<i class="mdur" style="width:${Math.max(0,Math.min(100,o.dur/o.max*100))}%;background:${o.dur<=0?'#a33':o.dur/o.max<.35?'#c80':'#4a4'}"></i>`:'';
@@ -3657,15 +3663,16 @@ V.pack=()=>{
   while(items.length<total)items.push('<div class="mslot empty"></div>');
   let det='<p class="dim">Toque num item para ver as opções.</p>';
   if(PSEL){const t=PSEL[0],id=PSEL.slice(2);
-    if(t==='e'&&G[id]){det=`<div class="row"><span class="l">${gdesc(G[id])}</span><span class="r">${cb?'':`<button class="sm" data-a="unequip" data-v="${id}">Tirar</button>`}</span></div>`}
+    if(t==='q'&&G.quiver>0){det=`<div class="row"><span class="l">🏹 Flechas equipadas <small>×${G.quiver}</small><br><small class="dim">Munição da besta</small></span><span class="r">${cb?'':`<button class="sm" data-a="unquiver">Tirar</button>`}</span></div>`}
+    else if(t==='e'&&G[id]){det=`<div class="row"><span class="l">${gdesc(G[id])}</span><span class="r">${cb?'':`<button class="sm" data-a="unequip" data-v="${id}">Tirar</button>`}</span></div>`}
     else if(t==='g'){const o=G.bag.find(x=>x.id===id);if(o)det=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r">${o.k==='sc'?'<small class="dim">Use na bigorna</small>':o.dur>0?`<button class="sm" data-a="equip" data-v="${o.id}" ${cb?'disabled':''}>Equipar</button>`:'<small class="dim">Quebrado </small>'}<button class="sm" data-a="dropg" data-v="${o.id}">Largar</button></span></div>`}
     else if(t==='i'&&id==='water'){const it=IT.water,w0=G.inv.water||0;det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${Math.round(w0/(20*SK())*100)}% de ${SK()*100}%</small><br><small class="dim">${it.d}</small></span><span class="r"><button class="sm" data-a="use" data-v="water" ${cb||!w0?'disabled':''}>Beber (5%)</button></span></div>`}
-    else if(t==='i'&&G.inv[id]){const it=IT[id],u=it.food||it.water||it.heal||id==='holy';det=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.inv[id]}</small>${it.d?`<br><small class="dim">${it.d}</small>`:''}</span><span class="r">${u?`<button class="sm" data-a="use" data-v="${id}" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${id}">Largar</button></span></div>`}
+    else if(t==='i'&&G.inv[id]){const it=IT[id],u=it.food||it.water||it.heal||id==='holy';det=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.inv[id]}</small>${it.d?`<br><small class="dim">${it.d}</small>`:''}</span><span class="r">${id==='arrow'?`<button class="sm" data-a="eqarrow" ${cb?'disabled':''}>Equipar</button>`:''}${u?`<button class="sm" data-a="use" data-v="${id}" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${id}">Largar</button></span></div>`}
   }
   return `<section class="card mc"><h3>Inventário <small>peso ${weight()}/${cap()}</small></h3>
   <div class="mtop"><div class="mcol">${eq('helm','Elmo')}${eq('arm','Peitoral')}${eq('pants','Calça')}${eq('boots','Botas')}${eq('cape','Capa')}</div>
   <div class="mhero"><img class="mfig" alt="" src="${heroPic()}"><small>Nv ${lv()}</small></div>
-  <div class="mcol">${eq('wep','Arma')}${eq('shield','Escudo')}</div></div>
+  <div class="mcol">${eq('wep','Arma')}${G.quiver>0?cell('q:q','🏹',`<b class="mn">${G.quiver}</b>`,'Flechas','eqp'):eq('shield','Escudo')}</div></div>
   <div class="mgrid mscroll big" data-sc="i">${items.join('')}</div>
   <div class="mdet">${det}</div>
   <div class="btns"><button data-a="close">Voltar</button></div></section>`;
@@ -3723,7 +3730,7 @@ V.anvil=()=>{
 
 A.openpurse=()=>{G.modal='purse'};
 V.purse=()=>{const c=coinSplit(G.coins);return `<section class="card"><h2>Bolsa de dinheiro</h2><div class="row"><span class="l">${coinI('au')} Moedas de ouro</span><span class="r"><b>${c.au}</b></span></div><div class="row"><span class="l">${coinI('ag')} Moedas de prata</span><span class="r"><b>${c.ag}</b></span></div><div class="row"><span class="l">${coinI('cu')} Moedas de cobre</span><span class="r"><b>${c.cu}</b></span></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
-const CATS={weapon:['sword','axe','knives'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1'],misc:['sbag','skin','band','hpot','holy']};
+const CATS={weapon:['sword','axe','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1'],misc:['sbag','skin','band','hpot','holy']};
 A.ctab=v=>{G.ctab=v};
 const ownN=r=>{if(r.give){const k=Object.keys(r.give)[0];return have(k)}if(r.skin)return SK();if(r.gear){const nm=r.gear().n;const all=[...G.bag,...G.chest.bag,...['wep','arm','helm','cape','shield','pants','boots'].map(k=>G[k]).filter(Boolean)];return all.filter(o=>o.n===nm||(o.n.startsWith(nm)&&o.k==='w')).length}return null};
 const recCard=r=>{const done=(r.build&&G.b[r.build])||(r.skin&&SK()>=3),lk=(RLV[r.id]||1)>SL('craft');const ok=!lk&&!done&&Object.entries(r.need).every(([k,n])=>have(k)>=n)&&(!r.forge||G.b.forge)&&(!r.stove||G.b.stove)&&(!r.repair||dmgd(r.repair).length);
