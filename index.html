@@ -1233,7 +1233,7 @@ const A={
  drop(k){if(!G.inv[k])return;G.inv[k]--;if(!G.inv[k])delete G.inv[k]},
  equip(id){
    const CB=G.view==='combat';if(CB){const o1=G.bag.find(o=>o.id===id);if(!o1||BUSY)return}
-   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança|machado/i;if(o0.k==='w'&&TH.test(o0.n)){if(G.shield){G.bag.push(G.shield);G.shield=null}if(G.quiver&&!/besta/i.test(o0.n)){A.unquiver()}}if(o0.k==='s'){if(G.quiver)A.unquiver();if(G.wep&&TH.test(G.wep.n)){G.bag.push(G.wep);G.wep=null}}}const o=G.bag.splice(i,1)[0];
+   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança|machado/i;if(o0.k==='w'&&TH.test(o0.n)){if(G.shield){const sn=G.shield.n;G.bag.push(G.shield);G.shield=null;PWARN='Você guardou '+sn+' no inventário: '+o0.n+' usa as duas mãos.';lg(PWARN)}}if(o0.k==='s'){if(G.quiver){const qn=G.qfx&&IT[G.qk]?IT[G.qk].n:'Flechas';A.unquiver();PWARN=qn+' voltou para o inventário: o escudo ocupa o lugar delas.';lg(PWARN)}if(G.wep&&TH.test(G.wep.n)){const wn=G.wep.n;G.bag.push(G.wep);G.wep=null;PWARN='Você guardou '+wn+' no inventário: o escudo exige uma mão livre.';lg(PWARN)}}}const o=G.bag.splice(i,1)[0];
    if(o.k==='w'){if(G.wep)G.bag.push(G.wep);G.wep=o}else{const sl=SLOT[o.k]||'arm';if(G[sl])G.bag.push(G[sl]);G[sl]=o}
    if(CB){cl('Você troca para '+o.n+'.');SWP=true}
  },
@@ -3679,7 +3679,7 @@ V.attr=()=>`<section class="card"><h2>Atributos</h2><p class="dim">Nível ${lv()
 /* ===== Inventário estilo bloco (grade de slots) ===== */
 let SWP=false,PWARN='',PSEL=null,HPK='',HPU='';
 function heroPic(){const key=[G.gender,G.turned,G.wep&&wepOk()&&G.wep.n,['arm','helm','cape','shield','pants','boots'].map(s=>G[s]&&G[s].n).join('|')].join('/');if(key===HPK&&HPU)return HPU;try{const cv=layer(64,72,()=>heroFront(32,66));HPU=cv.toDataURL();HPK=key}catch(_){HPU=''}return HPU}
-A.eqarrow=v=>{const CB=G.view==='combat';if(CB&&BUSY)return;v=v||'arrow';if(!(G.inv[v]>0))return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}if(G.shield){G.bag.push(G.shield);G.shield=null}const n=G.inv[v]||0;if(!n)return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}G.quiver=(G.quiver||0)+n;G.qk=v;G.qfx=(IT[v]&&IT[v].fx)||null;delete G.inv[v];PSEL='q:q';if(CB){cl(`Você recarrega a besta com ${n} flecha(s).`);SWP=true}};
+A.eqarrow=v=>{const CB=G.view==='combat';if(CB&&BUSY)return;v=v||'arrow';if(!(G.inv[v]>0))return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}if(G.shield){const sn=G.shield.n;G.bag.push(G.shield);G.shield=null;PWARN=sn+' foi para a inventário: as flechas ocupam o lugar do escudo.';lg(PWARN)}const n=G.inv[v]||0;if(!n)return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}G.quiver=(G.quiver||0)+n;G.qk=v;G.qfx=(IT[v]&&IT[v].fx)||null;delete G.inv[v];PSEL='q:q';if(CB){cl(`Você recarrega a besta com ${n} flecha(s).`);SWP=true}};
 A.unquiver=()=>{const CB=G.view==='combat';if(!G.quiver||(CB&&BUSY))return;{const k=G.qk||'arrow';G.inv[k]=(G.inv[k]||0)+G.quiver}G.quiver=0;G.qk=null;G.qfx=null;PSEL=null;if(CB){cl('Você guarda as flechas.');SWP=true}};
 A.psel=v=>{PWARN='';PSEL=(PSEL===v)?null:v};
 const GS={wep:'sword',arm:'chest',helm:'helm',cape:'cape',shield:'shield',pants:'pants',boots:'boots'};
