@@ -1177,8 +1177,9 @@ const A={
      const st=[{key:'water',p:4,q:5},{key:'bread',p:4,q:5},{key:'hpot',p:28,q:2},{key:'bandage',p:12,q:3},{key:'wood',p:3,q:8},{key:'holy',p:30,q:1},{key:'arrow',p:2,q:30},{key:'cloth',p:3,q:5},{key:'iron',p:6,q:5}];
      for(let i=0;i<2;i++){const o=ch(.5)?mkWeapon():mkGear();st.push({gear:o,p:Math.round(gv(o)*1.4),q:1})}
      if(ch(.7)){const sc=mkScroll();st.push({gear:sc,p:Math.round(gv(sc)*1.4),q:1})}
-     G.shop={day:merchKey(),name:'Mercante viajante',tc:350,stock:st};
+     G.shop={day:merchKey(),name:'Mercante viajante',tc:90+Math.floor(Math.random()*61),stock:st};
    }
+   if(G.shop.tc>150)G.shop.tc=150;
    G.trade=G.shop;G.modal='trade';
  },
  buy(v){
@@ -1232,7 +1233,7 @@ const A={
  drop(k){if(!G.inv[k])return;G.inv[k]--;if(!G.inv[k])delete G.inv[k]},
  equip(id){
    const CB=G.view==='combat';if(CB){const o1=G.bag.find(o=>o.id===id);if(!o1||BUSY)return}
-   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança|machado/i;if(o0.k==='w'&&TH.test(o0.n)&&(G.shield||(G.quiver&&!/besta/i.test(o0.n)))){PWARN='Arma de duas mãos: tire o escudo antes de equipar.';lg(PWARN);return}if(o0.k==='s'&&((G.wep&&TH.test(G.wep.n))||G.quiver)){PWARN=G.quiver?'As flechas ocupam o lugar do escudo: tire-as antes.':'Impossível equipar escudo com arma de duas mãos (besta, lança ou machado).';lg(PWARN);return}}const o=G.bag.splice(i,1)[0];
+   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança|machado/i;if(o0.k==='w'&&TH.test(o0.n)){if(G.shield){G.bag.push(G.shield);G.shield=null}if(G.quiver&&!/besta/i.test(o0.n)){A.unquiver()}}if(o0.k==='s'){if(G.quiver)A.unquiver();if(G.wep&&TH.test(G.wep.n)){G.bag.push(G.wep);G.wep=null}}}const o=G.bag.splice(i,1)[0];
    if(o.k==='w'){if(G.wep)G.bag.push(G.wep);G.wep=o}else{const sl=SLOT[o.k]||'arm';if(G[sl])G.bag.push(G[sl]);G[sl]=o}
    if(CB){cl('Você troca para '+o.n+'.');SWP=true}
  },
@@ -1714,7 +1715,7 @@ function drawRoad(wx,biome,h,t,o){
   for(let i=-1;i<18;i++){const wxx=Math.floor(cam*.4/20)+i,X=wxx*20-cam*.4+h01(wxx)*8,sc=.55+h01(wxx+3)*.2;treeShadow(X,119,15*sc,6);{const al=B.tree==='dead'?0:(1-TR);if(al>0){c.globalAlpha=al;if(h01(wxx+7)<.5)pine(X,119,sc,shade(B.mid,-12));else oak(X,119,sc,shade(B.mid,-10));c.globalAlpha=1}if(TR>0){c.globalAlpha=TR;deadTree(X,119,.7);c.globalAlpha=1}}}
   const off=cam%W;{const rb=TR>=1?'swamp':baseB;blit(roadStrip(rb),-off,120);blit(roadStrip(rb),W-off,120);if(TR>0&&TR<1){c.globalAlpha=TR;blit(roadStrip('swamp'),-off,120);blit(roadStrip('swamp'),W-off,120);c.globalAlpha=1}}
   for(let i=-1;i<12;i++){const wxx=Math.floor(cam*.62/30)+i,X=wxx*30-cam*.62+h01(wxx+11)*12,sc=.95+h01(wxx+3)*.35;treeShadow(X,126,18*sc,8);{const al=B.tree==='dead'?0:(1-TR);if(al>0){c.globalAlpha=al;if(h01(wxx+9)<.5)pine(X,126,sc,B.mid);else oak(X,126,sc*.8,B.mid);c.globalAlpha=1}if(TR>0){c.globalAlpha=TR;deadTree(X,126,sc);c.globalAlpha=1}}}
-  if(nightF(h)<.5){for(let k=0;k<3;k++){const bx=((t*22+k*130)%380)-30,by=34+k*14+Math.sin(t*2+k)*4,fl=Math.floor(t*6+k)%2;rc(bx,by,2,1,'#2a2a30');rc(bx-2,by+(fl?-1:1),2,1,'#2a2a30');rc(bx+2,by+(fl?-1:1),2,1,'#2a2a30')}}
+  if(nightF(h)<.5){for(let k=0;k<3;k++){const bx0=((t*22+k*130)%380)-30,bx=MIR?320-bx0:bx0,by=34+k*14+Math.sin(t*2+k)*4,fl=Math.floor(t*6+k)%2;rc(bx,by,2,1,'#2a2a30');rc(bx-2,by+(fl?-1:1),2,1,'#2a2a30');rc(bx+2,by+(fl?-1:1),2,1,'#2a2a30')}}
   for(let i=Math.floor(cam/70)-1;i<Math.floor(cam/70)+6;i++){continue;const X=i*70+h01(i)*20-cam;for(let k=0;k<6;k++){rc(X+k*7,127,2,8,'#6a4a2a');rc(X+k*7,127,.5,8,'#8a6a3a')}rc(X,129,40,1,'#8a6a3a');rc(X,132,40,1,'#8a6a3a')}
   if(o.dest&&o.destM!=null){const key=o.dest,X=o.destM+120-cam;if(X<W+160){castSil(placeImg(key,n),X-190,134,SHD);blit(placeImg(key,n),X-190,0);placeDyn(key,X,134,t,n,h)}}
   for(let i=0;i<26;i++){const px=((h01(i*17)*W*2-cam*1.4)%W+W)%W,py=164+h01(i*19)*30,hh=4+Math.floor(h01(i*23)*5),sw=Math.sin(t*2+i)*.8;const gc=shade(B.g2,-26+h01(i)*20);rc(px+sw,py-hh,.5,hh,gc);rc(px+sw+.7,py-hh+1,.5,hh-1,shade(gc,-14));rc(px+sw-.7,py-hh+2,.5,hh-2,shade(gc,12))}
@@ -3140,7 +3141,7 @@ function drawBattle(t,ms){
   const SHK=G.scene&&G.scene.en&&G.scene.en.some(q=>q.k==='dragon')?dragonShake(ms,G.scene):0;if(SHK){c.save();c.translate(Math.round((Math.random()-.5)*SHK*2),Math.round((Math.random()-.5)*SHK*2))}
   TNOW=t;const S=G.scene,N=S.en.length,h=G.hour,SD0=shadowDir(h);SHD=SD0;
   const p=(ms-(fx.trans||0))/1000-1.3,k=Math.min(1,Math.max(0,(p-.05)/.5)),slide=(1-k*k*(3-2*k))*150;
-  const biome=(G.ret==='poi'&&G.loc!=='camp'?LOCS[G.loc].biome:(G.trip?LOCS[G.trip.to].biome:'plain'));
+  const biome=(G.ret==='poi'&&G.loc!=='camp'?LOCS[G.loc].biome:(G.trip?(LOCS[G.trip.to].biome!=='swamp'?LOCS[G.trip.to].biome:(LOCS[G.trip.from].biome!=='swamp'?LOCS[G.trip.from].biome:'plain')):'plain'));
   const B=battleBG(biome,h,t);
   const pos=N===1?[[238,112]]:N===2?[[205,106],[266,120]]:[[190,102],[240,112],[288,124]];
   const HX=76,HY=156;
@@ -3345,8 +3346,8 @@ function frame(ms){
       const tr=G.trip;
       if(!tr){drawCamp(t,h)}else{
         const back=LOCS[tr.to].x<LOCS[tr.from].x;MIR=back;if(back){c.save();c.translate(W,0);c.scale(-1,1)}
-        const tb=LOCS[tr.to].biome,fb=LOCS[tr.from].biome;let terror=0;if(tb==='swamp'&&fb==='swamp')terror=1;else if(tb==='swamp'||fb==='swamp'){const pg=tr.done+(walk?Math.min(1,(ms-walk.t0)/(walk.dur||1500)):0),wn=Math.max(1,Math.min(2,tr.hours));terror=tb==='swamp'?Math.min(1,Math.max(0,(pg-(tr.hours-wn))/wn)):Math.min(1,Math.max(0,1-pg/wn))}
-        const biome=(tb==='swamp'||fb==='swamp')?'swamp':tb,baseB=tb!=='swamp'?tb:(fb!=='swamp'?fb:'plain');
+        const tb=LOCS[tr.to].biome,fb=LOCS[tr.from].biome;let terror=0;
+        const baseB=tb!=='swamp'?tb:(fb!=='swamp'?fb:'plain'),biome=baseB;
         if(TTR!==tr){TTR=tr;TSX=120;TM=null;TMP=null}
         TSX+=200*dtf;
         const wx=TSX,moving=true,tt=t*2;
@@ -3386,7 +3387,7 @@ function frame(ms){
         const inPoi=G.ret==='poi'&&G.loc!=='camp';
         const mC=inPoi?(G.dir===-1&&G.loc!=='peaks'):!!(G.trip&&LOCS[G.trip.to].x<LOCS[G.trip.from].x);MIR=mC;if(mC){c.save();c.translate(W,0);c.scale(-1,1)}
         if(inPoi)drawLoc(G.loc,t,h);
-        else{const tr=G.trip;const biome=(tr?LOCS[tr.to].biome:'plain');drawRoad(tr&&TTR===tr?TSX:0,biome,h,t,{})}
+        else{const tr=G.trip;const biome=(tr?(LOCS[tr.to].biome!=='swamp'?LOCS[tr.to].biome:(LOCS[tr.from].biome!=='swamp'?LOCS[tr.from].biome:'plain')):'plain');drawRoad(tr&&TTR===tr?TSX:0,biome,h,t,{})}
         heroShadow(inPoi?52:150,inPoi?154:150,32,SD0,10);heroSprite(inPoi?52:150,inPoi?152:148,t,'stand',false);
         if(mC){c.restore();MIR=false}
         if(under){
@@ -3449,14 +3450,14 @@ V.upgrade=()=>{
 };
 V.trade=()=>{
   const T=G.trade;
-  let h=`<section class="card"><h2>${T.name}</h2><p class="dim">Ele tem ${T.tc} cobre e compra por 80% do valor.</p><h3>Comprar <small>${fmtCoins(G.coins)}</small></h3><div class="mscroll big tl" data-sc="tb">`;
+  let h=`<section class="card"><h2>${T.name}</h2><div class="row"><span class="l"><small>Bolsa do mercador</small><br><b>${COIN_CU()} ???</b></span><span class="r"><small>Você</small><br><b>${fmtCoins(G.coins)}</b></span></div><p class="dim">Ele compra por 80% do valor, até o que tiver na bolsa.</p><h3>Comprar <small>${fmtCoins(G.coins)}</small></h3><div class="mscroll big tl" data-sc="tb">`;
   T.stock.forEach((s,i)=>{const label=s.gear?gdesc(s.gear):`${IT[s.key].i} ${IT[s.key].n}`;
     h+=`<div class="row"><span class="l">${label} <small>×${s.q}</small></span><span class="r"><button class="sm" data-a="buy" data-v="${i}" ${s.q<1||G.coins<s.p?'disabled':''}>${COIN_CU()} ${s.p}</button></span></div>`});
   h+=`</div><h3 style="margin-top:12px">Vender</h3><div class="mscroll big tl" data-sc="ts">`;
   const ks=Object.keys(G.inv).filter(k=>IT[k].sell>0);
   if(!ks.length&&!G.bag.length)h+='<p class="dim">Nada para vender.</p>';
-  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>×${G.inv[k]}</small></span><span class="r"><button class="sm" data-a="sell" data-v="${k}">${COIN_CU()} ${Math.round(IT[k].sell*.8)||1}</button></span></div>`;
-  for(const o of G.bag)h+=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r"><button class="sm" data-a="sell" data-v="g:${o.id}">${COIN_CU()} ${Math.round(gv(o)*.6)}</button></span></div>`;
+  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>×${G.inv[k]}</small></span><span class="r"><button class="sm" data-a="sell" data-v="${k}" ${T.tc<(Math.round(IT[k].sell*.8)||1)?'disabled':''}>${COIN_CU()} ${Math.round(IT[k].sell*.8)||1}</button></span></div>`;
+  for(const o of G.bag)h+=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r"><button class="sm" data-a="sell" data-v="g:${o.id}" ${T.tc<Math.round(gv(o)*.6)?'disabled':''}>${COIN_CU()} ${Math.round(gv(o)*.6)}</button></span></div>`;
   return h+`</div><div class="btns"><button data-a="close">Fechar</button></div></section>`;
 };
 /* ===== Ícones pixel art 16x16 (itens, armas, armaduras) ===== */
@@ -3642,13 +3643,14 @@ const pc=(v,m)=>(v/m*100).toFixed(2)+'%';
 let lastLog='';
 function clockTxt(){const n=isNight();return `Dia ${G.day} · ${String(G.hour).padStart(2,'0')}:00 ${n?'🌙 noite':'☀️ dia'}`}
 function barHTML(){
+  const h0=barHTML0();return h0}
+function barHTML0(){
   const v=G.view;
   if(v==='camp')return G.note&&!/^Sente-se junto/.test(G.note)?`<div class="bt">${G.note}</div>`:'';
   if(v==='travel'){const tr=G.trip;if(!tr)return '';if(G.ubt||G.btr)return '';const pr=Math.round(tr.done/tr.hours*100);
     return `<div class="bt"><b>Viagem para ${LOCS[tr.to].n}</b> · hora ${tr.done} de ${tr.hours}<div class="prog"><i style="width:${pr}%"></i></div><small>Cada clique caminha 1 hora.</small></div><div class="btns"><button class="pri" data-a="step" ${walk?'disabled':''}>${G.bat?'🦇 Voar 2h':'🚶 Viajar 1h'}</button><button data-a="uturn" title="Voltar" aria-label="Voltar" style="min-width:0;padding:0 12px;font-size:20px;line-height:1" ${walk?'disabled':''}>${LOCS[tr.to].x<LOCS[tr.from].x?'↪':'↩'}</button>${vFull()&&isNight()?`<button data-a="bat" ${walk?'disabled':''}>${G.bat?'🧍 Forma humana':'🦇 Virar morcego'}</button>`:''}${G.inv.sleepbag?'<button data-a="bagsleep" '+(walk?'disabled':'')+'>🛏️ Dormir no saco (8h)</button>':''}</div>`}
   if(v==='poi'){const key=G.loc,D=POI[key],ready=locReady(key);
     pkChk();return `<div class="bt"><b>${D.n}</b> · ${D.d}<small>${ready?'Rápido: sem gastar tempo, menos risco. Completo: 1h, mais saque e mais perigo.':'Já saqueado. Volte em '+(RSP(key)-(G.day-G.locDone[key]))+' dia(s).'}</small></div><div class="btns">${ready?'<button class="pri" data-a="search" data-v="quick">Saquear rápido</button><button data-a="search" data-v="deep">Saquear tudo (1h)</button>':''}<button data-a="openmap">🗺️ Mapa</button></div>`}
-  if(v==='combat'&&(G.bfl||BWAIT||BUSY))return '';
   if(v==='combat'){const S=G.scene,w=wepOk();
     return `<div class="bt"><b>O que você vai fazer?</b><small>${w?`${G.wep.n}: dano ${G.wep.a+G.wep.lvl-1}-${G.wep.b+G.wep.lvl-1}, dur ${durP(G.wep)}`:'Sem arma útil: você luta com os punhos.'}</small></div><div class="btns"><button class="pri" data-a="atk">⚔️ Atacar</button><button data-a="openpack">🎒 Inventário</button>${vBite()?'<button data-a="bite">🦷 Morder</button>':''}${vFull()&&G.scene&&!G.scene.pb?'<button data-a="summon" '+(G.hp>20?'':'disabled')+'>🦇 Invocar (-20 HP)</button>':''}${vFull()&&isNight()?'<button data-a="batflee">🦇 Fugir voando</button>':''}${AT('int')>0?`<button data-a="magic" ${(G.mana==null?MM():G.mana)>=6?'':'disabled'}>🔮 Magia (6)</button>`:''}${G.scene&&G.scene.hs&&G.scene.hs.bleed>0?`<button data-a="healc" ${G.inv.bandage?'':'disabled'}>🩹 Bandagem</button>`:''}${G.inv.hpot?'<button data-a="potc">'+IT.hpot.i+' Poção</button>':''}<button class="bad" data-a="flee">🏃 Fugir</button></div>`}
   return '';
@@ -3677,7 +3679,7 @@ V.attr=()=>`<section class="card"><h2>Atributos</h2><p class="dim">Nível ${lv()
 /* ===== Inventário estilo bloco (grade de slots) ===== */
 let SWP=false,PWARN='',PSEL=null,HPK='',HPU='';
 function heroPic(){const key=[G.gender,G.turned,G.wep&&wepOk()&&G.wep.n,['arm','helm','cape','shield','pants','boots'].map(s=>G[s]&&G[s].n).join('|')].join('/');if(key===HPK&&HPU)return HPU;try{const cv=layer(64,72,()=>heroFront(32,66));HPU=cv.toDataURL();HPK=key}catch(_){HPU=''}return HPU}
-A.eqarrow=v=>{const CB=G.view==='combat';if(CB&&BUSY)return;if(G.shield){PWARN='Tire o escudo antes: as flechas ocupam o lugar dele.';lg(PWARN);return}v=v||'arrow';const n=G.inv[v]||0;if(!n)return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}G.quiver=(G.quiver||0)+n;G.qk=v;G.qfx=(IT[v]&&IT[v].fx)||null;delete G.inv[v];PSEL='q:q';if(CB){cl(`Você recarrega a besta com ${n} flecha(s).`);SWP=true}};
+A.eqarrow=v=>{const CB=G.view==='combat';if(CB&&BUSY)return;v=v||'arrow';if(!(G.inv[v]>0))return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}if(G.shield){G.bag.push(G.shield);G.shield=null}const n=G.inv[v]||0;if(!n)return;if(G.quiver>0&&(G.qk||'arrow')!==v){lg('Tire as flechas equipadas antes de trocar de tipo.');return}G.quiver=(G.quiver||0)+n;G.qk=v;G.qfx=(IT[v]&&IT[v].fx)||null;delete G.inv[v];PSEL='q:q';if(CB){cl(`Você recarrega a besta com ${n} flecha(s).`);SWP=true}};
 A.unquiver=()=>{const CB=G.view==='combat';if(!G.quiver||(CB&&BUSY))return;{const k=G.qk||'arrow';G.inv[k]=(G.inv[k]||0)+G.quiver}G.quiver=0;G.qk=null;G.qfx=null;PSEL=null;if(CB){cl('Você guarda as flechas.');SWP=true}};
 A.psel=v=>{PWARN='';PSEL=(PSEL===v)?null:v};
 const GS={wep:'sword',arm:'chest',helm:'helm',cape:'cape',shield:'shield',pants:'pants',boots:'boots'};
@@ -3809,7 +3811,7 @@ function render(){
   // cartões
   const v=G.view;card.className='';
   if(v==='event'){const ev=G.scene.ev;card.hidden=false;card.innerHTML=`<div class="ct"><h2>${ev.t}</h2><p>${ev.d}</p><div class="grid2">${ev.o.map((x,i)=>`<div class="opt"><h4>${x[0]}</h4><button class="sm" data-a="evopt" data-v="${i}">Escolher</button></div>`).join('')}</div></div>`}
-  else if(v==='result'){card.hidden=false;card.innerHTML=`<div class="ct"><h2>Resultado</h2>${G.scene.res.map(l=>`<p style="margin-bottom:4px">${l}</p>`).join('')}<div class="btns"><button class="pri" data-a="res">Continuar</button></div></div>`}
+  else if(v==='result'){card.hidden=false;card.innerHTML=`<div class="ct"><h2>Resultado</h2><div class="mscroll big tl" data-sc="r">${G.scene.res.map(l=>`<p style="margin-bottom:4px">${l}</p>`).join('')}</div><div class="btns"><button class="pri" data-a="res">Continuar</button></div></div>`}
   else if(v==='over'){card.hidden=false;card.innerHTML=`<div class="ct"><h2>Fim da jornada</h2><p>Você morreu no dia ${G.day}, depois de derrotar ${G.kills} inimigos. No modo hardcore, a morte é definitiva.</p><div class="btns"><button class="pri" data-a="menu">Voltar ao menu</button></div></div>`}
   else{card.hidden=true;card.innerHTML=''}
   const bh=(['camp','travel','poi','combat'].includes(v))?barHTML():'';
@@ -3837,7 +3839,7 @@ function dispatch(a,v){
   if(G&&G.view==='over')try{localStorage.removeItem(KEY);cloudDel(KEY)}catch(e){}
   save();render();
 }
-document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled)dispatch(b.dataset.a,b.dataset.v)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled&&!(G&&G.view==='combat'&&(G.bfl||BWAIT||BUSY)&&bar_.contains(b)))dispatch(b.dataset.a,b.dataset.v)});
 /* mouse: clicar num inimigo na batalha ataca; cursor muda ao passar por cima */
 {const cvb=document.getElementById('cv');
 const hitEn=e=>{if(!G||G.view!=='combat'||G.modal||BUSY||!G.scene||!G.scene.en)return -1;const S=G.scene,N=S.en.length,r=cvb.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*320,y=(e.clientY-r.top)/r.height*180;
