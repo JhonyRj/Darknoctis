@@ -1,6 +1,6 @@
-{
-  "name": "Forgotten Lands",
-  "short_name": "Forgotten Lands",
+{{
+  "name": "Darknoctis",
+  "short_name": "Darknoctis",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
