@@ -207,6 +207,22 @@ body{padding:0!important;background:#0a0705}
 <style>#logp.cb{bottom:62px;max-height:54px;max-width:min(46vw,440px);font-size:12px}#logp.cb p{font-size:12px;padding:1px 8px}@media(max-width:700px){#logp.cb{bottom:128px;max-width:94vw;max-height:50px}}</style>
 <style>.hs span{background:none!important;border:0!important;padding:0 4px!important;color:#f3d98a;text-shadow:0 0 3px #000,0 0 3px #000,1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000}.hs:hover span,.hs:focus-visible span{color:#fff}</style>
 <style>.ml,.ml.sel,.ml.cur{background:none!important;border:0!important;box-shadow:none!important;text-shadow:0 0 3px #000,0 0 3px #000,1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000}.ml.sel{color:#fff}.ml.cur{color:#b8e08a}.ml:hover{color:#fff}.ml{pointer-events:none!important;cursor:default!important}</style>
+<style>
+#card.start{background:#1B1E3D!important;align-items:flex-start!important}
+#card.start .ct{margin:auto!important;max-width:460px;width:100%;background:none!important;border:0!important;box-shadow:none!important}
+.dk-logo{display:block;margin:0 auto 8px;width:min(86vw,440px);height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+#card.start .dim{color:#9aa0d0}
+#card.start .slots{gap:8px}
+#card.start .slot{border:3px solid #C9A84C;border-radius:0;background:#14162e;box-shadow:inset 0 0 0 2px #0A0A12,0 4px 0 #0A0A12}
+#card.start .slot b{color:#F5D67A;letter-spacing:1px}
+#card.start button{border-radius:0;background:#14162e;border:2px solid #C9A84C;color:#F5D67A;box-shadow:0 3px 0 #0A0A12;text-transform:uppercase;letter-spacing:1px;font-size:13px}
+#card.start button:hover:not(:disabled){background:#242850;border-color:#F5D67A;color:#fff}
+#card.start button.pri{background:#C9A84C;color:#0A0A12;border-color:#F5D67A}
+#card.start button.bad{border-color:#b9483e;color:#f0b3ac}
+#card.start label.f{color:#F5D67A;font-weight:700}
+#card.start input[type=radio]{accent-color:#C9A84C}
+#card.start details summary{color:#C9A84C}
+</style>
 <style>.mscroll.tl{border:1px solid #4a3a28;background:rgba(20,14,8,.45);padding:0 8px 0 2px;max-height:min(19vh,110px)}</style>
 
 <style id="adapt">
@@ -3641,6 +3657,7 @@ const UIRE=new RegExp('(<[^>]*>)|('+UIK.map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'
 const ICOK=k=>{try{if(k==='coincu')return coinI('cu');return ICS[k]?icoH(k):(IT[k]?IT[k].i:'')}catch(e){return''}};
 function EMO(v){v=v.replace(/\[\[(\w+)\]\]/g,(m,k)=>ICOK(k));return v.replace(UIRE,(m,t,e)=>t?t:uiIc(e))}
 
+const DKLOGO='data:image/png;base64,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';
 function pkChk(){if(G.loc!=='peaks')return;if(G.pkTent&&G.pkDay!=null&&G.day-G.pkDay>=100){G.pkTent=false;G.note='Depois de tanto tempo, a tenda das montanhas desabou de novo.'}G.pkDay=G.day}
 V.pktent=()=>{const ok=(G.inv.cloth||0)>=4&&(G.inv.wood||0)>=3;return `<section class="card"><h2>Tenda</h2><p class="dim">${G.pkTent?'A tenda remendada ainda segura o vento.':'A lona está rasgada e os mastros caídos. Dá para consertar com pano ×4 e lenha ×3 (1h).'}</p><div class="btns" style="flex-direction:column;align-items:stretch">${G.pkTent?'<button class="pri" data-a="pksleep">🏕️ Dormir na tenda (8h)</button>':`<button class="pri" data-a="pkrepair" ${ok?'':'disabled'}>🔧 Consertar a tenda</button>`}<button data-a="close">Voltar</button></div></section>`};
 V.spring=()=>`<section class="card"><h2>Nascente</h2><p class="dim">Uma bica de água gelada escorre da rocha para uma piscina de pedras.</p><div class="btns" style="flex-direction:column;align-items:stretch"><button class="pri" data-a="pkdrink">💧 Beber água</button><button data-a="pkfill">💧 Encher o odre (1h)</button><button data-a="close">Voltar</button></div></section>`;
@@ -3674,10 +3691,10 @@ V.info=()=>{
   ${tile('💨','Esquiva',`${Math.min(50,ag)}%`,[bon(ag,'% agilidade')])}
   ${tile('🎒','Carga máxima',cap(),[`<span class="bn z">base ${cap()-2*AT('for')}</span>`,bon(2*AT('for'),'força')])}
   ${tile('🏹','Distância',`+${de}%`,[bon(de*4,'% dano (destreza)')])}
-  ${it>0?tile('🔮','Mana máxima',MM(),[bon(4*it,'inteligência')]):''}
+  ${tile('🔮','Magia máxima',MM(),[`<span class="bn z">base 50</span>`,bon(4*it,'inteligência')])}
   </div>
   <h3>Equipamento</h3>
-  <div class="eqg">${[['Arma',G.wep],...ps].filter(([,p])=>p).map(([n,p])=>`<div class="eqi"><small>${n}</small><span>${gIcon(p)} ${p.n}</span><div class="sbs">${n==='Arma'?`<span class="bn z">dano ${p.a+p.lvl-1}-${p.b+p.lvl-1}</span>${p.lvl>1?`<span class="bn">nv ${p.lvl}</span>`:''}${p.fx?`<span class="bn el">${({sangramento:'🩸',atordoamento:'💫',fogo:'🔥',veneno:'☠️',gelo:'❄️',trovao:'⚡'})[p.fx]||''} ${p.fx==='trovao'?'trovão':p.fx}</span>`:''}`:`<span class="bn">defesa +${p.def}</span>`}<span class="bn z">${durP(p)}</span></div><div class="eqd"><i style="width:${Math.max(0,Math.min(100,p.dur/p.max*100))}%;background:${p.dur<=0?'#a33':p.dur/p.max<.35?'#c80':'#4a4'}"></i></div></div>`).join('')||'<p class="dim">Sem equipamento.</p>'}</div>
+  <div class="eqg">${[['Arma',G.wep],...ps].filter(([,p])=>p).map(([n,p])=>`<div class="eqi"><small>${n}</small><span>${gIcon(p)} ${p.n}</span><div class="sbs">${n==='Arma'?`<span class="bn z">dano ${p.a+p.lvl-1}-${p.b+p.lvl-1}</span>${/cajado/i.test(p.n)?'<span class="bn">gasta 3 magia</span>':''}${p.lvl>1?`<span class="bn">nv ${p.lvl}</span>`:''}${p.fx?`<span class="bn el">${({sangramento:'🩸',atordoamento:'💫',fogo:'🔥',veneno:'☠️',gelo:'❄️',trovao:'⚡'})[p.fx]||''} ${p.fx==='trovao'?'trovão':p.fx}</span>`:''}`:`<span class="bn">defesa +${p.def}</span>`}<span class="bn z">${durP(p)}</span></div><div class="eqd"><i style="width:${Math.max(0,Math.min(100,p.dur/p.max*100))}%;background:${p.dur<=0?'#a33':p.dur/p.max<.35?'#c80':'#4a4'}"></i></div></div>`).join('')||'<p class="dim">Sem equipamento.</p>'}</div>
   </div>
   <div class="btns"><button data-a="close">Voltar</button></div></section>`;
 };
@@ -3722,8 +3739,9 @@ const ATTRS=[['vit','❤️ Vitalidade','+5 de vida máxima por ponto'],['for','
 A.openattr=()=>{G.modal='attr'};A.openpktent=()=>{if(G.loc==='peaks'){pkChk();G.modal='pktent'}};A.openspring=()=>{if(G.loc==='peaks')G.modal='spring'};A.openinfo=()=>{G.modal='info'};
 A.attrreset=()=>{const at=G.at||{};let t=0;for(const k in at)t+=at[k]||0;if(!t)return;G.pts=(G.pts||0)+t;if(at.vit){G.mhp=Math.max(1,G.mhp-5*at.vit);G.hp=Math.min(G.hp,G.mhp)}if(at.int&&G.mana!=null)G.mana=Math.max(0,G.mana-4*at.int);G.at={};G.note='Atributos resetados: pontos devolvidos.'};
 A.attrreset1=k=>{const n=AT(k);if(!n||!ATTRS.some(x=>x[0]===k))return;G.pts=(G.pts||0)+1;if(k==='vit'){G.mhp=Math.max(1,G.mhp-5);G.hp=Math.min(G.hp,G.mhp)}if(k==='int'&&G.mana!=null)G.mana=Math.max(0,G.mana-4);G.at[k]=n-1};
+A.attrreset50=k=>{for(let i=0;i<50&&AT(k)>0;i++)A.attrreset1(k)};
 A.attr=k=>{if((k==='vamp'&&(!G.turned||AT('vamp')>=10))||!(G.pts>0)||!ATTRS.some(x=>x[0]===k))return;G.pts--;G.at=G.at||{};G.at[k]=(G.at[k]||0)+1;if(k==='vit'){G.mhp+=5;G.hp+=5}if(k==='int'&&G.mana!=null)G.mana+=4};
-V.attr=()=>`<section class="card"><h2>Atributos</h2><p class="dim">Nível ${lv()}/150 · cada nível dá 5 pontos. Pontos disponíveis: <b>${G.pts||0}</b></p><div class="iscroll mscroll" data-sc="a">${ATTRS.filter(x=>x[0]!=='vamp'||G.turned).map(([k,n,d])=>`<div class="row"><span class="l">${n} <b>${AT(k)}${k==='vamp'?'/10':''}</b><br><small class="dim">${d}</small></span><span class="r"><button class="sm ${G.pts>0?'pri':''}" data-a="attr" data-v="${k}" ${G.pts>0&&!(k==='vamp'&&AT('vamp')>=10)?'':'disabled'}>+1</button><button class="sm" data-a="attrreset1" data-v="${k}" ${AT(k)>0?'':'disabled'} title="Resetar">↺</button></span></div>`).join('')}</div><div class="btns"><button data-a="close">Voltar</button></div></section>`;
+V.attr=()=>`<section class="card"><h2>Atributos</h2><p class="dim">Nível ${lv()}/150 · cada nível dá 5 pontos. Pontos disponíveis: <b>${G.pts||0}</b></p><div class="iscroll mscroll" data-sc="a">${ATTRS.filter(x=>x[0]!=='vamp'||G.turned).map(([k,n,d])=>`<div class="row"><span class="l">${n} <b>${AT(k)}${k==='vamp'?'/10':''}</b><br><small class="dim">${d}</small></span><span class="r"><button class="sm ${G.pts>0?'pri':''}" data-a="attr" data-v="${k}" ${G.pts>0&&!(k==='vamp'&&AT('vamp')>=10)?'':'disabled'}>+1</button><button class="sm" data-a="attrreset1" data-v="${k}" ${AT(k)>0?'':'disabled'} title="Resetar">↺</button><button class="sm" data-a="attrreset50" data-v="${k}" ${AT(k)>0?'':'disabled'} title="Resetar até 50 pontos">↺50</button></span></div>`).join('')}</div><div class="btns"><button data-a="close">Voltar</button></div></section>`;
 
 /* ===== Inventário estilo bloco (grade de slots) ===== */
 let SWP=false,PWARN='',PSEL=null,HPK='',HPU='';
@@ -3839,7 +3857,7 @@ function render(){
   if(!G){
     hudo.innerHTML='';bar_.hidden=true;ov.innerHTML='';mapov.hidden=true;
     card.hidden=false;card.className='start';
-    card.innerHTML=`<div class="ct"><h2 style="font-size:32px;margin-bottom:2px">Darknoctis</h2><p class="dim" style="margin-bottom:8px">O reino caiu. Você ainda não.</p>
+    card.innerHTML=`<div class="ct"><img class="dk-logo" alt="Darknoctis" src="${DKLOGO}"><p class="dim" style="margin-bottom:8px">O reino caiu. Você ainda não.</p>
     <div style="display:flex;gap:18px;justify-content:center;margin-bottom:6px"><label class="f"><input type="radio" name="gender" value="m" checked> Homem</label><label class="f"><input type="radio" name="gender" value="f"> Mulher</label></div>
     <div class="slots">${[1,2,3].map(slotRow).join('')}</div>
     </div>`;
