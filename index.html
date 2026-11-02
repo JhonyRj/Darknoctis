@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Forgotten Lands</title>
+<title>Darknoctis</title>
 <link rel="manifest" href="manifest.json">
 <script>if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});</script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -636,7 +636,8 @@ const ENM={
  vampire:{n:'Vampiro',hp:38,a:5,b:8,bite:.03,bt:1,batflee:1,coins:[2,8],drops:[['fang',1,1,.7],['holy',0,1,.1]],gear:.2},
  witch:{n:'Bruxa',hp:34,a:5,b:8,coins:[10,28],drops:[['herb',1,2,.8],['holy',0,1,.15]],gear:.2},
  werewolf:{n:'Lobisomem',hp:70,a:9,b:14,coins:[4,12],drops:[['pelt',1,1,1],['fang',1,2,.6]],gear:.6},
- dragon:{n:'Dragão gigante',hp:1000,a:14,b:20,coins:[40,90],drops:[['fang',2,4,1]],gear:1}
+ dragon:{n:'Dragão gigante',hp:1000,a:14,b:20,coins:[40,90],drops:[['fang',2,4,1]],gear:1},
+ whelp:{n:'Filhote de dragão',hp:48,a:7,b:11,coins:[12,30],drops:[['mpot',1,2,1]],gear:.2}
 };
 /* Locais do mapa (x,y no mapa de 320x180). Horas = distância / 40, arredondado para cima. */
 const LOCS={
@@ -685,7 +686,7 @@ const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3};
 const BLV={farm:2,stove:2,anvil:2};
 const SLC={craft:{2:{wood:6,iron:4},3:{wood:10,iron:10,leather:4}},up:{2:{wood:8,iron:4},3:{wood:12,iron:10,coins:30}},chest:{2:{wood:8,leather:2},3:{wood:12,leather:5,iron:4}},tent:{2:{cloth:6,leather:3},3:{cloth:12,leather:6,wood:6}}};
 const dmgd=k=>(k==='w'?[G.wep]:[G.arm,G.helm,G.cape,G.shield,G.pants,G.boots,]).filter(o=>o&&o.dur<o.max);
-const rollLv=k=>{if(k==='dragon')return 50;const pl=G?lv():1;return pl+rnd(1,3)};
+const rollLv=k=>{if(k==='dragon')return 50;const pl=G?lv():1;return k==='whelp'?pl+rnd(2,3):pl+rnd(1,3)};
 const LVH=l=>1+.15*(l-1),LVD=l=>1+.07*(l-1);
 let BUSY=0;
 function DFLY(f){if(G.loc!=='peaks'){f();return}DFLYT=nowMs();G.view='poi';G.modal=null;render();setTimeout(()=>{DFLYT=0;f();save();render()},3250)}
@@ -770,7 +771,7 @@ function newGame(mode,mods,gender){
 /* ================= INVENTÁRIO ================= */
 const gearW=()=>G.bag.reduce((s,o)=>s+gw(o),0)+SLOTS_EQ.reduce((s,k)=>s+(G[k]?gw(G[k]):0),0);
 const weight=()=>Object.entries(G.inv).reduce((s,[k,n])=>s+IT[k].w*n,0)+gearW();
-const XPV={deer:6,wolf:12,boar:16,bandit:16,deserter:20,bear:30,bat:5,witch:30,fledgling:22,vampire:40,knight:45,werewolf:80,dragon:600};
+const XPV={deer:6,wolf:12,boar:16,bandit:16,deserter:20,bear:30,bat:5,witch:30,fledgling:22,vampire:40,knight:45,werewolf:80,whelp:90,dragon:600};
 function addXp(n){n=Math.max(1,Math.round(n*DF().x));G.xp=(G.xp||0)+n;const out=[`+${n} XP`];while(G.xp>=need()&&lv()<150){G.xp-=need();G.lvl=lv()+1;G.pts=(G.pts||0)+5;G.mhp+=1;G.hp=G.mhp;G.mana=MM();out.push(`Você subiu para o nível ${G.lvl}! Vida restaurada! +1 de vida máxima e +5 pontos de atributo. Carga máxima: ${cap()}.`)}if(lv()>=150)G.xp=0;return out}
 const lv=()=>G.lvl||1,need=()=>lv()*40;
 const cap=()=>50+(lv()-1)+(G.b.shelter?8:0)+2*AT('for');
@@ -849,8 +850,8 @@ const TGT=()=>{const S=G.scene,a=alive();return a.find(e=>S.en.indexOf(e)===S.tg
 const cl=t=>G.scene.cl.unshift(t);
 const wepOk=()=>G.wep&&G.wep.dur>0;const WFX=()=>wepOk()?((G.scene&&G.scene.stfno&&/cajado/i.test(G.wep.n))?null:((/besta/i.test(G.wep.n)&&G.qshot)||G.wep.fx)):null;
 const nowMs=()=>performance.now();
-const MDG={wolf:.12,bear:.04,boar:.06,deer:.2,bandit:.08,deserter:.06,knight:.03,fledgling:.1,vampire:.15,werewolf:.12,witch:.14,bat:.3,dragon:.02};
-const PDG={wolf:.05,bear:.12,boar:.1,deer:.1,bandit:.08,deserter:.1,knight:.12,fledgling:.06,vampire:.05,werewolf:.04,witch:.1,bat:.04,dragon:.03};
+const MDG={wolf:.12,bear:.04,boar:.06,deer:.2,bandit:.08,deserter:.06,knight:.03,fledgling:.1,vampire:.15,werewolf:.12,witch:.14,bat:.3,whelp:.08,dragon:.02};
+const PDG={wolf:.05,bear:.12,boar:.1,deer:.1,bandit:.08,deserter:.1,knight:.12,fledgling:.06,vampire:.05,werewolf:.04,witch:.1,bat:.04,whelp:.05,dragon:.03};
 const mDodge=k=>MDG[k]!=null?MDG[k]:.08;
 const pDodge=k=>Math.min(.6,(PDG[k]!=null?PDG[k]:.08)+.01*AT('agi'));
 function enemyTurn(){
@@ -870,6 +871,7 @@ function enemyTurn(){
     if(ch(pDodge(e.k))){cl(`Você esquiva do ataque de ${D.n}!`);fx.nums.push({x:70,y:100,v:'esquivou',t:nowMs(),c:'#9ad0ff'});continue}
     const LT=nowMs()+ORD*450;ORD++;fx.lunge=fx.lunge||{};fx.lunge[ix]=LT;
     if(e.k==='witch'){WCH(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
+    if(e.k==='whelp'){WHL(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
     if(e.k==='dragon'){DRG(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
     if(S.ally&&S.ally.hp>0&&ch(.35)){const d2=Math.max(1,Math.round(rnd(D.a,D.b)*LVD(e.lv||1)*DF().d));S.ally.hp-=d2;S.ally.hit=LT;cl(`${D.n} ataca seu morcego: -${d2}.`);if(S.ally.hp<=0)cl('Seu morcego cai.');continue}
     if(!ch(.78)){cl(`${D.n} erra o ataque.`);continue}
@@ -1079,6 +1081,7 @@ function startEvent(){const nr=G.trip&&['graveyard','crypt','church'].some(k=>G.
 function hourDone(){
   advance(1);if(G.dflag||G.view==='over')return;
   const tr=G.trip;tr.done++;
+  if(tr.to==='peaks'&&!tr.wh&&tr.hours-tr.done<=24&&tr.hours-tr.done>3&&ch(.07)){tr.wh=1;tr.cool=3;fight(ch(.4)?['whelp','whelp']:['whelp'],{t:'travel'});return}
   if(tr.to==='peaks'&&!tr.drc&&tr.hours-tr.done<=3){tr.drc=1;if(ch(.5)){tr.cool=3;fight(['dragon'],{t:'travel'});return}}
   if(rainNow()){if(SK()>0){const gg=gain('water',1);if(gg&&gg[0]==='+')G.note='A chuva enche o odre ('+gg+').'}else if(tr.done%2===0){G.water=Math.min(100,G.water+IT.water.water);G.note='Você bebe a água da chuva.'}}
   if(G.bat&&!isNight()){if(!G.ubt){G.ubt=1;fx.ub=nowMs();setTimeout(()=>{if(!G||!G.ubt)return;G.ubt=0;fx.ub=0;G.bat=false;save();render()},1500)}save();render();return}
@@ -2346,6 +2349,7 @@ function animal(kind,x,y,o){
 function drawEnemy(k,x,y,t,flip,extra){
   extra=extra||{};
   if(k==='dragon'){c.drawImage(dragonSp(extra.fr||0),q(x-32),q(y-59));return}
+  if(k==='whelp'){c.save();c.translate(Math.round(x),Math.round(y));c.scale(.5,.5);c.drawImage(dragonSp(extra.pose==='atk'?1:(Math.floor(t*1.5)%2)),-32,-59);c.restore();return}
   if(k==='bat'){c.save();c.translate(Math.round(x),0);c.scale(-1,1);drawBatBig(0,y-34+Math.round(Math.sin(t*5+x)*3),Math.floor(t*9)%2);c.restore();return}
   if(['wolf','bear','boar','deer'].includes(k))return animal(k,x,y,{t,flip});
   const base={t,flip,pose:extra.pose,swing:extra.swing,anch:flip};
@@ -3138,11 +3142,11 @@ function drawDragonB(e,i,x,y,t,ms,dead,hit,lt,HX,HY){
 }
 function drawFireball(pos,slide,HX,HY,ms,t){
   const f=fx.fb;if(!f)return;const d=ms-f.t;if(d<0||d>1250)return;
-  const ep=pos[f.ix]||pos[0],mx=ep[0]-30,my=ep[1]-34;
+  const ep=pos[f.ix]||pos[0],S2=f.s||1,mx=ep[0]-30*S2,my=ep[1]-34*S2;
   const tx=f.miss?HX-26:HX+8,ty=f.miss?HY-6:HY-26;
   if(d>=300&&d<800){const q=(d-300)/500,fxp=mx+(tx-mx)*q,fyp=my+(ty-my)*q-Math.sin(q*Math.PI)*14;
     for(let k=6;k>=1;k--){const u=Math.max(0,q-k*.035),ax=mx+(tx-mx)*u,ay=my+(ty-my)*u-Math.sin(u*Math.PI)*14;c.globalAlpha=.55-k*.07;disc(ax+Math.sin(t*20+k)*1.2,ay+Math.cos(t*17+k)*1.2,Math.max(2,Math.round(7-k*.7)),k>3?P.pinkR:P.orS)}c.globalAlpha=1;
-    disc(fxp,fyp,8,P.pinkR);disc(fxp,fyp,7,P.orS);disc(fxp,fyp,5,P.orL);disc(fxp,fyp,3,P.sun);disc(fxp-1,fyp-1,1,P.white);
+    {const R=v=>Math.max(1,Math.round(v*S2));disc(fxp,fyp,R(8),P.pinkR);disc(fxp,fyp,R(7),P.orS);disc(fxp,fyp,R(5),P.orL);disc(fxp,fyp,R(3),P.sun);disc(fxp-1,fyp-1,1,P.white)}
     for(let k=0;k<4;k++){const a=t*14+k*1.6;rc(fxp+Math.cos(a)*10-.5,fyp+Math.sin(a)*8-.5,1.5,1.5,k%2?P.sun:P.orL)}
     lightAt(fxp,fyp,34,.9)}
   if(d>=800){const k=(d-800)/450,r=Math.round(4+k*22);c.globalAlpha=Math.max(0,1-k);
@@ -3203,7 +3207,7 @@ function drawBattle(t,ms){
     if(!dead&&N>1&&TGT()===e&&!BUSY){const my=y-66+Math.sin(t*5)*2;rc(x+slide-3,my,7,2,P.gold);rc(x+slide-2,my+2,5,2,P.gold);rc(x+slide-1,my+4,3,2,P.gold)}
     if(e.k==='witch'&&!dead)witchAura(x+slide+ex,y,t);
     if(!dead&&!hit){c.save();c.translate(x+slide+ex,y);
-      outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}));stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40}[e.k]||46,t);c.restore()}
+      outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}));stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30}[e.k]||46,t);c.restore()}
   });
   fx.nums=fx.nums.filter(n=>ms-n.t<900);
   fx.nums.forEach(n=>{if(ms<n.t)return;const q2=(ms-n.t)/900;c.globalAlpha=1-q2*q2;glyphs(n.v,n.x,n.y-q2*18,n.c);c.globalAlpha=1});
@@ -3299,6 +3303,12 @@ function ELEMP(f,x,y,u,ca,sa,t,ex,ey,sx,sy){
     for(let k=1;k<=seg;k++){const nx=sx+(ex-sx)*k/N+(k<N?((k+sd)%2?6:-6)+((k*7+sd)%3-1)*2:0),ny=sy+(ey-sy)*k/N;line(px,py,nx,ny,2,pl[0]);line(px,py,nx,ny,1,pl[1]);px=nx;py=ny}
     rc(Math.round(px)-2,Math.round(py)-2,4,4,'#ffffff')
   }else{disc(x,y,3,'#5a86ff');disc(x,y,2,'#9ad0ff');rc(x-1,y-1,2,2,'#ffffff')}
+}
+
+function WHL(e,ix,LT,S){const D=ENM.whelp;fx.lunge=fx.lunge||{};delete fx.lunge[ix];const lm=LVD(e.lv||1);
+  const hit=(dmg,ms,txt)=>{const d=hurtMe(Math.round(dmg*lm),S);(S.hl=S.hl||[]).push([LT+ms,G.hp]);fx.p=LT+ms;fx.nums.push({x:70,y:100,v:'-'+d,t:LT+ms,c:'#ff6a5a'});cl(txt.replace('#',d))};
+  if(ch(.5)){fx.fb={t:LT,ix,s:.55};if(!ch(.88)||ch(pDodge('whelp'))){fx.fb.miss=1;cl('A bola de fogo do filhote passa raspando e explode atrás de você.');return}hit(rnd(8,13),800,'O filhote cospe uma bola de fogo: -# de vida.')}
+  else{fx.lunge[ix]=LT;if(!ch(.85)||ch(pDodge('whelp'))){cl('O filhote ataca com as garras, mas erra.');return}hit(rnd(D.a,D.b),210,'O filhote te rasga com as garras: -# de vida.')}
 }
 
 const easeIO=p=>p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
@@ -3829,7 +3839,7 @@ function render(){
   if(!G){
     hudo.innerHTML='';bar_.hidden=true;ov.innerHTML='';mapov.hidden=true;
     card.hidden=false;card.className='start';
-    card.innerHTML=`<div class="ct"><h2 style="font-size:32px;margin-bottom:2px">Forgotten Lands</h2><p class="dim" style="margin-bottom:8px">O reino caiu. Você ainda não.</p>
+    card.innerHTML=`<div class="ct"><h2 style="font-size:32px;margin-bottom:2px">Darknoctis</h2><p class="dim" style="margin-bottom:8px">O reino caiu. Você ainda não.</p>
     <div style="display:flex;gap:18px;justify-content:center;margin-bottom:6px"><label class="f"><input type="radio" name="gender" value="m" checked> Homem</label><label class="f"><input type="radio" name="gender" value="f"> Mulher</label></div>
     <div class="slots">${[1,2,3].map(slotRow).join('')}</div>
     </div>`;
@@ -3879,7 +3889,7 @@ function dispatch(a,v){
   if(G&&G.view==='over')try{localStorage.removeItem(KEY);cloudDel(KEY)}catch(e){}
   save();render();
 }
-document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled&&!(G&&G.view==='combat'&&(G.bfl||BWAIT||BUSY)&&bar_.contains(b)))dispatch(b.dataset.a,b.dataset.v)});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&!b.disabled&&!(G&&G.view==='combat'&&(G.bfl||BWAIT||BUSY)&&$('#bar').contains(b)))dispatch(b.dataset.a,b.dataset.v)});
 /* mouse: clicar num inimigo na batalha ataca; cursor muda ao passar por cima */
 {const cvb=document.getElementById('cv');
 const hitEn=e=>{if(!G||G.view!=='combat'||G.modal||BUSY||!G.scene||!G.scene.en)return -1;const S=G.scene,N=S.en.length,r=cvb.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*320,y=(e.clientY-r.top)/r.height*180;
