@@ -1031,8 +1031,8 @@ function randomEncounter(t){
   const w={wolf:2+raw*.8,bear:(t==='forest'?1.2:.4)+raw*.6,boar:1+rot*.8,deer:1+wh*.8,bandit:t==='plain'?2:1,deserter:1};
   if(isNight()){w.fledgling=(G.mods.dark?2.4:1.2);w.vampire=(G.mods.dark?1.4:.6)}
   w.witch=(t==='forest'||t==='swamp'?.8:.25)+(isNight()?.5:0);
-  if(isNight())w.werewolf=(G.mods.dark?2.6:1.2)*(FM()?4:1);
-  if(fogNow()){for(const q in w)w[q]*=.15;if(isNight()){w.vampire=14;w.fledgling=8;w.witch=1.5;w.werewolf=13}else{w.witch=18;w.vampire=0;w.fledgling=0}}
+  if(isNight()&&FM())w.werewolf=(G.mods.dark?2.6:1.2)*4;
+  if(fogNow()){for(const q in w)w[q]*=.15;if(isNight()){w.vampire=14;w.fledgling=8;w.witch=1.5;w.werewolf=FM()?13:0}else{w.witch=18;w.vampire=0;w.fledgling=0}}
   return wpick(w);
 }
 function doLoot(key,deep){const r0=doLoot0(key,deep);if(deep)r0.push(...addXp(3));return r0}
@@ -1746,7 +1746,7 @@ function drawLoc(key,t,h){
     for(let k=-1;k<=1;k++)blit(roadStrip(biome),k*W,120);
     const IMG=key==='peaks'?PKI(n):VLI(n),IO=key==='peaks'?-120:-320;castSil(IMG,IO,134,SHD);blit(IMG,IO,0);placeDyn(key,190,134,t,n,h);
     heroShadow(52,154,32,SHD,10);heroSprite(52,152,t,'stand',false);
-    if(nightF(h)>.25)lightAt(55,140,40,.8);
+
     c.restore();CAMX=0;
     nightOverlay(h,.45);
     return;
@@ -2654,6 +2654,7 @@ function drawWW(x,y,t,flip,extra,hero){
     poly([[a[0]+nx*wa/2,a[1]+ny*wa/2],[b[0]+nx*wb/2,b[1]+ny*wb/2],[b[0]-nx*wb/2,b[1]-ny*wb/2],[a[0]-nx*wa/2,a[1]-ny*wa/2]],col);disk(a[0],a[1],wa/2,col);disk(b[0],b[1],wb/2,col)};
   const ik=(s,tg,l1,l2,sg)=>{let dx=tg[0]-s[0],dy=tg[1]-s[1],d=Math.min(Math.hypot(dx,dy),l1+l2-.5);const a=(l1*l1-l2*l2+d*d)/(2*d),h=Math.sqrt(Math.max(0,l1*l1-a*a)),ux=dx/(Math.hypot(dx,dy)||1),uy=dy/(Math.hypot(dx,dy)||1);
     return [s[0]+ux*a-uy*h*sg,s[1]+uy*a+ux*h*sg]};
+  const RX=(a,yy,w,h,col)=>rc(face>0?X(a):X(a)-w,yy,w,h,col);
   const F='#4a3830',Fd='#2a1e1c',Fl='#7a6454',Fh='#9a8472',Fk='#17100e',BONE='#eadfc4',CL='#5c2430',CLd='#34141c',LE='#4a3020',RED='#ff2418';
   // ----- estado da animação -----
   const ms=nowMs();let lean=0,thr=0,jaw=0,hup=0,sweep=-1,arms=0;
@@ -2683,7 +2684,7 @@ function drawWW(x,y,t,flip,extra,hero){
   poly([[U(-8),-44+by],[U(-3),-51+by],[U(6),-53+by-ex*.5],[U(11),-49+by],[U(2),-45+by]],Fl);
   // barriga mais clara e costelas
   poly([[U(10),-42+by],[U(18),-40+by],[U(14),-32+by],[Lw(7),-27+by],[Lw(5),-34+by]],Fd);
-  for(let k=0;k<3;k++)rc(X(U(8+k*2)),Y(-39+by+k*1.4),Math.max(1,Math.round(4*S)),1,Fl);
+  for(let k=0;k<3;k++)RX(U(8+k*2),Y(-39+by+k*1.4),Math.max(1,Math.round(4*S)),1,Fl);
   // cicatrizes
   rc(X(U(2)),Y(-43+by),1,Math.max(1,Math.round(5*S)),'#b8483c');rc(X(U(4)),Y(-42+by),1,Math.max(1,Math.round(4*S)),'#b8483c');
   // pelos eriçados no dorso
@@ -2693,13 +2694,13 @@ function drawWW(x,y,t,flip,extra,hero){
   poly([[Lw(-11),-30+by],[Lw(8),-27+by],[Lw(10),-18],[Lw(8),-13],[Lw(5),-18],[Lw(3),-11],[Lw(0),-18],[Lw(-3),-12],[Lw(-6),-19],[Lw(-9),-13],[Lw(-12),-20]],CL);
   poly([[Lw(-11),-30+by],[Lw(8),-27+by],[Lw(8),-25+by],[Lw(-11),-27+by]],CLd);
   for(const [a,b] of [[-7,-23],[0,-22],[5,-20]])rc(X(Lw(a)),Y(b),1,Math.max(1,Math.round(6*S)),CLd);
-  rc(X(Lw(-11)),Y(-31+by),Math.max(1,Math.round(20*S)),Math.max(1,Math.round(2*S)),LE);rc(X(Lw(0)),Y(-32+by),Math.max(2,Math.round(3*S)),Math.max(2,Math.round(3*S)),'#c0a050');
+  RX(Lw(-11),Y(-31+by),Math.max(1,Math.round(20*S)),Math.max(1,Math.round(2*S)),LE);RX(Lw(0),Y(-32+by),Math.max(2,Math.round(3*S)),Math.max(2,Math.round(3*S)),'#c0a050');
   poly([[Lw(-2),-30+by],[Lw(2),-29+by],[Lw(4)+sw,-17],[Lw(2)+sw,-20],[Lw(.5)+sw*.6,-14]],'#8a2a36');
   poly([[U(13),-50+by],[U(16),-47+by],[U(2),-31+by],[U(-1),-34+by]],LE);                 // tira de couro rasgada no peito
   poly([[U(-5),-45+by],[U(-1),-44+by],[U(-3),-38+by+sw*.4],[U(-6),-40+by]],CL);        // retalho no ombro
   // ----- perna próxima (clara), digitígrada -----
   {const hp=[Lw(-5),-28+by],an=run?[-10+Math.cos(ph)*10,-9-Math.max(0,Math.sin(ph))*8]:[-10,-9],kn=ik(hp,an,14,13,-1),tp=[an[0]+7,Math.min(-1,an[1]+8)];limb(hp,kn,11,7,F);limb(kn,an,7,4.4,F);limb(an,tp,4.6,5.4,F);poly([[tp[0]-2,tp[1]-2],[tp[0]+5,tp[1]+1],[tp[0]+5,tp[1]+2.5],[tp[0]-3,tp[1]+2.5]],Fd);
-   rc(X(Lw(-8)),Y(-14),Math.max(2,Math.round(6*S)),Math.max(1,Math.round(1*S)),Fl);
+   RX(Lw(-8),Y(-14),Math.max(2,Math.round(6*S)),Math.max(1,Math.round(1*S)),Fl);
    for(let k=0;k<3;k++)rc(X(tp[0]+2+k*1.2),Y(tp[1]+2),1,1,BONE);
    if(run){for(const [ph2,ax] of [[ph,-10],[ph+Math.PI,6]]){const q=Math.sin(ph2);if(q<.15&&q>-.6){const d=(q+.6)/.75;c.globalAlpha=.55*(1-d);rc(X(ax+Math.cos(ph2)*10-4-d*5),Y(-2-d*3),3,2,'#8a7a62');rc(X(ax+Math.cos(ph2)*10-8-d*7),Y(-4-d*4),2,2,'#8a7a62');c.globalAlpha=1}}}}
   // ----- cabeça de lobo: crânio largo, focinho curto e grosso -----
@@ -2731,8 +2732,8 @@ function drawWW(x,y,t,flip,extra,hero){
    else if(run)T=[U(25)+Math.cos(ph+Math.PI)*10,-27+by-Math.max(0,Math.sin(ph+Math.PI))*6];else T=[U(26)+Math.sin(t*3+1)*1.2,-29+by+Math.sin(t*3+1)*1];
    const wr=arms>0?[U(10),-62+by]:T;if(arms>0){wr[0]=U(11);wr[1]=-60+by}
    const el=ik(sh,wr,14,14,1);limb(sh,el,9,7,'#64503f');limb(el,wr,7,5.4,'#64503f');
-   rc(X(el[0]+(wr[0]-el[0])*.5)-1,Y(el[1]+(wr[1]-el[1])*.5)-1,Math.max(2,Math.round(5*S)),Math.max(1,Math.round(2*S)),LE);
-   for(let k=0;k<4;k++){const d=sweep>=0?1:0;rc(X(sh[0]+ (el[0]-sh[0])*.45)+k*2,Y(sh[1]+(el[1]-sh[1])*.4)-1+k,1,1,Fl)}
+   RX(el[0]+(wr[0]-el[0])*.5-1,Y(el[1]+(wr[1]-el[1])*.5)-1,Math.max(2,Math.round(5*S)),Math.max(1,Math.round(2*S)),LE);
+   for(let k=0;k<4;k++){const d=sweep>=0?1:0;rc(X(sh[0]+ (el[0]-sh[0])*.45)+face*k*2,Y(sh[1]+(el[1]-sh[1])*.4)-1+k,1,1,Fl)}
    poly([[wr[0]-3,wr[1]-2.4],[wr[0]+4,wr[1]-1.6],[wr[0]+6,wr[1]+3],[wr[0]-1,wr[1]+5]],'#3a2a24');
    for(let k=0;k<3;k++){const ox2=wr[0]+1+k*1.8,oy=wr[1]+3.4+k*.4;poly([[ox2,oy],[ox2+1.5,oy],[ox2+(sweep>=0?6:3),oy+(sweep>=0?1.5:5.5)]],'#efe6cc')}}
 }
@@ -3027,7 +3028,7 @@ function silhouette(o){let s=silC.get(o);if(!s){s=document.createElement('canvas
 /* direção da sombra: sol de dia, lua de noite */
 function shadowDir(h){
   const nf=nightF(h);let f,a;
-  if(nf>=.5){f=Math.min(1,Math.max(0,moonF(h)));a=.2*Math.min(1,nf*1.3)}else{f=Math.min(1,Math.max(0,sunF(h)));a=.34*(1-nf)}
+  if(nf>=.5){f=Math.min(1,Math.max(0,moonF(h)));a=((typeof FM==='function'&&FM())?.34:.24)*Math.min(1,nf*1.3)}else{f=Math.min(1,Math.max(0,sunF(h)));a=.34*(1-nf)}
   const d=(.5-f)*2;                    // +1 sol à esquerda
   const e=Math.abs(d);
   return{sx:d*1.25,ly:.2+.42*e*e+.08*e,a:a*(.55+.45*Math.sin(Math.min(1,Math.max(0,f))*Math.PI)+.0),on:(h>=6.2&&h<=17.8)||nf>=.5}
@@ -3079,9 +3080,11 @@ function fireLight(h){
   c.restore();c.globalAlpha=1;
 }
 function moonLight(h){
-  const nf=nightF(h);if(nf<.4)return;const [mx,my]=moonPos(h);
-  c.save();c.globalCompositeOperation='lighter';c.globalAlpha=.06*nf;
-  for(let r=200;r>50;r-=30){disc(mx,my+60,r,'#10183a')}c.restore();
+  const nf=nightF(h);if(nf<.25)return;const [mx,my]=moonPos(h),full=(typeof FM==='function'&&FM()),k=(full?1:.45)*Math.min(1,(nf-.25)/.5)*(rainNow()?.6:1);
+  c.save();c.globalCompositeOperation='lighter';
+  c.globalAlpha=.075*k;c.fillStyle='#233c6c';c.fillRect(0,0,W,H);
+  for(let r=260,i=0;r>30;r-=10,i++){c.globalAlpha=.0075*k;disc(mx,my+50,r,'#4a6aa8')}
+  c.restore();c.globalAlpha=1;
 }
 function finishFrame(h){
   fireLight(h);
@@ -3512,6 +3515,7 @@ function drawBattle(t,ms){
     if(e.k==='vampire'&&fx.summon&&fx.summon.i===i&&ms>=fx.summon.t&&ms-fx.summon.t<1300&&!dead&&!hit){const d=ms-fx.summon.t;batFx(x+slide,y-30,d+400,t,0);c.save();c.translate(x+slide,y);c.globalAlpha=.9;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:'atk',swing:.6,eq:e.eq}));c.restore();c.globalAlpha=1;return}
     if(!dead&&N>1&&TGT()===e&&!BUSY){const my=y-66+Math.sin(t*5)*2;rc(x+slide-3,my,7,2,P.gold);rc(x+slide-2,my+2,5,2,P.gold);rc(x+slide-1,my+4,3,2,P.gold)}
     if(e.k==='witch'&&!dead)witchAura(x+slide+ex,y,t);
+    if(!dead){const hh={wolf:14,boar:14,deer:24,bear:26,whelp:20,bat:6}[e.k]||32,ww={wolf:16,boar:16,bear:18,deer:12}[e.k]||10;heroShadow(x+slide+ex,y+3,hh,SHD,ww)}
     if(!dead&&!hit){c.save();c.translate(x+slide+ex,y);
       outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}));stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30}[e.k]||46,t);c.restore()}
   });
@@ -3735,7 +3739,7 @@ function frame(ms){
         const tb=LOCS[tr.to].biome,fb=LOCS[tr.from].biome;let terror=0;
         const baseB=tb!=='swamp'?tb:(fb!=='swamp'?fb:'plain'),biome=baseB;
         if(TTR!==tr){TTR=tr;TSX=120;TM=null;TMP=null}
-        TSX+=200*dtf;
+        if(!BAGT)TSX+=200*dtf;
         const wx=TSX,moving=true,tt=t*2;
         drawRoad(wx,biome,h,t,{terror,base:baseB,posts:[TM,TMP].filter(v=>v!=null),destM:(tr.done+1>=tr.hours&&TM!=null)?TM:null,dest:LOCS[tr.to].poi||'camp'});
         const sx=150;
@@ -3750,18 +3754,18 @@ function frame(ms){
           {const au=Math.sin(Math.min(1,Math.max(0,(d-200)/1000))*Math.PI)*.17;if(au>0)for(let j=0;j<6;j++){c.globalAlpha=au;ell(sx,126,15-j*2.3,25-j*3.7,'#3a1050')}c.globalAlpha=1}
           for(let i=0;i<14;i++){const p2=Math.min(1,Math.max(0,(d-760-i*12)/700)),a2=i*1.9;if(p2<=0||p2>=1)continue;c.globalAlpha=(1-p2)*.7;const rr=3+p2*7;rc(sx+Math.cos(a2)*p2*22-rr/2,124+Math.sin(a2)*p2*20-p2*10-rr/2,rr,rr,i%2?'#6a2a90':'#2a1038')}c.globalAlpha=1}
         else if(BAGT){drawSleepBag(sx,148,t,ms-BAGT)}
-        else if(G.bat){const by=62+Math.sin(t*3)*3,fl=Math.floor(t*10)%2;heroShadow(sx,152,10,SD0,8);drawBatBig(sx,by,fl);lightAt(sx,by,26,.35)}
+        else if(G.bat){const by=62+Math.sin(t*3)*3,fl=Math.floor(t*10)%2;heroShadow(sx,152,10,SD0,8);drawBatBig(sx,by,fl)}
         else{heroShadow(sx,150,32,SD0,10);
         if(moving){for(let i=0;i<5;i++){const age=((t*3+i*.2)%1);c.globalAlpha=.5*(1-age);rc(sx-7-age*14,147-age*5-i%2,3-age*2,2,P.gold)}c.globalAlpha=1}
         heroSprite(sx,148,moving?tt:0,moving?'walk':'stand',false);
-        if(nightF(h)>.25)lightAt(sx+3,136,40,.8)}
+        }
         if(back){c.restore();MIR=false}
       }
     }
     else if(view==='poi'){
       const mP=G.dir===-1&&!VSC(G.loc);MIR=mP;if(mP){c.save();c.translate(W,0);c.scale(-1,1)}
       drawLoc(G.loc,t,h);if(!VSC(G.loc)){heroShadow(52,154,32,SD0,10);heroSprite(52,152,t,'stand',false);
-      if(nightF(h)>.25)lightAt(55,140,40,.8)}
+      }
       if(mP){c.restore();MIR=false}
       if(!locReady(G.loc)){c.fillStyle='rgba(0,0,0,.3)';c.fillRect(0,0,W,H)}
       if(G.loc==='peaks'&&DFLYT)dragonFly(ms,t)
@@ -3783,7 +3787,7 @@ function frame(ms){
       }
     }
     drawWeather(t,h);
-    sunLight(h);moonLight(h);if(nightF(h)<.7)beams(h,false);if(nightF(h)>.3)beams(h,true);grade(h);
+    sunLight(h);if(nightF(h)<.7)beams(h,false);if(nightF(h)>.3)beams(h,true);grade(h);moonLight(h);
     finishFrame(h);
     }
   const hide=!!(G&&G.view==='combat'&&(ms-(fx.trans||0))/1000<2.0);if(hide!==frame.hid){frame.hid=hide;$('#bar').style.visibility=hide?'hidden':'';$('#ov').style.visibility=hide?'hidden':''}
