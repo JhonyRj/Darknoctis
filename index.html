@@ -884,6 +884,12 @@ I18N_N.push(['Toco de lenhador',"Woodcutter's stump"],['Cabana do caçador',"Hun
 I18N_C.push(['Entrar na cabana do caçador',"Enter the hunter's cabin"],['Cabana rústica com peles penduradas, um catre e a lareira do caçador.',"A rustic cabin with hanging pelts, a cot and the hunter's hearth."]);
 I18N_C.push(['Lenhador','Woodcutter']);
 
+I18N_C.push(['Uma fortaleza sombria no fim do mundo, cercada de névoa e morcegos. Dentro dela fica a Arena, um modo à parte que não afeta o seu jogo.','A gloomy fortress at the end of the world, wrapped in mist and bats. Inside lies the Arena, a separate mode that does not affect your game.'],['⚔ Entrar na Arena','⚔ Enter the Arena'],[' · Arena',' · Arena']);
+I18N_C.push(['Guerreiro','Warrior'],['Ataque corpo a corpo, forte e resistente.','Close-range attacks, strong and sturdy.'],['Caçador','Hunter'],['Ataque à distância, rápido e ágil.','Ranged attacks, fast and agile.'],['Mago','Mage'],['Magia em área que atinge vários inimigos.','Area magic that hits many enemies.'],['Cavaleiro Renegado','Renegade Knight'],['+Dano','+Damage'],['+25% de dano','+25% damage'],['+Velocidade de movimento','+Move speed'],['+12% de velocidade','+12% speed'],['+25 de vida máxima e cura 25','+25 max health and heal 25'],['+Velocidade de ataque','+Attack speed'],['+18% de velocidade de ataque','+18% attack speed'],['+Magia em área','+Area magic'],['+22% de área de efeito','+22% area of effect'],['A BRUXA CHEGOU!','THE WITCH IS HERE!']);
+I18N_C.push([' (substitui o efeito atual) · 1h',' (replaces current effect) · 1h']);
+
+I18N_N.push(['Túnica arcana','Arcane tunic']);
+
 const $=(s,e=document)=>e.querySelector(s);
 const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -911,7 +917,7 @@ function mkWeapon(minR=0,base){
   const b=base||pick(BASES),Q=RAR[ri];
   const fxr=null;return {k:'w',id:uid(),n:(b.n==='Cajado'&&!fxr)?'Cajado de madeira':b.n+(fxr?FXN[fxr]:''),ri,lvl:1,kills:0,dur:Q.d,max:Q.d,a:Math.round(b.a*Q.m),b:Math.round(b.b*Q.m),fx:fxr};
 }
-const ARM=[{n:'Gambeson',def:1,dur:30,v:10},{n:'Cota de malha',def:3,dur:45,v:35},{n:'Armadura de placas',def:5,dur:60,v:80}];
+const ARM=[{n:'Gambeson',def:1,dur:30,v:10},{n:'Cota de malha',def:3,dur:45,v:35},{n:'Armadura de placas',def:5,dur:60,v:80},{n:'Túnica arcana',def:0,dur:30,v:110}];
 function mkArmor(i){i=i==null?pick([0,0,1,1,2]):i;const a=ARM[i];return {k:'a',id:uid(),n:a.n,def:a.def,dur:a.dur,max:a.dur,v:a.v,tier:i};}
 const SLOT={a:'arm',h:'helm',c:'cape',s:'shield',p:'pants',b:'boots'};
 const SLOTN={w:'Arma',a:'Peitoral',h:'Elmo',c:'Capa',s:'Escudo',p:'Calça',b:'Botas'};
@@ -1002,7 +1008,7 @@ const MG=()=>[G.helm,G.cape,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0&&p.mg?p
 const SP=()=>[G.helm,G.cape,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0&&p.sp?p.sp:0),0);
 const MM=()=>50+4*AT('int')+MG();
 const SL=k=>(G&&G.sl&&G.sl[k])||1;
-const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3};
+const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3,mtunic:3};
 const BLV={farm:2,stove:2,anvil:2};
 const SLC={craft:{2:{wood:6,iron:4},3:{wood:10,iron:10,leather:4}},up:{2:{wood:8,iron:4},3:{wood:12,iron:10,coins:30}},chest:{2:{wood:8,leather:2},3:{wood:12,leather:5,iron:4}},anvil:{2:{iron:8,wood:6},3:{iron:14,leather:4,coins:30}},tent:{2:{cloth:6,leather:3},3:{cloth:12,leather:6,wood:6}}};
 const dmgd=k=>(k==='w'?[G.wep]:[G.arm,G.helm,G.cape,G.shield,G.pants,G.boots,]).filter(o=>o&&o.dur<o.max);
@@ -1044,6 +1050,7 @@ const RECIPES=[
  {id:'sword',n:'Espada de ferro',need:{iron:6,wood:2},forge:1,gear:()=>mkWeapon(1,{n:'Espada de ferro',a:5,b:8}),h:2},
  {id:'mhat',n:'Chapéu arcano',need:{cloth:10,leather:3,herb:5,mpot:1},gear:()=>mkPiece('h',3),h:3},
  {id:'mrobe',n:'Manto arcano',need:{cloth:18,leather:4,herb:8,mpot:2},gear:()=>mkPiece('c',3),h:4},
+ {id:'mtunic',n:'Túnica arcana',need:{cloth:20,leather:4,herb:8,mpot:2},gear:()=>Object.assign(mkPiece('a',3),{mg:12,sp:5}),h:4},
  {id:'mpants',n:'Calça arcana',need:{cloth:12,leather:4,herb:5,mpot:1},gear:()=>mkPiece('p',3),h:3},
  {id:'mshoes',n:'Sapatos arcanos',need:{leather:8,cloth:5,herb:4,mpot:1},gear:()=>mkPiece('b',3),h:3},
  {id:'cap1',n:'Capa de viajante',need:{cloth:5},gear:()=>mkPiece('c',0),h:1},
@@ -2811,7 +2818,7 @@ const STL=()=>({b:'#9aa6b8',hc:[255,255,255],sc:[28,20,60]});
 
 /* ----- cores da armadura por nível ----- */
 const LC='#8a5a30',LC2='#7a4d28',LC3='#5e3a1c';const isL=q=>!!(q&&(q.L||/couro/i.test(q.n||'')));
-const ARM_COL=t=>t===0?'#8a5a30':t===1?mix(P.mist,P.mtnSh,.32):mix(P.mist,P.white,.2);
+const ARM_COL=t=>t===3?'#4a3a86':t===0?'#8a5a30':t===1?mix(P.mist,P.mtnSh,.32):mix(P.mist,P.white,.2);
 /* ================= HUMANO ================= */
 function buildHuman(o,K){
   const w=Math.ceil(110*K),h=Math.ceil(86*K),ox=Math.round(40*K),oy=Math.round(78*K);
@@ -2828,7 +2835,7 @@ function buildHuman(o,K){
   const hasA=ta>=0;
   const stl=ARM_COL(2),stl1=ARM_COL(1),gam=ARM_COL(0);
   const torsoCol=vamp?(o.coat||'#2a1a2c'):hasA?(isL(eq.arm)?LC:ARM_COL(ta)):hideA?HG:shirt;
-  const sleeveCol=vamp?(o.coat||'#2a1a2c'):hasA?(isL(eq.arm)?LC2:ta===2?stl:ta===1?stl1:gam):shirt;
+  const sleeveCol=vamp?(o.coat||'#2a1a2c'):hasA?(isL(eq.arm)?LC2:ta===3?'#3b2d78':ta===2?stl:ta===1?stl1:gam):shirt;
   const pantCol=vamp?'#1c1220':isL(eq.pants)?LC2:tp===0?'#6e4526':tp===1?mix(P.earth,P.gold,.34):tp===2?ARM_COL(2):tp===3?'#3b2d78':tp===4?HG:pants;
   // ---- cinemática das pernas ----
   const lg=(hxp,A)=>{ // A: {th,bend}
@@ -3184,7 +3191,7 @@ function buildFront(o,K){
   const shirt=tn?mix(P.mtnP,P.shadow,.5):fem?mix(P.pinkR,P.earth,.35):mix(P.gold,P.white,.5);
   const stl=ARM_COL(2),stl1=ARM_COL(1),gam=ARM_COL(0),pantsC=isL(eq.pants)?LC2:tp===0?'#6e4526':tp===1?mix(P.earth,P.gold,.34):tp===2?stl:tp===3?'#3b2d78':tp===4?'#3f7a34':mix(P.earth,P.gold,.18);
   const boot=isL(eq.boots)?LC3:tb<0?mix(P.wood,P.earth,.35):tb===0?'#523119':tb===1?ARM_COL(1):tb===3?'#2a2050':tb===4?'#2f5a28':ARM_COL(2);
-  const torsoCol=hasA?(isL(eq.arm)?LC:ARM_COL(ta)):hideA?'#3f7a34':shirt,sleeve=hasA?(isL(eq.arm)?LC2:ta===2?stl:ta===1?stl1:gam):shirt;
+  const torsoCol=hasA?(isL(eq.arm)?LC:ARM_COL(ta)):hideA?'#3f7a34':shirt,sleeve=hasA?(isL(eq.arm)?LC2:ta===3?'#3b2d78':ta===2?stl:ta===1?stl1:gam):shirt;
   const capeC=eq.cape?[mix(P.wood,P.gold,.2),mix(P.pinkR,P.earth,.3),P.purpL,'#34276a'][eq.cape.tier||0]:null;
   if(capeC){paint([['p',[-9,-39,9,-39,12.5,-6,-12.5,-6]]],capeC,{side:.25,fn:(i,j)=>((i+j*2)%9===0?'m':null)});dot(-9,-40,P.gold,18,1)}
   if(fem&&(th<2||th>=3))paint([['p',[-6.6,-52,6.6,-52,8.2,-30,-8.2,-30]]],hair,{side:.3});
@@ -4996,10 +5003,10 @@ V.anvil=()=>{
 
 A.openpurse=()=>{G.modal='purse'};
 V.purse=()=>{const c=coinSplit(G.coins);return `<section class="card"><h2>Bolsa de dinheiro</h2><div class="row"><span class="l">${coinI('au')} Moedas de ouro</span><span class="r"><b>${c.au}</b></span></div><div class="row"><span class="l">${coinI('ag')} Moedas de prata</span><span class="r"><b>${c.ag}</b></span></div><div class="row"><span class="l">${coinI('cu')} Moedas de cobre</span><span class="r"><b>${c.cu}</b></span></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
-const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mpants','mshoes'],misc:['sbag','skin','hpot','mpot','holy']};
+const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mtunic','mpants','mshoes'],misc:['sbag','skin','hpot','mpot','holy']};
 A.ctab=v=>{G.ctab=v};A.atab=v=>{G.atab=v};A.wtab=v=>{G.wtab=v};
 const WSUB={melee:['sword','axe'],ranged:['knives','arrows'],magic:['cajado']};
-const ASUB={mage:['mhat','mrobe','mpants','mshoes','cap2','pan0'],war:['gamb','mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['cap1','pan1','bot0','hel0','shd0']};
+const ASUB={mage:['mhat','mrobe','mtunic','mpants','mshoes','cap2','pan0'],war:['gamb','mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['cap1','pan1','bot0','hel0','shd0']};
 A.sex=v=>{if(v==='m'||v==='f')G.gender=v};
 const ownN=r=>{if(r.give){const k=Object.keys(r.give)[0];return have(k)}if(r.skin)return SK();if(r.gear){const nm=r.gear().n;const all=[...G.bag,...G.chest.bag,...['wep','arm','helm','cape','shield','pants','boots'].map(k=>G[k]).filter(Boolean)];return all.filter(o=>o.n===nm||(o.n.startsWith(nm)&&o.k==='w')).length}return null};
 const recCard=r=>{const done=(r.build&&G.b[r.build])||(r.skin&&SK()>=3),lk=(RLV[r.id]||1)>SL('craft');const ok=!lk&&!done&&Object.entries(r.need).every(([k,n])=>have(k)>=n)&&(!r.forge||G.b.forge)&&(!r.stove||G.b.stove)&&(!r.repair||dmgd(r.repair).length);
@@ -5058,9 +5065,9 @@ function render(){
   // mapa em tela própria
   mapov.hidden=!mp;
   if(mp){
-    $('#ml').innerHTML=Object.entries(LOCS).filter(e=>!e[1].hidden).map(([k,L])=>{const hh=k===G.loc?'aqui':k==='castle'?'10 dias':(k==='guild'||G.loc==='guild')&&k!==G.loc?hoursBetween(G.loc,k)+'h':(k==='peaks'||G.loc==='peaks')&&k!==G.loc?'3 dias':hoursBetween(G.loc,k)+'h';return `<button class="ml ${G.sel===k?'sel':''} ${G.loc===k?'cur':''}" data-a="sel" data-v="${k}" style="${lblStyle(k)}">${L.n}<small>${hh}</small></button>`}).join('');
+    $('#ml').innerHTML=Object.entries(LOCS).filter(e=>!e[1].hidden).map(([k,L])=>{const hh=k===G.loc?'aqui':k==='castle'?'Arena':(k==='guild'||G.loc==='guild')&&k!==G.loc?hoursBetween(G.loc,k)+'h':(k==='peaks'||G.loc==='peaks')&&k!==G.loc?'3 dias':hoursBetween(G.loc,k)+'h';return `<button class="ml ${G.sel===k?'sel':''} ${G.loc===k?'cur':''}" data-a="sel" data-v="${k}" style="${lblStyle(k)}">${L.n}<small>${hh}</small></button>`}).join('');
     const sel=G.sel,L=sel&&LOCS[sel];let h='';
-    if(sel==='castle')h=`<div class="bt"><b style="color:var(--gold)">${L.n}</b> · 10 dias<small>Uma fortaleza sombria no fim do mundo, cercada de névoa e morcegos. Ainda não é possível ir até lá.</small></div><div class="btns"><button class="pri big" disabled>🔒 Em breve</button></div>`;
+    if(sel==='castle')h=`<div class="bt"><b style="color:var(--gold)">${L.n}</b> · Arena<small>Uma fortaleza sombria no fim do mundo, cercada de névoa e morcegos. Dentro dela fica a Arena, um modo à parte que não afeta o seu jogo.</small></div><div class="btns"><button class="pri big" data-a="arena">⚔ Entrar na Arena</button></div>`;
     else if(L){const hh=hoursBetween(G.loc,sel);h=`<div class="bt"><b style="color:var(--gold)">${L.n}</b> · ${hh} ${hh>1?'horas':'hora'}<small>${sel!=='camp'&&POI[L.poi]?POI[L.poi].d+(locReady(sel)?'':' (já saqueado)'):'Voltar ao acampamento.'}</small></div><div class="btns"><button class="pri big" data-a="travel">🚶 Viajar</button></div>`}
     else h='';
     $('#mapbar').innerHTML=h;$('#mapbar').style.display=h?'':'none';
@@ -5197,6 +5204,7 @@ A.vwitch=()=>{if(G.loc!=='vila')return;if(G.vw)G.vw.name='Curandeira cigana';
   if(!G.vw||G.vw.day!==G.day){const st=[{key:'hpot',p:35,q:10},{key:'mpot',p:35,q:10},{key:'herb',p:8,q:20}];
     for(let i=0;i<2;i++){const o=mkWeapon(i?2:1,{n:'Cajado',a:4,b:7});o.fx=null;o.n='Cajado de madeira';st.push({gear:o,p:Math.round(gv(o)*1.5),q:1})}
     G.vw={day:G.day,name:'Curandeira cigana',tc:1e9,stock:st}}
+  if(!G.vw.stock.some(x=>x.gear&&x.gear.k==='sc')){const fl=FXS.slice().sort(()=>Math.random()-.5).slice(0,3);for(const f of fl){const o=mkScroll(f);G.vw.stock.push({gear:o,p:120,q:1})}}
   G.trade=G.vw;G.modal='trade'};
 A.vlumber=()=>{if(G.loc!=='vila')return;if(!G.vl||G.vl.day!==G.day)G.vl={day:G.day,name:'Lenhador',wood:1,tc:1e9,stock:[{key:'wood',p:20,q:40}]};G.trade=G.vl;G.modal='trade'};
 A.vsmith=()=>{if(G.loc==='vila')G.modal='smith'};
@@ -5220,7 +5228,6 @@ V.hunter=()=>{const N=GNPC[G.hn||0]||GNPC[0];return `<section class="card"><h2>$
 A.vcart=()=>{if(G.loc==='vila'||G.loc==='guild')G.modal='cart'};
 V.cart=()=>{let h=`<section class="card"><h2>Carroça</h2><p class="dim">O dono leva você para longe, sem perigo no caminho. Durante a viagem você sente fome e sede. Você tem <b>${fmtCoins(G.coins)}</b>.</p>`;
   for(const [k,n,hr,p] of VCL())h+=`<div class="row"><span class="l">${n}<br><small class="dim">${hr} horas de viagem</small></span><span class="r"><button class="sm ${G.coins>=p?'pri':''}" data-a="cartgo" data-v="${k}" ${G.coins>=p?'':'disabled'}> ${fmtCoins(p)}</button></span></div>`;
-  h+=`<div class="row"><span class="l">Castelo Negro<br><small class="dim">O dono se recusa a ir até lá. Ainda não é possível.</small></span><span class="r"><button class="sm" disabled>—</button></span></div>`;
   return h+`<div class="btns"><button data-a="close">Fechar</button></div></section>`};
 A.cartgo=v=>{const d=VCL().find(x=>x[0]===v);if(!d||(G.loc!=='vila'&&G.loc!=='guild')||G.coins<d[3])return;
   G.coins-=d[3];G.modal=null;G.trip=null;G.sel=null;walk=null;G.loc=d[0];const camp=d[0]==='camp';G.view=camp?'camp':'poi';G.ret=camp?'camp':'poi';if(camp)G.snap=null;
@@ -5250,6 +5257,448 @@ function showDayAnim(d0,d1,vamp){
   const iv=setInterval(()=>{k++;const v=vamp?(k>=steps?d1:d0):Math.max(d1,Math.round(d0-(d0-d1)*k/steps));n.textContent='Dia '+v;n.classList.remove('tick');void n.offsetWidth;n.classList.add('tick');if(k>=steps){clearInterval(iv);n.classList.add('fin');setTimeout(end,1500)}},dur/steps);
   setTimeout(end,6000);
 }
+
+/* =====================================================================
+   MODO ARENA (Castelo Negro) — estilo Vampire Survivors
+   Totalmente separado do jogo principal:
+   - NÃO lê nem altera G (inventário, fome, sede, stamina, hora, XP, cobre...)
+   - NÃO chama save()
+   - Level, vida e XP da arena zeram a cada partida
+   - Único dado salvo: recorde (maior tempo, mais kills, maior wave) em chave própria
+   ===================================================================== */
+const ARK='darknoctis-arena-rec';
+const ARTX=(pt,en)=>LANG==='en'?en:pt;
+const arRec=()=>{try{return Object.assign({time:0,kills:0,wave:0},JSON.parse(localStorage.getItem(ARK)||'{}'))}catch(e){return{time:0,kills:0,wave:0}}};
+const arSaveRec=r=>{try{localStorage.setItem(ARK,JSON.stringify(r))}catch(e){}};
+const arFmt=s=>{s=Math.max(0,Math.ceil(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const arFmtUp=s=>arFmt(Math.floor(s));
+
+/* ---------- Configuração ---------- */
+const AR_DUR=600,AR_VW=480,AR_VH=270;
+const AR_CLS={
+  warrior:{n:['Guerreiro','Warrior'],d:['Ataque corpo a corpo, forte e resistente.','Close-range attacks, strong and sturdy.'],hp:140,spd:62,dmg:16,rate:.95,area:1,
+    look:{cloth:'#9a2e2e',pants:'#3a2a26',skin:'#d8a47c',boot:'#2a1c14',hair:'#4a2a1a',eq:{arm:{tier:1},helm:{tier:1}},wep:{b:'#c8d2da',kind:'sword'}}},
+  hunter:{n:['Caçador','Hunter'],d:['Ataque à distância, rápido e ágil.','Ranged attacks, fast and agile.'],hp:95,spd:74,dmg:9,rate:.42,area:1,
+    look:{cloth:'#3f7a34',pants:'#3a3326',skin:'#d8a47c',boot:'#2a1c14',hair:'#6a3a1e',eq:{helm:{tier:0,L:true}},wep:{b:'#9a8a70',kind:'xbow'}}},
+  mage:{n:['Mago','Mage'],d:['Magia em área que atinge vários inimigos.','Area magic that hits many enemies.'],hp:100,spd:64,dmg:12,rate:1.25,area:1,
+    look:{cloth:'#5a3a9a',pants:'#2a2040',skin:'#d8c0a0',boot:'#1c1424',hair:'#c8c8d8',eq:{},wep:{b:'#9a7ad8',kind:'staff',fx:'fogo'}}}
+};
+const AR_MOB={ // hp, vel, dano de contato, xp, raio, escala
+  fledgling:{n:['Recém-vampiro','Fledgling vampire'],hp:12,sp:24,dm:6,xp:1,r:7,sc:1},
+  bandit:{n:['Ladrão','Thief'],hp:16,sp:27,dm:7,xp:1,r:7,sc:1},
+  werewolf:{n:['Lobisomem','Werewolf'],hp:42,sp:36,dm:12,xp:3,r:9,sc:1},
+  deserter:{n:['Cavaleiro Renegado','Renegade Knight'],hp:58,sp:25,dm:14,xp:3,r:8,sc:1},
+  vampire:{n:['Vampiro','Vampire'],hp:95,sp:31,dm:18,xp:5,r:8,sc:1},
+  witch:{n:['Bruxa','Witch'],hp:1800,sp:19,dm:26,xp:40,r:13,sc:1.7,boss:true}
+};
+const AR_CARDS=[
+  {id:'dmg',ic:'⚔',n:['+Dano','+Damage'],d:['+25% de dano','+25% damage']},
+  {id:'spd',ic:'👢',n:['+Velocidade de movimento','+Move speed'],d:['+12% de velocidade','+12% speed']},
+  {id:'hp',ic:'❤',n:['+Vida máxima','+Max health'],d:['+25 de vida máxima e cura 25','+25 max health and heal 25']},
+  {id:'rate',ic:'⚡',n:['+Velocidade de ataque','+Attack speed'],d:['+18% de velocidade de ataque','+18% attack speed']},
+  {id:'area',ic:'✺',n:['+Magia em área','+Area magic'],d:['+22% de área de efeito','+22% area of effect']}
+];
+
+/* ---------- Herói da aventura (somente LEITURA de G) ---------- */
+let ARLOOK={},ARSIG='';
+function arHero(){
+  const wk=G.wep&&wepOk()?wepKind(G.wep.n):null;
+  const style=wk==='staff'?'mage':(wk==='bow'||wk==='xbow')?'hunter':'warrior';
+  const parts=['arm','helm','cape','shield','pants','boots'],eq={};let def=0;
+  for(const k of parts){eq[k]=G[k]||null;if(G[k]&&G[k].dur>0)def+=G[k].def||0}
+  const tn=G.turned,wa=G.wep&&wepOk()?G.wep.a:2,wb=G.wep&&wepOk()?G.wep.b:3,avg=(wa+wb)/2;
+  const look={k:1,hero:true,g:G.gender,eq,wep:wk?{b:RAR[G.wep.ri].b,kind:wk,fx:G.wep.fx||null}:null,
+    skin:tn?'#d9d0dc':undefined,cloth:tn?mix(P.mtnP,P.shadow,.5):undefined,eye:tn?'#FF2A2A':undefined};
+  const base={warrior:{dmg:avg*2.6,rate:.95,area:1,spd:62},hunter:{dmg:avg*1.5,rate:.45,area:1,spd:70},mage:{dmg:avg*2,rate:1.25,area:1,spd:62}}[style];
+  if(wk==='dagger'){base.dmg*=.7;base.rate=.55}else if(wk==='axe'){base.area=1.15}else if(wk==='spear'){base.area=1.2;base.dmg*=.95}else if(wk==='mace'){base.dmg*=1.1;base.rate=1.05}
+  const hp=Math.round(G.mhp+def*6),boots=G.boots&&G.boots.dur>0?(G.boots.def||0):0;
+  return {style,wk,fx:style==='mage'&&G.wep&&wepOk()?(G.wep.fx||null):null,look,def,hp,spd:base.spd*(1+boots*.03),dmg:Math.max(3,base.dmg),rate:base.rate,area:base.area,
+    wname:G.wep&&wepOk()?G.wep.n:ARTX('Sem arma (punhos)','Unarmed (fists)'),
+    sig:[G.gender,G.turned,wk,G.wep&&G.wep.ri,parts.map(k=>G[k]&&G[k].n).join('|')].join('/')};
+}
+const arStyleName=st=>st==='mage'?ARTX('Cajado','Staff'):st==='hunter'?ARTX('Distância','Ranged'):'Melee';
+/* ---------- Sprites (reaproveita o desenho dos mobs do jogo, sem tocar no canvas principal) ---------- */
+const ARSP={};
+function arSprite(key,fn,w,h,ox,oy){
+  if(ARSP[key])return ARSP[key];
+  const cv=document.createElement('canvas');cv.width=w;cv.height=h;const g=cv.getContext('2d');g.imageSmoothingEnabled=false;
+  const old=c;c=g;try{fn(ox,oy)}catch(e){window.__arerr=key+': '+e.message}finally{c=old}
+  return ARSP[key]={cv,ox,oy};
+}
+function arMobSpr(k,fr){
+  return arSprite('m'+k+fr,(x,y)=>{const t=fr*.125;outlined(()=>drawEnemy(k,x,y,t,false,{pose:'walk'}))},96,96,48,86);
+}
+function arHeroSpr(cls,fr,st,sw){ // st: 's' parado, 'w' andando, 'a' ataque (sw = 0..1)
+  if(st===true)st='w';else if(st===false||!st)st='s';
+  const L=ARLOOK,pose=st==='w'?'walk':st==='a'?'atk':'stand';
+  if(st==='a')sw=sw<.4?.2:sw<.8?.6:1;
+  return arSprite('h'+ARSIG+cls+(st==='w'?fr:0)+st+(sw||''),(x,y)=>{outlined(()=>person(x,y,Object.assign({t:fr/8,pose,swing:st==='a'?sw:0,anch:false},L,cls==='hunter'&&st==='a'?{wep:null}:{})))},96,96,48,86);
+}
+function arXbow(g,px,py,a){
+  g.save();g.translate(px,py);g.rotate(a);
+  g.strokeStyle='#1c1224';g.lineCap='round';
+  g.lineWidth=4;g.beginPath();g.moveTo(-5,0);g.lineTo(12,0);g.stroke();
+  g.lineWidth=2.2;g.strokeStyle='#8a5a30';g.beginPath();g.moveTo(-5,0);g.lineTo(12,0);g.stroke();
+  g.lineWidth=3.6;g.strokeStyle='#1c1224';g.beginPath();g.moveTo(5,-8);g.quadraticCurveTo(13,0,5,8);g.stroke();
+  g.lineWidth=1.8;g.strokeStyle='#5a4a6a';g.beginPath();g.moveTo(5,-8);g.quadraticCurveTo(13,0,5,8);g.stroke();
+  g.lineWidth=.8;g.strokeStyle='#e8e0c0';g.beginPath();g.moveTo(5,-8);g.lineTo(-1,0);g.lineTo(5,8);g.stroke();
+  g.lineWidth=1.4;g.strokeStyle='#d8d0b0';g.beginPath();g.moveTo(-1,0);g.lineTo(14,0);g.stroke();
+  g.restore();
+}
+function arBow(g,px,py,a){
+  g.save();g.translate(px,py);g.rotate(a);g.lineCap='round';
+  for(const [w,c] of [[3.8,'#1c1224'],[2,'#8a5a30']]){g.lineWidth=w;g.strokeStyle=c;g.beginPath();g.moveTo(4,-11);g.quadraticCurveTo(13,0,4,11);g.stroke()}
+  g.lineWidth=.8;g.strokeStyle='#e8e0c0';g.beginPath();g.moveTo(4,-11);g.lineTo(-1,0);g.lineTo(4,11);g.stroke();
+  g.lineWidth=1.3;g.strokeStyle='#d8d0b0';g.beginPath();g.moveTo(-1,0);g.lineTo(15,0);g.stroke();
+  g.restore();
+}
+
+/* ---------- Estado ---------- */
+let AR=null,ARUI=null,ARRAF=0,ARLT=0,ARKEYS={},ARTOUCH=null;
+
+function arenaOpen(){
+  if(ARUI)return;
+  const el=document.createElement('div');el.id='arena';
+  el.innerHTML=`<style>
+#arena{position:fixed;inset:0;z-index:99999;background:#07040b;color:#eadfc4;font-family:inherit;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden}
+#arena canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;display:block}
+#arena:not(.on) .hud,#arena:not(.on) #arpa{display:none}
+#arena .hud{position:absolute;pointer-events:none;text-shadow:0 1px 2px #000,0 0 6px #000}
+#arena .top{top:8px;left:0;right:0;text-align:center}
+#arena .tm{font-size:26px;font-weight:700;letter-spacing:2px;color:#ffe6a0}
+#arena .wv{font-size:13px;opacity:.9}
+#arena .tl{top:8px;left:10px;width:42%;max-width:240px}
+#arena .tr{top:10px;right:12px;font-size:15px;text-align:right;font-weight:700}
+#arena .arb{height:12px;border:1px solid #000;background:#2a1418;border-radius:3px;overflow:hidden;margin-bottom:3px}
+#arena .arb i{display:block;height:100%;background:linear-gradient(#e0484c,#a0262c);width:100%}
+#arena .xpw{left:0;right:0;bottom:0;padding:0 0 0}
+#arena .xpw .bar{height:12px;border-radius:0;margin:0;border-width:1px 0 0}
+#arena .xpw .bar i{background:linear-gradient(#58c8f0,#2a7ac0);width:0}
+#arena .xpt{position:absolute;left:0;right:0;bottom:-1px;text-align:center;font-size:10px;font-weight:700}
+#arena .ex{position:absolute;top:44px;right:10px;z-index:3}
+#arena button{font:inherit;color:#eadfc4;background:#2a1a30;border:1px solid #6a4a7a;border-radius:6px;padding:8px 14px;cursor:pointer}
+#arena button.pri{background:#7a2a38;border-color:#c8586a;font-weight:700}
+#arena .ov{position:absolute;inset:0;background:rgba(5,2,10,.78);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;text-align:center;z-index:2}
+#arena .ov h2{margin:0;color:#ffd77a;font-size:24px}
+#arena .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+#arena .cls{width:150px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:4px}
+#arena .cls canvas{position:static;width:64px;height:64px}
+#arena .cls small{opacity:.8;font-size:11px;line-height:1.2}
+#arena .card{width:150px;min-height:120px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#241430;border:2px solid #c8a24a;border-radius:8px}
+#arena .card b{font-size:14px;color:#ffe6a0}#arena .card span{font-size:30px}#arena .card small{font-size:12px;opacity:.9}
+#arena .st{font-size:15px;line-height:1.7}
+#arena .stick{position:absolute;width:90px;height:90px;border-radius:50%;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);pointer-events:none;display:none;z-index:1}
+#arena .stick i{position:absolute;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.3);left:26px;top:26px}
+</style>
+<canvas id="arcv"></canvas>
+<div class="hud top"><div class="tm" id="artm">10:00</div><div class="wv" id="arwv"></div></div>
+<div class="hud tl"><div class="arb"><i id="arhp"></i></div><div style="font-size:12px"><span id="arhpt"></span> · <b id="arlv"></b></div></div>
+<div class="hud tr" id="arkl"></div>
+<div class="hud xpw"><div class="arb"><i id="arxp"></i></div><div class="xpt" id="arxpt"></div></div>
+<button class="ex" id="arex"></button><button class="ex" id="arpa" style="right:104px">⏸</button><div id="arpz"></div>
+<div class="stick" id="arst"><i></i></div>
+<div id="arov"></div>`;
+  document.body.appendChild(el);
+  ARUI={el,cv:el.querySelector('#arcv')};
+  ARUI.g=ARUI.cv.getContext('2d');
+  const rs=()=>{const w=innerWidth,h=innerHeight,s=Math.max(1,Math.min(w/AR_VW,h/AR_VH));ARUI.cv.width=Math.ceil(w/s);ARUI.cv.height=Math.ceil(h/s);ARUI.g.imageSmoothingEnabled=false};
+  ARUI.rs=rs;rs();addEventListener('resize',rs);
+  el.querySelector('#arex').textContent='✕ '+ARTX('Sair','Exit');
+  el.querySelector('#arex').onclick=()=>arenaClose();
+  el.querySelector('#arpa').onclick=()=>arPause();
+  arBindInput();arClassSelect();
+}
+function arenaClose(){
+  if(!ARUI)return;
+  cancelAnimationFrame(ARRAF);AR=null;
+  removeEventListener('resize',ARUI.rs);
+  removeEventListener('keydown',arKD,true);removeEventListener('keyup',arKU,true);
+  ARUI.el.remove();ARUI=null;ARKEYS={};ARTOUCH=null;
+}
+function arPause(){
+  const A=AR;if(!A||A.over||A.paused)return;
+  A.paused=true;A.man=true;ARTOUCH=null;arEl('arst').style.display='none';
+  arEl('arpz').innerHTML=`<div class="ov"><h2>${ARTX('Pausado','Paused')}</h2><div class="row"><button class="pri" id="arrs">${ARTX('Continuar','Resume')}</button><button id="arxq">${ARTX('Sair da arena','Leave arena')}</button></div><div style="font-size:12px;opacity:.7">${ARTX('P / Espaço para continuar','P / Space to resume')}</div></div>`;
+  arEl('arrs').onclick=arResume;arEl('arxq').onclick=()=>arenaClose();
+}
+function arResume(){const A=AR;if(!A||!A.man)return;A.man=false;A.paused=false;arEl('arpz').innerHTML='';ARLT=performance.now()}
+const arEl=id=>ARUI.el.querySelector('#'+id);
+function arClassSelect(){
+  const rec=arRec(),H=arHero();ARLOOK=H.look;ARSIG=H.sig;
+  arEl('arov').innerHTML=`<div class="ov"><h2>${ARTX('Castelo Negro','Black Castle')}</h2>
+  <canvas id="arhero" width="96" height="96" style="position:static;width:96px;height:96px"></canvas>
+  <div class="st" style="font-size:14px">${ARTX('Herói','Hero')}: <b>${ARTX('Você','You')}</b><br>${ARTX('Arma','Weapon')}: <b>${H.wname}</b> <small>(${arStyleName(H.style)})</small><br>${ARTX('Vida','Health')}: <b>${H.hp}</b></div>
+  <div style="font-size:13px;opacity:.85;max-width:420px">${ARTX('Modo à parte: nada afeta seu jogo principal. Sobreviva 10 minutos.','Separate mode: nothing affects your main game. Survive 10 minutes.')}</div>
+  <div style="font-size:12px;opacity:.8">${ARTX('Recorde','Record')}: ${arFmtUp(rec.time)} · ${rec.kills} kills · Wave ${rec.wave}</div>
+  <div class="row"><button class="pri" id="argo">${ARTX('Entrar no Castelo Negro','Enter the Black Castle')}</button><button id="arback">${ARTX('Voltar','Back')}</button></div></div>`;
+  arEl('arhero').getContext('2d').drawImage(arHeroSpr(H.style,0,'s').cv,0,0);
+  arEl('argo').onclick=()=>arStart();arEl('arback').onclick=()=>arenaClose();
+}
+
+/* ---------- Início da partida ---------- */
+function arStart(force){
+  const H=arHero();if(force)H.style=force;ARLOOK=H.look;ARSIG=H.sig;const cls=H.style;
+  AR={cls,wk:H.wk,fxk:H.fx,red:Math.floor(H.def*.3),t:0,kills:0,wave:1,lvl:1,xp:0,xpn:6,x:0,y:0,face:1,hp:H.hp,mhp:H.hp,spd:H.spd,dmg:H.dmg,rate:H.rate,area:H.area,
+    atk:.3,inv:0,mobs:[],gems:[],proj:[],fx:[],txt:[],spawn:0,boss:false,paused:false,over:false,anim:0,moving:false,sw:0,bossShot:0,pick:[],aim:0,atkT:0,orbs:[]};
+  ARUI.el.classList.add('on');arEl('arov').innerHTML='';arUpdHud();
+  ARLT=performance.now();cancelAnimationFrame(ARRAF);ARRAF=requestAnimationFrame(arLoop);
+}
+
+/* ---------- Entrada ---------- */
+function arKD(e){if(!ARUI)return;const k=e.key.toLowerCase();if(k==='escape'){e.stopPropagation();e.preventDefault();arenaClose();return}
+  if((k==='p'||k===' ')&&AR&&!e.repeat){e.preventDefault();if(AR.man)arResume();else arPause()}
+  if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)){ARKEYS[k]=1;e.preventDefault()}e.stopPropagation()}
+function arKU(e){if(!ARUI)return;ARKEYS[e.key.toLowerCase()]=0;e.stopPropagation()}
+function arBindInput(){
+  addEventListener('keydown',arKD,true);addEventListener('keyup',arKU,true);
+  const el=ARUI.el,st=arEl('arst'),knob=st.querySelector('i');
+  const down=e=>{if(e.target.closest('button'))return;if(ARTOUCH)return;const p=e.touches?e.touches[0]:e;ARTOUCH={id:e.touches?p.identifier:'m',x0:p.clientX,y0:p.clientY,dx:0,dy:0};
+    st.style.display='block';st.style.left=(p.clientX-45)+'px';st.style.top=(p.clientY-45)+'px';knob.style.transform='translate(0,0)'};
+  const move=e=>{if(!ARTOUCH)return;let p=e;if(e.touches){p=[...e.touches].find(t=>t.identifier===ARTOUCH.id);if(!p)return}
+    let dx=p.clientX-ARTOUCH.x0,dy=p.clientY-ARTOUCH.y0;const d=Math.hypot(dx,dy),m=40;if(d>m){dx*=m/d;dy*=m/d}
+    ARTOUCH.dx=dx/m;ARTOUCH.dy=dy/m;knob.style.transform=`translate(${dx}px,${dy}px)`;e.preventDefault()};
+  const up=e=>{if(!ARTOUCH)return;if(e.changedTouches&&![...e.changedTouches].some(t=>t.identifier===ARTOUCH.id))return;ARTOUCH=null;st.style.display='none'};
+  el.addEventListener('touchstart',down,{passive:false});el.addEventListener('touchmove',move,{passive:false});el.addEventListener('touchend',up);el.addEventListener('touchcancel',up);
+  el.addEventListener('mousedown',down);addEventListener('mousemove',move);addEventListener('mouseup',up);
+}
+function arDir(){
+  let x=0,y=0;
+  if(ARKEYS.a||ARKEYS.arrowleft)x-=1;if(ARKEYS.d||ARKEYS.arrowright)x+=1;if(ARKEYS.w||ARKEYS.arrowup)y-=1;if(ARKEYS.s||ARKEYS.arrowdown)y+=1;
+  if(ARTOUCH&&(Math.abs(ARTOUCH.dx)>.12||Math.abs(ARTOUCH.dy)>.12)){x=ARTOUCH.dx;y=ARTOUCH.dy}
+  const d=Math.hypot(x,y);if(d>1){x/=d;y/=d}return[x,y];
+}
+
+/* ---------- Lógica ---------- */
+const arRnd=(a,b)=>a+Math.random()*(b-a);
+function arWaveOf(t){return Math.min(10,1+Math.floor(t/60))}
+function arPickKind(w){
+  const r=Math.random(),T={
+    1:['fledgling'],2:['bandit'],3:['fledgling','bandit'],
+    4:['werewolf'],5:['deserter'],6:['werewolf','deserter'],
+    7:['vampire'],8:['vampire','werewolf'],9:['vampire','deserter'],10:['vampire','vampire','werewolf']}[w]||['vampire'];
+  return T[Math.floor(r*T.length)];
+}
+function arSpawn(kind){
+  const M=AR_MOB[kind],a=Math.random()*6.283,d=Math.hypot(AR_VW,AR_VH)/2+30;
+  const sc=1+.13*(AR.wave-1);
+  AR.mobs.push({k:kind,x:AR.x+Math.cos(a)*d,y:AR.y+Math.sin(a)*d,hp:M.hp*sc,mhp:M.hp*sc,sp:M.sp*(1+.015*(AR.wave-1))*arRnd(.92,1.08),dm:M.dm*(1+.06*(AR.wave-1)),r:M.r,fl:0,face:1,ph:Math.random()*9,boss:!!M.boss,sh:0});
+}
+function arDamageMob(m,d,crit){
+  m.hp-=d;m.fl=.12;AR.txt.push({x:m.x,y:m.y-16,v:Math.round(d),t:.6});
+  if(m.hp<=0&&!m.dead){m.dead=true;AR.kills++;AR.gems.push({x:m.x,y:m.y,v:AR_MOB[m.k].xp,ph:Math.random()*6});AR.fx.push({x:m.x,y:m.y,t:.35,k:'die'})}
+}
+function arNearest(max){let b=null,bd=max*max;for(const m of AR.mobs){if(m.dead)continue;const d=(m.x-AR.x)**2+(m.y-AR.y)**2;if(d<bd){bd=d;b=m}}return b}
+const AR_EL={fogo:['#ff8a30','255,138,48','255,208,96'],gelo:['#6ad0ff','106,208,255','200,240,255'],trovao:['#ffe84a','255,232,74','255,250,190'],veneno:['#7ad84a','122,216,74','200,250,150'],sangramento:['#e03040','224,48,64','255,150,160'],atordoamento:['#d8c8ff','216,200,255','255,255,255']};
+const arElc=fx=>AR_EL[fx]||['#b070ff','176,112,255','232,200,255'];
+function arStatus(m,fx,dmg){
+  if(!fx||m.dead)return;
+  if(fx==='fogo'||fx==='veneno'||fx==='sangramento'){m.dot={fx,t:3,tk:.5,d:dmg*(fx==='fogo'?.22:fx==='veneno'?.18:.2)}}
+  else if(fx==='gelo')m.slow=2.2;
+  else if(fx==='atordoamento')m.stun=1.3;
+}
+const arAng=(a,b)=>{let d=Math.abs(a-b)%6.2832;return d>3.1416?6.2832-d:d};
+function arAttack(){
+  const A=AR;
+  if(A.cls==='warrior'){
+    const R=44*A.area,t=arNearest(R+22);if(!t)return false;
+    const a=Math.atan2(t.y-A.y,t.x-A.x);A.aim=a;A.face=Math.cos(a)>=0?1:-1;A.atkT=.28;A.atkMax=.28;
+    for(const m of A.mobs){if(m.dead)continue;const d=Math.hypot(m.x-A.x,m.y-A.y);if(d>R+m.r)continue;
+      if(d<14||arAng(Math.atan2(m.y-A.y,m.x-A.x),a)<1.25)arDamageMob(m,A.dmg*arRnd(.9,1.1))}
+    A.fx.push({x:A.x,y:A.y,t:.26,k:'slash',r:R,a});
+  }else if(A.cls==='hunter'){
+    const t=arNearest(260);if(!t)return false;
+    const px=A.x+A.face*17,py=A.y-42,a=Math.atan2(t.y-py,t.x-px);A.aim=a;A.face=Math.cos(a)>=0?1:-1;A.atkT=.5;A.atkMax=.5;
+    A.proj.push({x:px+Math.cos(a)*14,y:py+Math.sin(a)*14,vx:Math.cos(a)*230,vy:Math.sin(a)*230,d:A.dmg*arRnd(.9,1.1),life:1.2,pierce:1+Math.floor((A.area-1)/.22),hit:new Set(),a,sp:14*A.area});
+  }else{
+    const t=arNearest(260);if(!t)return false;
+    const px=A.x+A.face*15,py=A.y-50,a=Math.atan2(t.y-py,t.x-px);A.aim=a;A.face=Math.cos(a)>=0?1:-1;A.atkT=.3;A.atkMax=.3;
+    A.orbs.push({fx:A.fxk,x:px+Math.cos(a)*6,y:py+Math.sin(a)*6,vx:Math.cos(a)*150,vy:Math.sin(a)*150,life:2,d:A.dmg*arRnd(.9,1.1),tr:[]});
+  }
+  return true;
+}
+function arHurt(d){
+  if(AR.inv>0)return;d=Math.max(1,d-(AR.red||0));AR.hp-=d;AR.inv=.55;AR.shake=.18;AR.txt.push({x:AR.x,y:AR.y-30,v:Math.round(d),t:.6,p:true});
+  if(AR.hp<=0){AR.hp=0;arEnd(false)}
+}
+function arEnd(win){
+  if(AR.over)return;AR.over=true;
+  const rec=arRec(),t=Math.min(AR.t,AR_DUR);let nr=false;
+  const n={time:Math.max(rec.time,t),kills:Math.max(rec.kills,AR.kills),wave:Math.max(rec.wave,AR.wave)};
+  if(t>rec.time||AR.kills>rec.kills||AR.wave>rec.wave)nr=true;arSaveRec(n);
+  arEl('arov').innerHTML=`<div class="ov"><h2>${win?ARTX('🏆 Vitória!','🏆 Victory!'):ARTX('☠ Você caiu','☠ You fell')}</h2>
+  <div class="st">${ARTX('Tempo sobrevivido','Time survived')}: <b>${arFmtUp(t)}</b><br>Kills: <b>${AR.kills}</b><br>${ARTX('Wave alcançada','Wave reached')}: <b>${AR.wave}</b><br>${ARTX('Nível na arena','Arena level')}: <b>${AR.lvl}</b></div>
+  <div class="st" style="font-size:13px;opacity:.9">${ARTX('Recorde','Record')}: ${arFmtUp(n.time)} · ${n.kills} kills · Wave ${n.wave}${nr?' ✨':''}</div>
+  <div class="row"><button class="pri" id="arag">${ARTX('Jogar de novo','Play again')}</button><button id="arxx">${ARTX('Sair da arena','Leave arena')}</button></div></div>`;
+  arEl('arag').onclick=()=>arClassSelect();arEl('arxx').onclick=()=>arenaClose();
+}
+function arLevelUp(){
+  const A=AR;A.paused=true;
+  const pool=AR_CARDS.slice(),pick=[];while(pick.length<3&&pool.length)pick.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  const I=LANG==='en'?1:0;
+  arEl('arov').innerHTML=`<div class="ov"><h2>${ARTX('Nível','Level')} ${A.lvl}!</h2><div style="opacity:.85">${ARTX('Escolha uma melhoria','Choose an upgrade')}</div><div class="row" id="arcards"></div></div>`;
+  const row=arEl('arcards');
+  for(const cd of pick){const b=document.createElement('button');b.className='card';b.innerHTML=`<span>${cd.ic}</span><b>${cd.n[I]}</b><small>${cd.d[I]}</small>`;
+    b.onclick=()=>{arApply(cd.id);arEl('arov').innerHTML='';A.paused=false;ARLT=performance.now()};row.appendChild(b)}
+}
+function arApply(id){const A=AR;
+  if(id==='dmg')A.dmg*=1.25;else if(id==='spd')A.spd*=1.12;else if(id==='hp'){A.mhp+=25;A.hp=Math.min(A.mhp,A.hp+25)}
+  else if(id==='rate')A.rate/=1.18;else if(id==='area')A.area*=1.22;
+}
+function arUpdate(dt){
+  const A=AR;A.t+=dt;A.anim+=dt;
+  if(A.t>=AR_DUR){A.t=AR_DUR;arUpdHud();arEnd(true);return}
+  A.wave=arWaveOf(A.t);if(A.wave!==A.lastW){A.lastW=A.wave;if(A.wave>1)A.txt.push({x:A.x,y:A.y-60,v:'WAVE '+A.wave,t:2,big:true})}
+  // movimento
+  const [dx,dy]=arDir();A.moving=dx||dy;
+  if(A.moving){A.x+=dx*A.spd*dt;A.y+=dy*A.spd*dt;if(Math.abs(dx)>.1)A.face=dx>0?1:-1}
+  if(A.cls!=='warrior'){const tg=arNearest(260);if(tg){const py=A.y-(A.cls==='hunter'?42:50),a=Math.atan2(tg.y-py,tg.x-A.x);A.aim=a;A.face=Math.cos(a)>=0?1:-1;A.atkT=Math.max(A.atkT,.25)}}
+  A.atkT=Math.max(0,A.atkT-dt);
+  A.inv=Math.max(0,A.inv-dt);A.sw=Math.max(0,A.sw-dt);A.shake=Math.max(0,(A.shake||0)-dt);
+  // chefe
+  if(A.wave>=10&&!A.boss){A.boss=true;arSpawn('witch');A.txt.push({x:A.x,y:A.y-50,v:ARTX('A BRUXA CHEGOU!','THE WITCH IS HERE!'),t:2.2,big:true})}
+  // spawn de horda
+  A.spawn-=dt;
+  if(A.spawn<=0){A.spawn=Math.max(.22,.95-.07*A.wave);const n=1+Math.floor(A.wave/2)+(A.t%60<4?3:0);
+    if(A.mobs.length<230)for(let i=0;i<n;i++)arSpawn(arPickKind(A.wave))}
+  // ataque automático
+  A.atk-=dt;if(A.atk<=0){if(arAttack())A.atk=A.rate;else A.atk=.12}
+  // projéteis
+  for(const p of A.proj){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;
+    for(const m of A.mobs){if(m.dead||p.hit.has(m))continue;if(Math.hypot(m.x-p.x,m.y-p.y)<m.r+4){p.hit.add(m);arDamageMob(m,p.d);
+      if(A.area>1.05){for(const o of A.mobs){if(!o.dead&&o!==m&&Math.hypot(o.x-m.x,o.y-m.y)<p.sp)arDamageMob(o,p.d*.5)}A.fx.push({x:m.x,y:m.y,t:.25,k:'boom',r:p.sp})}
+      p.pierce--;if(p.pierce<=0){p.life=0;break}}}}
+  A.proj=A.proj.filter(p=>p.life>0);
+  for(const o of A.orbs){o.x+=o.vx*dt;o.y+=o.vy*dt;o.life-=dt;o.tr.push([o.x,o.y]);if(o.tr.length>7)o.tr.shift();
+    for(const m of A.mobs){if(m.dead)continue;if(Math.hypot(m.x-o.x,m.y-o.y)<m.r+5){
+      const R=26*A.area;A.fx.push({x:o.x,y:o.y,t:.5,k:'boom',r:R,fx:o.fx});
+      for(const q of A.mobs){if(q.dead)continue;if(q===m){arDamageMob(q,o.d);arStatus(q,o.fx,o.d)}else if(Math.hypot(q.x-o.x,q.y-o.y)<R+q.r){arDamageMob(q,o.d*.7);arStatus(q,o.fx,o.d*.7)}}
+      if(o.fx==='trovao'){let last=m,hit=new Set([m]);for(let n=0;n<3;n++){let b=null,bd=70*70;for(const q of A.mobs){if(q.dead||hit.has(q))continue;const d=(q.x-last.x)**2+(q.y-last.y)**2;if(d<bd){bd=d;b=q}}if(!b)break;hit.add(b);A.fx.push({k:'bolt',x:last.x,y:last.y-10,x2:b.x,y2:b.y-10,t:.22});arDamageMob(b,o.d*.6);last=b}}
+      o.life=0;break}}}
+  A.orbs=A.orbs.filter(o=>o.life>0);
+  // projéteis inimigos (bruxa)
+  A.eproj=A.eproj||[];
+  for(const p of A.eproj){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;if(Math.hypot(p.x-A.x,p.y-A.y)<9){arHurt(10+A.wave);p.life=0}}
+  A.eproj=A.eproj.filter(p=>p.life>0);
+  // mobs
+  const cell=18,grid=new Map();
+  for(const m of A.mobs){if(m.dead)continue;const gx=Math.floor(m.x/cell),gy=Math.floor(m.y/cell),key=gx*73856+gy;let l=grid.get(key);if(!l)grid.set(key,l=[]);l.push(m)}
+  for(const m of A.mobs){if(m.dead)continue;
+    const ddx=A.x-m.x,ddy=A.y-m.y,d=Math.hypot(ddx,ddy)||1;
+    if(d>480){m.dead=true;m.gone=true;continue}
+    if(m.dot){m.dot.t-=dt;m.dot.tk-=dt;if(m.dot.tk<=0){m.dot.tk=.5;arDamageMob(m,m.dot.d);if(m.dead)continue}if(m.dot.t<=0)m.dot=null}
+    if(m.slow)m.slow-=dt;if(m.stun)m.stun-=dt;const spm=m.stun>0?0:m.slow>0?.45:1;
+    const ux=ddx/d,uy=ddy/d;m.x+=ux*m.sp*spm*dt;m.y+=uy*m.sp*spm*dt;if(Math.abs(ux)>.2)m.face=ux>0?1:-1;m.fl=Math.max(0,m.fl-dt);
+    const gx=Math.floor(m.x/cell),gy=Math.floor(m.y/cell);
+    for(let ax=-1;ax<=1;ax++)for(let ay=-1;ay<=1;ay++){const l=grid.get((gx+ax)*73856+(gy+ay));if(!l)continue;
+      for(const o of l){if(o===m)continue;const px=m.x-o.x,py=m.y-o.y,pd=Math.hypot(px,py),mr=(m.r+o.r)*.8;if(pd<mr&&pd>.01){const f=(mr-pd)*.5*dt*8;m.x+=px/pd*f;m.y+=py/pd*f}}}
+    if(d<m.r+6)arHurt(m.dm);
+    if(m.boss){A.bossShot-=dt;if(A.bossShot<=0){A.bossShot=2.4;for(let i=-1;i<=1;i++){const a=Math.atan2(A.y-m.y,A.x-m.x)+i*.35;A.eproj.push({x:m.x,y:m.y-14,vx:Math.cos(a)*85,vy:Math.sin(a)*85,life:4})}}}
+  }
+  A.mobs=A.mobs.filter(m=>!m.dead);
+  // gemas
+  const mag=34+A.lvl*.8;
+  for(const g of A.gems){const d=Math.hypot(A.x-g.x,A.y-g.y);if(d<mag||g.fly){g.fly=true;const s=Math.max(140,A.spd*2.2);g.x+=(A.x-g.x)/d*s*dt;g.y+=(A.y-g.y)/d*s*dt}
+    if(d<8){g.take=true;A.xp+=g.v}}
+  A.gems=A.gems.filter(g=>!g.take);
+  while(A.xp>=A.xpn&&!A.paused){A.xp-=A.xpn;A.lvl++;A.xpn=Math.round(6+(A.lvl-1)*5+A.lvl*A.lvl*.35);arLevelUp()}
+  for(const f of A.fx)f.t-=dt;A.fx=A.fx.filter(f=>f.t>0);
+  for(const f of A.txt){f.t-=dt;f.y-=14*dt}A.txt=A.txt.filter(f=>f.t>0);
+  arUpdHud();
+}
+function arUpdHud(){
+  const A=AR;if(!A||!ARUI)return;
+  arEl('artm').textContent=arFmtUp(A.t)+' / 10:00';
+  arEl('arwv').textContent='Wave '+A.wave+(A.wave>=10?' ★':'');
+  arEl('arhp').style.width=Math.max(0,A.hp/A.mhp*100)+'%';
+  arEl('arhpt').textContent=Math.ceil(A.hp)+'/'+A.mhp;
+  arEl('arlv').textContent=ARTX('Nv ','Lv ')+A.lvl;
+  arEl('arkl').textContent='☠ '+A.kills;
+  arEl('arxp').style.width=Math.min(100,A.xp/A.xpn*100)+'%';
+  arEl('arxpt').textContent='XP '+A.xp+'/'+A.xpn;
+}
+
+/* ---------- Desenho ---------- */
+function arDraw(){
+  const A=AR,g=ARUI.g,W=ARUI.cv.width,H=ARUI.cv.height;
+  const sx=(A.shake?(Math.random()-.5)*3:0),sy=(A.shake?(Math.random()-.5)*3:0);
+  const cx=Math.round(A.x-W/2+sx),cy=Math.round(A.y-H/2+sy);
+  g.fillStyle='#120c18';g.fillRect(0,0,W,H);
+  // piso de pedra do castelo
+  const T=32,x0=Math.floor(cx/T),y0=Math.floor(cy/T);
+  for(let ty=y0;ty<=y0+Math.ceil(H/T);ty++)for(let tx=x0;tx<=x0+Math.ceil(W/T);tx++){
+    const h=((tx*374761393+ty*668265263)>>>0)%97,px=tx*T-cx,py=ty*T-cy;
+    g.fillStyle=(tx+ty)&1?'#1e1626':'#241a2c';g.fillRect(px,py,T,T);
+    g.fillStyle='rgba(0,0,0,.35)';g.fillRect(px,py,T,1);g.fillRect(px,py,1,T);
+    if(h<14){g.fillStyle='rgba(255,255,255,.05)';g.fillRect(px+4+h,py+6,9,1)}
+    if(h>88){g.fillStyle='rgba(120,30,40,.18)';g.fillRect(px+8,py+8,6,5)}
+  }
+  // gemas
+  for(const q of A.gems){const gx=q.x-cx,gy=q.y-cy+Math.sin(A.anim*4+q.ph)*1.5;if(gx<-10||gy<-10||gx>W+10||gy>H+10)continue;
+    g.fillStyle='#2a8ad0';g.beginPath();g.moveTo(gx,gy-4);g.lineTo(gx+3,gy);g.lineTo(gx,gy+4);g.lineTo(gx-3,gy);g.fill();g.fillStyle='#9ae0ff';g.fillRect(gx-1,gy-2,1,2)}
+  // efeitos de chão
+  for(const f of A.fx){const fx=f.x-cx,fy=f.y-cy;
+    if(f.k==='boom'){const p=1-f.t/.5;g.globalAlpha=.55*(1-p);g.fillStyle=arElc(f.fx)[0];g.beginPath();g.arc(fx,fy,f.r*(.4+.6*Math.min(1,p*2)),0,6.3);g.fill();g.globalAlpha=1;g.strokeStyle='rgb('+arElc(f.fx)[2]+')';g.lineWidth=1.5;g.beginPath();g.arc(fx,fy,f.r*(.4+.6*Math.min(1,p*2)),0,6.3);g.stroke()}}
+  // entidades ordenadas por y
+  const ent=[];
+  for(const m of A.mobs)ent.push({y:m.y,m});
+  ent.push({y:A.y,p:1});
+  ent.sort((a,b)=>a.y-b.y);
+  for(const e of ent){
+    if(e.p){
+      const fr=Math.floor(A.anim*8)%4,atk=A.atkT>0&&(A.cls!=='hunter'||A.atkT>0);
+      const sw=A.cls==='warrior'?1-A.atkT/(A.atkMax||.28):.6;
+      const sp=arHeroSpr(A.cls,A.moving?fr:0,A.moving?'w':'s');
+      const px=Math.round(A.x-cx),py=Math.round(A.y-cy);
+      g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(px,py,9,3,0,0,6.3);g.fill();
+      if(A.inv>0&&Math.floor(A.anim*20)%2)g.globalAlpha=.45;
+      g.save();g.translate(px,py);if(A.face<0)g.scale(-1,1);g.drawImage(sp.cv,-sp.ox,-sp.oy);g.restore();g.globalAlpha=1;
+    }else{
+      const m=e.m,mx=Math.round(m.x-cx),my=Math.round(m.y-cy);if(mx<-60||my<-60||mx>W+60||my>H+60)continue;
+      const M=AR_MOB[m.k],fr=Math.floor(A.anim*10+m.ph)%8,sp=arMobSpr(m.k,fr),s=M.sc;
+      g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.ellipse(mx,my,8*s,3*s,0,0,6.3);g.fill();
+      g.save();g.translate(mx,my);g.scale(m.face*s,s);
+      // sprites dos mobs olham para a esquerda no jogo: espelha quando o jogador está à direita
+      if(m.fl>0){g.globalAlpha=1;g.filter='brightness(2.2)'}
+      g.drawImage(sp.cv,-sp.ox,-sp.oy);g.filter='none';g.restore();
+      {const st=m.dot?m.dot.fx:m.slow>0?'gelo':m.stun>0?'atordoamento':null;if(st){g.fillStyle=arElc(st)[0];g.globalAlpha=.55+.3*Math.sin(A.anim*10);g.beginPath();g.arc(mx,my-24*s,3,0,6.3);g.fill();g.globalAlpha=1}}
+      if(m.boss||m.hp<m.mhp){const w=m.boss?40:16,hy=my-(m.boss?78:40);g.fillStyle='#000';g.fillRect(mx-w/2-1,hy-1,w+2,4);g.fillStyle=m.boss?'#a040d0':'#d04040';g.fillRect(mx-w/2,hy,w*Math.max(0,m.hp/m.mhp),2)}
+    }
+  }
+  // projéteis
+  for(const p of A.proj){const px=p.x-cx,py=p.y-cy;g.strokeStyle='#e8e0c0';g.lineWidth=1.6;g.beginPath();g.moveTo(px,py);g.lineTo(px-Math.cos(p.a)*7,py-Math.sin(p.a)*7);g.stroke();g.fillStyle='#fff';g.fillRect(px-1,py-1,2,2)}
+  for(const p of (A.eproj||[])){const px=p.x-cx,py=p.y-cy;g.fillStyle='#4aa040';g.beginPath();g.arc(px,py,4,0,6.3);g.fill();g.fillStyle='#b0f080';g.fillRect(px-1,py-1,2,2)}
+  // golpe do guerreiro: corte de vento à frente
+  for(const f of A.fx){if(f.k!=='slash')continue;const fx=A.x-cx,fy=A.y-cy-22,p=1-f.t/.26,r=f.r*(.55+.45*Math.min(1,p*1.6));
+    g.save();g.translate(fx,fy);g.rotate(f.a);g.globalAlpha=Math.max(0,.9*(1-p));
+    const a0=-1.25+p*.5,a1=1.25;
+    g.fillStyle='rgba(235,245,255,.35)';g.beginPath();g.arc(0,0,r,a0,a1);g.arc(0,0,r*.72,a1,a0,true);g.closePath();g.fill();
+    g.strokeStyle='#f4f8ff';g.lineWidth=2.4;g.beginPath();g.arc(0,0,r,a0,a1);g.stroke();
+    g.lineWidth=1;g.strokeStyle='rgba(190,220,255,.8)';g.beginPath();g.arc(0,0,r*.86,a0+.1,a1-.1);g.stroke();
+    g.restore()}
+  for(const f of A.fx){if(f.k!=='bolt')continue;g.globalAlpha=Math.min(1,f.t*6);g.strokeStyle='#fff6a0';g.lineWidth=2;g.beginPath();let x=f.x-cx,y=f.y-cy;g.moveTo(x,y);const dx=(f.x2-f.x)/4,dy=(f.y2-f.y)/4;for(let i=1;i<4;i++)g.lineTo(f.x+dx*i-cx+(Math.random()-.5)*8,f.y+dy*i-cy+(Math.random()-.5)*8);g.lineTo(f.x2-cx,f.y2-cy);g.stroke();g.globalAlpha=1}
+  // bolas de energia do mago
+  for(const o of A.orbs){const ox=o.x-cx,oy=o.y-cy;
+    for(let i=0;i<o.tr.length;i++){const q=o.tr[i];g.globalAlpha=.08+.5*i/o.tr.length;g.fillStyle=arElc(o.fx)[0];g.beginPath();g.arc(q[0]-cx,q[1]-cy,1+3*i/o.tr.length,0,6.3);g.fill()}
+    g.globalAlpha=1;const gr=g.createRadialGradient(ox,oy,0,ox,oy,9);gr.addColorStop(0,'rgba(255,255,255,1)');{const ec=arElc(o.fx);gr.addColorStop(.35,'rgba('+ec[2]+',.95)');gr.addColorStop(1,'rgba('+ec[1]+',0)')}
+    g.fillStyle=gr;g.beginPath();g.arc(ox,oy,9,0,6.3);g.fill()}
+  // números de dano
+  g.textAlign='center';
+  for(const f of A.txt){g.globalAlpha=Math.min(1,f.t*2.5);g.font=(f.big?'bold 14px':'bold 8px')+' sans-serif';g.fillStyle='#000';g.fillText(f.v,f.x-cx+1,f.y-cy+1);g.fillStyle=f.p?'#ff6060':f.big?'#d8a0ff':'#fff';g.fillText(f.v,f.x-cx,f.y-cy)}
+  g.globalAlpha=1;
+  // vinheta
+  const gr=g.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.75);gr.addColorStop(0,'rgba(0,0,0,0)');gr.addColorStop(1,'rgba(0,0,0,.55)');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  if(A.inv>.4){g.fillStyle='rgba(200,30,30,.18)';g.fillRect(0,0,W,H)}
+}
+function arLoop(now){
+  if(!ARUI||!AR)return;
+  let dt=Math.min(.05,(now-ARLT)/1000);ARLT=now;
+  if(!AR.paused&&!AR.over)arUpdate(dt);
+  if(AR&&ARUI)arDraw();
+  ARRAF=requestAnimationFrame(arLoop);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&ARUI&&AR&&!AR.paused)arPause()});
+A.arena=()=>arenaOpen();
+try{window.__arena={mob:k=>arMobSpr(k,0).cv,spr:(k,o)=>arSprite('dbg'+k+JSON.stringify(o),(x,y)=>{outlined(()=>person(x,y,Object.assign({anch:false},ARLOOK,o)))},96,96,48,86).cv,open:arenaOpen,get:()=>AR,start:arStart,close:arenaClose}}catch(e){}
 
 })();
 </script>
