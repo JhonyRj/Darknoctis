@@ -960,6 +960,20 @@ I18N_C.push(['Opções','Options']);
 I18N_C.push(['Idioma ▼','Language ▼'],['Idioma ▲','Language ▲']);
 I18N_C.push(['Difícil','Hard'],['Extremo','Extreme']);
 
+I18N_C.push(['Estábulo','Stable'],['Uma casa com cercas, feno e bebedouro no canto esquerdo do acampamento. Abrigo para o futuro cavalo.','A house with fences, hay and a water trough in the left corner of the camp. Shelter for the future horse.'],['O estábulo está pronto, mas ainda vazio. Em breve você poderá ter um cavalo.','The stable is ready, but still empty. Soon you will be able to have a horse.']);
+I18N_C.push(['Abrigo','Shelter']);
+
+I18N_C.push(['Ciclope','Cyclops'],['Ciclope de ossos','Bone cyclops'],['Floresta dos Ciclopes','Cyclops Forest'],
+['Árvores altíssimas esmagam a luz. Entre os troncos, um acampamento de ciclopes, com ossos gigantes e porretes.','Towering trees crush the light. Between the trunks lies a cyclops camp, with giant bones and clubs.'],
+['Baú do ciclope','Cyclops chest'],['Ossos gigantes','Giant bones'],['Estante de porretes','Club rack'],
+['O ciclope ergue o pé gigante... TREMOR!','The cyclops lifts its giant foot... TREMOR!'],
+['Você salta para longe e o tremor passa sob seus pés.','You leap away and the tremor passes beneath your feet.'],
+['O ciclope pisa no chão e a terra treme: -# de vida.','The cyclops stomps the ground and the earth shakes: -# HP.'],
+['O tremor derruba você: atordoado!','The tremor knocks you down: stunned!'],
+['O ciclope gira o porrete, mas erra.','The cyclops swings its club, but misses.'],
+['O ciclope te acerta com o porrete de ossos: -# de vida.','The cyclops hits you with the bone club: -# HP.'],
+['O ciclope te acerta com o porrete de madeira: -# de vida.','The cyclops hits you with the wooden club: -# HP.']);
+
 const $=(s,e=document)=>e.querySelector(s);
 const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
@@ -1020,6 +1034,8 @@ const ENM={
  bandit:{n:'Ladrão',hp:24,a:4,b:7,coins:[1,5],drops:[['iron',0,1,.07]],gear:.12},
  deserter:{n:'Desertor',hp:28,a:5,b:8,coins:[1,6],drops:[['bread',0,1,.4]],gear:.2},
  dhunter:{n:'Caçador de dragões',hp:62,a:9,b:14,coins:[25,55],drops:[['iron',1,2,.5],['leather',1,3,.6]],gear:.12},
+ cyclops:{n:'Ciclope',hp:85,a:11,b:17,coins:[30,60],drops:[['raw_meat',2,4,1],['leather',1,3,.8],['iron',0,2,.4]],gear:.2},
+ cyclopsb:{n:'Ciclope de ossos',hp:105,a:13,b:19,coins:[40,80],drops:[['raw_meat',2,4,1],['leather',1,3,.8],['iron',1,3,.5],['fang',0,1,.3]],gear:.3},
  knight:{n:'Cavaleiro renegado',hp:48,a:8,b:12,coins:[3,10],drops:[['iron',0,1,.15]],gear:.5},
  fledgling:{n:'Recém-vampiro',hp:24,a:3,b:6,bt:1,coins:[1,4],drops:[['fang',0,1,.5]],gear:.1},
  bat:{n:'Morcego',hp:9,a:2,b:4,bt:1,drops:[],gear:0},
@@ -1046,10 +1062,11 @@ const LOCS={
  mine:{n:'Mina abandonada',x:292,y:92,biome:'forest',poi:'mine',respawn:3},
  fishhut:{n:'Cabana do pescador',x:184,y:166,biome:'plain',poi:'fishhut',respawn:2}
 };
-const EDGES=[['camp','forest'],['camp','village'],['camp','mill'],['camp','stream'],['village','church'],['mill','banditcamp'],['church','ruins'],['banditcamp','ruins'],['ruins','crypt'],['banditcamp','crypt'],['forest','farmstead'],['church','tower'],['tower','graveyard'],['ruins','graveyard'],['graveyard','mine'],['banditcamp','fishhut'],['church','vila'],['mine','guild'],['guild','peaks']];
+const EDGES=[['camp','forest'],['camp','village'],['camp','mill'],['camp','stream'],['village','church'],['mill','banditcamp'],['church','ruins'],['banditcamp','ruins'],['ruins','crypt'],['banditcamp','crypt'],['forest','farmstead'],['church','tower'],['tower','graveyard'],['ruins','graveyard'],['graveyard','mine'],['banditcamp','fishhut'],['church','vila'],['mine','guild'],['guild','peaks'],['forest','cyclops'],['farmstead','cyclops']];
 for(const k in LOCS){LOCS[k].x=Math.round(160+(LOCS[k].x-160)*1.95);LOCS[k].y=Math.round(90+(LOCS[k].y-90)*1.95)}
 LOCS.castle={n:'Castelo Negro',x:160,y:940,biome:'plain'};
 LOCS.peaks={n:'Montanhas',x:690,y:96,biome:'forest',poi:'peaks',respawn:1};
+LOCS.cyclops={n:'Floresta dos Ciclopes',x:-250,y:60,biome:'forest',poi:'cyclops',respawn:3};
 LOCS.vila={n:'Vilarejo',x:61,y:-124,biome:'plain',poi:'vila',respawn:1};
 LOCS.guild={n:'Guilda dos Caçadores',x:525,y:94,biome:'forest',poi:'guild',respawn:1};
 const hoursBetween=(a,b)=>{const d=Math.hypot(LOCS[a].x-LOCS[b].x,LOCS[a].y-LOCS[b].y);if((a==='guild'&&b==='mine')||(a==='mine'&&b==='guild'))return 24;if((a==='guild'&&b==='peaks')||(a==='peaks'&&b==='guild'))return 48;if(a==='guild'||b==='guild')return hoursBetween(a==='guild'?b:a,'mine')+24;if(a==='peaks'||b==='peaks')return 72;if(a==='castle'||b==='castle')return Math.max(1,Math.ceil(d/45));return Math.max(1,Math.ceil(d/68))+2};
@@ -1069,6 +1086,7 @@ const POI={
  peaks:{n:'Acampamento nas montanhas',d:'Uma tenda remendada sob o paredão de pedra. Ossos enormes jazem espalhados ao redor.',risk:.22,foes:['wolf','bear'],loot:[['wood',1,3,.8],['iron',1,3,.6],['leather',0,2,.5],['herb',0,2,.4]],coins:[2,10],gear:.15},
  guild:{n:'Guilda dos Caçadores',d:'Um vilarejo nas montanhas, de tendas, forjas e correntes. Os caçadores de dragões vivem aqui e não querem briga.',risk:0,foes:[],loot:[],coins:[0,0],gear:0},
  vila:{n:'Vilarejo',d:'Casas de pedra e madeira, um mercante, um ferreiro e uma carroça. Aqui ninguém quer briga.',risk:0,foes:[],loot:[],coins:[0,0],gear:0},
+ cyclops:{n:'Floresta dos Ciclopes',d:'Árvores altíssimas esmagam a luz. Entre os troncos, um acampamento de ciclopes, com ossos gigantes e porretes.',risk:.6,foes:['cyclops','cyclops','cyclopsb'],loot:[['raw_meat',1,3,.8],['leather',1,3,.7],['iron',1,3,.6],['wood',2,4,.8]],coins:[20,60],gear:.45},
  stream:{n:'Cachoeira',d:'A água despenca de uma rocha alta. Atrás da cortina d\'água, há uma caverna.',risk:.2,foes:['deer','boar','wolf'],loot:[['water',2,4,.95],['herb',0,2,.4]],coins:[0,0],gear:0}
 };
 const AT=k=>(G&&G.at&&G.at[k])||0;
@@ -1147,7 +1165,7 @@ const BUILD={
  farm:{n:'Horta',cost:{wood:5,herb:2},d:'Canteiros de ervas e trigo: rendem 1 erva e 2 trigo no depósito a cada 2 dias (no modo normal).'},
  stove:{n:'Forno de pedra',cost:{iron:4,wood:4},d:'Cozinha carne assada, pão, ensopado e sopa (clique no forno no acampamento).'},
  anvil:{n:'Bigorna',cost:{iron:6,wood:4},d:'Conserta qualquer arma ou armadura: coloque o item e 2 de ferro (clique na bigorna no acampamento).'},
- well:{n:'Poço',cost:{wood:6,iron:2},d:'Enche 1% por dia (no modo normal) até 100%. Clique no poço para encher o odre.'}
+ well:{n:'Poço',cost:{wood:6,iron:2},d:'Enche 1% por dia (no modo normal) até 100%. Clique no poço para encher o odre.'},stable:{n:'Estábulo',cost:{wood:12,leather:3,iron:2},d:'Uma casa com cercas, feno e bebedouro no canto esquerdo do acampamento. Abrigo para o futuro cavalo.'}
 };
 const nm=k=>k==='coins'?'cobre':IT[k].n;
 
@@ -1173,7 +1191,7 @@ function newGame(mode,mods,gender){
 /* ================= INVENTÁRIO ================= */
 const gearW=()=>G.bag.reduce((s,o)=>s+gw(o),0)+SLOTS_EQ.reduce((s,k)=>s+(G[k]?gw(G[k]):0),0);
 const weight=()=>Object.entries(G.inv).reduce((s,[k,n])=>s+IT[k].w*n,0)+gearW();
-const XPV={deer:6,wolf:12,boar:16,bandit:16,deserter:20,bear:30,bat:5,witch:30,fledgling:22,vampire:40,knight:45,werewolf:80,whelp:90,dhunter:55,dragon:600};
+const XPV={deer:6,wolf:12,boar:16,bandit:16,deserter:20,bear:30,bat:5,witch:30,fledgling:22,vampire:40,knight:45,werewolf:80,whelp:90,dhunter:55,cyclops:60,cyclopsb:70,dragon:600};
 function addXp(n){n=Math.max(1,Math.round(n*DF().x));G.xp=(G.xp||0)+n;const out=[`+${n} XP`];while(G.xp>=need()&&lv()<150){G.xp-=need();G.lvl=lv()+1;G.pts=(G.pts||0)+5;G.mhp+=1;G.hp=G.mhp;G.mana=MM();out.push(`Você subiu para o nível ${G.lvl}! Vida restaurada! +1 de vida máxima e +5 pontos de atributo. Carga máxima: ${cap()}.`)}if(lv()>=150)G.xp=0;return out}
 const lv=()=>G.lvl||1,need=()=>lv()*40;
 const cap=()=>50+(lv()-1)+(G.b.shelter?8:0)+2*AT('for');
@@ -1253,8 +1271,8 @@ const TGT=()=>{const S=G.scene,a=alive();return a.find(e=>S.en.indexOf(e)===S.tg
 const cl=t=>G.scene.cl.unshift(t);
 const wepOk=()=>G.wep&&G.wep.dur>0;const WFX=()=>wepOk()?((G.scene&&G.scene.stfno&&/cajado/i.test(G.wep.n))?null:((/besta/i.test(G.wep.n)&&G.qshot)||G.wep.fx)):null;
 const nowMs=()=>performance.now();
-const MDG={dhunter:.1,wolf:.12,bear:.04,boar:.06,deer:.2,bandit:.08,deserter:.06,knight:.03,fledgling:.1,vampire:.15,werewolf:.12,witch:.14,bat:.3,whelp:.08,dragon:.02};
-const PDG={dhunter:.1,wolf:.05,bear:.12,boar:.1,deer:.1,bandit:.08,deserter:.1,knight:.12,fledgling:.06,vampire:.05,werewolf:.04,witch:.1,bat:.04,whelp:.05,dragon:.03};
+const MDG={cyclops:.03,cyclopsb:.03,dhunter:.1,wolf:.12,bear:.04,boar:.06,deer:.2,bandit:.08,deserter:.06,knight:.03,fledgling:.1,vampire:.15,werewolf:.12,witch:.14,bat:.3,whelp:.08,dragon:.02};
+const PDG={cyclops:.05,cyclopsb:.05,dhunter:.1,wolf:.05,bear:.12,boar:.1,deer:.1,bandit:.08,deserter:.1,knight:.12,fledgling:.06,vampire:.05,werewolf:.04,witch:.1,bat:.04,whelp:.05,dragon:.03};
 const mDodge=k=>MDG[k]!=null?MDG[k]:.08;
 const pDodge=k=>Math.min(.6,(PDG[k]!=null?PDG[k]:.08)+.01*AT('agi'));
 function enemyTurn(){
@@ -1275,6 +1293,7 @@ function enemyTurn(){
     const LT=nowMs()+ORD*450;ORD++;fx.lunge=fx.lunge||{};fx.lunge[ix]=LT;
     if(ch(pDodge(e.k))){cl(`Você esquiva do ataque de ${D.n}!`);fx.nums.push({x:70,y:100,v:'esquivou',t:LT+210,c:'#9ad0ff'});continue}
     if(e.k==='witch'){WCH(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
+    if(e.k==='cyclops'||e.k==='cyclopsb'){CYC(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
     if(e.k==='whelp'){WHL(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
     if(e.k==='dragon'){DRG(e,ix,LT,S);if(G.hp<=0){G.hp=0;die('Derrotado em combate');return}continue}
     if(S.ally&&S.ally.hp>0&&ch(.35)){const d2=Math.max(1,Math.round(rnd(D.a,D.b)*LVD(e.lv||1)*DF().d));S.ally.hp-=d2;S.ally.hit=LT;cl(`${D.n} ataca seu morcego: -${d2}.`);if(S.ally.hp<=0)cl('Seu morcego cai.');continue}
@@ -1886,6 +1905,9 @@ function placeStatic(key,cx,gy,n){
     // rochas e pinheiro seco
     for(let k=0;k<8;k++)rock(cx-140+k*40+h01(k)*14,gy+8+h01(k+6)*8,.8+h01(k+9)*.9,'#7a7a86');
     deadTree(cx+60,gy+4,1.3);
+  }else if(key==='cyclops'){
+    shadowG(cx-100,gy,200,3);VS.cyclops(cx,gy,n,sd);
+    for(let k=0;k<26;k++)rc(cx-300+h01(k*5)*600,gy-1+h01(k*3)*2,.5,2,'#3a5a28');
   }else if(key==='village'){
     VS.village(cx,gy,n,sd);
     VS.well(cx,gy);
@@ -2082,6 +2104,7 @@ function placeDyn(key,cx,gy,t,n,h){
     c.globalAlpha=.07+.08*nf;for(let r=40;r>8;r-=6)disc(cx,gy-18,r,'#ff9a3a');c.globalAlpha=1}
   else if(key==='ruins'){for(let k=0;k<3;k++){const bx=cx-60+((t*18+k*100)%240),by=36+Math.sin(t*3+k*2)*8,f=Math.floor(t*6+k)%2;rc(bx,by,3,1,'#14110e');rc(bx-2,by+(f?-1:1),2,1,'#14110e');rc(bx+3,by+(f?-1:1),2,1,'#14110e')}
     rc(cx+31+Math.sin(t*3)*.5,gy-18,5+Math.sin(t*3)*.8,.5,'#7a2a2a')}
+  else if(key==='cyclops'){logsRing(cx-30,gy+14);flameAt(cx-30,gy+12,t,1.4);c.globalAlpha=.06+.07*nf;for(let r=40;r>8;r-=5)disc(cx-30,gy+6,r,'#ff9a3a');c.globalAlpha=1}
   else if(key==='banditcamp'){logsRing(cx+2,gy+12);flameAt(cx+2,gy+10,t,1.1);c.globalAlpha=.06+.07*nf;for(let r=34;r>8;r-=5)disc(cx+2,gy+4,r,'#ff9a3a');c.globalAlpha=1}
   else if(key==='forest'){for(let i=0;i<4;i++){const p=((t*.12+i*.25)%1);c.globalAlpha=.4*(1-p);disc(cx+18+Math.sin(t+i)*3+p*6,gy-66-p*40,2+p*4,'#8a8a90')}c.globalAlpha=.1;for(let i=0;i<4;i++){c.fillStyle='#fff6c0';for(let r=0;r<80;r++)rc(cx-70+i*46+r*.35+Math.sin(t*.5+i)*2,24+r,6,1,'#fff6c0')}c.globalAlpha=1}
   else if(key==='stream'){for(let k=0;k<17;k++){const X=cx-16+k*1.9,L=gy-4,y=((t*70*(1+k%3*.25)+k*23)%L);c.globalAlpha=.85;rc(X,y,1.2,9+k%4*3,k%2?'#ffffff':'#d8ecf8');c.globalAlpha=1}
@@ -2778,6 +2801,35 @@ for(const k of INKS){const K='in_'+k,P0=POI[k];
 const exitIn=()=>{if(!G.loc.startsWith('in_'))return;G.loc=G.loc.slice(3);G.view='poi';G.ret='poi';G.modal=null;lg('Você sai de volta para fora.');render()};
 const enterIn=()=>{const k=G.loc;if(!ENT[k]||!OBJS['in_'+k])return;G.loc='in_'+k;G.view='poi';G.ret='poi';G.modal=null;lg('Você passa pela porta e entra.');render()};
 
+/* ===== Floresta dos Ciclopes ===== */
+OBJS.cyclops=[OI('chest','chest','Baú do ciclope',-290,22,16,{coin:2,gear:1.4}),OI('bones','bones','Ossos gigantes',150,34,16,{fav:['iron','fang','raw_meat']}),OI('rack','rack','Estante de porretes',290,32,28,{deep:1,fav:['iron','leather'],gear:1.8,coin:1.2})];
+DECOR.cyclops=[['stump',-240],['skull',-190],['dead',-140],['stones',-95],['skull',215],['stump',245],['dead',335],['stones',385],['skull',430]];
+VS.cyclops=function(cx,gy,n,sd){VWR(g=>{
+  const tree=(x,h,w,cols,tr)=>{vL(g,[[[[x-w/2,gy+2],[x-w/2+2,gy-h*.5],[x-w/2+3,gy-h],[x+w/2-3,gy-h],[x+w/2-2,gy-h*.5],[x+w/2,gy+2]],tr[0]],[[[x+w*.05,gy+2],[x+w*.05,gy-h],[x+w/2-3,gy-h],[x+w/2-2,gy-h*.5],[x+w/2,gy+2]],tr[1]]]);
+    g.strokeStyle='rgba(20,10,4,.5)';g.lineWidth=1;for(let k=-2;k<=2;k++){g.beginPath();g.moveTo(x+k*w/6,gy);g.lineTo(x+k*w/6+1,gy-h*.9);g.stroke()}
+    vL(g,[[[[x-w/2-3,gy+2],[x-w/2+4,gy-10],[x-w/2+6,gy+2]],tr[0]],[[[x+w/2+3,gy+2],[x+w/2-4,gy-10],[x+w/2-6,gy+2]],tr[1]]]);
+    for(let k=0;k<3;k++){const y0=gy-60-k*34,sd2=k%2?1:-1,bx=x+sd2*w/2;vL(g,[[[[bx,y0],[bx+sd2*30,y0-14],[bx+sd2*54,y0-4],[bx+sd2*30,y0+8]],cols[k%2]],[[[bx,y0],[bx+sd2*30,y0+8],[bx+sd2*26,y0+14],[bx,y0+8]],cols[2]]])}};
+  // fileira de trás: troncos altíssimos que saem da tela
+  for(let i=0;i<14;i++){const x=cx-470+i*70+h01(i+sd)*22,h=260,w=22+h01(i*3+sd)*8;tree(x,h,w,['#1f3a2a','#274a30','#183024'],['#2e2218','#1c140e'])}
+  // fileira da frente: troncos grossos nas bordas e entre os espaços
+  for(let i=0;i<10;i++){const x=cx-450+i*96+h01(i*7+sd)*30;if(Math.abs(x-cx)<80)continue;const w=38+h01(i*5+sd)*14;tree(x,300,w,['#2f5a30','#3a6e38','#1e3e24'],['#5a3a1e','#3a2412'])}
+  // tenda grande de peles
+  const tx=cx+60;
+  vL(g,[[[[tx-70,gy],[tx,gy-86],[tx+70,gy]],'#8a6a42'],[[[tx,gy-86],[tx+70,gy],[tx,gy]],'#5a3e22']]);
+  vL(g,[[[[tx-22,gy],[tx,gy-44],[tx+22,gy]],'#1a1008']]);
+  g.strokeStyle='rgba(40,24,10,.55)';g.lineWidth=1;for(const f of [-48,-30,30,48]){g.beginPath();g.moveTo(tx+f*.2,gy-70+Math.abs(f)*.2);g.lineTo(tx+f,gy);g.stroke()}
+  vL(g,[[[[tx-3,gy-96],[tx+3,gy-96],[tx+9,gy-70],[tx+3,gy-70]],'#e8e0c8'],[[[tx+3,gy-96],[tx-3,gy-96],[tx-9,gy-70],[tx-3,gy-70]],'#d0c8a8']]);
+  vC(g,tx,gy-62,7,'#f0e8d0');g.fillStyle='#1a1008';g.beginPath();g.ellipse(tx,gy-62,3,3.6,0,0,6.3);g.fill();
+  // caveira gigante de ciclope e costelas
+  const sx=cx-120;vC(g,sx,gy-18,17,'#ece4cc',15);vL(g,[[[[sx-9,gy-4],[sx+9,gy-4],[sx+7,gy+2],[sx-7,gy+2]],'#d8d0b4']]);
+  g.fillStyle='#1a1008';g.beginPath();g.ellipse(sx,gy-20,5.5,6.4,0,0,6.3);g.fill();vL(g,[[[[sx-3,gy-8],[sx,gy-12],[sx+3,gy-8]],'#2a2018']]);
+  for(let k=0;k<4;k++){const rx=sx+40+k*13;vL(g,[[[[rx,gy],[rx-3,gy-30],[rx+3,gy-40],[rx+7,gy-30],[rx+4,gy]],'#e4dcc4'],[[[rx+3,gy-40],[rx+7,gy-30],[rx+4,gy]],'#b8b098']])}
+  // estacas com caveiras
+  for(const px of [cx-200,cx+170,cx+205]){vB(g,px,gy-36,3,38,'#8a5a2b','#5a3818');vC(g,px+1.5,gy-40,6,'#ece4cc');g.fillStyle='#1a1008';g.fillRect(px-1,gy-42,2,2.4);g.fillRect(px+2.2,gy-42,2,2.4)}
+  // cerca de troncos
+  for(let i=0;i<9;i++){const x=cx-320+i*11;vB(g,x,gy-22,5,24,'#8a5a2b','#5a3818')}
+})};
+
 /* ---- Personagem em camadas (pixel art 16-bit). Cada peça equipada é desenhada por cima do corpo base. ---- */
 const STEEL=()=>mix(P.mist,P.grayB,.35),STEELL=()=>mix(P.mist,P.white,.28),STEELD=()=>mix(P.grayB,P.vio,.4);
 const wepKind=n=>{n=(n||'').toLowerCase();return /cajado/.test(n)?'staff':/machado/.test(n)?'axe':/lança/.test(n)?'spear':/maça/.test(n)?'mace':/besta/.test(n)?'xbow':/arco/.test(n)?'bow':/adaga|faca/.test(n)?'dagger':'sword'};
@@ -2998,7 +3050,7 @@ function buildHuman(o,K){
     const hx=sx0*.4+L.hx,hy=py;
     const kn=[hx+L.kx,hy+L.ky],an=[hx+L.ax,hy+L.ay-L.lift];
     const dm=dark?-20:0;
-    const pc=shade(pantCol,dm),bc=shade(bootC,dm);
+    const pc=shade(o.bare?skin:pantCol,dm),bc=shade(bootC,dm);
     // coxa e canela (calça)
     paint([['c',hx,hy,3.7,kn[0],kn[1],3.1]],pc,{side:.3,fn:tp===1?((i,j)=>(j%4===0?'m':null)):null});
     const mid=[kn[0]+(an[0]-kn[0])*bootTop,kn[1]+(an[1]-kn[1])*bootTop];
@@ -3016,7 +3068,7 @@ function buildHuman(o,K){
   };
   drawLeg(BL,true);
   // pélvis
-  paint([['e',sx0*.4,py-.5,6,3.8]],pantCol,{side:.3});
+  paint([['e',sx0*.4,py-.5+(o.bare?1.6:0),6+(o.bare?.8:0),3.8+(o.bare?2.6:0)]],pantCol,{side:.3});
   drawLeg(FL,false);
   // ---- tronco ----
   const tx=(x)=>sx0+x,ty=(y)=>py+y;
@@ -3173,6 +3225,15 @@ function buildHuman(o,K){
       const a=along(5,0),b=along(4,9),c2=along(14,8),d2=along(15,-1.5),e2=along(11,.6);
       paint([['p',[a[0],a[1],b[0],b[1],c2[0],c2[1],d2[0],d2[1],e2[0],e2[1]]]],wc,{hi:.55,sh:.3});
       const f1=along(5.5,7.5),f2=along(14,6.8);paint([mk(f1,f2,.5,.5)],[255,255,255],{nohi:true,nosh:true});
+    }else if(kind==='club'){
+      const wd=mix(P.wood,P.orL,.18);
+      paint([mk(along(-14),along(10),1.1,1.7)],wd,{});paint([mk(along(9),along(28),2.2,3.6)],wd,{});
+      paint([mk(along(26),along(30),3.4,2.6)],mix(P.wood,P.orL,.32),{});
+      for(const q2 of [[14,-1.2],[20,1.4],[24,-1.5]]){const kk=along(q2[0],q2[1]);dot(kk[0]-1,kk[1]-1,shade(wd,-42),2,1.6)}
+    }else if(kind==='bclub'){
+      const iv='#e8e0c8';
+      paint([mk(along(-14),along(12),1.1,1.4)],iv,{});
+      for(const q2 of [[18,0,3.6],[23,-3.6,3.1],[23,3.6,3.1],[29,0,3.4]]){const kk=along(q2[0],q2[1]);paint([['e',kk[0],kk[1],q2[2],q2[2]]],iv,{});dot(kk[0]-1.4,kk[1]-1.6,[255,255,255],1.6,1.2)}
     }else if(kind==='mace'){
       paint([mk(along(-15),along(12),1.1,1.1)],mix(P.wood,P.orL,.18),{});
       const cc=along(16.5,0);paint([['e',cc[0],cc[1],4,4]],wc,{});dot(cc[0]-2,cc[1]-2.4,[255,255,255],1.6,1.2);
@@ -3405,7 +3466,7 @@ function drawRig(kind,x,y,o,K,anch){
 function person(x,y,o){
   o=o||{};const K=o.k||1;
   const q={pose:o.pose,t:o.pose==='walk'?(Math.floor((o.t||0)*8)%4)/8:(Math.floor((o.t||0)*1.4)%2)/1.4,swing:o.swing!=null?Math.round(o.swing*12)/12:0,g:o.g,
-    skin:o.skin,hair:o.hair,hs:o.hs,bs:o.bs,bc:o.bc,cloth:o.cloth,pants:o.pants,boot:o.boot,capeCol:o.capeCol,nocape:o.nocape,eye:o.eye,style:o.style,coat:o.coat,
+    skin:o.skin,hair:o.hair,hs:o.hs,bs:o.bs,bc:o.bc,cloth:o.cloth,pants:o.pants,boot:o.boot,capeCol:o.capeCol,nocape:o.nocape,eye:o.eye,bare:o.bare,style:o.style,coat:o.coat,
     eq:o.eq?{arm:o.eq.arm&&{L:/couro/i.test(o.eq.arm.n||''),tier:o.eq.arm.tier!=null?o.eq.arm.tier:(o.eq.arm.def>=5?2:o.eq.arm.def>=3?1:0)},helm:o.eq.helm&&{L:/couro/i.test(o.eq.helm.n||''),tier:o.eq.helm.tier||0},cape:o.eq.cape&&{tier:o.eq.cape.tier||0},shield:o.eq.shield&&{tier:o.eq.shield.tier||0},pants:o.eq.pants&&{L:/couro/i.test(o.eq.pants.n||''),tier:o.eq.pants.tier!=null?o.eq.pants.tier:0},boots:o.eq.boots&&{L:/couro/i.test(o.eq.boots.n||''),tier:o.eq.boots.tier||0}}:null,
     wep:o.wep?{b:o.wep.b,kind:o.wep.kind,fx:o.wep.fx||null}:null,flip:!!o.flip};
   drawRig('human',x,y,q,K,o.anch);
@@ -3469,6 +3530,7 @@ function animal(kind,x,y,o){
     const a='#72532f',al='#9a7a4a';B(15,-70+br,2,10,a);B(16,-70+br,1,10,al);B(18,-76+br,2,6,a);B(12,-68+br,2,5,a);B(13,-72+br,2,5,a);B(20,-72+br,2,3,a);B(17,-80+br,2,4,a);B(10,-74+br,2,4,a);
   }
 }
+
 function drawEnemy(k,x,y,t,flip,extra){
   extra=extra||{};
   if(k==='dragon'){c.drawImage(dragonSp(extra.fr||0),q(x-32),q(y-59));return}
@@ -3476,6 +3538,11 @@ function drawEnemy(k,x,y,t,flip,extra){
   if(k==='bat'){c.save();c.translate(Math.round(x),0);c.scale(-1,1);drawBatBig(0,y-34+Math.round(Math.sin(t*5+x)*3),Math.floor(t*9)%2);c.restore();return}
   if(['wolf','bear','boar','deer'].includes(k))return animal(k,x,y,{t,flip});
   const base={t,flip,pose:extra.pose,swing:extra.swing,anch:flip};
+  if(k==='cyclops'||k==='cyclopsb'){const pz=extra.pose==='stomp',sw0=extra.swing||0;
+    const yy=y-(pz?Math.sin(Math.min(1,sw0)*Math.PI)*22:0);
+    person(x,yy,{...base,pose:pz?'walk':extra.pose,t:pz?.15:t,k:1.3,cloth:'#9a8a5e',pants:'#6a4a2a',bare:true,boot:'#4a3420',skin:'#b0a070',hair:'#2e2216',eye:'#d8a020',nocape:true,eq:{},wep:{b:'#8a5a2b',kind:k==='cyclopsb'?'bclub':'club'}});
+    if(!MONO&&!OX&&!OY){rc(x-11,yy-65,8,2,'#2a1a10');rc(x-11,yy-63,8,7,'#f4f0dc');rc(x-10,yy-62,5,5,'#c8281a');rc(x-9,yy-61,3,3,'#120808');rc(x-11,yy-56,8,1,'#8a7a50')}
+    return}
   if(k==='bandit')return person(x,y,{...base,cloth:'#6b3a30',pants:'#2e2a26',skin:'#d8a47c',boot:'#2a1c14',hair:'#2a1c14',eq:extra.eq||{},wep:{b:'#b8b8b8',kind:'dagger'}});
   if(k==='deserter')return person(x,y,{...base,cloth:'#6e7078',pants:'#3a3a3a',boot:'#33302c',hair:'#8a6a40',wep:{b:'#a8a8a8',kind:'sword'},eq:extra.eq||{}});
   if(k==='dhunter')return person(x,y,{...base,hide:true,cloth:'#3f7a34',pants:'#3f7a34',boot:'#2f5a28',skin:'#d8a47c',hair:'#6a3a1e',eq:{helm:{tier:4},pants:{tier:4},boots:{tier:4}},wep:{b:'#c8ccd0',kind:'spear'}});
@@ -3716,6 +3783,31 @@ tent:g=>{vL(g,[[[[32,6],[3,60],[32,60]],'#e6c88a'],[[[32,6],[61,60],[32,60]],'#b
   vL(g,[[[[10,44],[17,44],[17,50],[10,50]],'#c8706a'],[[[44,36],[50,36],[50,42],[44,42]],'#6a7aa0']]);vH(g,28,14,10,50,1.6,.55);
   g.fillStyle='#8a5a2b';g.fillRect(31,-6,2,14);vL(g,[[[[33,-6],[46,-3],[33,1]],'#d83a3a']]);vH(g,34,-4,42,-3,1)},
 };
+
+VCAMP.stable=g=>{vL(g,[[[[6,30],[58,30],[58,60],[6,60]],'#9a6a38'],[[[34,30],[58,30],[58,60],[34,60]],'#74492a']]);
+  g.strokeStyle='rgba(30,16,10,.45)';g.lineWidth=.8;for(let x=12;x<58;x+=6){g.beginPath();g.moveTo(x,30);g.lineTo(x,60);g.stroke()}
+  vL(g,[[[[14,36],[34,36],[34,60],[14,60]],'#1c1018'],[[[14,36],[18,36],[18,60],[14,60]],'#5a3818'],[[[30,36],[34,36],[34,60],[30,60]],'#5a3818'],[[[14,36],[34,36],[34,40],[14,40]],'#5a3818']]);
+  vL(g,[[[[38,36],[52,36],[52,46],[38,46]],'#1c1018'],[[[36,34],[54,34],[54,37],[36,37]],'#b8803f'],[[[36,46],[54,46],[54,49],[36,49]],'#b8803f']]);
+  vL(g,[[[[0,32],[32,8],[64,32],[58,32],[32,14],[6,32]],'#b84a3a'],[[[32,8],[64,32],[58,32],[32,14]],'#8a2e26']]);
+  vL(g,[[[[24,24],[32,17],[40,24],[40,30],[24,30]],'#d8b050'],[[[32,17],[40,24],[40,30],[32,30]],'#a88a30']]);
+  g.strokeStyle='#e8d070';g.lineWidth=1;for(const x of [26,30,34,38]){g.beginPath();g.moveTo(x,29);g.lineTo(x+1,24);g.stroke()}};
+VCAMP.hay=g=>{vL(g,[[[[6,56],[10,42],[22,34],[34,32],[48,38],[58,52],[56,60],[8,60]],'#e6bd4a'],[[[34,32],[48,38],[58,52],[56,60],[34,60]],'#b8922a']]);
+  g.strokeStyle='#8a6a1a';g.lineWidth=1.1;g.lineCap='round';for(const [x,y,x2,y2] of [[12,50,22,42],[22,54,34,44],[34,50,46,44],[16,58,28,50],[40,58,52,52]]){g.beginPath();g.moveTo(x,y);g.lineTo(x2,y2);g.stroke()}
+  vH(g,14,44,24,37,2)};
+VCAMP.trough=g=>{vL(g,[[[[4,34],[60,34],[56,52],[8,52]],'#8a5a2b'],[[[32,34],[60,34],[56,52],[32,52]],'#5a3818']]);
+  vL(g,[[[[8,36],[56,36],[54,42],[10,42]],'#3a82d0'],[[[8,36],[56,36],[55,38],[9,38]],'#8ac8f0']]);
+  vL(g,[[[[10,52],[16,52],[16,60],[10,60]],'#5a3818'],[[[48,52],[54,52],[54,60],[48,60]],'#5a3818']]);vH(g,14,38,30,38,1.6)};
+VCAMP.fence=g=>{for(const x of [6,22,38,54])vL(g,[[[[x,24],[x+5,24],[x+5,60],[x,60]],'#b8803f'],[[[x+2.5,24],[x+5,24],[x+5,60],[x+2.5,60]],'#8a5a2b']]);
+  for(const y of [32,46])vL(g,[[[[2,y],[62,y],[62,y+5],[2,y+5]],'#a8703a'],[[[2,y+3],[62,y+3],[62,y+5],[2,y+5]],'#74492a']])};
+
+VCAMP.shelter=g=>{vL(g,[[[[6,56],[58,56],[58,60],[6,60]],'#5a4a30']]);
+  vL(g,[[[[10,26],[14,26],[14,58],[10,58]],'#8a5a2b'],[[[48,18],[52,18],[52,58],[48,58]],'#74492a'],[[[30,22],[33,22],[33,58],[30,58]],'#8a5a2b']]);
+  vL(g,[[[[14,44],[48,44],[48,57],[14,57]],'#2a2030']]);
+  vL(g,[[[[16,50],[34,50],[36,56],[16,56]],'#c8706a'],[[[16,50],[34,50],[34,52],[16,52]],'#e8a09a']]);
+  vL(g,[[[[38,48],[46,48],[46,56],[38,56]],'#a06a30'],[[[38,48],[46,48],[46,50],[38,50]],'#c8924a']]);
+  vL(g,[[[[2,30],[54,10],[62,22],[8,40]],'#d8c090'],[[[28,20],[54,10],[62,22],[34,32]],'#b09a68']]);
+  g.strokeStyle='rgba(90,60,20,.6)';g.lineWidth=.9;g.beginPath();g.moveTo(14,34);g.lineTo(38,15);g.moveTo(26,38);g.lineTo(50,16);g.stroke();
+  vL(g,[[[[2,30],[8,40],[8,44],[2,34]],'#8a5a2b']]);vH(g,8,32,40,16,1.6,.5)};
 function vFirepit(){const VL0=VLW;VLW=1.4;for(let i=0;i<9;i++){const a=i/9*Math.PI*2,px=160+Math.cos(a)*11,py=168+Math.sin(a)*3.6;vC(c,px,py,2.7,i%2?'#8a8e98':'#6a707c',1.9)}
   vL(c,[[[[150,165],[172,162],[172,166],[150,169]],'#8a5a2b'],[[[152,162],[170,160],[170,163],[152,165]],'#b8803f']]);VLW=VL0}
 function vBench(){const VL0=VLW;VLW=1.2;vL(c,[[[[125,159],[139,159],[140,167],[124,167]],'#8a5a2b'],[[[125,159],[132,159],[131,167],[124,167]],'#b8803f']]);vC(c,125,163,3.6,'#d8a860',4);c.strokeStyle='#8a5a2b';c.lineWidth=.6;c.beginPath();c.arc(125,163,1.8,0,6.3);c.stroke();VLW=VL0}
@@ -3726,7 +3818,7 @@ function vFarm(){const VL0=VLW;VLW=1.1;for(let r=0;r<3;r++){const y=182+r*5;
       else{c.strokeStyle='#b89a40';c.lineWidth=.7;c.beginPath();c.moveTo(x,y);c.lineTo(x,y-gh-2);c.stroke();vL(c,[[[[x,y-gh-4.5],[x-1.4,y-gh-2.4],[x+1.4,y-gh-2.4]],'#f2cf5a']])}}}
   for(let i=0;i<8;i++){const x=14+i*13;vL(c,[[[[x,176],[x+1.6,176],[x+1.6,189],[x,189]],'#b8803f']])}VLW=VL0}
 function campObj(B){
-  const key=(B.shelter?1:0)+''+(B.forge?1:0)+(B.well?1:0)+(B.farm?1:0)+(B.stove?1:0)+(B.anvil?1:0);
+  const key=(B.shelter?1:0)+''+(B.forge?1:0)+(B.well?1:0)+(B.farm?1:0)+(B.stove?1:0)+(B.anvil?1:0)+(B.stable?1:0);
   if(campCache[key])return campCache[key];
   return campCache[key]=layer(CLW,200,()=>{NOSG=true;
     const wood=P.wood,woodL=mix(P.wood,P.orL,.3),dk=P.shadow;
@@ -3734,6 +3826,7 @@ function campObj(B){
     c.restore();c.save();c.translate(CEX+-50,0);
     // ---- poço ----
     if(B.well){shadowG(100,187,22,2);VO(110,187,.5,VCAMP.well)}
+    if(B.stable){shadowG(-205,166,56,3);VO(-205,166,1.55,VCAMP.stable);VO(-262,182,.62,VCAMP.hay);VO(-150,182,.62,VCAMP.trough);shadowG(-262,182,20,2);shadowG(-150,182,20,2);VO(-235,188,.72,VCAMP.fence);VO(-178,188,.72,VCAMP.fence);VO(-290,188,.5,VCAMP.fence)}
     c.restore();c.save();c.translate(CEX+-63,0);
     // ---- depósito ----
     {shadowG(10,158,52,3);VO(36,159,.93,VCAMP.shed)}
@@ -3755,7 +3848,7 @@ function campObj(B){
     c.restore();c.save();c.translate(CEX+160,138);c.scale(.8,.8);c.translate(-282,-160);
     // ---- tenda ----
     {const tx=282,gy2=160,big=B.shelter;shadowG(tx-34,gy2,70,3);
-      if(big){VO(tx-44,gy2,.72,VCAMP.shed)}
+      if(big){VO(tx-44,gy2,.8,VCAMP.shelter)}
       VO(tx,gy2,.95,VCAMP.tent)}
     c.restore();c.save();c.translate(CEX+-75,0);
     // ---- horta ----
@@ -4031,6 +4124,10 @@ stream:[(R,D)=>{
   R(6,46,52,6,'#6e9ab8');R(6,46,52,1,'#cfe6f2');R(6,51,52,1,'#4a7490');R(24,44,16,3,'#ffffff');R(10,48,6,1,'#cfe6f2');R(44,48,6,1,'#cfe6f2');
   R(4,44,9,7,'#8a8a82');R(4,44,9,2,'#b0b0a8');R(51,45,8,6,'#8a8a82');R(51,45,8,2,'#b0b0a8');D(4,50,9,2,'#5a5a54')},[32,60,26]]
 };
+ICON_DEF.cyclops=[(R,D)=>{
+  for(const [cx,top,w,h] of [[10,4,14,36],[54,4,14,36],[32,0,18,38]]){R(cx-1,top+h-2,3,14,MC.woodD);mGable(R,D,cx,top,w,h,'#2f5a30','#3f7a3c','#1f3e22')}
+  mGable(R,D,32,32,34,22,'#8a6a42','#aa8858','#5a3e22');R(27,46,10,10,'#1a1008');R(30,38,5,5,'#f4f0dc');R(32,39,2,3,'#1a1008');
+  R(2,56,10,2,'#e0d8c0');R(52,55,9,3,'#e0d8c0')},[32,58,26]];
 const ICONS={};
 ICON_DEF.vila=[(R,D)=>{
   mPlank(R,4,38,22,20,'#a07c54','#c49c6c','#6a4a2c');mGable(R,D,15,20,30,18,'#8a5a3a','#b07a52','#5a3a24');mDoor(R,11,46,6,12);mWin(R,19,42,5,5,true);
@@ -4124,6 +4221,7 @@ function* buildLayerGen(P){
     if(px>-30&&px<350&&py>-30&&py<210){for(const L of Object.values(LOCS))if(Math.hypot(L.x-px,L.y-py)<21)ok=false}
     if(Math.abs(px-LOCS.castle.x)<60&&Math.abs(py-LOCS.castle.y+30)<70)ok=false
     if(Math.hypot(px-LOCS.peaks.x,py-LOCS.peaks.y)<26)ok=false
+    if(LOCS.cyclops&&Math.hypot(px-LOCS.cyclops.x,py-LOCS.cyclops.y)<30)ok=false
     for(const[p0,p1,r]of (bM.get(bkey)||EMP))if(Math.hypot(px-p0,py-p1)<r*1.2)ok=false;
     if(px>196&&py>50&&px<306&&Math.abs(py-(64+(300-px)))<8)ok=false;if(Math.hypot(px-204,py-160)<14)ok=false;
     for(const[lx,ly,lrx,lry]of (bL.get(bkey)||EMP))if(Math.hypot((px-lx)/(lrx+4),(py-ly)/(lry+4))<1)ok=false;
@@ -4186,6 +4284,7 @@ function drawMap(t){MFIRES=[];
     if(k2==='castle')drawCastle(x,y,t);else c.drawImage(mapIconSpr(k2),x-16,y-29,32,32);
     c.globalAlpha=1;
     if(k2==='camp'){flameAt(x+13,y,t,.8);MFIRES.push([x+13,y-2,18])}
+    else if(k2==='cyclops'){flameAt(x+12,y,t,.8);MFIRES.push([x+12,y-2,18])}
     else if(k2==='banditcamp'){flameAt(x-14,y,t,.8);MFIRES.push([x-14,y-2,18])}
     else if(k2==='farmstead'){flameAt(x+12,y,t,.7);MFIRES.push([x+12,y-2,16])}
     else if(k2==='mill'){const a=t*.6,cx=x,cy=y-14;for(let i=0;i<4;i++){const an=a+i*Math.PI/2,ca=Math.cos(an),sa=Math.sin(an);
@@ -4321,7 +4420,7 @@ function drawFireball(pos,slide,HX,HY,ms,t){
     c.globalAlpha=1;lightAt(tx,ty,60*(1-k)+10,1)}
 }
 function drawBattle(t,ms){
-  const SHK=G.scene&&G.scene.en&&G.scene.en.some(q=>q.k==='dragon')?dragonShake(ms,G.scene):0;if(SHK){c.save();c.translate(Math.round((Math.random()-.5)*SHK*2),Math.round((Math.random()-.5)*SHK*2))}
+  const SHK=G.scene&&G.scene.en&&G.scene.en.some(q=>q.k==='dragon')?dragonShake(ms,G.scene):cyShake(ms);if(SHK){c.save();c.translate(Math.round((Math.random()-.5)*SHK*2),Math.round((Math.random()-.5)*SHK*2))}
   TNOW=t;const S=G.scene,N=S.en.length,h=G.hour,SD0=shadowDir(h);SHD=SD0;
   const p=(ms-(fx.trans||0))/1000-1.3,k=Math.min(1,Math.max(0,(p-.05)/.5)),slide=(1-k*k*(3-2*k))*150;
   const biome=(G.ret==='poi'&&G.loc!=='camp'?LOCS[G.loc].biome:(G.trip?(LOCS[G.trip.to].biome!=='swamp'?LOCS[G.trip.to].biome:(LOCS[G.trip.from].biome!=='swamp'?LOCS[G.trip.from].biome:'plain')):'plain'));
@@ -4375,9 +4474,9 @@ function drawBattle(t,ms){
     if(e.k==='vampire'&&fx.summon&&fx.summon.i===i&&ms>=fx.summon.t&&ms-fx.summon.t<1300&&!dead&&!hit){const d=ms-fx.summon.t;batFx(x+slide,y-30,d+400,t,0);c.save();c.translate(x+slide,y);c.globalAlpha=.9;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:'atk',swing:.6,eq:e.eq}));c.restore();c.globalAlpha=1;return}
     if(!dead&&N>1&&TGT()===e&&!BUSY){const my=y-66+Math.sin(t*5)*2;rc(x+slide-3,my,7,2,P.gold);rc(x+slide-2,my+2,5,2,P.gold);rc(x+slide-1,my+4,3,2,P.gold)}
     if(e.k==='witch'&&!dead)witchAura(x+slide+ex,y,t);
-    if(!dead){const hh={wolf:14,boar:14,deer:24,bear:26,whelp:20,bat:6}[e.k]||32,ww={wolf:16,boar:16,bear:18,deer:12}[e.k]||10;heroShadow(x+slide+ex,y+3,hh,SHD,ww)}
+    if(!dead){const hh={wolf:14,boar:14,deer:24,bear:26,whelp:20,bat:6,cyclops:48,cyclopsb:48}[e.k]||32,ww={wolf:16,boar:16,bear:18,deer:12,cyclops:18,cyclopsb:18}[e.k]||10;heroShadow(x+slide+ex,y+3,hh,SHD,ww)}
     if(!dead&&!hit){c.save();c.translate(x+slide+ex,y);
-      outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}));stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30}[e.k]||46,t);c.restore()}
+      {const cyt=fx.cy&&fx.cy.ix===i?ms-fx.cy.t:-1,stp=cyt>=0&&cyt<900;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:stp?'stomp':lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:stp?Math.min(1,cyt/700):lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}))}stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30,cyclops:88,cyclopsb:88}[e.k]||46,t);c.restore()}
   });
   fx.nums=fx.nums.filter(n=>ms-n.t<900);
   fx.nums.forEach(n=>{if(ms<n.t)return;const q2=(ms-n.t)/900;c.globalAlpha=1-q2*q2;glyphs(n.v,n.x,n.y-q2*18,n.c);c.globalAlpha=1});
@@ -4396,7 +4495,7 @@ function drawBattle(t,ms){
     }
     if(pj.hit&&pp>1&&pp<1.35){const [tx,ty]=pos[pj.ti];const k2=(pp-1)/.35;c.globalAlpha=1-k2;for(let i=0;i<8;i++){const a=i/8*6.28;rc(tx+slide+Math.cos(a)*(4+k2*14),ty-26+Math.sin(a)*(4+k2*14),2,2,pj.kind==='elem'&&SCPAL[pj.fx]?SCPAL[pj.fx][i%2]:i%2?P.sun:P.white)}c.globalAlpha=1}
   }
-  drawFireball(pos,slide,HX,HY,ms,t);drawWitchFx(pos,HX,HY,ms,t);drawWolfFx(pos,slide,HX,HY,ms,t);
+  drawFireball(pos,slide,HX,HY,ms,t);drawCyFx(pos,slide,HX,HY,ms,t);drawWitchFx(pos,HX,HY,ms,t);drawWolfFx(pos,slide,HX,HY,ms,t);
   if(SHK)c.restore();
   if(p<.5)bars(1-p/.5);
 }
@@ -4476,6 +4575,23 @@ function ELEMP(f,x,y,u,ca,sa,t,ex,ey,sx,sy){
   }else{disc(x,y,3,'#5a86ff');disc(x,y,2,'#9ad0ff');rc(x-1,y-1,2,2,'#ffffff')}
 }
 
+
+function CYC(e,ix,LT,S){const D=ENM[e.k],bone=e.k==='cyclopsb';fx.lunge=fx.lunge||{};delete fx.lunge[ix];const lm=LVD(e.lv||1);
+  const hit=(dmg,ms,txt)=>{const d=hurtMe(Math.round(dmg*lm),S);(S.hl=S.hl||[]).push([LT+ms,G.hp]);fx.p=LT+ms;fx.nums.push({x:70,y:100,v:'-'+d,t:LT+ms,c:'#ff6a5a'});cl(txt.replace('#',d))};
+  if(ch(.3)){fx.cy={t:LT,ix};cl('O ciclope ergue o pé gigante... TREMOR!');
+    if(ch(pDodge(e.k))){fx.cy.miss=1;cl('Você salta para longe e o tremor passa sob seus pés.');return}
+    hit(rnd(D.b,D.b+6),900,'O ciclope pisa no chão e a terra treme: -# de vida.');
+    if(G.hp>0&&ch(.25)){S.hs=S.hs||{};S.hs.stun=Math.max(S.hs.stun||0,1);cl('O tremor derruba você: atordoado!')}}
+  else{fx.lunge[ix]=LT;if(!ch(.82)||ch(pDodge(e.k))){cl('O ciclope gira o porrete, mas erra.');return}
+    hit(rnd(D.a,D.b),230,bone?'O ciclope te acerta com o porrete de ossos: -# de vida.':'O ciclope te acerta com o porrete de madeira: -# de vida.')}
+}
+function cyShake(ms){const f=fx.cy;if(!f)return 0;const d=ms-f.t-700;return d>0&&d<550?4*(1-d/550)*(f.miss?.6:1):0}
+function drawCyFx(pos,slide,HX,HY,ms,t){
+  const f=fx.cy;if(!f||!pos[f.ix])return;const u=(ms-f.t-700)/800;if(u<0||u>1)return;
+  const ex=pos[f.ix][0]+slide-18,ey=pos[f.ix][1]+2,tx=HX+10;c.globalAlpha=1-u*u;
+  for(let k=0;k<14;k++){const px=ex+(tx-ex)*Math.min(1,u*1.25)*(k/13)*(1-u*.2),hh=3+Math.floor(h01(k*7)*6)*(1-u);rc(px,ey-hh,2,hh,k%2?'#8a7448':'#5a4a30');if(k%3===0)rc(px-1,ey-hh-2-u*10,2,2,'#c8b890')}
+  rc(ex-6,ey,Math.max(0,(tx-ex)*Math.min(1,u*1.4)),1,'#2a1c10');
+  for(let k=0;k<8;k++)rc(ex-10+k*3,ey-2-u*18-(k%3)*2,2,2,'#c8b890');c.globalAlpha=1}
 function WHL(e,ix,LT,S){const D=ENM.whelp;fx.lunge=fx.lunge||{};delete fx.lunge[ix];const lm=LVD(e.lv||1);
   const hit=(dmg,ms,txt)=>{const d=hurtMe(Math.round(dmg*lm),S);(S.hl=S.hl||[]).push([LT+ms,G.hp]);fx.p=LT+ms;fx.nums.push({x:70,y:100,v:'-'+d,t:LT+ms,c:'#ff6a5a'});cl(txt.replace('#',d))};
   if(ch(.5)){fx.fb={t:LT,ix,s:.55};if(!ch(.88)||ch(pDodge('whelp'))){fx.fb.miss=1;cl('A bola de fogo do filhote passa raspando e explode atrás de você.');return}hit(rnd(8,13),800,'O filhote cospe uma bola de fogo: -# de vida.')}
@@ -4997,7 +5113,7 @@ V.info=()=>{
   </div>
   <div class="btns"><button data-a="close">Voltar</button></div></section>`;
 };
-const HOT=[['Depósito','openchest',-53,112,52,48],['Mapa','openmap',14,106,46,50],['Melhorias','openup',264,134,44,26],['Fabricação','opencraft',209,132,26,28],['Forno','openstove',80,130,26,30,'stove'],['Bigorna','openanvil',246,158,26,18,'anvil'],['Tenda','opentent',134,104,52,36],['Mercante viajante','openmerch',410,108,118,62,'merch'],['Poço','openwell',49,159,28,24,'well']];
+const HOT=[['Depósito','openchest',-53,112,52,48],['Mapa','openmap',14,106,46,50],['Melhorias','openup',264,134,44,26],['Fabricação','opencraft',209,132,26,28],['Forno','openstove',80,130,26,30,'stove'],['Bigorna','openanvil',246,158,26,18,'anvil'],['Tenda','opentent',134,104,52,36],['Mercante viajante','openmerch',410,108,118,62,'merch'],['Poço','openwell',49,159,28,24,'well'],['Estábulo','openstable',-305,126,110,62,'stable']];
 V.log=()=>`<section class="card log"><h3>Diário</h3><div class="mscroll tl" data-sc="lg" style="max-height:min(56vh,400px)">${G.log.slice(0,80).map(l=>`<p>${l}</p>`).join('')}</div><div class="btns"><button data-a="close">Voltar</button></div></section>`;
 V.menu=()=>`<section class="card"><h2>Menu</h2><p class="dim">Dia ${G.day} · ${String(G.hour).padStart(2,'0')}h · ${G.gender==='f'?'Mulher':'Homem'}</p><div class="btns" style="flex-direction:column;align-items:stretch"><button data-a="close">Voltar ao jogo</button><button data-a="openopts">Opções</button><button class="bad" data-a="menu">Sair para o menu</button></div></section>`;
 const DSKL=k=>{const sk=(f,e)=>`<ellipse cx="16" cy="14" rx="9" ry="9" fill="${f}"/><rect x="11" y="19" width="10" height="8" rx="2" fill="${f}"/><ellipse cx="12.3" cy="14.5" rx="2.4" ry="2.7" fill="${e}"/><ellipse cx="19.7" cy="14.5" rx="2.4" ry="2.7" fill="${e}"/><path d="M16 17.5l-1.6 3h3.2z" fill="${e}"/><path d="M13.5 23v3M16 23v3M18.5 23v3" stroke="${e}" stroke-width="1"/>`;
@@ -5164,6 +5280,7 @@ V.craft=()=>{const tab=G.ctab||'weapon',at=ASUB[G.atab]?G.atab:'mage',wt=G.wtab|
   return h+`</div></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
 const _make=A.make;A.make=v=>{if(!G)return;const l0=G.log[0],n0=G.log.length;_make(v);if(G&&(G.log[0]!==l0||G.log.length!==n0))G.cmsg=G.log[0]};
 A.openstove=()=>{G.modal='stove';G.cmsg=''};
+A.openstable=()=>{if(G.b.stable)lg('O estábulo está pronto, mas ainda vazio. Em breve você poderá ter um cavalo.')};
 A.openwell=()=>{if(G.b.well){G.modal='well';G.cmsg=''}};
 A.wellfill=()=>{if(!G.b.well)return;const free=Math.max(0,20*SK()-(G.inv.water||0)),sips=Math.min(free,Math.floor((G.wellW||0)/5));if(sips<=0){G.cmsg=free?'O poço ainda não juntou água suficiente (precisa de 5%).':'O odre já está cheio.';return}G.inv.water=(G.inv.water||0)+sips;G.wellW-=sips*5;G.cmsg='Você enche o odre com '+sips*5+'% de água do poço.'};
 V.well=()=>`<section class="card"><h2>Poço</h2><p class="dim">Enche ${DF().wr}% por dia. Água acumulada: <b>${Math.floor(G.wellW||0)}%</b> (cada 5% enche um gole do odre).</p><div class="prog"><i style="width:${Math.min(100,G.wellW||0)}%"></i></div>${G.cmsg?`<div class="bt" style="margin:8px 0">${G.cmsg}</div>`:''}<div class="btns" style="flex-direction:column;align-items:stretch"><button class="pri" data-a="wellfill">💧 Encher o odre</button><button data-a="close">Voltar</button></div></section>`;
