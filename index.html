@@ -3068,8 +3068,9 @@ function buildHuman(o,K){
   };
   drawLeg(BL,true);
   // pélvis
-  paint([['e',sx0*.4,py-.5+(o.bare?1.6:0),6+(o.bare?.8:0),3.8+(o.bare?2.6:0)]],pantCol,{side:.3});
+  paint([['e',sx0*.4,py-.5+(o.bare?1.6:0),6+(o.bare?.8:0),3.8+(o.bare?2.6:0)]],o.bare?skin:pantCol,{side:.3});
   drawLeg(FL,false);
+  if(o.bare){paint([['p',[sx0*.4-6.4,py-5,sx0*.4+6.4,py-5,sx0*.4+.6,py+8.5]]],'#4a2c16',{side:.3});paint([['p',[sx0*.4-6.4,py-5,sx0*.4+6.4,py-5,sx0*.4+5.6,py-3.4,sx0*.4-5.6,py-3.4]]],'#6a4424',{})}
   // ---- tronco ----
   const tx=(x)=>sx0+x,ty=(y)=>py+y;
   const waistY=py-1.2;
@@ -3111,7 +3112,7 @@ function buildHuman(o,K){
     paint([['p',[tx(-3),py-8,tx(5),py-8,tx(4),py-3,tx(-2.5),py-3]]],'#5a1228',{side:.3});
   }
   // cinto
-  if(!vamp){
+  if(!vamp&&!o.bare){
     paint([['r',tx(-5.7),py-4,12.4,2]],mix(P.wood,P.earth,.25),{});
     paint([['r',tx(1.6),py-4.3,2.8,2.6]],P.gold,{});dot(sx0+2.3,py-3.3,mix(P.wood,P.earth,.3),1.2,.8);
   }
@@ -4018,8 +4019,8 @@ function fireLight(h){
 function moonLight(h){
   const nf=nightF(h);if(nf<.25)return;const [mx,my]=moonPos(h),full=(typeof FM==='function'&&FM()),k=(full?1:.45)*Math.min(1,(nf-.25)/.5)*(rainNow()?.6:1);
   c.save();c.globalCompositeOperation='lighter';
-  c.globalAlpha=.075*k;c.fillStyle='#233c6c';c.fillRect(0,0,W,H);
-  for(let r=260,i=0;r>30;r-=10,i++){c.globalAlpha=.0075*k;disc(mx,my+50,r,'#4a6aa8')}
+  c.globalAlpha=.085*k;c.fillStyle='#1a3684';c.fillRect(0,0,W,H);
+  for(let r=260,i=0;r>30;r-=10,i++){c.globalAlpha=.0085*k;disc(mx,my+50,r,'#2a5cc8')}
   c.restore();c.globalAlpha=1;
 }
 function finishFrame(h){
