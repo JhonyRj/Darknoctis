@@ -953,7 +953,7 @@ I18N_C.push(['Água Benta','Holy Water']);
 I18N_C.push(['Entrar na cabana do chefe',"Enter the chief's cabin"],['Interior da cabana',"Cabin interior"],['Cabana do chefe, com mapas e um baú trancado.',"The chief's cabin, with maps and a locked chest."]);
 I18N_C.push(['Facas giratórias','Spinning knives'],['Lança facas girando em cruz: esquerda e direita; nível 2 completa a cruz; nível 3 as diagonais; depois lançamentos extras. Todas as classes','Throws spinning knives in a cross: left and right; level 2 completes the cross; level 3 adds diagonals; then extra volleys. All classes']);
 I18N_C.push(['▶ Jogar','▶ Play']);
-I18N_C.push(['Criar personagem','Create character'],['🧙 Criar personagem','🧙 Create character'],['Sexo','Sex'],['Cor da pele','Skin color'],['Cabelo','Hair'],['Cor do cabelo','Hair color'],['Barba','Beard'],['Cor da barba','Beard color'],['Salvar','Save'],['Curto','Short'],['Longo','Long'],['Rabo de cavalo','Ponytail'],['Moicano','Mohawk'],['Volumoso','Voluminous'],['Careca','Bald'],['Nenhuma','None'],['Bigode','Mustache'],['Cavanhaque','Goatee'],['Curta','Short'],['Cheia','Full'],['Longa','Long'],['✓ Personagem salvo','✓ Character saved']);
+I18N_C.push(['Editar herói','Edit hero'],['Criar personagem','Create character'],['🧙 Criar personagem','🧙 Create character'],['Sexo','Sex'],['Cor da pele','Skin color'],['Cabelo','Hair'],['Cor do cabelo','Hair color'],['Barba','Beard'],['Cor da barba','Beard color'],['Salvar','Save'],['Curto','Short'],['Longo','Long'],['Rabo de cavalo','Ponytail'],['Moicano','Mohawk'],['Volumoso','Voluminous'],['Careca','Bald'],['Nenhuma','None'],['Bigode','Mustache'],['Cavanhaque','Goatee'],['Curta','Short'],['Cheia','Full'],['Longa','Long'],['✓ Personagem salvo','✓ Character saved']);
 I18N_C.push(...['longo','curto','rabo','curta','cheia','longa','cavanhaque','careca','moicano','volumoso','bigode'].map(x=>[x,x]));
 I18N_C.push(['Nome','Name'],['Nome do personagem','Character name']);
 I18N_C.push(['Jogar','Play']);
@@ -1494,7 +1494,7 @@ function searchPoi(deep){
   if(key==='peaks'&&ch(.3)){DFLY(()=>fight(['dragon'],{t:'loot',key,deep}));return}
   const VPL=['church','crypt','graveyard','ruins','tower'],vn=isNight()&&VPL.includes(key);const risk=Math.min(.95,(D.risk+(vn?.15:0))*(deep?1.5:.7));
   if(ch(risk)){
-    let foes=D.foes.slice();if(!isNight()){foes=foes.filter(f=>!['vampire','fledgling','werewolf'].includes(f));if(!foes.length)foes=['deserter','wolf']}if(key==='peaks'&&ch(.5))foes=['dragon'];
+    let foes=D.foes.slice();if(!isNight()){foes=foes.filter(f=>!['vampire','fledgling','werewolf'].includes(f));if(!foes.length)foes=['deserter','wolf']}else if(!FM()){foes=foes.filter(f=>f!=='werewolf');if(!foes.length)foes=['deserter','wolf']}if(key==='peaks'&&ch(.5))foes=['dragon'];
     if(!isNight()&&key==='church')foes=foes.filter(f=>f!=='vampire'&&f!=='fledgling');
     if(vn)foes.push('fledgling','fledgling','vampire','vampire');
     if(!foes.length)foes=['deserter'];
@@ -1824,7 +1824,17 @@ function drawSky0(h,y1,t){
   c.globalAlpha=1;
 }
 let BAGT=0,DFLYT=0,RW=0,CAMX=0,CX=0,TSX=120,TM=null,TMP=null,TTR=null;
-function ridge(off,base,amp,col,seed,hi){for(let x=0;x<(RW||W);x+=.5){const X=x+off;const y=base-(Math.sin(X/37+seed)*amp+Math.sin(X/13+seed*2)*amp*.35+Math.sin(X/5+seed)*amp*.1+amp*1.2);rc(x,y,.5,base-y+1,col);rc(x,y,.5,1,hi||shade(col,24));if(Math.floor(x*2+seed)%5===0)rc(x,y+1.5,.5,1,shade(col,-14))}}
+const RGC=new Map();
+function ridge(off,base,amp,col,seed,hi){
+  const w=RW||W,sc=(typeof SC==='number'&&SC)||1,key=off+'|'+base+'|'+amp+'|'+col+'|'+seed+'|'+hi+'|'+w+'|'+sc+'|'+OX+'|'+OY+'|'+(MONO||'');
+  let cv=RGC.get(key);
+  if(!cv){
+    cv=document.createElement('canvas');cv.width=Math.ceil(w*sc);cv.height=Math.ceil((base+3)*sc);
+    const cx=cv.getContext('2d'),pc=c;cx.setTransform(sc,0,0,sc,0,0);cx.imageSmoothingEnabled=false;
+    c=cx;try{ridge0(off,base,amp,col,seed,hi)}finally{c=pc}
+    if(RGC.size>60)RGC.clear();RGC.set(key,cv)}
+  c.drawImage(cv,0,0,cv.width,cv.height,0,0,cv.width/sc,cv.height/sc)}
+function ridge0(off,base,amp,col,seed,hi){for(let x=0;x<(RW||W);x+=.5){const X=x+off;const y=base-(Math.sin(X/37+seed)*amp+Math.sin(X/13+seed*2)*amp*.35+Math.sin(X/5+seed)*amp*.1+amp*1.2);rc(x,y,.5,base-y+1,col);rc(x,y,.5,1,hi||shade(col,24));if(Math.floor(x*2+seed)%5===0)rc(x,y+1.5,.5,1,shade(col,-14))}}
 function mist(y,h,a,t,sp){c.globalAlpha=a;for(let i=0;i<5;i++)rc(((i*90+t*(sp||4))%440)-70,y+i*h*.6,130,h,P.mist);c.globalAlpha=1}
 function pine(x,y,s,col){
   rc(x-1*s,y-6*s,2*s,6*s,P.wood);rc(x-1*s,y-6*s,.5,6*s,mix(P.wood,P.orL,.3));
@@ -2800,7 +2810,7 @@ function searchObj(id){
   const ok=key+'#'+id,deep=!!o.deep;G.ret='poi';G.lh=(G.lh||0)+30;if(G.lh>=60){G.lh-=60;advance(1)}if(G.view==='over'||G.dflag)return;
   const VPL=['church','crypt','graveyard','ruins','tower'],vn=isNight()&&VPL.includes(key);const risk=Math.min(.95,(D.risk+(vn?.15:0))*(deep?1.8:.9)*(o.rk||1));
   if(ch(risk)){
-    let foes=D.foes.slice();if(!isNight())foes=foes.filter(f=>!['vampire','fledgling','werewolf'].includes(f));
+    let foes=D.foes.slice();if(!isNight())foes=foes.filter(f=>!['vampire','fledgling','werewolf'].includes(f));else if(!FM())foes=foes.filter(f=>f!=='werewolf');
     if(!isNight()&&key==='church')foes=foes.filter(f=>f!=='vampire'&&f!=='fledgling');
     if(vn)foes.push('fledgling','fledgling','vampire');
     if(key==='mine'||key==='peaks')foes.push('whelp','whelp');
@@ -4174,14 +4184,15 @@ function beams(h,cool){
   const f=cool?moonF(h):sunF(h),sx=20+f*280,sl=(f-.5)*-1.4,nf=nightF(h);
   c.save();c.globalCompositeOperation='lighter';
   for(let i=0;i<7;i++){const bx=sx+(i-3)*34+Math.sin(TNOW*.3+i)*4,w=5+(i%3)*4;c.globalAlpha=(cool?.05*nf:.07*(1-nf))*(.6+.4*Math.sin(TNOW*.5+i*2));
-    for(let y=0;y<H;y+=1){rc(bx+sl*y*1.0+y*.15*(i-3)*.2,y,w*(.6+y/H*.8),1,cool?'#101a44':'#3a2a0c')}}
+    {const k1=sl+.03*(i-3),l0=bx,l1=bx+k1*H,w0=w*.6,w1=w*1.4;c.fillStyle=cool?'#101a44':'#3a2a0c';c.beginPath();c.moveTo(l0,0);c.lineTo(l0+w0,0);c.lineTo(l1+w1,H);c.lineTo(l1,H);c.closePath();c.fill()}}
   c.restore();
 }
 function sunLight(h){
   const nf=nightF(h);if(h<6||h>18||nf>.9||rainNow())return;
   const [sx,sy]=sunPos(h),inten=(1-nf)*(.35+.65*Math.sin(sunF(h)*Math.PI)),warm=sunF(h)<.12||sunF(h)>.88;
   c.save();c.globalCompositeOperation='lighter';
-  for(let r=230,i=0;r>40;r-=28,i++){c.globalAlpha=.05*inten*(i+1)*.5;disc(sx,sy+50,r,warm?'#3a1608':'#352408')}
+  {const cc=warm?'58,22,8':'53,36,8',g=c.createRadialGradient(sx,sy+50,0,sx,sy+50,230),A=[.7,.7,.525,.375,.25,.15,.075,.025,0],R=[0,62,62,90,118,146,174,202,230];
+    A.forEach((a,i)=>g.addColorStop(Math.min(1,R[i]/230),'rgba('+cc+','+(a*inten).toFixed(4)+')'));c.globalAlpha=1;c.fillStyle=g;c.fillRect(0,0,W,H)}
   c.restore();
 }
 function fireLight(h){
@@ -4197,7 +4208,7 @@ function moonLight(h){
   const nf=nightF(h);if(nf<.25)return;const [mx,my]=moonPos(h),full=(typeof FM==='function'&&FM()),k=(full?1:.45)*Math.min(1,(nf-.25)/.5)*(rainNow()?.6:1);
   c.save();c.globalCompositeOperation='lighter';
   c.globalAlpha=.085*k;c.fillStyle='#1a3684';c.fillRect(0,0,W,H);
-  for(let r=260,i=0;r>30;r-=10,i++){c.globalAlpha=.0085*k;disc(mx,my+50,r,'#2a5cc8')}
+  {const g=c.createRadialGradient(mx,my+50,0,mx,my+50,260),a0=(.0085*k*17).toFixed(4);g.addColorStop(0,'rgba(42,92,200,'+a0+')');g.addColorStop(40/260,'rgba(42,92,200,'+a0+')');g.addColorStop(1,'rgba(42,92,200,0)');c.globalAlpha=1;c.fillStyle=g;c.fillRect(0,0,W,H)}
   c.restore();c.globalAlpha=1;
 }
 function finishFrame(h){
@@ -4519,9 +4530,9 @@ let BGNOHERO=false;
 const battleInPoi=()=>!!(G&&G.ret==='poi'&&G.loc!=='camp'&&LOCS[G.loc]);
 function battlePos(N){return battleInPoi()?(N===1?[[238,141]]:N===2?[[212,134],[268,148]]:[[192,130],[240,142],[288,154]]):(N===1?[[238,112]]:N===2?[[205,106],[266,120]]:[[190,102],[240,112],[288,124]])}
 /* ---- Cena de batalha separada (estilo Pokémon FireRed): inimigo no alto à direita, herói embaixo à esquerda ---- */
-function platGround(x,y,rx,ry){try{const m=c.getTransform(),pts=[[x-rx-7,y+1],[x+rx+7,y+1],[x-rx*.5,y+ry+7],[x+rx*.5,y+ry+7],[x,y+ry+9]];let R=0,G2=0,B2=0,n=0;for(const q of pts){const d=c.getImageData(Math.round(q[0]*m.a+m.e),Math.round(q[1]*m.d+m.f),1,1).data;if(d[3]>200){R+=d[0];G2+=d[1];B2+=d[2];n++}}if(!n)return null;const h2=v=>('0'+Math.round(v/n).toString(16)).slice(-2);return '#'+h2(R)+h2(G2)+h2(B2)}catch(e){return null}}
+let PLC;function platGround(x,y,rx,ry){try{const m=c.getTransform(),pts=[[x-rx-7,y+1],[x+rx+7,y+1],[x-rx*.5,y+ry+7],[x+rx*.5,y+ry+7],[x,y+ry+9]];let R=0,G2=0,B2=0,n=0;for(const q of pts){const d=c.getImageData(Math.round(q[0]*m.a+m.e),Math.round(q[1]*m.d+m.f),1,1).data;if(d[3]>200){R+=d[0];G2+=d[1];B2+=d[2];n++}}if(!n)return null;const h2=v=>('0'+Math.round(v/n).toString(16)).slice(-2);return '#'+h2(R)+h2(G2)+h2(B2)}catch(e){return null}}
 function plat(x,y,rx,ry,B){
-  const gr=window.__platSample?platGround(x,y,rx,ry):null;
+  let gr=null;if(window.__platSample){const ck=G.loc+'|'+x+'|'+y+'|'+rx+'|'+Math.floor(G.hour)+'|'+(G.dir||0);PLC=window.__plc||(window.__plc={});if(PLC[ck]===undefined){const ks=Object.keys(PLC);if(ks.length>40)for(const k of ks)delete PLC[k];PLC[ck]=platGround(x,y,rx,ry)}gr=PLC[ck]}
   const base=gr?shade(gr,6):mix(B.g1,P.sun,.12),rim=gr?shade(gr,-16):mix(B.g2,P.veg,.55),dk=mix(P.earth,P.vio,.4);
   ell(x,y+2,rx+3,ry+2,P.shadow);ell(x,y+1,rx+2,ry+1,dk);ell(x,y,rx,ry,rim);ell(x,y-1,rx-2,ry-1.5,base);ell(x-rx*.15,y-1.5,rx*.55,ry*.5,mix(base,P.sun,.25));
   for(let i=0;i<16;i++){const a=h01(i*7+x)*6.28,r=h01(i*3+y)*.8;rc(x+Math.cos(a)*rx*r*.9,y-1+Math.sin(a)*ry*r*.7,.5,1,i%2?mix(base,P.veg,.4):mix(base,P.sun,.4))}
@@ -4635,7 +4646,7 @@ function drawBattle(t,ms){
     else if(d<1450){const q=(d-1100)/350,e2=q*q*(3-2*q);batFx(ex+(HX-ex)*e2,ey+(hy-ey)*e2,700,t,1)}
     else{const q=Math.min(1,(d-1450)/250);batFx(HX,hy,Math.max(0,700-(d-1450)*2),t,1);c.save();c.translate(HX,HY);c.globalAlpha=q;heroSprite(0,0,t,'stand',false,0,1);c.restore();c.globalAlpha=1}
   }
-  else if(!ph){const xbw=G.wep&&wepOk()&&/besta/i.test(G.wep.n);const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide,HY);window.__drawn=1;heroSprite(0,0,t,sm||sw>0?(xbw?'throw':'atk'):(th||xbw)?'throw':'stand',false,sm?.6:sw,1);window.__drawn=0;
+  else{const phk=fx.p&&ms>=fx.p&&ms-fx.p<350?(Math.floor((ms-fx.p)/50)%2?2:-2):0;const xbw=G.wep&&wepOk()&&/besta/i.test(G.wep.n);const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide+phk,HY);window.__drawn=1;heroSprite(0,0,t,sm||sw>0?(xbw?'throw':'atk'):(th||xbw)?'throw':'stand',false,sm?.6:sw,1);window.__drawn=0;
     stDraw(S.hs,46,t);c.restore()}
   if(S.ally&&S.ally.hp>0){const al=S.ally,sd=ms-(fx.psum||0);let ax=HX+38,ay=HY-66+Math.sin(t*4)*3;
     if(al.at&&ms>=al.at&&ms-al.at<600&&pos[al.ti]){const q3=Math.sin((ms-al.at)/600*Math.PI),tp=pos[al.ti];ax+=(tp[0]+slide-34-ax)*q3;ay+=(tp[1]-30-ay)*q3}
@@ -4648,7 +4659,7 @@ function drawBattle(t,ms){
     const [x,y]=pos[i],dead=e.hp<=0&&!(fx.e[i]&&ms<fx.e[i]+350);
     let ex=0;const lt=fx.lunge&&fx.lunge[i];if(lt&&ms>=lt&&ms-lt<420)ex=-Math.sin((ms-lt)/420*Math.PI)*(e.k==='witch'?10:50);
     const hit=fx.e[i]&&ms>=fx.e[i]&&ms-fx.e[i]<350&&Math.floor((ms-fx.e[i])/60)%2===0;
-    if(e.k==='dragon'){drawDragonB(e,i,x,y,t,ms,dead,hit,lt,HX,HY);return}
+    if(e.k==='dragon'){drawDragonB(e,i,x,y,t,ms,dead,false,lt,HX,HY);return}
     if(dead&&e.bfx&&ms-e.bfx<1700){const d=ms-e.bfx,bx=x+slide,by=y-26;
       if(d<500){c.save();c.translate(bx,y);c.globalAlpha=Math.max(0,1-d/420);outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:'stand',swing:0,eq:e.eq}));c.restore();c.globalAlpha=1;batFx(bx,by,d+300,t,0)}
       else{const q=(d-500)/1200;batFx(bx,by,Math.max(0,800-(d-500)),t,0);c.globalAlpha=Math.max(0,1-q*q);drawBatBig(bx+q*q*120,by-q*90-Math.sin(q*8)*3,Math.floor(t*12)%2);c.globalAlpha=1}
@@ -4661,7 +4672,7 @@ function drawBattle(t,ms){
     if(!dead&&N>1&&TGT()===e&&!BUSY){const my=y-66+Math.sin(t*5)*2;rc(x+slide-3,my,7,2,P.gold);rc(x+slide-2,my+2,5,2,P.gold);rc(x+slide-1,my+4,3,2,P.gold)}
     if(e.k==='witch'&&!dead)witchAura(x+slide+ex,y,t);
     if(!dead){const hh={wolf:14,boar:14,deer:24,whorse:34,bear:26,whelp:20,bat:6,cyclops:48,cyclopsb:48}[e.k]||32,ww={wolf:16,boar:16,bear:18,deer:12,whorse:22,cyclops:18,cyclopsb:18}[e.k]||10;heroShadow(x+slide+ex,y+3,hh,SHD,ww)}
-    if(!dead&&!hit){c.save();c.translate(x+slide+ex,y);
+    if(!dead){c.save();c.translate(x+slide+ex+(fx.e[i]&&ms>=fx.e[i]&&ms-fx.e[i]<350?(Math.floor((ms-fx.e[i])/50)%2?2:-2):0),y);
       {const cyt=fx.cy&&fx.cy.ix===i?ms-fx.cy.t:-1,stp=cyt>=0&&cyt<900;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:stp?'stomp':lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:stp?Math.min(1,cyt/700):lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}))}stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30,cyclops:88,cyclopsb:88}[e.k]||46,t);c.restore()}
   });
   fx.nums=fx.nums.filter(n=>ms-n.t<900);
@@ -4949,7 +4960,7 @@ function frame(ms){
         }
       }
     }
-    if(!(G&&G.loc&&G.loc.startsWith('in_')&&G.view==='poi')){drawWeather(t,h);
+    if(!(G&&G.loc&&G.loc.startsWith('in_')&&(G.view==='poi'||G.view==='combat'))){drawWeather(t,h);
     sunLight(h);if(nightF(h)<.7)beams(h,false);if(nightF(h)>.3)beams(h,true);grade(h);moonLight(h)}
     finishFrame(h);
     }
@@ -5341,7 +5352,7 @@ A.openopts=()=>{G.modal='opts'};
 const FLG={pt:'<svg viewBox="0 0 30 21" width="30" height="21"><rect width="30" height="21" fill="#229e45"/><path d="M15 2.2 27.2 10.5 15 18.8 2.8 10.5Z" fill="#f8d80b"/><circle cx="15" cy="10.5" r="4.6" fill="#2a3f8f"/><path d="M10.6 9.6Q15 8.4 19.4 11.4" stroke="#fff" stroke-width=".9" fill="none"/></svg>',en:'<svg viewBox="0 0 30 21" width="30" height="21"><rect width="30" height="21" fill="#fff"/>'+[0,2,4,6,8,10,12].map(i=>'<rect y="'+(i*21/13)+'" width="30" height="'+(21/13)+'" fill="#b22234"/>').join('')+'<rect width="13" height="11.3" fill="#3c3b6e"/>'+[[2,2],[5,2],[8,2],[11,2],[3.5,4.5],[6.5,4.5],[9.5,4.5],[2,7],[5,7],[8,7],[11,7]].map(p=>'<rect x="'+p[0]+'" y="'+p[1]+'" width="1.2" height="1.2" fill="#fff"/>').join('')+'</svg>'};
 let LGO=false;A.lgo=()=>{LGO=!LGO};
 A.lang=v=>{if(v!=='pt'&&v!=='en')return;LANG=v;I18N_CACHE.clear();try{localStorage.setItem('fl-lang',v)}catch(_){}i18nStatic();lastLog=''};
-V.opts=()=>`<section class="card"><h2>Opções</h2><div style="background:rgba(10,8,20,.62);border:1px solid rgba(224,187,94,.4);border-radius:12px;padding:6px 14px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0 2px"><b style="font-size:18px">Dificuldade</b><span style="flex:1;text-align:right;opacity:.85">${DLB[G.diff||'hard']}</span><button class="langflag" data-a="diffnext" aria-label="Dificuldade" style="position:static;padding:4px">${DSKL(G.diff||'hard')}</button></div><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0"><b style="font-size:18px">Idioma</b><span style="flex:1;text-align:right;opacity:.85">${LANG==='pt'?'Português-BR':'English (US)'}</span><button class="langflag" data-a="lang" data-v="${LANG==='pt'?'en':'pt'}" aria-label="Idioma" style="position:static">${FLG[LANG]}</button></div></div><div class="btns" style="flex-direction:column;align-items:stretch"><button data-a="openmenu">Voltar</button></div></section>`;
+V.opts=()=>`<section class="card"><h2>Opções</h2><div style="background:rgba(10,8,20,.62);border:1px solid rgba(224,187,94,.4);border-radius:12px;padding:6px 14px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0 2px"><b style="font-size:18px">Dificuldade</b><span style="flex:1;text-align:right;opacity:.85">${DLB[G.diff||'hard']}</span><button class="langflag" data-a="diffnext" aria-label="Dificuldade" style="position:static;padding:4px">${DSKL(G.diff||'hard')}</button></div><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0"><b style="font-size:18px">Idioma</b><span style="flex:1;text-align:right;opacity:.85">${LANG==='pt'?'Português-BR':'English (US)'}</span><button class="langflag" data-a="lang" data-v="${LANG==='pt'?'en':'pt'}" aria-label="Idioma" style="position:static">${FLG[LANG]}</button></div></div><div class="btns" style="flex-direction:column;align-items:stretch"><button data-a="editchar">Editar herói</button><button data-a="openmenu">Voltar</button></div></section>`;
 const pc=(v,m)=>(v/m*100).toFixed(2)+'%';
 let lastLog='';
 function clockTxt(){const n=isNight();return `Dia ${G.day} · ${String(G.hour).padStart(2,'0')}:00 ${n?(FM()?'🌕 lua cheia':'🌙 noite'):'☀️ dia'}${G.lyc&&G.lyc.fev>0?' · 🤒 febre':G.wolf?' · 🐺':G.lyc?(G.lyc.perm?' · 🐺 lobisomem':' · 🐺 licantropia'):''}${G.turned?(typeof vFull==='function'&&vFull()?' · 🧛 vampiro':' · 🧛 vampirismo'):G.vamp?' · 🧛 vampirismo':''}`}
@@ -5526,19 +5537,23 @@ let DELARM=0,TSCR='main',CHE=null,CHMSG=0;
 const CHK='darknoctis-char',CHSK=['#f6dcc0','#e8c49a','#d4a074','#b8825a','#8a5a3a','#5e3a24','#3e2518'],CHHC=['#1c1410','#3a2416','#6a4a2c','#9a6a34','#c8a050','#e0d090','#b84a2a','#8a8a92','#e8e8ee','#3a5a9a','#7a3a8a','#2e7a4a'];
 const CHHS=[['curto','Curto'],['longo','Longo'],['rabo','Rabo de cavalo'],['moicano','Moicano'],['volumoso','Volumoso'],['careca','Careca']],CHBS=[['none','Nenhuma'],['bigode','Bigode'],['cavanhaque','Cavanhaque'],['curta','Curta'],['cheia','Cheia'],['longa','Longa']];
 function chLoad(){try{const s=JSON.parse(localStorage.getItem(CHK));return s&&s.v?s:null}catch(_){return null}}
+function chLookOf(s){return {skin:s.skin,hs:s.hs,hc:s.hc,bs:s.bs,bc:s.bc,name:s.name||''}}
 function chLook(){const s=chLoad();return s?{skin:s.skin,hs:s.hs,hc:s.hc,bs:s.bs,bc:s.bc,name:s.name||''}:null}
 function chGender(){const s=chLoad();return s&&s.sex==='f'?'f':'m'}
 A.tmenu=v=>{LGO=false;TSCR=v==='play'||v==='opts'||v==='char'?v:'main';if(TSCR==='char'){CHE=Object.assign({sex:'m',skin:CHSK[1],hs:'curto',hc:CHHC[2],bs:'none',bc:CHHC[2]},chLoad()||{});CHMSG=0}};
 const chKeep=()=>{const e=document.querySelector('.iscroll');if(!e)return;const t=e.scrollTop;const f=()=>{const x=document.querySelector('.iscroll');if(x)x.scrollTop=t};setTimeout(f,0);setTimeout(f,60)};
 const chNm=()=>{const e=document.getElementById('chn');if(e&&CHE)CHE.name=e.value.slice(0,16)};
 A.chset=v=>{chKeep();chNm();const i=String(v).indexOf(':'),k=v.slice(0,i),x=v.slice(i+1);if(!CHE)return;CHE[k]=x;CHMSG=0;if(k==='sex'){if(x==='f'&&CHE.hs==='curto')CHE.hs='longo';if(x==='f')CHE.bs='none';if(x==='m'&&CHE.hs==='longo')CHE.hs='curto'}};
-A.chsave=()=>{if(!CHE)return;chNm();if(CHE.sex==='f')CHE.bs='none';try{localStorage.setItem(CHK,JSON.stringify(Object.assign({v:1},CHE)));CHMSG=1;const lk=chLook();for(let n=1;n<=3;n++){try{const k='ashes-slot-'+n,r=localStorage.getItem(k);if(!r)continue;const g=JSON.parse(r);g.look=lk;g.gender=CHE.sex==='f'?'f':'m';localStorage.setItem(k,JSON.stringify(g));localStorage.setItem(k+'-t',String(Date.now()))}catch(_){}}}catch(_){}};
+A.chsave=()=>{if(!CHE)return;chNm();if(CHE.sex==='f')CHE.bs='none';if(G){const l0=chLookOf(CHE);G.look=l0;G.gender=CHE.sex==='f'?'f':'m'}try{localStorage.setItem(CHK,JSON.stringify(Object.assign({v:1},CHE)));CHMSG=1;const lk=chLook();for(let n=1;n<=3;n++){try{const k='ashes-slot-'+n,r=localStorage.getItem(k);if(!r)continue;const g=JSON.parse(r);g.look=lk;g.gender=CHE.sex==='f'?'f':'m';localStorage.setItem(k,JSON.stringify(g));localStorage.setItem(k+'-t',String(Date.now()))}catch(_){}}}catch(_){}};
 function chPrev(){try{const E=CHE,cv=layer(70,84,()=>outlined(()=>person(35,78,{k:1.1,hero:true,pose:'stand',t:0,flip:false,g:E.sex,eq:{},skin:E.skin,hair:E.hc,hs:E.hs,bs:E.bs,bc:E.bc})));return cv.toDataURL()}catch(_){return ''}}
 function chScreen(LG,BW){const E=CHE||(CHE=Object.assign({sex:'m',skin:CHSK[1],hs:'curto',hc:CHHC[2],bs:'none',bc:CHHC[2]},chLoad()||{}));
   const sw=(k,L)=>`<div class="chrow">${L.map(cl=>`<button class="sw${E[k]===cl?' on':''}" data-a="chset" data-v="${k}:${cl}" style="background:${cl}" aria-label="${cl}"></button>`).join('')}</div>`;
   const op=(k,L)=>`<div class="chrow">${L.map(([id,n])=>`<button class="${E[k]===id?'pri':''}" data-a="chset" data-v="${k}:${id}">${n}</button>`).join('')}</div>`;
   return `<div class="ct chc"><div style="text-align:center"><img alt="" src="${chPrev()}" style="height:min(252px,27vh);width:auto;aspect-ratio:5/6;image-rendering:pixelated"></div>
-  <div class="iscroll" style="max-height:min(36vh,300px);padding:8px"><div class="chs"><h3>Nome</h3><div class="chrow"><input id="chn" maxlength="16" value="${String(E.name||'').replace(/[&<>"]/g,'')}" placeholder="Nome do personagem" style="width:80%;max-width:260px;padding:9px;text-align:center;font:inherit;font-size:16px;background:#1a140c;color:#f0e6d0;border:2px solid #6a5a3a;border-radius:6px"></div></div><div class="chs"><h3>Sexo</h3>${op('sex',[['m','Homem'],['f','Mulher']])}</div><div class="chs"><h3>Cor da pele</h3>${sw('skin',CHSK)}</div><div class="chs"><h3>Cabelo</h3>${op('hs',CHHS)}</div><div class="chs"><h3>Cor do cabelo</h3>${sw('hc',CHHC)}</div>${E.sex==='f'?'':`<div class="chs"><h3>Barba</h3>${op('bs',CHBS)}</div><div class="chs"><h3>Cor da barba</h3>${sw('bc',CHHC)}</div>`}</div>${CHMSG?'<p class="dim" style="text-align:center;color:#8fe08f">✓ Personagem salvo</p>':''}<div class="btns" style="${BW}"><button class="pri" data-a="chsave">Salvar</button><button data-a="tmenu" data-v="main">Voltar</button></div></div>`}
+  <div class="iscroll" style="max-height:min(36vh,300px);padding:8px"><div class="chs"><h3>Nome</h3><div class="chrow"><input id="chn" maxlength="16" value="${String(E.name||'').replace(/[&<>"]/g,'')}" placeholder="Nome do personagem" style="width:80%;max-width:260px;padding:9px;text-align:center;font:inherit;font-size:16px;background:#1a140c;color:#f0e6d0;border:2px solid #6a5a3a;border-radius:6px"></div></div><div class="chs"><h3>Sexo</h3>${op('sex',[['m','Homem'],['f','Mulher']])}</div><div class="chs"><h3>Cor da pele</h3>${sw('skin',CHSK)}</div><div class="chs"><h3>Cabelo</h3>${op('hs',CHHS)}</div><div class="chs"><h3>Cor do cabelo</h3>${sw('hc',CHHC)}</div>${E.sex==='f'?'':`<div class="chs"><h3>Barba</h3>${op('bs',CHBS)}</div><div class="chs"><h3>Cor da barba</h3>${sw('bc',CHHC)}</div>`}</div>${CHMSG?'<p class="dim" style="text-align:center;color:#8fe08f">✓ Personagem salvo</p>':''}<div class="btns" style="${BW}"><button class="pri" data-a="chsave">Salvar</button><button data-a="${G?'chback':'tmenu'}" data-v="main">Voltar</button></div></div>`}
+A.editchar=()=>{const l=G.look||{};CHE=Object.assign({sex:'m',skin:CHSK[1],hs:'curto',hc:CHHC[2],bs:'none',bc:CHHC[2]},chLoad()||{},l.skin?{skin:l.skin,hs:l.hs,hc:l.hc,bs:l.bs,bc:l.bc,name:l.name||''}:{},{sex:G.gender==='f'?'f':'m'});CHMSG=0;G.modal='editchar'};
+A.chback=()=>{G.modal='opts'};
+V.editchar=()=>chScreen('','flex-direction:column;align-items:stretch;max-width:260px;margin:14px auto 0;gap:10px');
 
 const slotRow=n=>{const s=slotInfo(n);return `<div class="slot"><b>Slot ${n}</b>${s?`<span class="dim"> · Dia ${s.day} · Nv ${s.lvl||1} · ${s.gender==='f'?'Mulher':'Homem'}</span><div class="btns"><button class="pri" data-a="cont" data-v="${n}">Continuar</button><button class="bad" data-a="del" data-v="${n}">${DELARM===n?'Confirmar apagar?':'Apagar'}</button></div>`:`<span class="dim"> · vazio</span><div class="btns"><button class="pri" data-a="new" data-v="${n}">Novo jogo</button></div>`}</div>`};
 A.del=v=>{v=+v;if(DELARM===v){try{localStorage.removeItem('ashes-slot-'+v);cloudDel('ashes-slot-'+v)}catch(_){}DELARM=0}else DELARM=v};
@@ -5557,7 +5572,7 @@ function render(){
     card.innerHTML=TSCR==='char'?chScreen(LG,BW)+FL:TSCR==='play'?`<div class="ct">${LG}
     <div class="slots">${[1,2,3].map(slotRow).join('')}</div><div class="btns" style="${BW}"><button data-a="tmenu" data-v="main">Voltar</button></div></div>${FL}`
     :TSCR==='opts'?`<div class="ct">${LG}<div style="${BW};display:block;background:rgba(10,8,20,.62);border:1px solid rgba(224,187,94,.4);border-radius:12px;padding:6px 14px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0 2px"><b style="font-size:18px">Dificuldade</b><span style="flex:1;text-align:right;opacity:.85">${DLB[tDiff()]}</span><button class="langflag" data-a="tdiff" aria-label="Dificuldade" style="position:static;padding:4px">${DSKL(tDiff())}</button></div><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0 16px"><b style="font-size:18px">Idioma</b><span style="flex:1;text-align:right;opacity:.85">${LANG==='pt'?'Português-BR':'English (US)'}</span><button class="langflag" data-a="lang" data-v="${LANG==='pt'?'en':'pt'}" aria-label="Idioma" style="position:static">${FLG[LANG]}</button></div></div><div class="btns tm" style="${BW}"><button data-a="tmenu" data-v="main">Voltar</button></div></div>`
-    :`<div class="ct" style="transform:translateY(-9vh)">${LG}<div class="btns tm" style="${BW};margin-top:58px"><button data-a="tmenu" data-v="play" style="font-size:26px">Jogar</button><button data-a="tmenu" data-v="char">Criar personagem</button><button data-a="tmenu" data-v="opts">Opções</button></div></div>${FL}`;
+    :`<div class="ct" style="transform:translateY(-9vh)">${LG}<div class="btns tm" style="${BW};margin-top:58px"><button data-a="tmenu" data-v="play" style="font-size:26px">Jogar</button><button data-a="tmenu" data-v="opts">Opções</button></div></div>${FL}`;
     modal.hidden=true;return;
   }
   const mp=G.view==='map';
@@ -5592,7 +5607,7 @@ function render(){
     $('#mapbar').innerHTML=h;$('#mapbar').style.display=h?'':'none';
   }
   modal.className='';
-  if(G.modal&&V[G.modal]){modal.hidden=false;modal.innerHTML=`<div class="mwrap">${['purse','menu','opts','log','stove','chest','stable','tank','feeder'].includes(G.modal)?'':`<div class="hbars mhud">${bar('❤️ Vida',G.hp,G.mhp,'--blood')}${bar('🔮 Magia',G.mana==null?MM():G.mana,MM(),'--mana')}${bar('🍖 Fome',G.food,100,'--meat')}${bar('💧 Sede',G.water,100,'--frost')}</div>`}${V[G.modal]()}</div>`}else{modal.hidden=true;modal.innerHTML=''}
+  if(G.modal&&V[G.modal]){modal.hidden=false;modal.innerHTML=`<div class="mwrap">${['purse','menu','opts','editchar','log','stove','chest','stable','tank','feeder'].includes(G.modal)?'':`<div class="hbars mhud">${bar('❤️ Vida',G.hp,G.mhp,'--blood')}${bar('🔮 Magia',G.mana==null?MM():G.mana,MM(),'--mana')}${bar('🍖 Fome',G.food,100,'--meat')}${bar('💧 Sede',G.water,100,'--frost')}</div>`}${V[G.modal]()}</div>`}else{modal.hidden=true;modal.innerHTML=''}
   // aviso com a última linha do diário
   const l0=G.log[0]||'';if(l0&&l0!==lastLog&&!mp){const tt=$('#toast');tt.textContent=l0.replace(/\[\[\w+\]\]/g,'');tt.classList.remove('show');void tt.offsetWidth;tt.classList.add('show')}lastLog=l0;
 }
