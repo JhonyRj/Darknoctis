@@ -981,7 +981,7 @@ I18N_C.push(['Pasto Livre','Free Pasture'],['Campo aberto e cercas velhas. Caval
 I18N_C.push(['Você oferece uma maçã. O cavalo come e se acalma um pouco.','You offer an apple. The horse eats it and calms down a little.'],['O cavalo resiste e recua. Tente alimentá-lo para ganhar a confiança dele.','The horse resists and backs away. Try feeding it to earn its trust.'],['Você domou um cavalo selvagem.','You tamed a wild horse.'],['O cavalo aceita a sela e segue você.','The horse accepts the saddle and follows you.'],['O cavalo bufa e observa você, inquieto.','The horse snorts and watches you, restless.'],['Um cavalo selvagem observa você.','A wild horse watches you.'],['Alimentar: será alimentado com maçã','Feed: it will be fed an apple'],['Domar: terá pequena chance, a chance aumenta alimentando','Tame: small chance, the chance grows by feeding'],[' · precisa de uma sela no inventário',' · needs a saddle in your inventory'],['Será alimentado com maçã','It will be fed an apple'],['Terá pequena chance, a chance aumenta alimentando','Small chance, the chance grows by feeding'],['🍎 Alimentar','🍎 Feed'],['🐴 Domar','🐴 Tame'],['Alimentar','Feed'],['Domar','Tame']);
 I18N_C.push(['Moita de mato alto','Tall grass thicket']);
 I18N_C.push(['Você desce do cavalo e o leva ao estábulo.','You dismount and lead the horse to the stable.'],['Você desce do cavalo para explorar o local.','You dismount to explore the place.']);
-I18N_C.push(['Viajar de cavalo','Ride horse'],['🐎 Seu cavalo está neste local. Se deixá-lo aqui, você terá de voltar depois para buscá-lo.','🐎 Your horse is at this location. If you leave it here, you will have to come back later to pick it up.'],['Parar viagem','Stop traveling'],['Viagem a cavalo: automática, com batalhas e eventos.','Horse travel: automatic, with battles and events.']);
+I18N_C.push(['Viajar de cavalo','Ride horse'],['🐎 Seu cavalo está neste local. Se deixá-lo aqui, você terá de voltar depois para buscá-lo.','🐎 Your horse is at this location. If you leave it here, you will have to come back later to pick it up.'],['🐎 Você desce do cavalo. Ele vai andando com você.','🐎 You dismount. Your horse walks along with you.'],['🐎 Seu cavalo vai andando com você.','🐎 Your horse walks along with you.'],['🐎 Você monta no cavalo.','🐎 You mount your horse.'],['Montar','Mount'],['Poção de vida média','Medium health potion'],['Poção de vida grande','Large health potion'],['Poção de magia média','Medium mana potion'],['Poção de magia grande','Large mana potion'],['Parar viagem','Stop traveling'],['Viagem a cavalo: automática, com batalhas e eventos.','Horse travel: automatic, with battles and events.']);
 I18N_C.push(['Seu cavalo está com fome e sede.','Your horse is hungry and thirsty.'],['Seu cavalo está com fome. Coloque trigo ou maçã no comedouro.','Your horse is hungry. Put wheat or apples in the feeder.'],['Seu cavalo está com sede. Encha o tanque de água.','Your horse is thirsty. Fill the water tank.'],['Seu cavalo morreu de fome.','Your horse died of hunger.'],['Seu cavalo morreu de sede.','Your horse died of thirst.'],[' Você já tem um cavalo: só dá para domar outro quando ele morrer.',' You already have a horse: you can only tame another one after it dies.'],['Comedouro','Feeder'],['Tanque de água','Water tank'],['Seu cavalo descansa no estábulo.','Your horse rests in the stable.'],['Fome do cavalo','Horse hunger'],['Sede do cavalo','Horse thirst'],['Seu cavalo está sofrendo!','Your horse is suffering!'],['Sem comida e água, ele morre em ','Without food and water, it dies in '],['Sem comida, ele morre em ','Without food, it dies in '],['Sem água, ele morre em ','Without water, it dies in '],['Água no tanque','Water in the tank'],['Água no tanque: ','Water in the tank: '],['Trigo: ','Wheat: '],['Maçã: ','Apple: '],['Despeje água do odre aqui. O cavalo bebe sozinho quando sente sede. Cada gole do odre enche 5% do tanque.','Pour water from your waterskin here. The horse drinks on its own when thirsty. Each sip from the waterskin fills 5% of the tank.'],['Não há cavalo no estábulo.','There is no horse in the stable.'],['Água no odre: ','Water in the waterskin: '],['Encher o tanque com o odre','Fill the tank with the waterskin'],['Despejar 1 gole (5%)','Pour 1 sip (5%)'],['Seu odre está vazio. Encha-o no poço.','Your waterskin is empty. Fill it at the well.'],['O tanque já está cheio.','The tank is already full.'],['Você despeja ','You pour '],['% de água do odre no tanque.','% of water from the waterskin into the tank.'],['Coloque trigo e maçãs aqui. O cavalo come sozinho quando sente fome. Cabem ','Put wheat and apples here. The horse eats on its own when hungry. It holds '],[' de cada. Os itens saem do inventário e do depósito.',' of each. Items are taken from your inventory and storage.'],['O comedouro já está cheio.','The feeder is already full.'],['Você não tem trigo.','You have no wheat.'],['Você não tem maçã.','You have no apples.'],['Você coloca ','You put '],[' trigo no comedouro.',' wheat in the feeder.'],[' maçã no comedouro.',' apple in the feeder.']);
 I18N_C.push(['Canteiros de ervas e trigo: rendem 1 erva e 2 trigo a cada 2 dias (no modo normal), e 1 maçã por dia, no depósito.','Herb and wheat beds: yield 1 herb and 2 wheat every 2 days (normal mode), plus 1 apple per day, in storage.']);
 
@@ -1001,7 +1001,7 @@ const IT={
  wheat:{n:'Trigo',i:'🌾',w:.5,food:6,sell:1},rotten:{n:'Comida estragada',i:'🤢',w:.5,food:6,hp:-4,sell:0},
  water:{n:"Odre d'água",i:'💧',w:0,water:35,sell:2,d:'Carrega 100% de água; cada gole usa 5%.'},wood:{n:'Lenha',i:'🪵',w:.5,sell:1},
  iron:{n:'Ferro',i:'⛓️',w:.5,sell:3},dhide:{n:'Pele de dragão',i:'🐉',w:1,sell:60},arrow:{n:'Flecha',i:'🏹',w:.1,sell:1,d:'Munição de besta. Equipe no lugar do escudo.'},leather:{n:'Couro',i:'🟫',w:.5,sell:2},cloth:{n:'Pano',i:'🧵',w:.5,sell:1},
- herb:{n:'Ervas',i:'🌿',w:.5,sell:2},saddle:{n:'Sela de couro',i:'🐴',w:3,sell:45},sleepbag:{n:'Saco de dormir',i:'🛏️',w:2,sell:12},hpot:{n:'Poção de vida',i:'❤️',w:1,heal:45,sell:22},mpot:{n:'Poção de magia',i:'🔮',w:1,mana:45,sell:22},
+ herb:{n:'Ervas',i:'🌿',w:.5,sell:2},saddle:{n:'Sela de couro',i:'🐴',w:3,sell:45},sleepbag:{n:'Saco de dormir',i:'🛏️',w:2,sell:12},hpot:{n:'Poção de vida',i:'❤️',w:1,heal:45,sell:22},mpot:{n:'Poção de magia',i:'🔮',w:1,mana:45,sell:22},hpot2:{n:'Poção de vida média',i:'❤️',w:1,heal:100,sell:55},hpot3:{n:'Poção de vida grande',i:'❤️',w:1,heal:220,sell:120},mpot2:{n:'Poção de magia média',i:'🔮',w:1,mana:100,sell:55},mpot3:{n:'Poção de magia grande',i:'🔮',w:1,mana:220,sell:120},
  holy:{n:'Água benta',i:'✨',w:.5,sell:15},stew:{n:'Ensopado',i:'🍲',w:1,food:40,water:8,sell:7},soup:{n:'Sopa de ervas',i:'🥣',w:1,food:14,water:22,heal:6,sell:4},fang:{n:'Presa',i:'🦷',w:.5,sell:8},pelt:{n:'Pele de lobisomem',i:'🐾',w:.5,sell:24}
 };
 const RAR=[{n:'Comum',m:1,d:20,c:'#b9b19f',b:'#cfd5d9'},{n:'Incomum',m:1.2,d:28,c:'#b9b19f',b:'#cfd5d9'},{n:'Raro',m:1.45,d:36,c:'#b9b19f',b:'#cfd5d9'},{n:'Épico',m:1.8,d:44,c:'#b9b19f',b:'#cfd5d9'},{n:'Lendário',m:2.2,d:56,c:'#b9b19f',b:'#cfd5d9'}];
@@ -1145,6 +1145,10 @@ const RECIPES=[
  {id:'skin',n:"Odre d'água (+100% de capacidade)",need:{leather:3,cloth:1},skin:1,h:1},
  {id:'hpot',n:'Poção de vida',need:{herb:3,water:1},give:{hpot:1},h:1},
  {id:'mpot',n:'Poção de magia',need:{herb:3,water:1},give:{mpot:1},h:1},
+ {id:'hpot2',n:'Poção de vida média',need:{herb:6,water:2},give:{hpot2:1},h:1},
+ {id:'hpot3',n:'Poção de vida grande',need:{herb:12,water:4},give:{hpot3:1},h:2},
+ {id:'mpot2',n:'Poção de magia média',need:{herb:6,water:2},give:{mpot2:1},h:1},
+ {id:'mpot3',n:'Poção de magia grande',need:{herb:12,water:4},give:{mpot3:1},h:2},
  {id:'arrows',n:'Flechas (x10)',need:{iron:1,wood:1},give:{arrow:10},h:1},
  {id:'holy',n:'Água benta (oferenda de 8 cobre)',need:{herb:3,water:2,coins:8},give:{holy:1},h:1},
  {id:'gamb',n:'Gambeson (defesa 1)',need:{cloth:4,leather:2},gear:()=>mkArmor(0),h:1},
@@ -1211,6 +1215,7 @@ function addXp(n){n=Math.max(1,Math.round(n*DF().x));G.xp=(G.xp||0)+n;const out=
 const lv=()=>G.lvl||1,need=()=>lv()*40;
 const cap=()=>50+(lv()-1)+(G.b.shelter?8:0)+2*AT('for');
 const SK=()=>G.skins==null?1:G.skins;
+function QT(k,n){return k==='water'?(n*5)+'%':'×'+n}
 function addItem(k,n=1){let a=0;if(k==='water')n=Math.min(n,Math.max(0,20*SK()-(G.inv.water||0)));for(let i=0;i<n;i++){if(weight()+IT[k].w>cap())break;G.inv[k]=(G.inv[k]||0)+1;a++}return a}
 function addGear(o){const w=gw(o);if(weight()+w>cap())return false;G.bag.push(o);return true}
 const chestCap=()=>500+(SL('chest')-1)*50;
@@ -1261,9 +1266,12 @@ function daily(){
   lg(`Amanhece no dia ${G.day}. A comida guardada pode ter estragado.`);
 }
 const HFOOD={wheat:18,apple:24},HFCAP=20;
-function hHere(){return G.horse&&(G.hAt?G.hAt===G.loc:G.loc==='camp')}
-function horseFix(){const H=G.horse;if(!H)return null;if(H.hu==null)H.hu=100;if(H.th==null)H.th=100;if(!H.z)H.z=0;if(!G.hfeed)G.hfeed={wheat:0,apple:0};if(G.htank==null)G.htank=0;return H}
-function horseFeed(){const H=horseFix();if(!H||!G.b.stable||G.hAt)return;
+function rdInfo(tr){if(!tr)return null;const e=tr.back&&tr.orig?tr.orig:tr,a=e.from,b=e.to,H=e.hours,d=tr.back&&tr.orig?tr.hours-tr.done:tr.done;return{a,b,H,d}}
+function rdDismount(){const tr=G.trip;if(!tr||!G.horse||G.hRd)return;const i=rdInfo(tr);G.hRd={a:i.a,b:i.b,h:i.d+(walk?(tr.back&&tr.orig?-1:1):0)};G.hAt=null}
+function rdHere(){return!!(G.trip&&G.hRd&&G.horse)}
+function hHere(){if(G.hRd)return false;return G.horse&&(G.hAt?G.hAt===G.loc:G.loc==='camp')}
+function horseFix(){const H=G.horse;if(!H)return null;if(G.hRd&&!G.trip)G.hRd=null;if(H.hu==null)H.hu=100;if(H.th==null)H.th=100;if(!H.z)H.z=0;if(!G.hfeed)G.hfeed={wheat:0,apple:0};if(G.htank==null)G.htank=0;return H}
+function horseFeed(){const H=horseFix();if(!H||!G.b.stable||G.hAt||G.hRd)return;
   if(H.hu<80)for(let i=0;i<40&&H.hu<100;i++){const k=G.hfeed.wheat>0?'wheat':G.hfeed.apple>0?'apple':null;if(!k||100-H.hu<HFOOD[k]/2)break;G.hfeed[k]--;H.hu=Math.min(100,H.hu+HFOOD[k])}
   if(H.th<80&&G.htank>0){const d=Math.min(G.htank,100-H.th);G.htank-=d;H.th+=d}
   if(H.hu>0&&H.th>0)H.z=0}
@@ -1281,6 +1289,7 @@ function advance(h){
     if(G.view==='over'||G.dflag)return;
     const w=1;
     G.hour++;if(G.mana==null)G.mana=MM();else if(G.mana<MM())G.mana++;if(G.hour===18&&G.day%2===0)lg('A lua cheia nasce no céu.');if(G.wolf&&!FM()){wolfHp(false);G.wolf=false;fx.morphRev=nowMs();lg('O dia clareia e você volta à forma humana.')}
+    if(rainNow()){if(G.b.well)G.wellW=100;if(G.b.stable)G.htank=100}
     if(G.horse)horseTick();G.food=Math.max(0,G.food-1.1*w*DF().r);G.water=Math.max(0,G.water-1.5*w*DF().r);
     if(G.food<=0){G.fT=(G.fT||0)+1;if(G.fT===1)lg('Você está sem comida. Sua vida vai se esgotando.');if(G.fT%2===0){hurt(1,'Fome');if(G.view==='over'||G.dflag)return}}else G.fT=0;if(G.water<=0){G.wT=(G.wT||0)+1;if(G.wT===1)lg('Você está sem água. Sua vida vai se esgotando.');if(G.wT%2===0){hurt(1,'Sede');if(G.view==='over'||G.dflag)return}}else G.wT=0;
     if(G.hp>0&&G.vamp&&ch(.5))hurt(1,'Vampirismo');
@@ -1442,8 +1451,7 @@ function pAct(a){
         cl(a==='wbite'?`Você crava as presas em ${D.n}: -${dmg}.`:`Suas garras rasgam ${D.n}: -${dmg}.`);if(a==='wbite'){const m0=G.mana==null?MM():G.mana;G.mana=Math.min(MM(),m0+4);cl('A mordida alimenta sua magia: +4 ✨.');fx.nums.push({x:70,y:86,v:'+4 ✨',t:nowMs(),c:'#6aa8ff'})}
         if(e.hp>0){if(a==='wbite'){if(!noPois(e)){e.poison=rnd(2,3);cl(D.n+' foi envenenado!')}}else{e.bleed=rnd(3,4);cl(D.n+' está sangrando!')}}}}
   }
-  else if(a==='hpot'){if(!G.inv.hpot)return;G.inv.hpot--;if(!G.inv.hpot)delete G.inv.hpot;heal(45);cl('Você bebe a poção: +45 de vida.')}
-  else if(a==='mpot'){if(!G.inv.mpot)return;G.inv.mpot--;if(!G.inv.mpot)delete G.inv.mpot;G.mana=Math.min(MM(),(G.mana==null?MM():G.mana)+45);cl('Você bebe a poção: +45 de magia.')}
+  else if(/^[hm]pot[23]?$/.test(a)){const it=IT[a];if(!G.inv[a])return;G.inv[a]--;if(!G.inv[a])delete G.inv[a];if(a[0]==='h'){heal(it.heal);cl('Você bebe a poção: +'+it.heal+' de vida.')}else{G.mana=Math.min(MM(),(G.mana==null?MM():G.mana)+it.mana);cl('Você bebe a poção: +'+it.mana+' de magia.')}}
   else if(a==='flee'){
     const f=ENM[TGT().k].flee?.9:.55;
     if(ch(f)){lg('Você escapou da luta.');const ks=Object.keys(G.inv).filter(q=>IT[q]),lost=[];for(let i=0,n=ch(.01)?1+(ch(.5)?1:0)+(ch(.25)?1:0):0;i<n&&ks.length;i++){const q=ks.splice(Math.floor(Math.random()*ks.length),1)[0],u=Math.max(1,Math.floor(G.inv[q]*.1));G.inv[q]-=u;if(G.inv[q]<=0)delete G.inv[q];lost.push(u+'x '+IT[q].n)}const rs=['Você escapa com o coração aos pulos.'];if(lost.length){rs.push('Na pressa, você deixa cair: '+lost.join(', ')+'.');lg('Você perdeu na fuga: '+lost.join(', ')+'.')}G.scene={res:rs};G.view='result';return}
@@ -1568,7 +1576,7 @@ function hourDone(){
   if(tr.done>=tr.hours)arrive();
 }
 function arrive(){
-  const to=G.trip.to,au=G.trip.auto;if(au)G.hAt=to!=='camp'?to:null;G.dir=LOCS[to].x<LOCS[G.trip.from].x?-1:1;if(to==='camp')G.snap=null;G.loc=to;G.trip=null;walk=null;G.bat=false;G.ret=to==='camp'?'camp':'poi';
+  const to=G.trip.to,au=G.trip.auto;if(au||rdHere()){G.hAt=to!=='camp'?to:null;G.hRd=null}G.dir=LOCS[to].x<LOCS[G.trip.from].x?-1:1;if(to==='camp')G.snap=null;G.loc=to;G.trip=null;walk=null;G.bat=false;G.ret=to==='camp'?'camp':'poi';
   G.view=to==='camp'?'camp':'poi';
   if(to==='camp')G.note='Você chega ao acampamento. O fogo ainda arde.';
   if(to==='vila')G.note='Você chega ao Vilarejo. Aqui ninguém procura briga.';
@@ -1589,13 +1597,13 @@ const A={
  sel(v){if(v!==G.loc)G.sel=v},
  travel(v){
    const to=G.sel;if(!to||to===G.loc||G.loc==null||to==='castle')return;
-   if(G.loc==='camp')G.snap=mkSnap();const hh0=hHere();G.trip={from:G.loc,to,hours:hoursBetween(G.loc,to),done:0,cool:2};if(v==='ride'&&G.horse&&hh0&&!G.bat&&!G.wolf){G.trip.auto=1;G.hAt=null}else if(G.horse&&hh0&&G.hAt&&G.hAt===G.loc)G.note='🐎 Seu cavalo está neste local. Se deixá-lo aqui, você terá de voltar depois para buscá-lo.';G.view='travel';G.sel=null;G.ret='travel';walk=null;
+   if(G.loc==='camp')G.snap=mkSnap();const hh0=hHere();G.trip={from:G.loc,to,hours:hoursBetween(G.loc,to),done:0,cool:2};if(v==='ride'&&G.horse&&hh0&&!G.bat&&!G.wolf){G.trip.auto=1;G.hAt=null}else if(G.horse&&hh0&&G.loc!=='camp'){G.hRd={a:G.loc,b:to,h:0};G.hAt=null;G.note='🐎 Seu cavalo vai andando com você.'}G.view='travel';G.sel=null;G.ret='travel';walk=null;
  },
  forage(){if(!G.trip||walk||G.trip.hours<=5)return;const ab0=G.day*24+G.hour;if(G.trip.fnext&&ab0<G.trip.fnext)return;G.ret='travel';advance(1);if(G.dflag||G.view==='over')return;G.trip.fnext=G.day*24+G.hour+2;if(ch(.18+(isNight()?.1:0))){fight([randomEncounter(LOCS[G.trip.to].biome)],{t:'travel'});return}const R_=DF().res,r=[ch(.45*R_)?gain('herb',RQ(rnd(1,2))):'',ch(.4*R_)?gain('wood',1):'',ch(.2*R_)?gain('apple',1):'',ch(.15*R_)?gain('water',1):''].filter(Boolean);G.scene={res:r.length?['Você vasculha as redondezas da estrada.',...r]:['Você vasculha as redondezas, mas não encontra nada de útil.']};G.view='result'},
  bat(){if(!G.trip||walk||!vFull())return;if(!G.bat&&!isNight()){G.note='Só à noite.';return}if(G.bat){if(!G.ubt){G.ubt=1;fx.ub=nowMs();setTimeout(()=>{if(!G||!G.ubt)return;G.ubt=0;fx.ub=0;G.bat=false;save();render()},1500);save();render()}}else if(!G.btr){G.btr=1;fx.bt=nowMs();setTimeout(()=>{if(!G||!G.btr)return;G.btr=0;G.bat=true;save();render()},1500);save();render()}},
  batflee(){if(!vFull()||!isNight()||G.view!=='combat')return;if(G.bfl)return;G.bfl=1;G.bat=false;fx.bf=nowMs();setTimeout(()=>{if(!G||!G.bfl)return;G.bfl=0;fx.bf=0;lg('Você vira morcego e some no céu escuro.');G.scene={res:['Você se transforma em morcego e escapa pelos ares.']};G.view='result';save();render()},1600)},
- ride(){if(!G.trip||walk||!G.horse||G.bat||G.wolf)return;G.trip.auto=1;A.step();save();render()},
- stopride(){if(G.trip)G.trip.auto=0;save();render()},
+ ride(){if(!G.trip||walk||!G.horse||G.bat||G.wolf||!rdHere())return;G.hRd=null;G.hAt=null;G.trip.auto=1;G.note='🐎 Você monta no cavalo.';A.step();save();render()},
+ stopride(){if(G.trip&&G.trip.auto){rdDismount();G.note='🐎 Você desce do cavalo. Ele vai andando com você.'}if(G.trip)G.trip.auto=0;save();render()},
  step(){
    if(!G.trip||walk)return;
    walk={t0:nowMs(),dur:1500,from:G.trip.done};TM=TSX+300;
@@ -1610,11 +1618,11 @@ const A={
    const ev=G.scene.ev;let r=ev.o[+v][1]();
    if(r&&!G.dflag&&G.view!=='over'){r=r.filter(Boolean);r.forEach(l=>lg(l));G.scene={res:r};G.view='result'}
  },
- bite(){pAct('bite')},summon(){pSum()},tgt(v){const S=G.scene;if(!S||!S.en||BUSY)return;const e=S.en[+v];if(e&&e.hp>0){S.tgt=+v;render()}},magic(){pAct('magic')},knife(){pAct('knife')},arrow(){pAct('arrow')},dart(){pAct('dart')},atk(){pAct('atk')},heavy(){pAct('heavy')},healc(){pAct('heal')},potc(){pAct('hpot')},mpotc(){pAct('mpot')},flee(){pAct('flee')},
+ bite(){pAct('bite')},summon(){pSum()},tgt(v){const S=G.scene;if(!S||!S.en||BUSY)return;const e=S.en[+v];if(e&&e.hp>0){S.tgt=+v;render()}},magic(){pAct('magic')},knife(){pAct('knife')},arrow(){pAct('arrow')},dart(){pAct('dart')},atk(){pAct('atk')},heavy(){pAct('heavy')},healc(){pAct('heal')},potc(v){pAct(v||'hpot')},mpotc(v){pAct(v||'mpot')},flee(){pAct('flee')},
  uturn(){
    const tr=G.trip;if(!tr||(walk&&!tr.auto)||G.ubt||G.btr)return;
    if(tr.back){G.trip={from:tr.to,to:tr.from,hours:tr.orig.hours,done:tr.hours-tr.done,cool:2,auto:tr.auto};G.sel=null;walk=null;G.note='Você retoma a viagem.';return}
-   if(tr.done<=0){G.trip=null;const b=tr.from==='camp';G.view=b?'camp':'poi';G.ret=b?'camp':'poi';G.note='Você desistiu da viagem e voltou.';return}
+   if(tr.done<=0){G.trip=null;if(G.hRd){G.hRd=null;G.hAt=tr.from==='camp'?null:tr.from}const b=tr.from==='camp';G.view=b?'camp':'poi';G.ret=b?'camp':'poi';G.note='Você desistiu da viagem e voltou.';return}
    G.trip={from:tr.to,to:tr.from,hours:tr.done,done:0,cool:2,back:1,auto:tr.auto,orig:{from:tr.from,to:tr.to,hours:tr.hours}};G.sel=null;walk=null;G.note='Você dá meia-volta.';
  },
  pkrepair(){
@@ -1657,7 +1665,7 @@ const A={
  shop(){
    if(!merchHere())return;
    if(!G.shop||G.shop.day!==merchKey()){
-     const st=[{key:'water',p:4,q:5},{key:'bread',p:4,q:5},{key:'apple',p:3,q:6},{key:'hpot',p:28,q:2},{key:'mpot',p:28,q:2},{key:'wood',p:3,q:8},{key:'holy',p:30,q:1},{key:'arrow',p:2,q:30},{key:'cloth',p:3,q:5},{key:'iron',p:6,q:5}];
+     const st=[{key:'water',p:4,q:5},{key:'bread',p:4,q:5},{key:'apple',p:3,q:6},{key:'hpot',p:28,q:2},{key:'mpot',p:28,q:2},{key:'hpot2',p:70,q:2},{key:'mpot2',p:70,q:2},{key:'wood',p:3,q:8},{key:'holy',p:30,q:1},{key:'arrow',p:2,q:30},{key:'cloth',p:3,q:5},{key:'iron',p:6,q:5}];
      for(let i=0;i<2;i++){const o=ch(.5)?mkWeapon():mkGear();st.push({gear:o,p:Math.round(gv(o)*1.4),q:1})}
      if(ch(.7)){const sc=mkScroll();st.push({gear:sc,p:Math.round(gv(sc)*1.4),q:1})}
      G.shop={day:merchKey(),name:'Mercante viajante',tc:1e9,stock:st};
@@ -1703,7 +1711,7 @@ const A={
    advance(SL('up')>=3?1:2);if(G.dflag)return;G.b[v]=true;lg(`${b.n} construído.`);
  },
  use(k){
-   const it=IT[k];if(!G.inv[k]||G.view==='combat')return;if(k==='hpot'&&G.wolf){lg('Lobisomens não usam poção de vida. Só na forma humana.');return}
+   const it=IT[k];if(!G.inv[k]||G.view==='combat')return;if(/^hpot/.test(k)&&G.wolf){lg('Lobisomens não usam poção de vida. Só na forma humana.');return}
    if(k==='holy'){G.inv[k]--;if(!G.inv[k])delete G.inv[k];if(G.turned){G.inv[k]=(G.inv[k]||0)+1;lg('A água benta não desfaz a maldição: você já se transformou em vampiro.')}else if(G.lyc&&G.lyc.perm){G.inv[k]=(G.inv[k]||0)+1;lg('Aviso: a maldição de lobisomem já é permanente. A água benta não a cura mais.')}else if(G.lyc){if(G.wolf)wolfHp(false);G.pts=(G.pts||0)+AT('lobo');if(G.at)G.at.lobo=0;G.lyc=null;G.wolf=false;lg('A água benta queima a maldição. Você foi curado da licantropia!')}else if(G.vamp){G.vamp=false;lg('A água benta queima a maldição. Você foi curado do vampirismo!')}else{heal(5);lg('Você bebe a água benta (+5 de vida).')}return}
    if(!(it.food||it.water||it.heal||it.mana))return;
    G.inv[k]--;if(!G.inv[k])delete G.inv[k];
@@ -2920,7 +2928,7 @@ function horseSpr(x,g,t,o){o=o||{};
    // herói sentado na sela
    const hxp=f>0?x-3:x+3,hyp=g-27+by-4;
    try{window.__ride=1;heroSprite(hxp,hyp,t,'sit',f<0,0,o.hk||.62)}catch(e){window.__oerr='rider: '+e.message}window.__ride=0;
-   P(1,-16+by-4,4,1,'#aab4be');P(1,-15+by-4,4,1,'#6a727c')}
+   P(1,-16+by-4,4,1,'#aab4be');P(1,-15+by-4,4,1,'#6a727c');{const x0=3,y0=-37+by,x1=hx+7,y1=hy+6,n=Math.max(1,Math.round(Math.abs(x1-x0)));for(let k=0;k<=n;k++){const u=k/n;P(Math.round(x0+(x1-x0)*u),Math.round(y0+(y1-y0)*u+Math.sin(u*Math.PI)*2.2),1,1,'#d8b878')}}}
 }
 const HRS=[{b:'#8a5a30',s:'#6a4020',l:'#a87442'},{b:'#d8d4c8',s:'#aaa698',l:'#f0ece0',m:'#8a8478'},{b:'#3a2e28',s:'#241c18',l:'#52443a',m:'#120c0a'},{b:'#b08040',s:'#8a6030',l:'#c89a58',m:'#f0e4c0'}];
 Object.assign(OD,{horse:(x,g,t,n,l)=>horseSpr(x,g,t,HRS[0]),hayb:(x,g)=>{rc(x-16,g-14,32,14,'#c8aa50');rc(x-16,g-14,32,2,'#e0c870');rc(x-16,g-8,32,1,'#8a6a2a');rc(x-5,g-14,1,14,'#8a6a2a');rc(x+6,g-14,1,14,'#8a6a2a');for(let q=0;q<8;q++)rc(x-15+q*4,g-16+(q%3),1,3,'#e0c870')},trough:(x,g)=>{rc(x-20,g-12,40,8,'#6a4a2a');rc(x-18,g-14,36,3,'#4a8ab0');rc(x-20,g-12,40,1,'#8a6a3a');rc(x-17,g-4,4,4,'#4a301c');rc(x+13,g-4,4,4,'#4a301c')}});
@@ -3155,6 +3163,7 @@ function buildHuman(o,K){
   const ik=(S,T,l1,l2,sg)=>{let dx=T[0]-S[0],dy=T[1]-S[1],d=Math.hypot(dx,dy);const m=l1+l2-.05;if(d>m){dx*=m/d;dy*=m/d;d=m}d=Math.max(d,2);const a=Math.atan2(dy,dx),A=Math.acos(Math.max(-1,Math.min(1,(l1*l1+d*d-l2*l2)/(2*l1*d)))),an=a+sg*A;const e=[S[0]+Math.cos(an)*l1,S[1]+Math.sin(an)*l1];return{s:S,e,h:[S[0]+dx,S[1]+dy]}};
 
   if(walk){const a=26*Math.sin(ph*Math.PI/2);AF=armPts(shF,-a*.9,-a*.9+18,8.6,8);AB=armPts(shB,a*.9,a*.9+14,8.6,8)}
+  else if(sit&&window.__ride){AF=ik(shF,[shF[0]+10.5,shF[1]+10],8.4,7.4,1);AB=ik(shB,[shB[0]+9,shB[1]+11],8.4,7,1)}
   else if(sit){AF=armPts(shF,12,92,8.4,7.4);AB=armPts(shB,8,88,8.4,7)}
   else if(atk&&o.wep&&o.wep.kind==='staff'){const q=Math.min(1,sw),a=-1.95+q*1.15,ah=-1.2-q*.15,ln=15;const e=[shF[0]+Math.cos(ah+.3)*8,shF[1]+Math.sin(ah+.3)*8];AF={s:shF,e,h:[shF[0]+Math.cos(ah)*ln,shF[1]+Math.sin(ah)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
   else if(atk&&o.wep&&o.wep.kind==='spear'){const a=-.12;const ln=6+Math.sin(Math.min(1,sw)*Math.PI/2)*11;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
@@ -3166,7 +3175,7 @@ function buildHuman(o,K){
   // escudo: braço de trás segura a borda do escudo
   if(shO){AB=ik(shB,[shCX-3.6,shCY-1.2],8.4,8,1)}
   const darkArm=(A,col,skinc,vis,edge)=>{
-    const rs=hasA&&ta>=1?3.1:2.8;
+    const rs=(hasA&&ta>=1?3.1:2.8)+(sit?.7:0);
     paint([['c',A.s[0],A.s[1],rs,A.e[0],A.e[1],rs-.2]],col,{side:.3,nohi:vis,edge:!!edge});
     // antebraço
     const fa=hasA&&ta>=1?col:(vamp?col:skinc);
@@ -4060,7 +4069,7 @@ function drawMerch(t,nf){
 /* estábulo: cavalo dentro, água no tanque e comida no comedouro */
 const HCOL={b:'#6a4228',s:'#46281a',l:'#855a38',m:'#1c120c'};
 function drawStable(t){
-  const H=G.hAt?null:G.horse,tk=Math.max(0,Math.min(100,G.htank||0)),fd=G.hfeed||{};
+  const H=(G.hAt||G.hRd)?null:G.horse,tk=Math.max(0,Math.min(100,G.htank||0)),fd=G.hfeed||{};
   // comedouro (centro mundo -268, borda interna y 162..170)
   {const w=+(fd.wheat||0),a=+(fd.apple||0);
    if(w>0){const f=Math.min(1,w/HFCAP),hh=Math.max(2,Math.round(2+7*f));rc(-285,172-hh,34,hh,'#e6bd4a');rc(-285,172-hh,34,1,'#f2d878');for(let i=0;i<12;i++)rc(-284+i*2.8,172-hh-1-(i%3===0?1:0),1,2,'#c8982a')}
@@ -4797,7 +4806,7 @@ function drawWolfFx(pos,slide,HX,HY,ms,t){
 }
 
 const easeIO=p=>p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
-function autoRide(){const tr=G&&G.trip;if(!tr||!tr.auto)return;if(!G.horse||G.bat||G.wolf){tr.auto=0;save();render();return}
+function autoRide(){const tr=G&&G.trip;if(!tr||!tr.auto)return;if(!G.horse||G.bat||G.wolf){if(G.horse)rdDismount();tr.auto=0;save();render();return}
   if(G.view!=='travel'||walk||G.dflag||G.modal||G.ubt||G.btr)return;A.step();render()}
 function tickWalk(now){
   if(!walk||!G||!G.trip)return;
@@ -4903,6 +4912,7 @@ function frame(ms){
         else{heroShadow(sx,150,32,SD0,10);
         if(moving){for(let i=0;i<5;i++){const age=((t*3+i*.2)%1);c.globalAlpha=.5*(1-age);rc(sx-7-age*14,147-age*5-i%2,3-age*2,2,P.gold)}c.globalAlpha=1}
         heroSprite(sx,148,moving?tt:0,moving?'walk':'stand',false);
+        if(rdHere()){heroShadow(sx-44,157,44,SD0,10);c.globalAlpha=1;horseSpr(sx-44,156,t*.6,{...HCOL,gal:true,f:false})}
         }
         if(back){c.restore();MIR=false}
       }
@@ -4923,7 +4933,7 @@ function frame(ms){
         const mC=inPoi?(G.dir===-1&&!VSC(G.loc)):!!(G.trip&&LOCS[G.trip.to].x<LOCS[G.trip.from].x);MIR=mC;if(mC){c.save();c.translate(W,0);c.scale(-1,1)}
         if(inPoi)drawLoc(G.loc,t,h);
         else{const tr=G.trip;const biome=(tr?(LOCS[tr.to].biome!=='swamp'?LOCS[tr.to].biome:(LOCS[tr.from].biome!=='swamp'?LOCS[tr.from].biome:'plain')):'plain');drawRoad(tr&&TTR===tr?TSX:0,biome,h,t,{})}
-        if(!(inPoi&&VSC(G.loc))){heroShadow(inPoi?52:150,inPoi?154:150,32,SD0,10);heroSprite(inPoi?52:150,inPoi?152:148,t,'stand',false);if(inPoi)drawWaitHorse(t)}
+        if(!inPoi&&G.trip&&G.trip.auto&&G.horse){heroShadow(150,157,44,SD0,10);c.globalAlpha=1;horseSpr(150,156,t,{...HCOL,gr:(t%14)<4.5,rider:true,f:false})}else if(!(inPoi&&VSC(G.loc))){heroShadow(inPoi?52:150,inPoi?154:150,32,SD0,10);heroSprite(inPoi?52:150,inPoi?152:148,t,'stand',false);if(inPoi)drawWaitHorse(t)}
         if(mC){c.restore();MIR=false}
         if(under){
           if(pI<.8){c.globalAlpha=Math.min(.9,Math.abs(Math.sin(pI*Math.PI*3.75))*.95);rc(0,0,W,H,P.white);c.globalAlpha=1}
@@ -4954,7 +4964,7 @@ V.pack=()=>{
   const ks=Object.keys(G.inv);
   if(!ks.length)h+=`<p class="dim" style="margin-top:8px">Nenhum item no inventário.</p>`;
   for(const k of ks){const it=IT[k],u=it.food||it.water||it.heal||it.mana||k==='holy';
-    h+=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.inv[k]}</small></span><span class="r">${u?`<button class="sm" data-a="use" data-v="${k}" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${k}">Largar</button></span></div>`}
+    h+=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(k,G.inv[k])}</small></span><span class="r">${u?`<button class="sm" data-a="use" data-v="${k}" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${k}">Largar</button></span></div>`}
   return h+`<div class="btns"><button data-a="close">Fechar</button></div></section>`;
 };
 V.chest=()=>{
@@ -4962,10 +4972,10 @@ V.chest=()=>{
   const ks=Object.keys(G.chest.inv);
   h+=`<h3>No depósito</h3>`;
   if(!ks.length&&!G.chest.bag.length)h+='<p class="dim">Vazio.</p>';
-  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>×${G.chest.inv[k]}</small></span><span class="r"><button class="sm" data-a="take" data-v="${k}:1">Pegar 1</button><button class="sm" data-a="take" data-v="${k}:all">Todos</button></span></div>`;
+  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>${QT(k,G.chest.inv[k])}</small></span><span class="r"><button class="sm" data-a="take" data-v="${k}:1">Pegar 1</button><button class="sm" data-a="take" data-v="${k}:all">Todos</button></span></div>`;
   for(const o of G.chest.bag)h+=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r"><button class="sm" data-a="takeg" data-v="${o.id}">Pegar</button></span></div>`;
   h+=`<h3 style="margin-top:12px">No inventário <small>peso ${weight()}/${cap()}</small></h3>`;
-  for(const k of Object.keys(G.inv))h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>×${G.inv[k]}</small></span><span class="r"><button class="sm" data-a="store" data-v="${k}:1">Guardar 1</button><button class="sm" data-a="store" data-v="${k}:all">Todos</button></span></div>`;
+  for(const k of Object.keys(G.inv))h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>${QT(k,G.inv[k])}</small></span><span class="r"><button class="sm" data-a="store" data-v="${k}:1">Guardar 1</button><button class="sm" data-a="store" data-v="${k}:all">Todos</button></span></div>`;
   for(const o of G.bag)h+=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r">${o.dur>0?`<button class="sm" data-a="storeg" data-v="${o.id}">Guardar</button>`:'<small class="dim">Quebrado</small>'}</span></div>`;
   return h+`<div class="btns"><button data-a="close">Fechar</button></div></section>`;
 };
@@ -4988,11 +4998,11 @@ V.trade=()=>{
   const T=G.trade;
   let h=`<section class="card trd"><h2>${T.name}</h2><div class="row"><span class="l"><small>Bolsa do mercador</small><br><b>${COIN_CU()} ???</b></span><span class="r"><small>Você</small><br><b>${fmtCoins(G.coins)}</b></span></div><p class="dim">Ele compra por 80% do valor, até o que tiver na bolsa.</p><h3>Comprar <small>${fmtCoins(G.coins)}</small></h3><div class="mscroll big tl" data-sc="tb">`;
   T.stock.forEach((s,i)=>{const label=s.gear?gdesc(s.gear):`${IT[s.key].i} ${IT[s.key].n}`;
-    h+=`<div class="row"><span class="l">${label} <small>×${s.q}</small></span><span class="r"><button class="sm" data-a="buy" data-v="${i}" ${s.q<1||G.coins<s.p?'disabled':''}>${COIN_CU()} ${s.p}</button></span></div>`});
+    h+=`<div class="row"><span class="l">${label} <small>${QT(s.key,s.q)}</small></span><span class="r"><button class="sm" data-a="buy" data-v="${i}" ${s.q<1||G.coins<s.p?'disabled':''}>${COIN_CU()} ${s.p}</button></span></div>`});
   h+=`</div><h3 style="margin-top:12px">Vender</h3><div class="mscroll big tl" data-sc="ts">`;
   const ks=Object.keys(G.inv).filter(k=>IT[k].sell>0);
   if(!ks.length&&!G.bag.length)h+='<p class="dim">Nada para vender.</p>';
-  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>×${G.inv[k]}</small></span><span class="r"><button class="sm" data-a="sell" data-v="${k}">${COIN_CU()} ${Math.round(IT[k].sell*.8)||1}</button></span></div>`;
+  for(const k of ks)h+=`<div class="row"><span class="l">${IT[k].i} ${IT[k].n} <small>${QT(k,G.inv[k])}</small></span><span class="r"><button class="sm" data-a="sell" data-v="${k}">${COIN_CU()} ${Math.round(IT[k].sell*.8)||1}</button></span></div>`;
   for(const o of G.bag)h+=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r"><button class="sm" data-a="sell" data-v="g:${o.id}">${COIN_CU()} ${Math.round(gv(o)*.6)}</button></span></div>`;
   return h+`</div><div class="btns"><button data-a="close">Fechar</button></div></section>`;
 };
@@ -5161,6 +5171,16 @@ VEC.hattr=(g)=>{vL(g,[[[[8,40],[20,40],[20,58],[8,58]],'#5a9a3a']]);vL(g,[[[[24,
 
 const mixc=(a,b,t)=>{const A=[1,3,5].map(i=>parseInt(a.substr(i,2),16)),B2=[1,3,5].map(i=>parseInt(b.substr(i,2),16));return '#'+A.map((v,i)=>Math.round(v+(B2[i]-v)*t).toString(16).padStart(2,'0')).join('')};
 ICP.T='#2a4a98';ICS.mpot=ICS.hpot.map(r=>r.replace(/r/g,'u').replace(/s/g,'v').replace(/t/g,'T'));
+(function(){const glow=(g,cx,cy,r,col,a)=>{g.save();const gr=g.createRadialGradient(cx,cy,2,cx,cy,r);gr.addColorStop(0,col);gr.addColorStop(1,'rgba(255,255,255,0)');g.globalAlpha=a;g.fillStyle=gr;g.beginPath();g.arc(cx,cy,r,0,6.3);g.fill();g.restore()};
+const star=(g,x,y,r,a)=>{g.save();g.globalAlpha=a;g.fillStyle='#fff';g.beginPath();g.moveTo(x,y-r);g.quadraticCurveTo(x,y,x+r,y);g.quadraticCurveTo(x,y,x,y+r);g.quadraticCurveTo(x,y,x-r,y);g.quadraticCurveTo(x,y,x,y-r);g.fill();g.restore()};
+const mk=(liq,gl,tier)=>g=>{glow(g,32,36,tier===3?31:26,gl,tier===3?.75:.5);
+ vL(g,[[[[24,1],[40,1],[40,8],[24,8]],'#8a5a2b'],[[[25,8],[39,8],[39,17],[25,17]],'#d8e8f0'],[[[25,17],[39,17],[58,32],[60,48],[52,59],[12,59],[4,48],[6,32]],'#d8e8f0']]);
+ vL(g,[[[[9,33],[55,33],[57,47],[50,56],[14,56],[7,47]],liq]]);
+ if(tier===3){vL(g,[[[[22,4],[42,4],[42,8],[22,8]],'#d8a82a']])}
+ vH(g,13,30,11,48,3);vH(g,19,40,30,40,1.6,.55);vH(g,38,22,38,27,1.6);
+ star(g,50,22,tier===3?7:5,.95);if(tier===3){star(g,12,14,5,.9);star(g,55,52,4,.8)}else star(g,13,18,3.5,.8)};
+for(const [k,liq,gl,t] of [['hpot2','#d83a46','#ffd0d0',2],['hpot3','#e02a3a','#ffe27a',3],['mpot2','#3a6ad8','#cfe0ff',2],['mpot3','#3a5ae8','#bfe6ff',3]]){VEC[k]=mk(liq,gl,t);ICS[k]=ICS.hpot}})();
+
 ICS.saddle=[];VEC.saddle=(g)=>{
  vL(g,[[[[16,34],[30,34],[30,52],[18,52]],'#8a5a2b'],[[[30,34],[46,34],[44,52],[30,52]],'#b8803f']]);
  vL(g,[[[[8,30],[14,20],[20,22],[20,34],[10,36]],'#7a4a22'],[[[44,22],[50,14],[56,18],[54,32],[44,34]],'#9a6630']]);
@@ -5323,7 +5343,7 @@ function barHTML0(){
   const v=G.view;
   if(v==='camp')return (G.note&&!/^Sente-se junto/.test(G.note)?`<div class="bt">${G.note}</div>`:'')+(wolfBtn()?`<div class="btns">${wolfBtn()}</div>`:'');
   if(v==='travel'){const tr=G.trip;if(!tr)return '';if(G.ubt||G.btr)return '';const pr=Math.round(tr.done/tr.hours*100);
-    return ((G.wconf||/dormi/.test(G.note||""))&&G.note?`<div class="bt">${G.note}</div>`:'')+`<div class="bt"><b>Viagem para ${LOCS[tr.to].n}</b> · hora ${tr.done} de ${tr.hours}<div class="prog"><i style="width:${pr}%"></i></div><small>${tr.auto?'Viagem a cavalo: automática, com batalhas e eventos.':'Cada clique caminha 1 hora.'}</small></div><div class="btns">${tr.auto?'<button class="pri" data-a="stopride">⏸ Parar viagem</button>':`<button class="pri" data-a="step" ${walk?'disabled':''}>${G.bat?'🦇 Voar 2h':G.wolf?'🐺 Correr 2h':'🚶 Viajar 1h'}</button>`}<button data-a="uturn" title="Voltar" aria-label="Voltar" style="min-width:0;padding:0 12px;font-size:20px;line-height:1" ${walk&&!tr.auto?'disabled':''}>${LOCS[tr.to].x<LOCS[tr.from].x?'↪':'↩'}</button>${vFull()&&isNight()?`<button data-a="bat" ${walk?'disabled':''}>${G.bat?'🧍 Forma humana':'🦇 Virar morcego'}</button>`:''}${wolfBtn()}</div>`}
+    return ((G.wconf||/dormi/.test(G.note||""))&&G.note?`<div class="bt">${G.note}</div>`:'')+`<div class="bt"><b>Viagem para ${LOCS[tr.to].n}</b> · hora ${tr.done} de ${tr.hours}<div class="prog"><i style="width:${pr}%"></i></div><small>${tr.auto?'Viagem a cavalo: automática, com batalhas e eventos.':'Cada clique caminha 1 hora.'}</small></div><div class="btns">${tr.auto?'<button class="pri" data-a="stopride">⏸ Parar viagem</button>':(rdHere()&&!G.bat&&!G.wolf?'<button class="pri" data-a="ride">🐎 Montar</button>':'')+`<button class="pri" data-a="step" ${walk?'disabled':''}>${G.bat?'🦇 Voar 2h':G.wolf?'🐺 Correr 2h':'🚶 Viajar 1h'}</button>`}<button data-a="uturn" title="Voltar" aria-label="Voltar" style="min-width:0;padding:0 12px;font-size:20px;line-height:1" ${walk&&!tr.auto?'disabled':''}>${LOCS[tr.to].x<LOCS[tr.from].x?'↪':'↩'}</button>${vFull()&&isNight()?`<button data-a="bat" ${walk?'disabled':''}>${G.bat?'🧍 Forma humana':'🦇 Virar morcego'}</button>`:''}${wolfBtn()}</div>`}
   if(v==='poi'&&G.loc==='guild')return `<div class="bt"><b>Guilda dos Caçadores</b> · Um lugar seguro nas montanhas, com tendas, forjas e correntes. Toque em um caçador para conversar.<small>Arraste a tela para os lados para ver a guilda.</small></div><div class="btns"><button data-a="openmap">🗺️ Mapa</button>${wolfBtn()}</div>`
   if(v==='poi'&&G.loc==='vila')return `<div class="bt"><b>Vilarejo</b> · Um lugar tranquilo, sem perigo. Toque no mercante, no ferreiro, na carroça ou no lenhador.<small>Arraste a tela para os lados para ver o vilarejo.</small></div><div class="btns"><button data-a="openmap">🗺️ Mapa</button>${wolfBtn()}</div>`
   if(v==='poi'&&OBJS[G.loc]){const key=G.loc,D=POI[key],lf=objsLeft(key);pkChk();return `<div class="bt"><b>${D.n}</b> · ${D.d}<small>${lf?'Toque nos objetos para saquear ('+lf+' de '+OBJS[key].length+' restantes). Arraste a tela para os lados.':'Tudo saqueado aqui. Volte em '+Math.max(1,RSP(key)-(G.day-Math.min(...OBJS[key].map(o=>objDone(key,o.id)==null?G.day:objDone(key,o.id)))))+' dia(s).'}</small></div><div class="btns">${G.loc.startsWith('in_')?'':'<button data-a="openmap">🗺️ Mapa</button>'}${wolfBtn()}</div>`}
@@ -5332,7 +5352,7 @@ function barHTML0(){
   if(v==='combat'){const S=G.scene,w=wepOk();
     if(S&&S.en&&S.en[0]&&S.en[0].k==='whorse'){const e=S.en[0],ap=G.inv.apple||0,sd=G.inv.saddle||0;
       return `<div class="bt"><b>Um cavalo selvagem observa você.</b><small>Alimentar: será alimentado com maçã (${ap}). Domar: terá pequena chance, a chance aumenta alimentando${sd?'':' · precisa de uma sela no inventário'}.${G.horse?' Você já tem um cavalo: só dá para domar outro quando ele morrer.':''}</small></div><div class="btns"><button class="pri" data-a="feed" ${ap?'':'disabled'} title="Será alimentado com maçã">🍎 Alimentar</button><button data-a="tame" ${sd&&!G.horse?'':'disabled'} title="Terá pequena chance, a chance aumenta alimentando">🐴 Domar</button><button data-a="openpack">🎒 Inventário</button><button class="bad" data-a="flee">🏃 Fugir</button></div>`}
-    return `<div class="bt"><b>O que você vai fazer?</b><small>${w?`${G.wep.n}: dano ${G.wep.a+G.wep.lvl-1}-${G.wep.b+G.wep.lvl-1}, dur ${durP(G.wep)}`:'Sem arma útil: você luta com os punhos.'}</small></div><div class="btns">${G.wolf?'':'<button class="pri" data-a="atk">⚔️ Atacar</button>'}<button data-a="openpack">🎒 Inventário</button>${vBite()?'<button data-a="bite">🦷 Morder (8 ✨)</button>':''}${vFull()&&G.scene&&!G.scene.pb?'<button data-a="summon" '+((G.mana==null?MM():G.mana)>=50?'':'disabled')+'>🦇 Invocar (50 ✨)</button>':''}${vFull()&&isNight()?'<button data-a="batflee">🦇 Fugir voando</button>':''}${wolfAtk()}${wolfBtn()}${G.inv.hpot&&!G.wolf?'<button data-a="potc" title="Poção de vida" aria-label="Poção de vida" style="min-width:0">'+IT.hpot.i+'</button>':''}${G.inv.mpot?'<button data-a="mpotc" title="Poção de magia" aria-label="Poção de magia" style="min-width:0">'+IT.mpot.i+'</button>':''}<button class="bad" data-a="flee">🏃 Fugir</button></div>`}
+    return `<div class="bt"><b>O que você vai fazer?</b><small>${w?`${G.wep.n}: dano ${G.wep.a+G.wep.lvl-1}-${G.wep.b+G.wep.lvl-1}, dur ${durP(G.wep)}`:'Sem arma útil: você luta com os punhos.'}</small></div><div class="btns">${G.wolf?'':'<button class="pri" data-a="atk">⚔️ Atacar</button>'}<button data-a="openpack">🎒 Inventário</button>${vBite()?'<button data-a="bite">🦷 Morder (8 ✨)</button>':''}${vFull()&&G.scene&&!G.scene.pb?'<button data-a="summon" '+((G.mana==null?MM():G.mana)>=50?'':'disabled')+'>🦇 Invocar (50 ✨)</button>':''}${vFull()&&isNight()?'<button data-a="batflee">🦇 Fugir voando</button>':''}${wolfAtk()}${wolfBtn()}${['hpot','hpot2','hpot3'].map(k=>G.inv[k]&&!G.wolf?'<button data-a="potc" data-v="'+k+'" title="'+IT[k].n+'" aria-label="'+IT[k].n+'" style="min-width:0">'+IT[k].i+'</button>':'').join('')}${['mpot','mpot2','mpot3'].map(k=>G.inv[k]?'<button data-a="mpotc" data-v="'+k+'" title="'+IT[k].n+'" aria-label="'+IT[k].n+'" style="min-width:0">'+IT[k].i+'</button>':'').join('')}<button class="bad" data-a="flee">🏃 Fugir</button></div>`}
   return '';
 }
 A.opencraft=()=>{G.modal='craft'};
@@ -5382,7 +5402,7 @@ V.pack=()=>{
     else if(t==='e'&&G[id]){det=`<div class="row"><span class="l">${gdesc(G[id])}</span><span class="r"><button class="sm" data-a="unequip" data-v="${id}">Tirar</button></span></div>`}
     else if(t==='g'){const o=G.bag.find(x=>x.id===id);if(o)det=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r">${o.k==='sc'?'<small class="dim">Use na bigorna</small>':o.dur>0?`<button class="sm" data-a="equip" data-v="${o.id}" ${''}>Equipar</button>`:'<small class="dim">Quebrado </small>'}<button class="sm" data-a="dropg" data-v="${o.id}">Largar</button></span></div>`}
     else if(t==='i'&&id==='water'){const it=IT.water,w0=G.inv.water||0;det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${Math.round(w0/(20*SK())*100)}% de ${SK()*100}%</small><br><small class="dim">${it.d}</small></span><span class="r"><button class="sm" data-a="use" data-v="water" ${cb||!w0?'disabled':''}>Beber (5%)</button></span></div>`}
-    else if(t==='i'&&G.inv[id]){const it=IT[id],u=it.food||it.water||it.heal||it.mana||id==='holy';det=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.inv[id]}</small>${it.d?`<br><small class="dim">${it.d}</small>`:''}</span><span class="r">${/^arrow/.test(id)?`<button class="sm" data-a="eqarrow" data-v="${id}">${cb?'Recarregar':'Equipar'}</button>`:''}${u?`<button class="sm" data-a="use" data-v="${id}" ${cb?'disabled':''}>Usar</button>`:''}${id==='sleepbag'&&(G.trip||G.view==='poi'||cb)?`<button class="sm" data-a="bagsleep" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${id}">Largar</button></span></div>`}
+    else if(t==='i'&&G.inv[id]){const it=IT[id],u=it.food||it.water||it.heal||it.mana||id==='holy';det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(id,G.inv[id])}</small>${it.d?`<br><small class="dim">${it.d}</small>`:''}</span><span class="r">${/^arrow/.test(id)?`<button class="sm" data-a="eqarrow" data-v="${id}">${cb?'Recarregar':'Equipar'}</button>`:''}${u?`<button class="sm" data-a="use" data-v="${id}" ${cb?'disabled':''}>Usar</button>`:''}${id==='sleepbag'&&(G.trip||G.view==='poi'||cb)?`<button class="sm" data-a="bagsleep" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${id}">Largar</button></span></div>`}
   }
   return `<section class="card mc"><h3>Inventário <small>peso ${weight()}/${cap()}</small></h3>${PWARN?`<p style="color:#f0a090;margin:0 0 6px;font-weight:700">⚠️ ${PWARN}</p>`:''}
   <div class="mtop"><div class="mcol">${eq('helm','Elmo')}${eq('arm','Peitoral')}${eq('pants','Calça')}${eq('boots','Botas')}${eq('cape','Capa')}</div>
@@ -5404,9 +5424,9 @@ V.chest=()=>{
   const mk=(pre,inv,bag,min)=>{const it=[];for(const o of bag)it.push(cell(pre+':g:'+o.id,gIcon(o),durBar(o),o.n));for(const k of Object.keys(inv))it.push(cell(pre+':i:'+k,IT[k].i,`<b class="mn">${inv[k]}</b>`,IT[k].n));const tot=Math.max(min,Math.ceil((it.length+9)/9)*9);while(it.length<tot)it.push('<div class="mslot empty"></div>');return it.join('')};
   let det='<p class="dim">Toque num item para ver as opções.</p>';
   if(CSEL){const[w,t,...r]=CSEL.split(':'),id=r.join(':');
-    if(w==='c'&&t==='i'&&G.chest.inv[id]){const it=IT[id];det=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.chest.inv[id]}</small></span><span class="r"><button class="sm" data-a="take" data-v="${id}:1">Pegar 1</button><button class="sm" data-a="take" data-v="${id}:all">Todos</button></span></div>`}
+    if(w==='c'&&t==='i'&&G.chest.inv[id]){const it=IT[id];det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(id,G.chest.inv[id])}</small></span><span class="r"><button class="sm" data-a="take" data-v="${id}:1">Pegar 1</button><button class="sm" data-a="take" data-v="${id}:all">Todos</button></span></div>`}
     else if(w==='c'&&t==='g'){const o=G.chest.bag.find(x=>x.id===id);if(o)det=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r"><button class="sm" data-a="takeg" data-v="${o.id}">Pegar</button></span></div>`}
-    else if(w==='p'&&t==='i'&&G.inv[id]){const it=IT[id];det=`<div class="row"><span class="l">${it.i} ${it.n} <small>×${G.inv[id]}</small></span><span class="r"><button class="sm" data-a="store" data-v="${id}:1">Guardar 1</button><button class="sm" data-a="store" data-v="${id}:all">Todos</button></span></div>`}
+    else if(w==='p'&&t==='i'&&G.inv[id]){const it=IT[id];det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(id,G.inv[id])}</small></span><span class="r"><button class="sm" data-a="store" data-v="${id}:1">Guardar 1</button><button class="sm" data-a="store" data-v="${id}:all">Todos</button></span></div>`}
     else if(w==='p'&&t==='g'){const o=G.bag.find(x=>x.id===id);if(o)det=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r">${o.k==='sc'||o.dur>0?`<button class="sm" data-a="storeg" data-v="${o.id}">Guardar</button>`:'<small class="dim">Quebrado</small>'}</span></div>`}
   }
   return `<section class="card mc mcw"><h2>Depósito</h2>${lvBox('chest')}<p class="dim">Guarde o que não precisa carregar. Capacidade ${chestW()}/${chestCap()}. A comida apodrece com o tempo.</p>
@@ -5451,7 +5471,7 @@ V.anvil=()=>{
 
 A.openpurse=()=>{G.modal='purse'};
 V.purse=()=>{const c=coinSplit(G.coins);return `<section class="card"><h2>Bolsa de dinheiro</h2><div class="row"><span class="l">${coinI('au')} Moedas de ouro</span><span class="r"><b>${c.au}</b></span></div><div class="row"><span class="l">${coinI('ag')} Moedas de prata</span><span class="r"><b>${c.ag}</b></span></div><div class="row"><span class="l">${coinI('cu')} Moedas de cobre</span><span class="r"><b>${c.cu}</b></span></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
-const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mtunic','mpants','mshoes'],misc:['sbag','sdl','skin','hpot','mpot','holy']};
+const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mtunic','mpants','mshoes'],misc:['sbag','sdl','skin','hpot','mpot','hpot2','mpot2','hpot3','mpot3','holy']};
 A.ctab=v=>{G.ctab=v};A.atab=v=>{G.atab=v};A.wtab=v=>{G.wtab=v};
 const WSUB={melee:['sword','axe'],ranged:['knives','arrows'],magic:['cajado']};
 const ASUB={mage:['mhat','mrobe','mtunic','mpants','mshoes','cap2','pan0'],war:['gamb','mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['cap1','pan1','bot0','hel0','shd0']};
@@ -5700,7 +5720,7 @@ A.vmerch=()=>{if(G.loc!=='vila')return;
     G.vm={day:G.day,name:'Mercante do vilarejo',tc:1e9,stock:st}}
   G.trade=G.vm;G.modal='trade'};
 A.vwitch=()=>{if(G.loc!=='vila')return;if(G.vw)G.vw.name='Curandeira cigana';
-  if(!G.vw||G.vw.day!==G.day){const st=[{key:'hpot',p:35,q:10},{key:'mpot',p:35,q:10},{key:'herb',p:8,q:20}];
+  if(!G.vw||G.vw.day!==G.day){const st=[{key:'hpot',p:35,q:10},{key:'mpot',p:35,q:10},{key:'hpot2',p:85,q:5},{key:'mpot2',p:85,q:5},{key:'hpot3',p:180,q:3},{key:'mpot3',p:180,q:3},{key:'herb',p:8,q:20}];
     for(let i=0;i<2;i++){const o=mkWeapon(i?2:1,{n:'Cajado',a:4,b:7});o.fx=null;o.n='Cajado de madeira';st.push({gear:o,p:Math.round(gv(o)*1.5),q:1})}
     G.vw={day:G.day,name:'Curandeira cigana',tc:1e9,stock:st}}
   if(!G.vw.stock.some(x=>x.gear&&x.gear.k==='sc')){const fl=FXS.slice().sort(()=>Math.random()-.5).slice(0,3);for(const f of fl){const o=mkScroll(f);G.vw.stock.push({gear:o,p:120,q:1})}}
