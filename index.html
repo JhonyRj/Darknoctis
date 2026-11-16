@@ -193,7 +193,7 @@ body{padding:0!important;background:#0a0705}
 .mscroll.big{max-height:min(28vh,156px)}
 .mscroll::-webkit-scrollbar{width:8px}.mscroll::-webkit-scrollbar-thumb{background:#2c3862}.mscroll::-webkit-scrollbar-track{background:#070a16}
 .gemc{background:transparent!important;display:block;margin:0 auto;width:120px;height:120px;image-rendering:pixelated}
-.manv{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0}.mslot.big{width:52px;height:52px;aspect-ratio:auto;flex:none}.mslot.big .mi{font-size:26px}.manv>b{font-size:20px;color:var(--dim)}
+.manv{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0}.mslot.big{width:52px;height:52px;aspect-ratio:auto;flex:none}.mslot.big .mi{font-size:26px}.manv>b{font-size:20px;color:var(--dim)}.ctabs{display:flex;gap:4px;margin:6px 0}.ctabs button{flex:1;min-width:0;padding:8px 2px;font-size:13px}.cact{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}.cact button small{display:block;font-size:11px;opacity:.8;font-weight:400}
 .ic{display:inline-block;width:1.25em;height:1.25em;background-size:100% 100%;background-repeat:no-repeat;image-rendering:pixelated;image-rendering:crisp-edges;vertical-align:-.25em}.mi .ic{width:1.6em;height:1.6em;vertical-align:middle}.mslot.big .mi .ic{width:1.5em;height:1.5em}
 .fgside{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:30;padding:10px 12px;max-width:120px;text-align:center}
 .mwrap h2,.mwrap h3{text-align:center;justify-content:center;flex-wrap:wrap}
@@ -953,7 +953,13 @@ I18N_C.push(['Água Benta','Holy Water']);
 I18N_C.push(['Entrar na cabana do chefe',"Enter the chief's cabin"],['Interior da cabana',"Cabin interior"],['Cabana do chefe, com mapas e um baú trancado.',"The chief's cabin, with maps and a locked chest."]);
 I18N_C.push(['Facas giratórias','Spinning knives'],['Lança facas girando em cruz: esquerda e direita; nível 2 completa a cruz; nível 3 as diagonais; depois lançamentos extras. Todas as classes','Throws spinning knives in a cross: left and right; level 2 completes the cross; level 3 adds diagonals; then extra volleys. All classes']);
 I18N_C.push(['▶ Jogar','▶ Play']);
-I18N_C.push(['Editar herói','Edit hero'],['Criar personagem','Create character'],['🧙 Criar personagem','🧙 Create character'],['Sexo','Sex'],['Cor da pele','Skin color'],['Cabelo','Hair'],['Cor do cabelo','Hair color'],['Barba','Beard'],['Cor da barba','Beard color'],['Salvar','Save'],['Curto','Short'],['Longo','Long'],['Rabo de cavalo','Ponytail'],['Moicano','Mohawk'],['Volumoso','Voluminous'],['Careca','Bald'],['Nenhuma','None'],['Bigode','Mustache'],['Cavanhaque','Goatee'],['Curta','Short'],['Cheia','Full'],['Longa','Long'],['✓ Personagem salvo','✓ Character saved']);
+I18N_C.push(['Grimório vazio (encante na bigorna)','Empty grimoire (enchant at the anvil)'],['Grimório vazio','Empty grimoire'],['Grimório de Veneno','Poison Grimoire'],['Grimório de Gelo','Ice Grimoire'],['Grimório de Fogo','Fire Grimoire'],['Grimório de Trovão','Thunder Grimoire'],['Grimório · ','Grimoire · '],['magia de ','spell: '],['(aba Magia)','(Magic tab)'],['vazio: encante na bigorna','empty: enchant at the anvil'],['Grimório encantado: ','Grimoire enchanted: '],[' se desfaz em luz e o grimório desperta (magia: ',' dissolves into light and the grimoire awakens (spell: '],
+['Chuva venenosa','Poison rain'],['Tempestade de gelo','Ice storm'],['Bola de fogo','Fireball'],['Tempestade de raios','Lightning storm'],
+['Chuva sobre todos os inimigos: dano e veneno por 3-5 turnos','Rain over all enemies: damage and poison for 3-5 turns'],['Chove gelo no alvo: dano e congela por 3-5 turnos','Ice rains on the target: damage and freezes for 3-5 turns'],['Grande bola de fogo no alvo: dano e queima por 3-5 turnos','Big fireball on the target: damage and burns for 3-5 turns'],['4 a 5 raios sorteados: dano e atordoa por 3-5 turnos','4 to 5 random bolts: damage and stuns for 3-5 turns'],
+['Você abre o grimório e conjura ','You open the grimoire and cast '],['A chuva venenosa fere ','The poison rain hurts '],['Estilhaços de gelo atingem ','Ice shards hit '],['A bola de fogo explode em ','The fireball explodes on '],['Um raio atinge ','A bolt strikes '],[' é atordoado pelo raio!',' is stunned by the lightning!'],['Magia insuficiente: ','Not enough magic: '],
+['Na forma de lobo você não consegue conjurar magias.','In wolf form you cannot cast spells.'],['O grimório se desgastou: conserte-o.','The grimoire is worn out: repair it.'],['Seu grimório está vazio. Encante-o na bigorna com uma pedra de Veneno, Gelo, Fogo ou Trovão.','Your grimoire is empty. Enchant it at the anvil with a Poison, Ice, Fire or Thunder stone.'],['Nenhuma magia disponível. Equipe um grimório encantado no lugar do escudo.','No spell available. Equip an enchanted grimoire in place of the shield.'],
+['Pedras de encantamento encantam apenas armas e grimórios.','Enchantment stones can only enchant weapons and grimoires.'],['Grimórios só aceitam pedras de Veneno, Gelo, Fogo ou Trovão.','Grimoires only accept Poison, Ice, Fire or Thunder stones.']);
+I18N_C.push(['Você não tem poções.','You have no potions.'],['Na forma de lobo você luta com ataques especiais.','In wolf form you fight with special attacks.'],['Nenhum ataque especial disponível.','No special attacks available.'],['Nenhuma magia aprendida ainda.','No spells learned yet.'],['Em breve.','Coming soon.'],['Acerto ','Accuracy '],['(sobe com agilidade)','(rises with agility)'],['Golpe pesado','Heavy strike'],['Dano x1.7 · 50% de acerto','Damage x1.7 · 50% to hit'],['Veneno e recupera magia','Poisons and restores mana'],['Causa sangramento','Causes bleeding'],['Recupera vida','Restores health'],['Drena a vida do alvo','Drains the target\'s life'],['Chama um morcego aliado','Summons an ally bat'],['Escapa da batalha em forma de morcego','Escape the battle as a bat'],['⚔️ Ataque','⚔️ Attack'],['✨ Especial','✨ Special'],['🔮 Magia','🔮 Magic'],['🧪 Poções','🧪 Potions'],['Editar herói','Edit hero'],['Criar personagem','Create character'],['🧙 Criar personagem','🧙 Create character'],['Sexo','Sex'],['Cor da pele','Skin color'],['Cabelo','Hair'],['Cor do cabelo','Hair color'],['Barba','Beard'],['Cor da barba','Beard color'],['Salvar','Save'],['Curto','Short'],['Longo','Long'],['Rabo de cavalo','Ponytail'],['Moicano','Mohawk'],['Volumoso','Voluminous'],['Careca','Bald'],['Nenhuma','None'],['Bigode','Mustache'],['Cavanhaque','Goatee'],['Curta','Short'],['Cheia','Full'],['Longa','Long'],['✓ Personagem salvo','✓ Character saved']);
 I18N_C.push(...['longo','curto','rabo','curta','cheia','longa','cavanhaque','careca','moicano','volumoso','bigode'].map(x=>[x,x]));
 I18N_C.push(['Nome','Name'],['Nome do personagem','Character name']);
 I18N_C.push(['Jogar','Play']);
@@ -1019,7 +1025,7 @@ const SLOT={a:'arm',h:'helm',c:'cape',s:'shield',p:'pants',b:'boots'};
 const SLOTN={w:'Arma',a:'Peitoral',h:'Elmo',c:'Capa',s:'Escudo',p:'Calça',b:'Botas'};
 const SLOTS_EQ=['wep','arm','helm','cape','shield','pants','boots'];
 const GW={w:1,a:2,h:1,c:1,s:2,p:1,b:1,sc:.5};
-const gw=o=>GW[o.k]||2;
+const gw=o=>o.book?1:(GW[o.k]||2);
 const durP=o=>Math.round(Math.max(0,o.dur)/(o.max||1)*100)+'%';
 const PIECES={
  h:[{n:'Capuz de couro',def:1,dur:25,v:8},{n:'Elmo de ferro',def:2,dur:40,v:28},{n:'Elmo de placas',def:3,dur:55,v:60},{n:'Chapéu arcano',def:0,dur:30,v:70,mg:10,sp:4}],
@@ -1032,6 +1038,15 @@ function mkPiece(k,i){if(k==='a')return mkArmor(i);const a=PIECES[k][i];return {
 const DHIDE={a:{n:'Peitoral de pele de dragão',def:6,dur:90,v:260},h:{n:'Elmo de pele de dragão',def:3,dur:80,v:160},p:{n:'Calça de pele de dragão',def:3,dur:80,v:150},b:{n:'Botas de pele de dragão',def:3,dur:80,v:140}};
 function mkHide(k){const a=DHIDE[k];return {k,id:uid(),n:a.n,def:a.def,dur:a.dur,max:a.dur,v:a.v,tier:4,fire:1}}
 function mkGear(){return mkPiece(pick(['a','h','c','s','p','b']),pick([0,0,1,1,2]))}
+const BOOKFX=['veneno','gelo','fogo','trovao'];
+const BOOKN={veneno:'Veneno',gelo:'Gelo',fogo:'Fogo',trovao:'Trovão'};
+const SPELLS={
+ veneno:{n:'Chuva venenosa',mana:14,ic:'☠️',d:'Chuva sobre todos os inimigos: dano e veneno por 3-5 turnos'},
+ gelo:{n:'Tempestade de gelo',mana:16,ic:'❄️',d:'Chove gelo no alvo: dano e congela por 3-5 turnos'},
+ fogo:{n:'Bola de fogo',mana:16,ic:'🔥',d:'Grande bola de fogo no alvo: dano e queima por 3-5 turnos'},
+ trovao:{n:'Tempestade de raios',mana:18,ic:'⚡',d:'4 a 5 raios sorteados: dano e atordoa por 3-5 turnos'}
+};
+function mkBook(){return {k:'s',book:1,id:uid(),n:'Grimório vazio',def:0,dur:40,max:40,v:70,tier:0,mg:0,sp:0,fx:null}}
 const FXL={sangramento:'Sangramento',atordoamento:'Atordoamento',fogo:'Fogo',veneno:'Veneno',gelo:'Gelo',trovao:'Trovão'};
 function mkScroll(fx){fx=fx||pick(FXS);return {k:'sc',id:uid(),n:'Pedra de '+FXL[fx],fx,v:45}}
 const scrollLoot=(lines,p)=>{if(!ch(p))return;const sc=mkScroll();lines.push(addGear(sc)?`Encontrou ${sc.n}.`:`Encontrou ${sc.n}, mas sem espaço.`)};
@@ -1111,7 +1126,7 @@ const MG=()=>[G.helm,G.cape,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0&&p.mg?p
 const SP=()=>[G.helm,G.cape,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0&&p.sp?p.sp:0),0);
 const MM=()=>50+4*AT('int')+MG();
 const SL=k=>(G&&G.sl&&G.sl[k])||1;
-const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3,mtunic:3};
+const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3,mtunic:3,book:2};
 const BLV={farm:2,stove:2,anvil:2};
 const SLC={craft:{2:{wood:6,iron:4},3:{wood:10,iron:10,leather:4}},up:{2:{wood:8,iron:4},3:{wood:12,iron:10,coins:30}},chest:{2:{wood:8,leather:2},3:{wood:12,leather:5,iron:4}},anvil:{2:{iron:8,wood:6},3:{iron:14,leather:4,coins:30}},tent:{2:{cloth:6,leather:3},3:{cloth:12,leather:6,wood:6}}};
 const dmgd=k=>(k==='w'?[G.wep]:[G.arm,G.helm,G.cape,G.shield,G.pants,G.boots,]).filter(o=>o&&o.dur<o.max);
@@ -1130,7 +1145,7 @@ function DRG(e,ix,LT,S){const D=ENM.dragon;fx.lunge=fx.lunge||{};delete fx.lunge
 }
 const hpEn=(S,e)=>{const i=S.en.indexOf(e);return(S.hold&&S.hold[i]!=null&&(fx.e[i]||0)>nowMs())?S.hold[i]:e.hp};
 const hpMe=S=>{if(S.hl&&S.hl.length&&S.h0!=null){const n=nowMs();if(n<=S.hl[S.hl.length-1][0]){let v=S.h0;for(const q of S.hl){if(q[0]<=n)v=q[1];else break}return v}}return G.hp};
-function ENEXT(d,skip){BUSY=1;if(G&&G.scene&&G.scene.hold)G.scene.hold.forEach((h,i)=>{const t=fx.e[i]||0;if(t>nowMs())setTimeout(render,t-nowMs()+30)});setTimeout(()=>{BUSY=0;if(!G||!G.scene||G.view!=='combat'){render();return}if(winCheck()){save();render();return}if(skip){save();render();return}const S0=G.scene,n=alive().length;S0.h0=G.hp;S0.hl=[];enemyTurn();(S0.hl||[]).forEach(q=>setTimeout(render,Math.max(0,q[0]-nowMs())+30));if(G.view==='combat'&&!winCheck()){BUSY=1;S0.hold=null;setTimeout(()=>{BUSY=0;save();render()},n*450+350+(S0.en.some(q=>q.k==='dragon'&&q.hp>0)?900:0));return}save();render()},d+250);}
+function ENEXT(d,skip){BUSY=1;try{G.scene.en.forEach(e=>{const t=e.fxT||0;if(t>nowMs())setTimeout(render,t-nowMs()+30)})}catch(_){}if(G&&G.scene&&G.scene.hold)G.scene.hold.forEach((h,i)=>{const t=fx.e[i]||0;if(t>nowMs())setTimeout(render,t-nowMs()+30)});setTimeout(()=>{BUSY=0;if(!G||!G.scene||G.view!=='combat'){render();return}if(winCheck()){save();render();return}if(skip){save();render();return}const S0=G.scene,n=alive().length;S0.h0=G.hp;S0.hl=[];enemyTurn();(S0.hl||[]).forEach(q=>setTimeout(render,Math.max(0,q[0]-nowMs())+30));if(G.view==='combat'&&!winCheck()){BUSY=1;S0.hold=null;setTimeout(()=>{BUSY=0;save();render()},n*450+350+(S0.en.some(q=>q.k==='dragon'&&q.hp>0)?900:0));return}save();render()},d+250);}
 const DF=()=>({easy:{d:.85,h:.8,r:.7,x:1.25,res:1,q:1,rs:1,pd:1,wr:10},hard:{d:1.2,h:1,r:1,x:1,res:.7,q:.75,rs:1.5,pd:2,wr:5},extreme:{d:2,h:1.5,r:1.4,x:.8,res:.35,q:.5,rs:2.5,pd:5,wr:2.5}})[(G&&G.diff)||'hard']||{d:1,h:1,r:1,x:1,res:.7,q:.75,rs:1.5,pd:2,wr:5};
 const RSP=k=>Math.ceil(LOCS[k].respawn*DF().rs);
 const RQ=n=>n>0?Math.max(1,Math.round(n*DF().q)):0;
@@ -1156,6 +1171,7 @@ const RECIPES=[
  {id:'mail',n:'Cota de malha (defesa 3)',need:{iron:8,leather:2},forge:1,gear:()=>mkArmor(1),h:2},
  {id:'plate',n:'Armadura de placas (defesa 5)',need:{iron:15,leather:4},forge:1,gear:()=>mkArmor(2),h:3},
  {id:'sword',n:'Espada de ferro',need:{iron:6,wood:2},forge:1,gear:()=>mkWeapon(1,{n:'Espada de ferro',a:5,b:8}),h:2},
+ {id:'book',n:'Grimório vazio (encante na bigorna)',need:{leather:4,cloth:6,herb:4,mpot:1},gear:()=>mkBook(),h:3},
  {id:'mhat',n:'Chapéu arcano',need:{cloth:10,leather:3,herb:5,mpot:1},gear:()=>mkPiece('h',3),h:3},
  {id:'mrobe',n:'Manto arcano',need:{cloth:18,leather:4,herb:8,mpot:2},gear:()=>mkPiece('c',3),h:4},
  {id:'mtunic',n:'Túnica arcana',need:{cloth:20,leather:4,herb:8,mpot:2},gear:()=>Object.assign(mkPiece('a',3),{mg:12,sp:5}),h:4},
@@ -1216,7 +1232,8 @@ function addXp(n){n=Math.max(1,Math.round(n*DF().x));G.xp=(G.xp||0)+n;const out=
 const lv=()=>G.lvl||1,need=()=>lv()*40;
 const cap=()=>50+(lv()-1)+(G.b.shelter?8:0)+2*AT('for');
 const SK=()=>G.skins==null?1:G.skins;
-let POTM=false;
+function SKW(){const n=Math.max(0,Math.round(SK())),t=G.inv.water||0;let a=Array.isArray(G.skw)?G.skw.slice(0,n).map(x=>Math.max(0,Math.min(20,x|0))):[];while(a.length<n)a.push(0);let s=a.reduce((x,y)=>x+y,0);for(let j=n-1;j>=0&&s>t;j--){const d=Math.min(a[j],s-t);a[j]-=d;s-=d}for(let j=0;j<n&&s<t;j++){const d=Math.min(20-a[j],t-s);a[j]+=d;s+=d}G.skw=a;return a}
+let POTM=false,CT='atk',CTW=false;
 function potList(){return['hpot','hpot2','hpot3','mpot','mpot2','mpot3'].filter(k=>G.inv[k]>0&&!(G.wolf&&k[0]==='h'))}
 function QW(n){const k=Math.max(1,Math.round(SK()));const v=n/(20*k)*100;return Math.max(n>0?5:0,Math.min(100,Math.round(v/5)*5))+'%'}
 function QT(k,n,own){return k==='water'?(own?QW(n):(n*5)+'%'):'×'+n}
@@ -1393,7 +1410,7 @@ function pAct(a){
       if(!alive().length)break;
       const e=TGT(),D=ENM[e.k],heavy=a==='heavy';S.swh=0;
       if(sn===1)cl('Velocidade sobrenatural: golpe extra!');
-      if(S.fgn){cl('A névoa roxa embaça sua visão: você erra o golpe.');if(e.hp>0)fx.nums.push({x:225,y:70,v:'errou',t:nowMs()+200,c:'#b08ad8'})}else if(ch(mDodge(e.k))){cl(`${D.n} esquiva do seu ataque!`);fx.nums.push({x:225+S.en.indexOf(e)*30,y:70,v:'esquivou',t:nowMs()+200,c:'#9ad0ff'})}else if(!ch(heavy?.6:Math.min(.97,.85+.01*AT('agi'))))cl('Você erra o golpe.');
+      if(S.fgn){cl('A névoa roxa embaça sua visão: você erra o golpe.');if(e.hp>0)fx.nums.push({x:225,y:70,v:'errou',t:nowMs()+200,c:'#b08ad8'})}else if(ch(mDodge(e.k))){cl(`${D.n} esquiva do seu ataque!`);fx.nums.push({x:225+S.en.indexOf(e)*30,y:70,v:'esquivou',t:nowMs()+200,c:'#9ad0ff'})}else if(!ch(heavy?.5:Math.min(.97,.85+.01*AT('agi'))))cl('Você erra o golpe.');
       else{
         let dmg=wepOk()?rnd(G.wep.a,G.wep.b)+(G.wep.lvl-1):rnd(1,3);
         if(S.hs&&S.hs.frost>0)dmg=Math.round(dmg*.7);if(heavy)dmg=Math.round(dmg*1.7);dmg=Math.round(dmg*(1+.04*AT((wepOk()&&/besta/i.test(G.wep.n))?'des':(wepOk()&&/cajado/i.test(G.wep.n))?'int':'for')+((wepOk()&&/cajado/i.test(G.wep.n))?SP()/100:0)));if(S.stfno)dmg=Math.max(1,Math.round(dmg*.5));if(G.wolf)dmg=Math.round(dmg*3);
@@ -1402,10 +1419,43 @@ function pAct(a){
         if(WFX()==='trovao'){if(e.k==='dragon'){dmg+=Math.round(dmg*.6)+4;cl(D.n+' é fraco contra trovão!')}else dmg+=6}if(wepOk()&&G.wep.fx==='gelo')dmg+=5;if(wepOk()&&G.wep.fx==='veneno')dmg+=3;if(wepOk()&&G.wep.fx==='sangramento')dmg+=3;if(WFX()==='fogo'){dmg+=(e.k==='vampire'||e.k==='fledgling')?14:7;if(e.k==='vampire'||e.k==='fledgling')cl(D.n+' é fraco contra o fogo!')}
         dmg=Math.max(1,dmg-edef(e));e.hp-=dmg;S.swh=1;cl(`${crit?'Golpe crítico! ':''}Você fere ${D.n}: -${dmg}.`);
         
-        if(wepOk()&&e.hp>0){const wf=WFX();if(wf==='atordoamento'&&ch(.2)){e.stun=rnd(2,3);cl(D.n+' fica atordoado!')}else if(wf==='fogo'&&ch((e.k==='vampire'||e.k==='fledgling')?.7:.3)){e.burn=rnd(3,5);cl(D.n+' pega fogo!')}else if(wf==='trovao'&&e.k!=='dragon'&&ch(.2)){e.stun=rnd(2,3);cl(D.n+' é atordoado pelo raio!')}else if(wf==='sangramento'&&ch(.4)){e.bleed=rnd(3,5);cl(D.n+' está sangrando!')}else if(wf==='veneno'&&ch(.3)){if(!noPois(e)){e.poison=rnd(3,5);cl(D.n+' foi envenenado!')}}else if(wf==='gelo'&&ch(.35)){e.frost=rnd(2,3);cl(D.n+' está congelado!')}}
+        if(wepOk()&&e.hp>0){const wf=WFX();if(wf==='atordoamento'&&ch(.2)){e.stun=rnd(2,3);e.fxT=HT;cl(D.n+' fica atordoado!')}else if(wf==='fogo'&&ch((e.k==='vampire'||e.k==='fledgling')?.7:.3)){e.burn=rnd(3,5);e.fxT=HT;cl(D.n+' pega fogo!')}else if(wf==='trovao'&&e.k!=='dragon'&&ch(.2)){e.stun=rnd(2,3);e.fxT=HT;cl(D.n+' é atordoado pelo raio!')}else if(wf==='sangramento'&&ch(.4)){e.bleed=rnd(3,5);e.fxT=HT;cl(D.n+' está sangrando!')}else if(wf==='veneno'&&ch(.3)){if(!noPois(e)){e.poison=rnd(3,5);e.fxT=HT;cl(D.n+' foi envenenado!')}}else if(wf==='gelo'&&ch(.35)){e.frost=rnd(2,3);e.fxT=HT;cl(D.n+' está congelado!')}}
       }
       if(S.swh&&G.wep&&G.wep.dur>0){if(ch(.35))G.wep.dur--;if(G.wep.dur===0){const bw=G.wep;G.wep=null;G.bag.push(bw);cl(`${bw.n} se partiu! Foi para a bolsa e não serve mais. Você luta com os punhos.`);lg(`${bw.n} se partiu e foi para a bolsa, inutilizável.`)}}
     }
+  }
+  else if(a.startsWith('sp_')){
+    const f=a.slice(3),B=G.shield,sp=SPELLS[f];
+    if(!sp||G.wolf||!B||!B.book||B.fx!==f||!(B.dur>0)||!alive().length)return;
+    const mn0=G.mana==null?MM():G.mana;if(mn0<sp.mana){cl('Magia insuficiente: '+sp.mana+' ✨.');return}
+    G.mana=mn0-sp.mana;B.dur=Math.max(0,B.dur-1);fx.throw=nowMs();
+    const T0=nowMs(),pw=()=>(1+SP()/100),SS={k:f,t:T0,seed:Math.random()*1000,dur:2200,tg:[],bolts:[]};
+    const imune=e=>{fx.nums.push({x:225+S.en.indexOf(e)*30,y:70,v:'imune',t:T0+1100,c:'#9ad0ff'})};
+    cl('Você abre o grimório e conjura '+sp.n+'!');
+    if(f==='veneno'){
+      const L=alive();SS.tg=L.map(e=>S.en.indexOf(e));SS.imp=1050;SS.dur=2400;HT=T0+1050;DUR=2400;
+      for(const e of L){const D=ENM[e.k],dm=rnd(100,150);e.hp-=dm;cl(`A chuva venenosa fere ${D.n}: -${dm}.`);
+        if(e.hp>0&&!noPois(e)){e.poison=rnd(3,5);e.fxT=HT;cl(D.n+' foi envenenado!')}}
+    }
+    else if(f==='gelo'){
+      const e=TGT(),D=ENM[e.k];SS.tg=[S.en.indexOf(e)];SS.imp=1150;SS.dur=2500;HT=T0+1150;DUR=2500;
+      const dm=rnd(100,150);e.hp-=dm;cl(`Estilhaços de gelo atingem ${D.n}: -${dm}.`);
+      if(e.hp>0){if(e.k==='dragon')imune(e);else{e.frost=rnd(3,5);e.fxT=HT;cl(D.n+' está congelado!')}}
+    }
+    else if(f==='fogo'){
+      const e=TGT(),D=ENM[e.k];SS.tg=[S.en.indexOf(e)];SS.imp=1070;SS.dur=2500;HT=T0+1070;DUR=2500;
+      const dm=rnd(100,150);e.hp-=dm;cl(`A bola de fogo explode em ${D.n}: -${dm}.`);
+      if(e.hp>0){e.burn=rnd(3,5);e.fxT=HT;cl(D.n+' pega fogo!')}
+    }
+    else{
+      const n=rnd(4,5),hit=new Set();let last=T0;
+      for(let i=0;i<n;i++){const L=alive();if(!L.length)break;const e=L[Math.floor(Math.random()*L.length)],ti=S.en.indexOf(e),D=ENM[e.k],bt=T0+520+i*240;
+        const dm=rnd(100,150);e.hp-=dm;hit.add(e);last=bt;SS.bolts.push({ti,t:bt,s:i});cl(`Um raio atinge ${D.n}: -${dm}.`)}
+      SS.tg=[...new Set(SS.bolts.map(b=>b.ti))];
+      for(const e of hit){if(e.hp<=0)continue;const D=ENM[e.k];if(e.k==='dragon')imune(e);else{e.stun=rnd(3,5);e.fxT=last+200;cl(D.n+' é atordoado pelo raio!')}}
+      SS.stunT=last+260;SS.dur=last-T0+1500;HT=last-80;DUR=last-T0+1500;
+    }
+    fx.spell=SS;
   }
   else if(a==='magic'){
     const mn=G.mana==null?MM():G.mana;if(AT('int')<1||mn<6||!alive().length)return;
@@ -1438,7 +1488,7 @@ function pAct(a){
       const crit=ch(a==='arrow'?.2:.08);if(crit)dmg=Math.round(dmg*1.5);
       dmg=Math.max(1,dmg-edef(e));e.hp-=dmg;cl(`${crit?'Acerto crítico! ':''}${a==='arrow'?'Flecha':a==='knife'?'Faca':'Dardo'} atinge ${D.n}: -${dmg}.`);
       fx.nums.push({x:225+ti*30,y:70,v:'-'+dmg,t:when,c:'#ffe08a'});fx.e[ti]=when;
-      if(a==='dart'&&ch(.45)&&e.hp>0){if(!noPois(e)){e.poison=rnd(3,5);cl(`${D.n} foi envenenado!`)}}
+      if(a==='dart'&&ch(.45)&&e.hp>0){if(!noPois(e)){e.poison=rnd(3,5);e.fxT=when;cl(`${D.n} foi envenenado!`)}}
     }
     S.en.forEach((e2,i)=>{if(e2.hp<eh[i]&&i!==ti){fx.e[i]=nowMs();}});
     if(P_.free&&ch(P_.free)){cl('Tão rápido que o inimigo não reage!');ENEXT(P_.d+350,true);return}
@@ -1622,7 +1672,7 @@ const A={
    const ev=G.scene.ev;let r=ev.o[+v][1]();
    if(r&&!G.dflag&&G.view!=='over'){r=r.filter(Boolean);r.forEach(l=>lg(l));G.scene={res:r};G.view='result'}
  },
- bite(){pAct('bite')},summon(){pSum()},tgt(v){const S=G.scene;if(!S||!S.en||BUSY)return;const e=S.en[+v];if(e&&e.hp>0){S.tgt=+v;render()}},magic(){pAct('magic')},knife(){pAct('knife')},arrow(){pAct('arrow')},dart(){pAct('dart')},atk(){pAct('atk')},heavy(){pAct('heavy')},healc(){pAct('heal')},potmenu(){POTM=!POTM;render()},potc(v){POTM=false;pAct(v||'hpot')},mpotc(v){POTM=false;pAct(v||'mpot')},flee(){pAct('flee')},
+ bite(){pAct('bite')},summon(){pSum()},tgt(v){const S=G.scene;if(!S||!S.en||BUSY)return;const e=S.en[+v];if(e&&e.hp>0){S.tgt=+v;render()}},magic(){pAct('magic')},knife(){pAct('knife')},arrow(){pAct('arrow')},dart(){pAct('dart')},atk(){pAct('atk')},heavy(){pAct('heavy')},healc(){pAct('heal')},spell(v){pAct('sp_'+v)},potmenu(){CT=CT==='pot'?'atk':'pot';render()},btab(v){if(['atk','spec','mag','pot'].includes(v)){CT=v;render()}},potc(v){CT='atk';POTM=false;pAct(v||'hpot')},mpotc(v){CT='atk';POTM=false;pAct(v||'mpot')},flee(){pAct('flee')},
  uturn(){
    const tr=G.trip;if(!tr||(walk&&!tr.auto)||G.ubt||G.btr)return;
    if(tr.back){G.trip={from:tr.to,to:tr.from,hours:tr.orig.hours,done:tr.hours-tr.done,cool:2,auto:tr.auto};G.sel=null;walk=null;G.note='Você retoma a viagem.';return}
@@ -1714,6 +1764,7 @@ const A={
    for(const[k,n]of Object.entries(b.cost))spend(k,n);
    advance(SL('up')>=3?1:2);if(G.dflag)return;G.b[v]=true;lg(`${b.n} construído.`);
  },
+ drinkSk(v){if(G.view==='combat')return;const a=SKW(),j=+v;if(!(a[j]>0))return;a[j]--;A.use('water')},
  use(k){
    const it=IT[k];if(!G.inv[k]||G.view==='combat')return;if(/^hpot/.test(k)&&G.wolf){lg('Lobisomens não usam poção de vida. Só na forma humana.');return}
    if(k==='holy'){G.inv[k]--;if(!G.inv[k])delete G.inv[k];if(G.turned){G.inv[k]=(G.inv[k]||0)+1;lg('A água benta não desfaz a maldição: você já se transformou em vampiro.')}else if(G.lyc&&G.lyc.perm){G.inv[k]=(G.inv[k]||0)+1;lg('Aviso: a maldição de lobisomem já é permanente. A água benta não a cura mais.')}else if(G.lyc){if(G.wolf)wolfHp(false);G.pts=(G.pts||0)+AT('lobo');if(G.at)G.at.lobo=0;G.lyc=null;G.wolf=false;lg('A água benta queima a maldição. Você foi curado da licantropia!')}else if(G.vamp){G.vamp=false;lg('A água benta queima a maldição. Você foi curado do vampirismo!')}else{heal(5);lg('Você bebe a água benta (+5 de vida).')}return}
@@ -2205,7 +2256,7 @@ function drawLoc(key,t,h){
     c.save();c.translate(-CX,0);CAMX=CX;
     for(let k=-1;k<=1;k++)blit(roadStrip(biome),k*W,120);
     const IMG=key==='peaks'?PKI(n):key==='vila'?VLI(n):LIMG(key,n),IO=key==='peaks'?-120:-320;castSil(IMG,IO,134,SHD);blit(IMG,IO,0);placeDyn(key,190,134,t,n,h);if(OBJS[key])drawObjs(key,190,134,t,n,h);
-    {const hx=WKX;if(!BGNOHERO)if(BAGT)drawSleepBag(hx,152,t,nowMs()-BAGT);else{heroShadow(hx,154,32,SHD,10);heroSprite(hx,152,t,WKM?'walk':'stand',WKF)}}drawWaitHorse(t);
+    {const hx=WKX;if(!BGNOHERO)if(BAGT)drawSleepBag(hx,152,t,nowMs()-BAGT);else{heroShadow(hx+(WKF?HRIG:0),154,32,SHD,10);heroSprite(hx,152,t,WKM?'walk':'stand',WKF)}}drawWaitHorse(t);
 
     c.restore();CAMX=0;
     nightOverlay(h,.45);
@@ -2991,7 +3042,8 @@ const HLK=()=>{const l=typeof G!=='undefined'&&G&&G.look;return l?{skin:l.skin,h
 const WWD={};
 function wwMid(flip){const k=flip?1:0;if(WWD[k]!=null)return WWD[k];let r=0;try{const cv=layer(180,120,()=>drawWW(90,110,0,!!flip,{pose:'stand'},true)),d=cv.getContext('2d').getImageData(0,0,cv.width,cv.height).data;let y0=-1,y1=0;for(let yy=0;yy<cv.height;yy++)for(let xx=0;xx<cv.width;xx++)if(d[(yy*cv.width+xx)*4+3]>128){if(y0<0)y0=yy;y1=yy}const yl=y0+(y1-y0)*.17;let sx=0,n=0;for(let yy=Math.max(0,y0);yy<=yl;yy++)for(let xx=0;xx<cv.width;xx++)if(d[(yy*cv.width+xx)*4+3]>128){sx+=xx;n++}r=n?sx/n/2-90:0}catch(_){}return WWD[k]=r}
 function nameTag(g,nm,x,y,mir){g.save();if(mir){g.translate(x,0);g.scale(-1,1);x=0}g.font='600 7px sans-serif';g.textAlign='center';g.textBaseline='alphabetic';g.lineJoin='round';g.lineWidth=2.6;g.strokeStyle='rgba(0,0,0,.9)';g.strokeText(nm,x,y);g.fillStyle='#fff';g.fillText(nm,x,y);g.restore()}
-function heroSprite(x,y,t,pose,flip,swing,k){heroSprite0(x,y,t,pose,flip,swing,k);
+let HRIG=0;
+function heroSprite(x,y,t,pose,flip,swing,k){heroSprite0(x,y,t,pose,flip,swing,k);try{HRIG=G&&G.wolf?wwMid(flip):RIGD}catch(_){HRIG=0}
   const nm=G&&G.look&&G.look.name;if(!nm||pose==='sleep')return;const kk=k||.72,mo=fx.morph&&nowMs()-fx.morph<2600||fx.morphRev&&nowMs()-fx.morphRev<2600;
   nameTag(c,nm,Math.round(x+(G.wolf&&!mo?wwMid(flip):RIGD)),Math.round(y-kk*(G.wolf&&!mo?70:pose==='sit'?54:66)),typeof MIR!=='undefined'&&MIR)}
 function heroSprite0(x,y,t,pose,flip,swing,k){
@@ -3004,29 +3056,31 @@ function heroSprite0(x,y,t,pose,flip,swing,k){
 }
 
 
+let MHR=0;
 function morphHero(x,y,t,flip,p,pose,swing,k){
   const rnd=(i)=>{const v=Math.sin(i*127.1+311.7)*43758.5453;return v-Math.floor(v)};
-  const sc=(a)=>{c.save();c.translate(x,y);c.scale(a,a);c.translate(-x,-y)};
+  let off=0;try{off=p<.52?(MHR||0):wwMid(flip)}catch(_){}const ex=x+off;
+  const sc=(a)=>{c.save();c.translate(ex,y);c.scale(a,a);c.translate(-ex,-y)};
   const hum=(jx,a)=>{sc(a);const keep=G.wolf;G.wolf=false;const eq={arm:G.arm,helm:G.helm,cape:G.cape,shield:G.shield,pants:G.pants,boots:G.boots};
-    person(x+jx,y,{k:k||.72,hero:true,pose:'stand',t,flip,swing:0,g:G&&G.gender,eq:{},wep:null,...HLK()});G.wolf=keep;c.restore()};
+    person(x+jx,y,{k:k||.72,hero:true,pose:'stand',t,flip,swing:0,g:G&&G.gender,eq:{},wep:null,...HLK()});MHR=RIGD;G.wolf=keep;c.restore()};
   if(p<.52){
     const q=p/.52,jx=Math.round(Math.sin(p*90)*q*2.4);
     outlined(()=>hum(jx,1+q*.45));
     // rachaduras vermelhas na pele e roupa
-    const n=Math.floor(q*16);for(let i=0;i<n;i++){const rx=x-8+Math.round(rnd(i)*16)+jx,ry=y-34+Math.round(rnd(i+9)*30),l=2+Math.round(rnd(i+3)*4);rc(rx,ry,1,l,'#8a0e12');rc(rx+(i%2?1:-1),ry+l-1,1,2,'#ff3a2a')}
+    const n=Math.floor(q*16);for(let i=0;i<n;i++){const rx=ex-8+Math.round(rnd(i)*16)+jx,ry=y-34+Math.round(rnd(i+9)*30),l=2+Math.round(rnd(i+3)*4);rc(rx,ry,1,l,'#8a0e12');rc(rx+(i%2?1:-1),ry+l-1,1,2,'#ff3a2a')}
     // pele rasgando: tufos de pelo furando e sangue escorrendo
-    {const nf=Math.floor(q*11);for(let i=0;i<nf;i++){const fx0=x-9+Math.round(rnd(i+40)*18)+jx,fy0=y-36+Math.round(rnd(i+41)*32);rc(fx0,fy0,2,1,'#4a3830');rc(fx0+(i%2?1:-1),fy0-1,1,1,'#7a6454')}
-     const nb=Math.floor(q*14);for(let i=0;i<nb;i++){const bx=x-8+Math.round(rnd(i+60)*16)+jx,by0=y-34+Math.round(rnd(i+61)*24),dl=2+Math.round(q*rnd(i+62)*9);rc(bx,by0,1,dl,'#8a0e14');rc(bx,by0+dl,1,1,'#c0222a')}
-     if(q>.45){const ns=Math.floor((q-.45)*16);for(let i=0;i<ns;i++){const u=(q-.45)*1.6+rnd(i+70)*.2,dr=rnd(i+71)<.5?-1:1;rc(Math.round(x+dr*(5+u*20*rnd(i+72))),Math.round(y-28-rnd(i+73)*12+u*u*30),2,2,i%3?'#8a0e14':'#d02a2a')}}}
+    {const nf=Math.floor(q*11);for(let i=0;i<nf;i++){const fx0=ex-9+Math.round(rnd(i+40)*18)+jx,fy0=y-36+Math.round(rnd(i+41)*32);rc(fx0,fy0,2,1,'#4a3830');rc(fx0+(i%2?1:-1),fy0-1,1,1,'#7a6454')}
+     const nb=Math.floor(q*14);for(let i=0;i<nb;i++){const bx=ex-8+Math.round(rnd(i+60)*16)+jx,by0=y-34+Math.round(rnd(i+61)*24),dl=2+Math.round(q*rnd(i+62)*9);rc(bx,by0,1,dl,'#8a0e14');rc(bx,by0+dl,1,1,'#c0222a')}
+     if(q>.45){const ns=Math.floor((q-.45)*16);for(let i=0;i<ns;i++){const u=(q-.45)*1.6+rnd(i+70)*.2,dr=rnd(i+71)<.5?-1:1;rc(Math.round(ex+dr*(5+u*20*rnd(i+72))),Math.round(y-28-rnd(i+73)*12+u*u*30),2,2,i%3?'#8a0e14':'#d02a2a')}}}
     // pedaços de roupa voando
-    if(q>.3){const m=Math.floor((q-.3)*14);for(let i=0;i<m;i++){const u=(q-.3)*1.4+rnd(i)*.2,dir=rnd(i+5)<.5?-1:1;rc(Math.round(x+dir*(6+u*22*rnd(i+1))),Math.round(y-26+rnd(i+2)*18+u*u*26),2,2,i%3?'#5a4630':'#8a2a30')}}
+    if(q>.3){const m=Math.floor((q-.3)*14);for(let i=0;i<m;i++){const u=(q-.3)*1.4+rnd(i)*.2,dir=rnd(i+5)<.5?-1:1;rc(Math.round(ex+dir*(6+u*22*rnd(i+1))),Math.round(y-26+rnd(i+2)*18+u*u*26),2,2,i%3?'#5a4630':'#8a2a30')}}
   }else{
     const q=(p-.52)/.48;
     const a=1.25-Math.min(1,q*1.6)*.25,jx=Math.round(Math.sin(p*90)*(1-q)*2);
     sc(a);drawWW(x+jx,y,t,flip,{pose,swing},true);c.restore();
-    {const nb=Math.floor((1-q)*14);for(let i=0;i<nb;i++){const u=q*1.3+rnd(i+80)*.3,dr=rnd(i+81)<.5?-1:1;rc(Math.round(x+dr*(6+u*28*rnd(i+82))),Math.round(y-34-rnd(i+83)*10+u*u*40),2,2,i%2?'#8a0e14':'#c0222a')}}
+    {const nb=Math.floor((1-q)*14);for(let i=0;i<nb;i++){const u=q*1.3+rnd(i+80)*.3,dr=rnd(i+81)<.5?-1:1;rc(Math.round(ex+dr*(6+u*28*rnd(i+82))),Math.round(y-34-rnd(i+83)*10+u*u*40),2,2,i%2?'#8a0e14':'#c0222a')}}
     // tufos de pelo e retalhos caindo
-    const m=Math.floor((1-q)*16);for(let i=0;i<m;i++){const u=q*1.2+rnd(i)*.3,dir=rnd(i+5)<.5?-1:1;rc(Math.round(x+dir*(8+u*26*rnd(i+1))),Math.round(y-30+rnd(i+2)*20+u*u*34),i%2?3:2,2,i%3==0?'#8a2a30':i%3==1?'#5c3a28':'#34201a')}
+    const m=Math.floor((1-q)*16);for(let i=0;i<m;i++){const u=q*1.2+rnd(i)*.3,dir=rnd(i+5)<.5?-1:1;rc(Math.round(ex+dir*(8+u*26*rnd(i+1))),Math.round(y-30+rnd(i+2)*20+u*u*34),i%2?3:2,2,i%3==0?'#8a2a30':i%3==1?'#5c3a28':'#34201a')}
   }
 }
 
@@ -3156,9 +3210,20 @@ function buildHuman(o,K){
     paint([['p',[sx0-4,shY-2,sx0+1.5,shY-2,sx0+1,shY+10,sx0-2-sway,py+len-8,sx0-9-sway*1.5,py+len,sx0-15-sway,py+len-5,sx0-12,shY+6]]],'#1a1020',{side:.2});
     paint([['p',[sx0-3,shY,sx0+.5,shY,sx0+.4,shY+10,sx0-2-sway,py+len-10,sx0-8-sway*1.4,py+len-3,sx0-12-sway,py+len-7,sx0-9,shY+7]]],o.capeCol||'#a01a3e',{side:.3,fn:(i,j,T)=>((i*2+j)%9===0?'m':null)});
   }
-  const shO=!!eq.shield&&!sit;
+  const shO=!!eq.shield&&!sit&&(!eq.shield.book||!!o.dr);
   const SHS=shO&&!!o.hero&&!atk&&!thr&&!o.dr;
   const shCX=SHS?sx0-5.6:sx0+6.6,shCY=SHS?shY+9:py-9.4;
+  // ---- grimório (só aparece em batalha, na mão equipada) ----
+  if(shO&&eq.shield.book){
+    const cx=shCX,cy=shCY,bf=eq.shield.fx,pc=bf&&SCPAL[bf]?SCPAL[bf]:['#7a4aa8','#c8a8f0','#3a2060'];
+    // livro aberto, páginas à mostra com runas brilhantes
+    paint([['r',cx-7.6,cy-5.8,15.2,11.8]],pc[2],{side:.3,top:.18});
+    paint([['r',cx-6.8,cy-5,6.4,10]],'#efe6cc',{nohi:true});paint([['r',cx+.4,cy-5,6.4,10]],'#e6dcc0',{nohi:true});
+    paint([['r',cx-.4,cy-5.4,.8,10.8]],'#6a5a40',{nohi:true});
+    for(let i=0;i<4;i++){paint([['r',cx-5.8,cy-3.6+i*2.2,4.4-(i%2),.6]],'#9a8a6a',{nohi:true});paint([['r',cx+1.4,cy-3.6+i*2.2,4.4-((i+1)%2),.6]],'#9a8a6a',{nohi:true})}
+    {const rc2=bf&&SCPAL[bf]?SCPAL[bf][0]:'#c8a8f0',rg=_rgb(rc2);dot(cx-3.6,cy-.4,rg,2.6,2.6);dot(cx+3.6,cy-.4,rg,2.6,2.6);dot(cx-3.6,cy-.4,[255,255,255],1.2,1.2);dot(cx+3.6,cy-.4,[255,255,255],1.2,1.2)}
+  }
+  else
   // ---- escudo ----
   if(shO){
     const ts=eq.shield.tier||0,scol=ARM_COL(ts);
@@ -3596,8 +3661,8 @@ const FRC=new Map();
 function frontSprite(o,K){const key=JSON.stringify(o)+'|'+K;let r=FRC.get(key);if(!r){const Pn=buildFront(o,K);r={cv:Pn.finish(),ox:Pn.ox,oy:Pn.oy};if(FRC.size>40)FRC.clear();FRC.set(key,r)}return r}
 function heroFront(x,y,k){
   if(MONO!==null||OX||OY)return;
-  const K=1,eq=G?{arm:G.arm,helm:G.helm,cape:G.cape,shield:G.shield,pants:G.pants,boots:G.boots}:{};
-  const q={g:G&&G.gender,...HLK(),turned:!!(G&&G.turned),eq:{arm:eq.arm&&{L:/couro/i.test(eq.arm.n||''),tier:eq.arm.tier!=null?eq.arm.tier:(eq.arm.def>=5?2:eq.arm.def>=3?1:0)},helm:eq.helm&&{L:/couro/i.test(eq.helm.n||''),tier:eq.helm.tier||0},cape:eq.cape&&{tier:eq.cape.tier||0},shield:eq.shield&&{tier:eq.shield.tier||0},pants:eq.pants&&{L:/couro/i.test(eq.pants.n||''),tier:eq.pants.tier!=null?eq.pants.tier:0},boots:eq.boots&&{L:/couro/i.test(eq.boots.n||''),tier:eq.boots.tier||0}},
+  const K=1,eq=G?{arm:G.arm,helm:G.helm,cape:G.cape,shield:G.shield&&!G.shield.book?G.shield:null,pants:G.pants,boots:G.boots}:{};
+  const q={g:G&&G.gender,...HLK(),turned:!!(G&&G.turned),eq:{arm:eq.arm&&{L:/couro/i.test(eq.arm.n||''),tier:eq.arm.tier!=null?eq.arm.tier:(eq.arm.def>=5?2:eq.arm.def>=3?1:0)},helm:eq.helm&&{L:/couro/i.test(eq.helm.n||''),tier:eq.helm.tier||0},cape:eq.cape&&{tier:eq.cape.tier||0},shield:eq.shield&&{tier:eq.shield.tier||0,book:eq.shield.book?(eq.shield.fx||'e'):0},pants:eq.pants&&{L:/couro/i.test(eq.pants.n||''),tier:eq.pants.tier!=null?eq.pants.tier:0},boots:eq.boots&&{L:/couro/i.test(eq.boots.n||''),tier:eq.boots.tier||0}},
     wep:G&&wepOk()?{b:RAR[G.wep.ri].b,kind:wepKind(G.wep.n),fx:G.wep.fx||null}:null};
   const s=frontSprite(q,K);c.drawImage(s.cv,Math.round(x)-s.ox,Math.round(y)-s.oy,s.cv.width,s.cv.height);
 }
@@ -3624,7 +3689,7 @@ function person(x,y,o){
   o=o||{};const K=o.k||1;
   const q={pose:o.pose,t:o.pose==='walk'?(Math.floor((o.t||0)*8)%4)/8:(Math.floor((o.t||0)*1.4)%2)/1.4,swing:o.swing!=null?Math.round(o.swing*12)/12:0,g:o.g,
     skin:o.skin,hair:o.hair,hs:o.hs,bs:o.bs,bc:o.bc,cloth:o.cloth,pants:o.pants,boot:o.boot,capeCol:o.capeCol,nocape:o.nocape,eye:o.eye,bare:o.bare,style:o.style,coat:o.coat,
-    eq:o.eq?{arm:o.eq.arm&&{L:/couro/i.test(o.eq.arm.n||''),tier:o.eq.arm.tier!=null?o.eq.arm.tier:(o.eq.arm.def>=5?2:o.eq.arm.def>=3?1:0)},helm:o.eq.helm&&{L:/couro/i.test(o.eq.helm.n||''),tier:o.eq.helm.tier||0},cape:o.eq.cape&&{tier:o.eq.cape.tier||0},shield:o.eq.shield&&{tier:o.eq.shield.tier||0},pants:o.eq.pants&&{L:/couro/i.test(o.eq.pants.n||''),tier:o.eq.pants.tier!=null?o.eq.pants.tier:0},boots:o.eq.boots&&{L:/couro/i.test(o.eq.boots.n||''),tier:o.eq.boots.tier||0}}:null,
+    eq:o.eq?{arm:o.eq.arm&&{L:/couro/i.test(o.eq.arm.n||''),tier:o.eq.arm.tier!=null?o.eq.arm.tier:(o.eq.arm.def>=5?2:o.eq.arm.def>=3?1:0)},helm:o.eq.helm&&{L:/couro/i.test(o.eq.helm.n||''),tier:o.eq.helm.tier||0},cape:o.eq.cape&&{tier:o.eq.cape.tier||0},shield:o.eq.shield&&{tier:o.eq.shield.tier||0,book:o.eq.shield.book?(o.eq.shield.fx||'e'):0},pants:o.eq.pants&&{L:/couro/i.test(o.eq.pants.n||''),tier:o.eq.pants.tier!=null?o.eq.pants.tier:0},boots:o.eq.boots&&{L:/couro/i.test(o.eq.boots.n||''),tier:o.eq.boots.tier||0}}:null,
     wep:o.wep?{b:o.wep.b,kind:o.wep.kind,fx:o.wep.fx||null}:null,flip:!!o.flip,hero:!!o.hero,dr:window.__drawn?1:0};
   drawRig('human',x,y,q,K,o.anch);
 }
@@ -4673,7 +4738,7 @@ function drawBattle(t,ms){
     if(e.k==='witch'&&!dead)witchAura(x+slide+ex,y,t);
     if(!dead){const hh={wolf:14,boar:14,deer:24,whorse:34,bear:26,whelp:20,bat:6,cyclops:48,cyclopsb:48}[e.k]||32,ww={wolf:16,boar:16,bear:18,deer:12,whorse:22,cyclops:18,cyclopsb:18}[e.k]||10;heroShadow(x+slide+ex,y+3,hh,SHD,ww)}
     if(!dead){c.save();c.translate(x+slide+ex+(fx.e[i]&&ms>=fx.e[i]&&ms-fx.e[i]<350?(Math.floor((ms-fx.e[i])/50)%2?2:-2):0),y);
-      {const cyt=fx.cy&&fx.cy.ix===i?ms-fx.cy.t:-1,stp=cyt>=0&&cyt<900;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:stp?'stomp':lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:stp?Math.min(1,cyt/700):lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}))}stDraw({stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30,cyclops:88,cyclopsb:88}[e.k]||46,t);c.restore()}
+      {const cyt=fx.cy&&fx.cy.ix===i?ms-fx.cy.t:-1,stp=cyt>=0&&cyt<900;outlined(()=>drawEnemy(e.k,0,0,t,true,{pose:stp?'stomp':lt&&ms>=lt&&ms-lt<420?'atk':'stand',swing:stp?Math.min(1,cyt/700):lt&&ms>=lt&&ms-lt<420?Math.sin((ms-lt)/420*Math.PI):0,eq:e.eq}))}stDraw(nowMs()<(e.fxT||0)?{}:{stun:e.stun,burn:e.burn,poison:e.poison,frost:e.frost},{wolf:28,boar:26,deer:36,bear:40,whelp:30,cyclops:88,cyclopsb:88}[e.k]||46,t);c.restore()}
   });
   fx.nums=fx.nums.filter(n=>ms-n.t<900);
   fx.nums.forEach(n=>{if(ms<n.t)return;const q2=(ms-n.t)/900;c.globalAlpha=1-q2*q2;glyphs(n.v,n.x,n.y-q2*18,n.c);c.globalAlpha=1});
@@ -4692,7 +4757,7 @@ function drawBattle(t,ms){
     }
     if(pj.hit&&pp>1&&pp<1.35){const [tx,ty]=pos[pj.ti];const k2=(pp-1)/.35;c.globalAlpha=1-k2;for(let i=0;i<8;i++){const a=i/8*6.28;rc(tx+slide+Math.cos(a)*(4+k2*14),ty-26+Math.sin(a)*(4+k2*14),2,2,pj.kind==='elem'&&SCPAL[pj.fx]?SCPAL[pj.fx][i%2]:i%2?P.sun:P.white)}c.globalAlpha=1}
   }
-  drawFireball(pos,slide,HX,HY,ms,t);drawCyFx(pos,slide,HX,HY,ms,t);drawWitchFx(pos,HX,HY,ms,t);drawWolfFx(pos,slide,HX,HY,ms,t);
+  drawFireball(pos,slide,HX,HY,ms,t);drawCyFx(pos,slide,HX,HY,ms,t);drawWitchFx(pos,HX,HY,ms,t);drawWolfFx(pos,slide,HX,HY,ms,t);drawSpellFx(pos,slide,HX,HY,ms,t);
   if(SHK)c.restore();
   if(p<.5)bars(1-p/.5);
 }
@@ -4796,6 +4861,83 @@ function WHL(e,ix,LT,S){const D=ENM.whelp;fx.lunge=fx.lunge||{};delete fx.lunge[
 }
 
 /* animações do lobisomem: mordida, garra (arranhão horizontal) e uivo */
+function drawSpellFx(pos,slide,HX,HY,ms,t){
+  const sp=fx.spell;if(!sp)return;const d=ms-sp.t;if(d<0||d>sp.dur+250)return;
+  const pal=SCPAL[sp.k],A=pal[0],B=pal[1],D=pal[2];
+  const R=(i,k)=>{const v=Math.sin((i+1)*12.9898+k*78.233+sp.seed)*43758.5453;return v-Math.floor(v)};
+  const cl01=v=>Math.max(0,Math.min(1,v));
+  const hx=(h,a)=>{const n=parseInt(h.slice(1),16);return 'rgba('+(n>>16)+','+((n>>8)&255)+','+(n&255)+','+a+')'};
+  const glow=(x,y,r,col,al)=>{const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,hx(col,al));g.addColorStop(1,hx(col,0));c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2)};
+  const pg=(pts,col,al)=>{c.globalAlpha=al==null?1:al;c.fillStyle=col;c.beginPath();pts.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.closePath();c.fill();c.globalAlpha=1};
+  const star=(x,y,r,col,al)=>{c.globalAlpha=al==null?1:al;rc(x-r,y-.5,r*2,1,col);rc(x-.5,y-r,1,r*2,col);rc(x-1,y-1,2,2,'#ffffff');c.globalAlpha=1};
+  const tg=sp.tg.map(i=>pos[i]?{i,x:pos[i][0]+slide,gy:pos[i][1],y:pos[i][1]-26}:null).filter(Boolean);if(!tg.length)return;
+  const out=cl01((sp.dur+150-d)/350);
+  // ---- conjuração: runas no chão, partículas subindo e brilho do livro ----
+  if(d<700){const q=d/700,a=Math.sin(q*Math.PI);
+    c.globalAlpha=a*.9;for(let i=0;i<22;i++){const an=i/22*6.283+t*3.2;rc(HX+Math.cos(an)*(13+q*5)-1,HY+Math.sin(an)*5.2-1,2,2,i%3?A:B)}
+    for(let i=0;i<4;i++){const an=i/4*6.283-t*2;rc(HX+Math.cos(an)*(13+q*5)-2,HY+Math.sin(an)*5.2-2,4,4,i%2?B:'#ffffff')}
+    c.globalAlpha=a;for(let i=0;i<12;i++){const pp=(q*1.5+i*.083)%1;rc(HX+Math.cos(i*2.1)*12*(1-pp)+4,HY-2-pp*44,2,2,i%2?B:A)}
+    glow(HX+8,HY-21,10+q*10,B,.85*a);c.globalAlpha=a;disc(HX+8,HY-21,2,'#ffffff');c.globalAlpha=1}
+  // ---------- VENENO: nuvem tóxica e chuva verde ----------
+  if(sp.k==='veneno'){
+    const mnx=Math.min(...tg.map(o=>o.x))-30,mxx=Math.max(...tg.map(o=>o.x))+30,span=mxx-mnx,n=Math.max(7,Math.round(span/9)),ca=cl01((d-350)/350)*out;
+    if(0){for(let j=0;j<n;j++){const cx=mnx+(j+.5)*span/n+Math.sin(t*1.3+j)*2,cy=5+Math.sin(t*1.7+j*1.3)*2,rr=15+R(j,1)*7;c.globalAlpha=ca;disc(Math.round(cx),Math.round(cy+4),Math.round(rr+1),'#10200a');disc(Math.round(cx),Math.round(cy+3),Math.round(rr),'#2a4a1c');disc(Math.round(cx-1),Math.round(cy),Math.round(rr-2),'#4f8a2a');disc(Math.round(cx-3),Math.round(cy-3),Math.round(rr-5),'#8fcf4a')}c.globalAlpha=1}
+    if(d>520&&d<sp.dur-250){for(const o of tg){for(let k=0;k<34;k++){const pp=(((d-520)/560)+k*.0294+R(k,o.i)*.5)%1,dx=o.x-20+(k*1.3+R(k,2)*5)%40,dy=-12+pp*(o.gy+4);c.globalAlpha=out;rc(dx-.5,dy-1,2.6,7,'#2a5a14');rc(dx,dy,1.6,6,'#9be05a');rc(dx,dy,1,2.6,'#e8ffd0');c.globalAlpha=1;
+        if(pp>.88){const sq=(pp-.88)/.12;c.globalAlpha=(1-sq)*out;rc(dx-2-sq*3,o.gy-14-sq*2,1.5,1.5,'#9be05a');rc(dx+2+sq*3,o.gy-14-sq*2,1.5,1.5,'#9be05a');c.globalAlpha=1}}}}
+    if(d>=sp.imp){const k=cl01((d-sp.imp)/400);for(const o of tg){if(k<1){c.globalAlpha=(1-k)*.8;for(let j=0;j<10;j++){const an=j/10*6.283;rc(o.x+Math.cos(an)*(5+k*20),o.y+Math.sin(an)*(5+k*14),2,2,j%2?'#9be05a':'#e0ffc0')}c.globalAlpha=1}
+        glow(o.x,o.y,26,'#5ad040',.22*out*(.7+.3*Math.sin(t*6)));
+        for(let j=0;j<9;j++){const bp=((d*.0011)+j*.12)%1;c.globalAlpha=(1-bp)*out;disc(Math.round(o.x+(R(j,5)-.5)*24),Math.round(o.gy-4-bp*48),1+(j%2),j%3?'#9be05a':'#d8ffb0');c.globalAlpha=1}
+        if(d>1300){c.globalAlpha=out;const hy=o.gy-54-Math.sin(t*3)*1.5;rc(o.x-3,hy,6,5,'#d8ffb0');rc(o.x-2,hy+5,4,2,'#d8ffb0');rc(o.x-2,hy+1,1.6,2,'#2c4a20');rc(o.x+1,hy+1,1.6,2,'#2c4a20');c.globalAlpha=1}}}
+  }
+  // ---------- GELO: tempestade de gelo, estilhaços grandes e pequenos, bloco de gelo ----------
+  else if(sp.k==='gelo'){
+    const o=tg[0],ca=cl01((d-300)/350)*out;
+    if(0){for(let j=0;j<12;j++){const cx=o.x-55+j*10+Math.sin(t*1.2+j)*2,cy=5+Math.sin(t*1.6+j)*1.5,rr=14+R(j,3)*6;c.globalAlpha=ca*.95;disc(Math.round(cx),Math.round(cy+3),Math.round(rr),'#7da8c8');disc(Math.round(cx-1),Math.round(cy),Math.round(rr-2),'#bfe0f2');disc(Math.round(cx-2),Math.round(cy-3),Math.round(rr-5),'#f2fbff')}c.globalAlpha=1}
+    const shard=(x,y,w,h,al)=>{pg([[x,y+h],[x-w,y+h*.35],[x-w*.4,y],[x+w*.5,y+h*.05],[x+w,y+h*.4]],A,al);pg([[x,y+h],[x-w*.4,y],[x+w*.5,y+h*.05]],B,al*.9);pg([[x,y+h],[x+w*.5,y+h*.05],[x+w,y+h*.4]],D,al*.55);rc(x-w*.45,y+h*.2,1,h*.3,'#ffffff')};
+    // pequenos
+    for(let k=0;k<18;k++){const st=470+k*45+R(k,1)*140,fl=230;if(d<st||d>st+fl+260)continue;const x=o.x-42+R(k,2)*84;if(d<st+fl){const u=(d-st)/fl,y=-8+u*u*(o.gy-6);shard(x,y,2.2,7,out)}else{const u=(d-st-fl)/260;c.globalAlpha=(1-u)*out;rc(x-3-u*6,o.gy-3-u*5,1.5,1.5,B);rc(x+2+u*6,o.gy-3-u*6,1.5,1.5,'#ffffff');rc(x,o.gy-2-u*9,1.5,1.5,A);c.globalAlpha=1}}
+    // grandes
+    for(let k=0;k<3;k++){const st=560+k*200,fl=360,xx=o.x+(k-1)*11;if(d<st)continue;if(d<st+fl){const u=(d-st)/fl,y=-34+u*u*(o.gy-o.y+14+34-6);glow(xx,y+14,12,B,.35*out);shard(xx,y,6.5,30,out)}
+      else if(d<st+fl+600){const u=(d-st-fl)/600;c.globalAlpha=(1-u)*.9*out;for(let j=0;j<9;j++){const an=-Math.PI*(.1+j/9*.8),v=10+R(j,k)*26;rc(xx+Math.cos(an)*v*u*1.8-1,o.y+4+Math.sin(an)*v*u*1.6+u*u*24,2.4,2.4,j%2?B:A)}
+        c.globalAlpha=(1-u)*.7*out;const rr=5+u*22;for(let j=0;j<14;j++){const an=j/14*6.283;rc(xx+Math.cos(an)*rr,o.y+6+Math.sin(an)*rr*.5,2,2,'#ffffff')}c.globalAlpha=1}}
+    // bloco de gelo
+    if(d>1150){const k=cl01((d-1150)/260),w=15*k,h=33*k;c.globalAlpha=.5*out;rc(o.x-w,o.y-h+6,w*2,h*2-8,'#bfeaff');c.globalAlpha=.7*out;rc(o.x-w,o.y-h+6,w*2,2,'#ffffff');rc(o.x-w,o.y-h+6,2,h*2-8,'#e6f8ff');c.globalAlpha=out;rc(o.x+w-2,o.y-h+8,2,h*2-12,A);rc(o.x-w,o.y+h-4,w*2,2,A);
+      c.globalAlpha=.8*out;rc(o.x-3,o.y-10,1,10,'#ffffff');rc(o.x-3,o.y,6,1,'#ffffff');rc(o.x+4,o.y-18,1,8,'#ffffff');c.globalAlpha=1;
+      glow(o.x,o.gy-2,24,'#e6f8ff',.3*out);if(k>=1){const s2=(Math.floor(t*3)%3);star(o.x-9+s2*8,o.y-14+((s2*7)%11),3,B,out)}}
+    if(d>1000&&d<1700){const u=(d-1000)/700;c.globalAlpha=(1-u)*.5;for(let j=0;j<10;j++){disc(Math.round(o.x-22+j*5),Math.round(o.gy-2-u*8-(j%3)*2),3+(j%2),'#e6f8ff')}c.globalAlpha=1}
+  }
+  // ---------- FOGO: bola de fogo, explosão e chamas ----------
+  else if(sp.k==='fogo'){
+    const o=tg[0],t0=520,tf=1070,sx=HX+10,sy=HY-22;
+    const ball=(x,y,rr,al)=>{c.globalAlpha=al;glow(x,y,rr*2.4,A,.55);disc(Math.round(x),Math.round(y),Math.round(rr),D);disc(Math.round(x),Math.round(y),Math.round(rr*.78),A);disc(Math.round(x),Math.round(y),Math.round(rr*.5),B);disc(Math.round(x),Math.round(y),Math.round(rr*.22),'#ffffff');c.globalAlpha=1};
+    if(d>=t0-150&&d<t0){const u=(d-t0+150)/150;ball(sx,sy,2+u*4,1)}
+    if(d>=t0&&d<tf){const u=cl01((d-t0)/(tf-t0)),e2=u*u*(.6+.4*u),pos2=v=>[sx+(o.x-sx)*v,sy+(o.y-sy)*v-Math.sin(Math.min(1,v)*Math.PI)*26];
+      for(let k=9;k>=1;k--){const v=Math.max(0,e2-k*.04),q=pos2(v);c.globalAlpha=(1-k/10)*.7;disc(Math.round(q[0]+(R(k,7)-.5)*3),Math.round(q[1]+(R(k,8)-.5)*3),Math.max(1,Math.round((8-k*.6)*(.5+u*.5))),k>5?'#5a2a14':k>2?A:B);c.globalAlpha=1}
+      const q=pos2(e2);ball(q[0],q[1],5+u*6,1);for(let k=0;k<5;k++){const ep=(t*7+k*.2)%1;c.globalAlpha=1-ep;rc(q[0]-8-ep*10+R(k,1)*4,q[1]-6+R(k,2)*12-ep*4,2,2,k%2?B:'#ffffff');c.globalAlpha=1}}
+    if(d>=tf&&d<tf+650){const u=(d-tf)/650;c.globalAlpha=(1-u)*.95;disc(Math.round(o.x),Math.round(o.y),Math.round(10+u*32),D);c.globalAlpha=(1-u)*.95;disc(Math.round(o.x),Math.round(o.y),Math.round(8+u*24),A);c.globalAlpha=(1-u*u);disc(Math.round(o.x),Math.round(o.y),Math.round(4+u*10),B);c.globalAlpha=Math.max(0,1-u*3);disc(Math.round(o.x),Math.round(o.y),Math.round(3+u*14),'#ffffff');c.globalAlpha=1;
+      glow(o.x,o.y,46*(.4+u),A,.5*(1-u));for(let j=0;j<10;j++){const an=j/10*6.283,v=u*(26+R(j,1)*16);c.globalAlpha=1-u;rc(o.x+Math.cos(an)*v,o.y+Math.sin(an)*v*.8-u*u*10,2,2,j%2?B:A);c.globalAlpha=1}
+      c.globalAlpha=(1-u)*.8;for(let j=0;j<7;j++){const hh=(26+R(j,2)*18)*(1-u*.4);pg([[o.x-10+j*3.4-3,o.gy],[o.x-10+j*3.4,o.gy-hh*Math.min(1,u*3+.3)],[o.x-10+j*3.4+3,o.gy]],j%2?A:B)}c.globalAlpha=1;
+      c.globalAlpha=(1-u)*.5;for(let j=0;j<4;j++){disc(Math.round(o.x-8+j*5+Math.sin(t*4+j)*2),Math.round(o.y-10-u*30-(j%2)*6),3+j%2,'#3a3030')}c.globalAlpha=1}
+    if(d>=tf+300){for(const oo of tg){glow(oo.x,oo.y,26,A,.22*out);c.globalAlpha=out;for(let k=0;k<8;k++){const fx0=oo.x-14+k*4+(R(k,3)-.5)*3,fh=7+R(k,4)*6+Math.sin(t*14+k*1.7)*2.5,fb=oo.gy-4-(k%3)*10-R(k,6)*8;pg([[fx0-2.4,fb],[fx0+(Math.sin(t*9+k)*1.2),fb-fh],[fx0+2.4,fb]],A);pg([[fx0-1.2,fb],[fx0,fb-fh*.62],[fx0+1.2,fb]],B)}c.globalAlpha=1}}
+  }
+  // ---------- TROVÃO: nuvem de tempestade, 4-5 raios e atordoamento ----------
+  else if(sp.k==='trovao'){
+    const mnx=Math.min(...pos.map(q=>q[0]))+slide-30,mxx=Math.max(...pos.map(q=>q[0]))+slide+30,span=mxx-mnx,n=Math.max(8,Math.round(span/9)),ca=cl01((d-250)/300)*out;
+    if(ca>0){c.globalAlpha=ca*.32;rc(-10,-30,340,260,'#0a0820');c.globalAlpha=1;
+      if(0)for(let j=0;j<n;j++){const cx=mnx+(j+.5)*span/n+Math.sin(t*1.1+j)*2,cy=5+Math.sin(t*1.5+j*1.4)*1.5,rr=16+R(j,1)*7;c.globalAlpha=ca;disc(Math.round(cx),Math.round(cy+3),Math.round(rr),'#1c1830');disc(Math.round(cx-1),Math.round(cy),Math.round(rr-2),'#322c52');disc(Math.round(cx-3),Math.round(cy-3),Math.round(rr-5),'#524a7e')}c.globalAlpha=1}
+    for(const b of sp.bolts){const bd=ms-b.t;if(bd<-120||bd>330)continue;const o=pos[b.ti]?{x:pos[b.ti][0]+slide,gy:pos[b.ti][1],y:pos[b.ti][1]-26}:null;if(!o)continue;
+      if(bd<0){c.globalAlpha=(1+bd/120)*.5;glow(o.x+(R(b.s,1)-.5)*20,0,18,B,.8);c.globalAlpha=1;continue}
+      const al=1-bd/330,x0=o.x+(R(b.s,1)-.5)*26,x1=o.x+(R(b.s,2)-.5)*8,y1=o.gy-20,pts=[[x0,-16]];
+      for(let j=1;j<7;j++){const f=j/7;pts.push([x0+(x1-x0)*f+(R(b.s*9+j,3)-.5)*16*(1-f*.4),-16+(y1+16)*f])}pts.push([x1,y1]);
+      const stroke=(w,col,a)=>{c.globalAlpha=a;c.strokeStyle=col;c.lineWidth=w;c.lineJoin='round';c.beginPath();pts.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.stroke()};
+      stroke(7,A,al*.35);stroke(3.2,B,al*.9);stroke(1.3,'#ffffff',al);
+      {const m=pts[3],br=[[m[0],m[1]],[m[0]+(R(b.s,4)-.5)*30,m[1]+14],[m[0]+(R(b.s,5)-.5)*40,m[1]+24]];c.globalAlpha=al*.8;c.strokeStyle=B;c.lineWidth=1.4;c.beginPath();br.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.stroke()}
+      c.globalAlpha=1;if(bd<150){c.globalAlpha=(1-bd/150)*.3;rc(-10,-30,340,260,'#ece6ff');c.globalAlpha=1}
+      glow(x1,y1,22,B,.6*al);c.globalAlpha=al;for(let j=0;j<9;j++){const an=j/9*6.283,v=3+bd/330*20;rc(x1+Math.cos(an)*v,y1+Math.sin(an)*v*.8,2,2,j%2?'#ffffff':B)}
+      const rr=bd/330*20;for(let j=0;j<14;j++){const an=j/14*6.283;rc(x1+Math.cos(an)*rr,o.gy-2+Math.sin(an)*rr*.3,2,2,A)}c.globalAlpha=1}
+    if(sp.stunT&&ms>=sp.stunT){for(const oo of tg){c.globalAlpha=out;for(let k=0;k<3;k++){const an=t*5+k*2.094;star(oo.x+Math.cos(an)*12,oo.gy-56+Math.sin(an)*3,3,'#ffe08a',out)}c.globalAlpha=1;if(Math.floor(t*10)%2){c.globalAlpha=.35*out;rc(oo.x-10,oo.y-6,20,2,B);c.globalAlpha=1}}}
+  }
+}
 function drawWolfFx(pos,slide,HX,HY,ms,t){
   const w=fx.wfx;if(!w)return;const u=(ms-w.t)/(w.k==='howl'?1000:720);if(u<0||u>1)return;
   const WH='#f4f0e0';
@@ -4913,7 +5055,7 @@ function frame(ms){
         if(TTR!==tr){TTR=tr;TSX=120;TM=null;TMP=null}
         if(!BAGT)TSX+=200*dtf;
         const wx=TSX,moving=true,tt=t*2;
-        drawRoad(wx,biome,h,t,{terror,base:baseB,posts:[TM,TMP].filter(v=>v!=null),destM:(tr.done+1>=tr.hours&&TM!=null)?TM:null,dest:LOCS[tr.to].poi||'camp'});
+        drawRoad(wx,biome,h,t,{terror,base:baseB,posts:[TM,TMP].filter(v=>v!=null),destM:(tr.done+1>=tr.hours&&TM!=null)?TM:(tr.done>=tr.hours&&TMP!=null?TMP:null),dest:LOCS[tr.to].poi||'camp'});
         const sx=150;
         if(G.btr&&fx.bt&&!G.bat){const d=ms-fx.bt;
           if(d<900){heroShadow(sx,150,32,SD0,10);c.globalAlpha=Math.max(0,1-d/700);heroSprite(sx,148,tt,'walk',false);c.globalAlpha=1;batFx(sx,128,d,t,0)}
@@ -4927,11 +5069,11 @@ function frame(ms){
           for(let i=0;i<14;i++){const p2=Math.min(1,Math.max(0,(d-760-i*12)/700)),a2=i*1.9;if(p2<=0||p2>=1)continue;c.globalAlpha=(1-p2)*.7;const rr=3+p2*7;rc(sx+Math.cos(a2)*p2*22-rr/2,124+Math.sin(a2)*p2*20-p2*10-rr/2,rr,rr,i%2?'#6a2a90':'#2a1038')}c.globalAlpha=1}
         else if(BAGT){drawSleepBag(sx,148,t,ms-BAGT)}
         else if(G.bat){const by=62+Math.sin(t*3)*3,fl=Math.floor(t*10)%2;heroShadow(sx,152,10,SD0,8);drawBatBig(sx,by,fl)}
-        else if(tr.auto&&G.horse){heroShadow(sx,157,44,SD0,10);horseSpr(sx,156,t,{...HCOL,gal:true,rider:true,f:false})}
+        else if(tr.auto&&G.horse){heroShadow(sx,150,44,SD0,10);horseSpr(sx,149,t,{...HCOL,gal:true,rider:true,f:false})}
         else{heroShadow(sx,150,32,SD0,10);
         if(moving){for(let i=0;i<5;i++){const age=((t*3+i*.2)%1);c.globalAlpha=.5*(1-age);rc(sx-7-age*14,147-age*5-i%2,3-age*2,2,P.gold)}c.globalAlpha=1}
         heroSprite(sx,148,moving?tt:0,moving?'walk':'stand',false);
-        if(rdHere()){heroShadow(sx-44,157,44,SD0,10);c.globalAlpha=1;horseSpr(sx-44,156,t*.6,{...HCOL,gal:true,f:false})}
+        if(rdHere()){heroShadow(sx-44,150,44,SD0,10);c.globalAlpha=1;horseSpr(sx-44,149,t*.6,{...HCOL,gal:true,f:false})}
         }
         if(back){c.restore();MIR=false}
       }
@@ -4952,7 +5094,7 @@ function frame(ms){
         const mC=inPoi?(G.dir===-1&&!VSC(G.loc)):!!(G.trip&&LOCS[G.trip.to].x<LOCS[G.trip.from].x);MIR=mC;if(mC){c.save();c.translate(W,0);c.scale(-1,1)}
         if(inPoi)drawLoc(G.loc,t,h);
         else{const tr=G.trip;const biome=(tr?(LOCS[tr.to].biome!=='swamp'?LOCS[tr.to].biome:(LOCS[tr.from].biome!=='swamp'?LOCS[tr.from].biome:'plain')):'plain');drawRoad(tr&&TTR===tr?TSX:0,biome,h,t,{})}
-        if(!inPoi&&G.trip&&G.trip.auto&&G.horse){heroShadow(150,157,44,SD0,10);c.globalAlpha=1;horseSpr(150,156,t,{...HCOL,gr:(t%14)<4.5,rider:true,f:false})}else if(!(inPoi&&VSC(G.loc))){heroShadow(inPoi?52:150,inPoi?154:150,32,SD0,10);heroSprite(inPoi?52:150,inPoi?152:148,t,'stand',false);if(inPoi)drawWaitHorse(t)}
+        if(!inPoi&&G.trip&&G.trip.auto&&G.horse){heroShadow(150,150,44,SD0,10);c.globalAlpha=1;horseSpr(150,149,t,{...HCOL,gr:(t%14)<4.5,rider:true,f:false})}else if(!(inPoi&&VSC(G.loc))){heroShadow(inPoi?52:150,inPoi?154:150,32,SD0,10);heroSprite(inPoi?52:150,inPoi?152:148,t,'stand',false);if(inPoi)drawWaitHorse(t)}
         if(mC){c.restore();MIR=false}
         if(under){
           if(pI<.8){c.globalAlpha=Math.min(.9,Math.abs(Math.sin(pI*Math.PI*3.75))*.95);rc(0,0,W,H,P.white);c.globalAlpha=1}
@@ -4972,7 +5114,7 @@ function frame(ms){
 
 const bar=(l,v,m,col)=>`<div class="bar" title="${l}"><b>${l.split(" ")[0]}</b><div class="tr"><i style="width:${Math.max(0,Math.min(100,v/m*100))}%;background:var(${col})"></i></div><em>${Math.round(v)}/${m}</em></div>`;
 const FXE={sangramento:'🩸',atordoamento:'💫',fogo:'🔥',veneno:'☠️',gelo:'❄️',trovao:'⚡'};
-const gdesc=o=>o.k==='sc'?`<span style="color:#c9a0ff">${o.n}</span> <small>Encantamento ${FXE[o.fx]||''} · use na bigorna</small>`:o.k==='w'?`<span style="color:${RAR[o.ri].c}">${o.n}</span> <small>dano ${o.a+o.lvl-1}-${o.b+o.lvl-1}${o.fx?' · '+o.fx:''} · dur ${durP(o)}</small>`:`<span>${o.n}</span> <small>${SLOTN[o.k]||'Armadura'} · defesa ${o.def}${o.mg?` · +${o.mg} magia · +${o.sp}% dano mágico`:''} · dur ${durP(o)}</small>`;
+const gdesc=o=>o.k==='sc'?`<span style="color:#c9a0ff">${o.n}</span> <small>Encantamento ${FXE[o.fx]||''} · use na bigorna</small>`:o.k==='w'?`<span style="color:${RAR[o.ri].c}">${o.n}</span> <small>dano ${o.a+o.lvl-1}-${o.b+o.lvl-1}${o.fx?' · '+o.fx:''} · dur ${durP(o)}</small>`:o.book?`<span style="color:${o.fx&&SCPAL[o.fx]?SCPAL[o.fx][0]:'#c9a0ff'}">${o.n}</span> <small>Grimório · ${o.fx?'magia de '+BOOKN[o.fx]+' (aba Magia)':'vazio: encante na bigorna'} · dur ${durP(o)}</small>`:`<span>${o.n}</span> <small>${SLOTN[o.k]||'Armadura'} · defesa ${o.def}${o.mg?` · +${o.mg} magia · +${o.sp}% dano mágico`:''} · dur ${durP(o)}</small>`;
 const cost=cc=>Object.entries(cc).map(([k,n])=>`<span style="color:${have(k)>=n?'var(--moss)':'var(--blood)'}">${n} ${nm(k)}</span>`).join(', ');
 const V={};
 V.pack=()=>{
@@ -4983,6 +5125,7 @@ V.pack=()=>{
   const ks=Object.keys(G.inv);
   if(!ks.length)h+=`<p class="dim" style="margin-top:8px">Nenhum item no inventário.</p>`;
   for(const k of ks){const it=IT[k],u=it.food||it.water||it.heal||it.mana||k==='holy';
+    if(k==='water'&&SK()>1){SKW().forEach((q,j)=>{h+=`<div class="row"><span class="l">${it.i} ${it.n} ${j+1} <small>${q*5}%</small></span><span class="r"><button class="sm" data-a="drinkSk" data-v="${j}" ${cb||!q?'disabled':''}>Beber</button></span></div>`});continue}
     h+=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(k,G.inv[k],1)}</small></span><span class="r">${u?`<button class="sm" data-a="use" data-v="${k}" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${k}">Largar</button></span></div>`}
   return h+`<div class="btns"><button data-a="close">Fechar</button></div></section>`;
 };
@@ -5239,7 +5382,16 @@ function scrollIc(fx){
   SCC[fx]=cls;return `<i class="ic ${cls}"></i>`;
 }
 (function gemLoop(){try{const t=performance.now()/1000;document.querySelectorAll('canvas.gemc').forEach(cv=>{const g=cv.getContext('2d');g.clearRect(0,0,cv.width,cv.height);g.imageSmoothingEnabled=false;gemPaint(g,cv.dataset.fx,t,cv.width/78,cv.width*.1,cv.height*.06,true)})}catch(e){}requestAnimationFrame(gemLoop)})();
+ICS.book=["................","..kkkkkkkkkkkk..",".kOMMMMMMMMMNk..",".kOMMMMMMMMMNk..",".kOMMgggggMMNk..",".kOMMgyyygMMNk..",".kOMMgySygMMNk..",".kOMMgyyygMMNk..",".kOMMgggggMMNk..",".kOMMMMMMMMMNk..",".kOMMMMMMMMMNk..",".kOMMMMMMMMMNk..",".kOMMMMMMMMMNk..","..kkkkkkkkkkkk..","................","................"];
+VEC.book=(g,p)=>{const M=p.M||'#6a4a8a',N=p.N||'#a888d0',O=p.O||'#35205a',S=p.S||'#ffffff';
+  const gr=g.createRadialGradient(32,30,4,32,30,31);gr.addColorStop(0,N+'aa');gr.addColorStop(1,N+'00');g.fillStyle=gr;g.fillRect(0,0,64,64);
+  vL(g,[[[[16,10],[50,12],[51,52],[16,55]],'#efe6cc'],[[[10,8],[46,8],[46,54],[10,54]],M],[[[10,8],[18,8],[18,54],[10,54]],O],[[[19,13],[43,13],[43,16],[19,16]],'#e6bd4a'],[[[19,46],[43,46],[43,49],[19,49]],'#e6bd4a'],[[[30,21],[39,31],[30,41],[21,31]],'#e6bd4a'],[[[30,25],[35,31],[30,37],[25,31]],S]]);
+  vH(g,22,10,44,10,1.6,.7);
+  const st=(x,y,r)=>{g.fillStyle=S;g.fillRect(x-r,y-1,r*2,2);g.fillRect(x-1,y-r,2,r*2);g.fillStyle=N;g.fillRect(x-1.5,y-1.5,3,3);g.fillStyle='#fff';g.fillRect(x-.8,y-.8,1.6,1.6)};
+  st(53,9,6);st(57,36,4);st(6,48,5);st(34,3,3)};
+const bookIc=fx=>{const pc=SCPAL[fx];return icoH('book',pc?{M:pc[0],N:pc[1],O:pc[2],S:'#ffffff'}:{M:'#6a4a8a',N:'#a888d0',O:'#35205a',S:'#e6d8ff'})};
 const gIcon=o=>{
+  if(o.book)return bookIc(o.fx);
   if(o.k==='sc')return scrollIc(o.fx);
   if(o.k==='w'){const kd=wepKind(o.n),b=(kd==='staff'?(SCPAL[o.fx]||['#9a8a70'])[0]:RAR[o.ri||0].b);return icoH(kd==='bow'?'sword':kd,{m:b,n:mixc(b,'#ffffff',.55),o:mixc(b,'#000000',.45)})}
   const t=Math.max(0,Math.min(2,o.tier!=null?o.tier:(o.def>=5?2:o.def>=3?1:0)));
@@ -5371,9 +5523,26 @@ function barHTML0(){
   if(v==='combat'){const S=G.scene,w=wepOk();
     if(S&&S.en&&S.en[0]&&S.en[0].k==='whorse'){const e=S.en[0],ap=G.inv.apple||0,sd=G.inv.saddle||0;
       return `<div class="bt"><b>Um cavalo selvagem observa você.</b><small>Alimentar: será alimentado com maçã (${ap}). Domar: terá pequena chance, a chance aumenta alimentando${sd?'':' · precisa de uma sela no inventário'}.${G.horse?' Você já tem um cavalo: só dá para domar outro quando ele morrer.':''}</small></div><div class="btns"><button class="pri" data-a="feed" ${ap?'':'disabled'} title="Será alimentado com maçã">🍎 Alimentar</button><button data-a="tame" ${sd&&!G.horse?'':'disabled'} title="Terá pequena chance, a chance aumenta alimentando">🐴 Domar</button><button data-a="openpack">🎒 Inventário</button><button class="bad" data-a="flee">🏃 Fugir</button></div>`}
-    if(POTM&&potList().length)return `<div class="bt"><b>Poções</b></div><div class="mgrid" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px">${potList().map(k=>'<button class="mslot big" data-a="'+(k[0]==='h'?'potc':'mpotc')+'" data-v="'+k+'" title="'+IT[k].n+'" aria-label="'+IT[k].n+'"><span class="mi">'+IT[k].i+'</span><b class="mn">'+G.inv[k]+'</b></button>').join('')}</div><div class="btns"><button data-a="potmenu">Voltar</button></div>`;
-    POTM=false;
-    return `<div class="bt"><b>O que você vai fazer?</b><small>${w?`${G.wep.n}: dano ${G.wep.a+G.wep.lvl-1}-${G.wep.b+G.wep.lvl-1}, dur ${durP(G.wep)}`:'Sem arma útil: você luta com os punhos.'}</small></div><div class="btns">${G.wolf?'':'<button class="pri" data-a="atk">⚔️ Atacar</button>'}<button data-a="openpack">🎒 Inventário</button>${vBite()?'<button data-a="bite">🦷 Morder (8 ✨)</button>':''}${vFull()&&G.scene&&!G.scene.pb?'<button data-a="summon" '+((G.mana==null?MM():G.mana)>=50?'':'disabled')+'>🦇 Invocar (50 ✨)</button>':''}${vFull()&&isNight()?'<button data-a="batflee">🦇 Fugir voando</button>':''}${wolfAtk()}${wolfBtn()}${potList().length?'<button data-a="potmenu">🧪 Poções</button>':''}<button class="bad" data-a="flee">🏃 Fugir</button></div>`}
+    {const pl=potList();if(G.wolf&&CT==='atk'&&!CTW){CT='spec'}CTW=!!G.wolf;
+      const tab=(id,l)=>'<button class="'+(CT===id?'pri':'')+'" data-a="btab" data-v="'+id+'">'+l+'</button>';
+      const ag=Math.round(Math.min(.97,.85+.01*AT('agi'))*100);
+      let body='';
+      if(CT==='atk'){body=G.wolf?'<p class="dim" style="text-align:center">Na forma de lobo você luta com ataques especiais.</p>':`<div class="cact"><button class="pri" data-a="atk">⚔️ Atacar<small>Acerto ${ag}% (sobe com agilidade)</small></button><button data-a="heavy">💥 Golpe pesado<small>Dano x1.7 · 50% de acerto</small></button></div>`}
+      else if(CT==='spec'){const sp=[];
+        if(G.wolf){sp.push('<button data-a="wbite">🐺 Mordida<small>Veneno e recupera magia</small></button>');if(AT('lobo')>=5)sp.push('<button data-a="wclaw">🩸 Garra<small>Causa sangramento</small></button>');if(AT('lobo')>=10)sp.push('<button data-a="whowl">🌙 Uivo (15 ✨)<small>Recupera vida</small></button>')}
+        else{if(vBite())sp.push('<button data-a="bite">🦷 Morder (8 ✨)<small>Drena a vida do alvo</small></button>');
+          if(vFull()&&G.scene&&!G.scene.pb)sp.push('<button data-a="summon" '+((G.mana==null?MM():G.mana)>=50?'':'disabled')+'>🦇 Invocar (50 ✨)<small>Chama um morcego aliado</small></button>');
+          if(vFull()&&isNight())sp.push('<button data-a="batflee">🦇 Fugir voando<small>Escapa da batalha em forma de morcego</small></button>')}
+        body=sp.length?'<div class="cact">'+sp.join('')+'</div>':'<p class="dim" style="text-align:center">Nenhum ataque especial disponível.</p>'}
+      else if(CT==='mag'){const B=G.shield;
+        if(G.wolf)body='<p class="dim" style="text-align:center">Na forma de lobo você não consegue conjurar magias.</p>';
+        else if(B&&B.book&&B.fx&&SPELLS[B.fx]){const sp=SPELLS[B.fx],mn=G.mana==null?MM():G.mana,ok=mn>=sp.mana&&B.dur>0;body=`<div class="cact"><button class="pri" data-a="spell" data-v="${B.fx}" ${ok?'':'disabled'}>${sp.ic} ${sp.n} (${sp.mana} ✨)<small>${sp.d}</small></button></div>`+(B.dur<=0?'<p class="dim" style="text-align:center">O grimório se desgastou: conserte-o.</p>':'')}
+        else if(B&&B.book)body='<p class="dim" style="text-align:center">Seu grimório está vazio. Encante-o na bigorna com uma pedra de Veneno, Gelo, Fogo ou Trovão.</p>';
+        else body='<p class="dim" style="text-align:center">Nenhuma magia disponível. Equipe um grimório encantado no lugar do escudo.</p>'}
+      else if(!pl.length){body='<p class="dim" style="text-align:center">Você não tem poções.</p>'}
+      else{body='<div class="mgrid" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px">'+pl.map(k=>'<button class="mslot big" data-a="'+(k[0]==='h'?'potc':'mpotc')+'" data-v="'+k+'" title="'+IT[k].n+'" aria-label="'+IT[k].n+'"><span class="mi">'+IT[k].i+'</span><b class="mn">'+G.inv[k]+'</b></button>').join('')+'</div>'}
+      POTM=CT==='pot';
+      return `<div class="bt"><small>${w?`${G.wep.n}: dano ${G.wep.a+G.wep.lvl-1}-${G.wep.b+G.wep.lvl-1}, dur ${durP(G.wep)}`:'Sem arma útil: você luta com os punhos.'}</small></div><div class="ctabs">${tab('atk','⚔️ Ataque')}${tab('spec','✨ Especial')}${tab('mag','🔮 Magia')}${tab('pot','🧪 Poções')}</div>${body}<div class="btns"><button data-a="openpack">🎒 Inventário</button>${wolfBtn()}<button class="bad" data-a="flee">🏃 Fugir</button></div>`}}
   return '';
 }
 A.opencraft=()=>{G.modal='craft'};
@@ -5413,7 +5582,7 @@ V.pack=()=>{
   const eq=(s,ph)=>{const o=G[s];return o?cell('e:'+s,gIcon(o),durBar(o),o.n,'eqp'):`<div class="mslot empty" title="${ph}"><span class="mi ph">${icoH(GS[s])}</span></div>`};
   const items=[],ARM=typeof AR!=='undefined'&&AR&&AR.mod;
   for(const o of G.bag)if(!ARM||o.k==='w'||'ahcspb'.includes(o.k))items.push(cell('g:'+o.id,gIcon(o),durBar(o),o.n));
-  if(!ARM){const nk=Math.max(1,Math.round(SK()));for(let q=0;q<nk;q++){const pc0=Math.max(0,Math.min(100,Math.round(((G.inv.water||0)-20*q)/20*100)));items.push(cell('i:water',IT.water.i,`<b class="mn">${pc0}%</b>`,IT.water.n))}}
+  if(!ARM){const nk=Math.max(1,Math.round(SK())),sw=SKW();for(let q=0;q<nk;q++){const pc0=(sw[q]||0)*5;items.push(cell(nk>1?'i:water~'+q:'i:water',IT.water.i,`<b class="mn">${pc0}%</b>`,IT.water.n))}}
   for(const k of Object.keys(G.inv))if(k!=='water'&&!ARM)items.push(cell('i:'+k,IT[k].i,`<b class="mn">${G.inv[k]}</b>`,IT[k].n));
   const total=Math.max(27,Math.ceil(items.length/9)*9);
   while(items.length<total)items.push('<div class="mslot empty"></div>');
@@ -5422,6 +5591,7 @@ V.pack=()=>{
     if(t==='q'&&G.quiver>0){det=`<div class="row"><span class="l">${arrowIc(G.qfx)} ${G.qfx?IT[G.qk].n:'Flechas'} equipadas <small>×${G.quiver}</small><br><small class="dim">Munição da besta</small></span><span class="r"><button class="sm" data-a="unquiver">Tirar</button></span></div>`}
     else if(t==='e'&&G[id]){det=`<div class="row"><span class="l">${gdesc(G[id])}</span><span class="r"><button class="sm" data-a="unequip" data-v="${id}">Tirar</button></span></div>`}
     else if(t==='g'){const o=G.bag.find(x=>x.id===id);if(o)det=`<div class="row"><span class="l">${gdesc(o)}</span><span class="r">${o.k==='sc'?'<small class="dim">Use na bigorna</small>':o.dur>0?`<button class="sm" data-a="equip" data-v="${o.id}" ${''}>Equipar</button>`:'<small class="dim">Quebrado </small>'}<button class="sm" data-a="dropg" data-v="${o.id}">Largar</button></span></div>`}
+    else if(t==='i'&&/^water~\d+$/.test(id)){const it=IT.water,j=+id.slice(6),q=SKW()[j]||0;det=`<div class="row"><span class="l">${it.i} ${it.n} ${j+1} <small>${q*5}%</small><br><small class="dim">${it.d}</small></span><span class="r"><button class="sm" data-a="drinkSk" data-v="${j}" ${cb||!q?'disabled':''}>Beber (5%)</button></span></div>`}
     else if(t==='i'&&id==='water'){const it=IT.water,w0=G.inv.water||0;det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QW(w0)}</small><br><small class="dim">${it.d}</small></span><span class="r"><button class="sm" data-a="use" data-v="water" ${cb||!w0?'disabled':''}>Beber (5%)</button></span></div>`}
     else if(t==='i'&&G.inv[id]){const it=IT[id],u=it.food||it.water||it.heal||it.mana||id==='holy';det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(id,G.inv[id],1)}</small>${it.d?`<br><small class="dim">${it.d}</small>`:''}</span><span class="r">${/^arrow/.test(id)?`<button class="sm" data-a="eqarrow" data-v="${id}">${cb?'Recarregar':'Equipar'}</button>`:''}${u?`<button class="sm" data-a="use" data-v="${id}" ${cb?'disabled':''}>Usar</button>`:''}${id==='sleepbag'&&(G.trip||G.view==='poi'||cb)?`<button class="sm" data-a="bagsleep" ${cb?'disabled':''}>Usar</button>`:''}<button class="sm" data-a="drop" data-v="${id}">Largar</button></span></div>`}
   }
@@ -5442,7 +5612,7 @@ new MutationObserver(()=>{document.querySelectorAll('#modal .mscroll[data-sc]').
 V.chest=()=>{
   const sel=(id)=>CSEL===id?'sel':'';
   const cell=(id,ic,extra,title)=>`<button class="mslot ${sel(id)}" data-a="csel" data-v="${id}" title="${title}"><span class="mi">${ic}</span>${extra||''}</button>`;
-  const mk=(pre,inv,bag,min)=>{const it=[];for(const o of bag)it.push(cell(pre+':g:'+o.id,gIcon(o),durBar(o),o.n));for(const k of Object.keys(inv))it.push(cell(pre+':i:'+k,IT[k].i,`<b class="mn">${k==='water'?(pre==='p'?QW(inv[k]):Math.min(100,inv[k]*5)+'%'):inv[k]}</b>`,IT[k].n));const tot=Math.max(min,Math.ceil((it.length+9)/9)*9);while(it.length<tot)it.push('<div class="mslot empty"></div>');return it.join('')};
+  const mk=(pre,inv,bag,min)=>{const it=[];for(const o of bag)it.push(cell(pre+':g:'+o.id,gIcon(o),durBar(o),o.n));for(const k of Object.keys(inv)){it.push(cell(pre+':i:'+k,IT[k].i,`<b class="mn">${k==='water'?(pre==='p'?QW(inv[k]):Math.min(100,inv[k]*5)+'%'):inv[k]}</b>`,IT[k].n))}const tot=Math.max(min,Math.ceil((it.length+9)/9)*9);while(it.length<tot)it.push('<div class="mslot empty"></div>');return it.join('')};
   let det='<p class="dim">Toque num item para ver as opções.</p>';
   if(CSEL){const[w,t,...r]=CSEL.split(':'),id=r.join(':');
     if(w==='c'&&t==='i'&&G.chest.inv[id]){const it=IT[id];det=`<div class="row"><span class="l">${it.i} ${it.n} <small>${QT(id,G.chest.inv[id])}</small></span><span class="r"><button class="sm" data-a="take" data-v="${id}:1">Pegar 1</button><button class="sm" data-a="take" data-v="${id}:all">Todos</button></span></div>`}
@@ -5464,16 +5634,16 @@ A.openanvil=()=>{AARW=false;AIT=null;AMAT=false;ASCR=null;ATAB='repair';G.modal=
 A.antab=v=>{if(SL('anvil')<({repair:1,ench:2,dis:3})[v])return;ATAB=v;AARW=false;AIT=null;AMAT=false;ASCR=null};
 const dismRef=o=>{const nm=x=>String(x).replace(/ \(defesa \d+\)/,'').trim(),r=RECIPES.find(q=>q.gear&&nm(q.n)===nm(o.n)),out={};const mats=['iron','leather','cloth','wood'];if(r){for(const [k,n] of Object.entries(r.need))if(mats.includes(k)){const q=Math.floor(n*.5);if(q>0)out[k]=q}}if(!Object.keys(out).length)out[repMat(o)]=o.k==='w'?2:1;return out};
 A.dismantle=()=>{const o=aItem(AIT);if(!o||o.k==='sc')return;const ref=dismRef(o);advance(1);if(G.dflag||G.view==='over')return;if(AIT[0]==='e')G[AIT.slice(2)]=null;else if(AIT[0]==='c'){const i=G.chest.bag.indexOf(o);if(i>=0)G.chest.bag.splice(i,1)}else{const i=G.bag.indexOf(o);if(i>=0)G.bag.splice(i,1)}const got=[];for(const [k,n] of Object.entries(ref)){gain(k,n);got.push(n+'x '+IT[k].n)}lg(`Você desmontou ${o.n}: ${got.join(', ')}.`);G.note='Desmontado: '+got.join(', ')+'.';AIT=null};
-const repMat=o=>{const n=(o&&o.n||'').toLowerCase();return /couro|gambeson|capuz/.test(n)?'leather':/pano|viajante|lã|capa/.test(n)?'cloth':/madeira|cajado/.test(n)?'wood':'iron'};
+const repMat=o=>{const n=(o&&o.n||'').toLowerCase();return /couro|gambeson|capuz/.test(n)?'leather':/pano|viajante|lã|capa|grim/.test(n)?'cloth':/madeira|cajado/.test(n)?'wood':'iron'};
 A.asel=v=>{if(v==='i:arrow'){AARW=!AARW;if(AARW){AIT=null;AMAT=false}return}if(AARW&&(v[0]==='e'||v[0]==='i'||(v[0]==='g'&&(G.bag.find(x=>x.id===v.slice(2))||{}).k!=='sc')))AARW=false;if(v[0]==='g'){const sc=G.bag.find(x=>x.id===v.slice(2));if(sc&&sc.k==='sc'){ASCR=(ASCR===sc.id)?null:sc.id;AMAT=false;return}}if(v[0]==='i'){const k=v.slice(2);AMAT=(AMAT===k)?false:k;ASCR=null}else AIT=(AIT===v)?null:v};
-A.enchant=()=>{if(AARW){const sc=G.bag.find(x=>x.id===ASCR&&x.k==='sc'),n=Math.min(10,G.inv.arrow||0);if(!sc||!n)return;advance(1);if(G.dflag||G.view==='over')return;G.inv.arrow-=n;if(!G.inv.arrow)delete G.inv.arrow;const k='arrow_'+sc.fx;G.inv[k]=(G.inv[k]||0)+n;G.bag.splice(G.bag.indexOf(sc),1);lg(`${n} flecha(s) encantadas com ${FXL[sc.fx]}: a ${sc.n} se desfaz em luz.`);ASCR=null;AARW=false;G.note='Flechas encantadas: '+FXL[sc.fx]+'.';return}const o=aItem(AIT),sc=G.bag.find(x=>x.id===ASCR&&x.k==='sc');if(!o||o.k!=='w'||!sc)return;advance(1);if(G.dflag||G.view==='over')return;const old=o.fx&&FXN[o.fx];if(old&&o.n.endsWith(old))o.n=o.n.slice(0,-old.length);o.fx=sc.fx;o.n+=FXN[sc.fx]||'';G.bag.splice(G.bag.indexOf(sc),1);lg(`${o.n}: a ${sc.n} se desfaz em luz e a arma é encantada.`);ASCR=null;AIT=null;G.note='Arma encantada: '+sc.fx+'.'};
+A.enchant=()=>{if(AARW){const sc=G.bag.find(x=>x.id===ASCR&&x.k==='sc'),n=Math.min(10,G.inv.arrow||0);if(!sc||!n)return;advance(1);if(G.dflag||G.view==='over')return;G.inv.arrow-=n;if(!G.inv.arrow)delete G.inv.arrow;const k='arrow_'+sc.fx;G.inv[k]=(G.inv[k]||0)+n;G.bag.splice(G.bag.indexOf(sc),1);lg(`${n} flecha(s) encantadas com ${FXL[sc.fx]}: a ${sc.n} se desfaz em luz.`);ASCR=null;AARW=false;G.note='Flechas encantadas: '+FXL[sc.fx]+'.';return}const o=aItem(AIT),sc=G.bag.find(x=>x.id===ASCR&&x.k==='sc');if(o&&o.book&&sc){if(!BOOKFX.includes(sc.fx))return;advance(1);if(G.dflag||G.view==='over')return;o.fx=sc.fx;o.n='Grimório de '+BOOKN[sc.fx];o.dur=o.max;G.bag.splice(G.bag.indexOf(sc),1);lg(`${o.n}: a ${sc.n} se desfaz em luz e o grimório desperta (magia: ${SPELLS[sc.fx].n}).`);ASCR=null;AIT=null;G.note='Grimório encantado: '+SPELLS[sc.fx].n+'.';return}if(!o||o.k!=='w'||!sc)return;advance(1);if(G.dflag||G.view==='over')return;const old=o.fx&&FXN[o.fx];if(old&&o.n.endsWith(old))o.n=o.n.slice(0,-old.length);o.fx=sc.fx;o.n+=FXN[sc.fx]||'';G.bag.splice(G.bag.indexOf(sc),1);lg(`${o.n}: a ${sc.n} se desfaz em luz e a arma é encantada.`);ASCR=null;AIT=null;G.note='Arma encantada: '+sc.fx+'.'};
 A.repair=()=>{const o=aItem(AIT);if(!o||!AMAT||AMAT!==repMat(o)||o.dur>=o.max||have(AMAT)<2)return;spend(AMAT,2);advance(1);if(G.dflag||G.view==='over')return;o.dur=o.max;lg(`${o.n} foi consertada.`);AIT=null;AMAT=false};
 V.anvil=()=>{
   const cell=(id,ic,extra,title,on)=>`<button class="mslot ${on?'sel':''}" data-a="asel" data-v="${id}" title="${title}"><span class="mi">${ic}</span>${extra||''}</button>`;
-  const o=aItem(AIT),mk=o?repMat(o):'iron',fe=have(mk);const tab=ATAB;let scr=(tab==='ench'&&ASCR)?G.bag.find(x=>x.id===ASCR&&x.k==='sc'):null;if(ASCR&&!scr)ASCR=null;if(tab!=='ench'){ASCR=null;AARW=false}if(AARW&&!(G.inv.arrow>0))AARW=false;const enOk=!!(o&&o.k==='w'&&scr)||!!(AARW&&scr);
+  const o=aItem(AIT),mk=o?repMat(o):'iron',fe=have(mk);const tab=ATAB;let scr=(tab==='ench'&&ASCR)?G.bag.find(x=>x.id===ASCR&&x.k==='sc'):null;if(ASCR&&!scr)ASCR=null;if(tab!=='ench'){ASCR=null;AARW=false}if(AARW&&!(G.inv.arrow>0))AARW=false;const enOk=!!(o&&(o.k==='w'||o.book)&&scr&&(!o.book||BOOKFX.includes(scr.fx)))||!!(AARW&&scr);
   const cells=[];
-  for(const s of (tab==='dis'?[]:tab==='ench'?['wep']:['wep','helm','arm','pants','boots','cape','shield'])){const g=G[s];if(g&&AIT!=='e:'+s)cells.push(cell('e:'+s,gIcon(g),durBar(g),g.n,AIT==='e:'+s))}
-  for(const g of G.bag)if(AIT!=='g:'+g.id&&ASCR!==g.id&&(tab==='ench'?(g.k==='w'||g.k==='sc'):g.k!=='sc'))cells.push(cell('g:'+g.id,gIcon(g),durBar(g),g.n,false));
+  for(const s of (tab==='dis'?[]:tab==='ench'?['wep','shield']:['wep','helm','arm','pants','boots','cape','shield'])){const g=G[s];if(g&&(tab!=='ench'||s!=='shield'||g.book)&&AIT!=='e:'+s)cells.push(cell('e:'+s,gIcon(g),durBar(g),g.n,AIT==='e:'+s))}
+  for(const g of G.bag)if(AIT!=='g:'+g.id&&ASCR!==g.id&&(tab==='ench'?(g.k==='w'||g.k==='sc'||g.book):g.k!=='sc'))cells.push(cell('g:'+g.id,gIcon(g),durBar(g),g.n,false));
   if(tab==='repair')for(const k of ['iron','leather','cloth','wood']){const left=have(k)-(AMAT===k?2:0);if(left>0)cells.push(AMAT===k?`<div class="mslot"><span class="mi">${IT[k].i}</span><b class="mn">${left}</b></div>`:cell('i:'+k,IT[k].i,`<b class="mn">${left}</b>`,IT[k].n,false))}
   if(tab==='ench'&&G.inv.arrow>0&&!AARW)cells.push(cell('i:arrow',IT.arrow.i,`<b class="mn">${G.inv.arrow}</b>`,'Flechas',false));
   while(cells.length<18||cells.length%9)cells.push('<div class="mslot empty"></div>');
@@ -5481,7 +5651,7 @@ V.anvil=()=>{
   const slot=(ic,txt,extra)=>`<div class="mslot big">${ic?`<span class="mi">${ic}</span>`:''}${extra||''}</div>`;
   const dref=(tab==='dis'&&o&&o.k!=='sc')?dismRef(o):null,dk=dref?Object.keys(dref)[0]:null;
   const res=dref?`<button class="mslot big" data-a="dismantle" title="Desmontar"><span class="mi">${IT[dk].i}</span><b class="mn">${Object.values(dref).reduce((a,b)=>a+b,0)}</b></button>`:enOk?`<button class="mslot big" data-a="enchant" title="Encantar"><span class="mi">${AARW?IT.arrow.i:gIcon(o)}</span><i class="mdur" style="width:100%;background:#a070d0"></i></button>`:ready?`<button class="mslot big" data-a="repair" title="Consertar"><span class="mi">${gIcon(o)}</span><i class="mdur" style="width:100%;background:#4a4"></i></button>`:'<div class="mslot big empty"></div>';
-  const msg=tab==='dis'?(!o?'Escolha o equipamento que será desmontado. Você recupera parte dos materiais.':`${o.n}: desmontar e recuperar ${Object.entries(dref).map(([k,n])=>n+'x '+IT[k].n).join(', ')} · 1h`):tab==='ench'&&!scr&&!AARW?'Escolha uma pedra de encantamento e a arma (ou as flechas) que será encantada.':(scr&&AARW)?`Encantar ${Math.min(10,G.inv.arrow||0)} flecha(s) com ${FXE[scr.fx]||''} ${FXL[scr.fx]} (até 10 por pedra) · 1h`:scr?(!o?'Escolha a arma que será encantada.':o.k!=='w'?'Pedras de encantamento encantam apenas armas.':`${o.n}: encantar com ${FXE[scr.fx]||''} ${FXL[scr.fx]} (substitui o efeito atual) · 1h`):!o?'Escolha o equipamento e o material (2) para consertar: ferro, couro, pano ou madeira, conforme a peça.':!need?`${o.n} não precisa de conserto.`:AMAT!==mk?`Falta colocar o material: ${IT[mk].n} (2).`:fe<2?`${IT[mk].n} insuficiente (2).`:`${o.n}: dur ${durP(o)} → 100% · 2 ${IT[mk].n} · 1h`;
+  const msg=tab==='dis'?(!o?'Escolha o equipamento que será desmontado. Você recupera parte dos materiais.':`${o.n}: desmontar e recuperar ${Object.entries(dref).map(([k,n])=>n+'x '+IT[k].n).join(', ')} · 1h`):tab==='ench'&&!scr&&!AARW?'Escolha uma pedra de encantamento e a arma (ou as flechas) que será encantada.':(scr&&AARW)?`Encantar ${Math.min(10,G.inv.arrow||0)} flecha(s) com ${FXE[scr.fx]||''} ${FXL[scr.fx]} (até 10 por pedra) · 1h`:scr?(!o?'Escolha a arma que será encantada.':(o.k!=='w'&&!o.book)?'Pedras de encantamento encantam apenas armas e grimórios.':(o.book&&!BOOKFX.includes(scr.fx))?'Grimórios só aceitam pedras de Veneno, Gelo, Fogo ou Trovão.':`${o.n}: encantar com ${FXE[scr.fx]||''} ${FXL[scr.fx]} (substitui o efeito atual) · 1h`):!o?'Escolha o equipamento e o material (2) para consertar: ferro, couro, pano ou madeira, conforme a peça.':!need?`${o.n} não precisa de conserto.`:AMAT!==mk?`Falta colocar o material: ${IT[mk].n} (2).`:fe<2?`${IT[mk].n} insuficiente (2).`:`${o.n}: dur ${durP(o)} → 100% · 2 ${IT[mk].n} · 1h`;
   return `<section class="card mc"><h2>Bigorna</h2>${lvBox('anvil')}<p class="dim">Conserta, encanta e desmonta equipamentos.</p><div class="tabs sub"><button class="${tab==='repair'?'on':''}" data-a="antab" data-v="repair">🔨 Consertar</button><button class="${tab==='ench'?'on':''}" data-a="antab" data-v="ench" ${SL('anvil')<2?'disabled':''}>${SL('anvil')<2?'🔒':'✨'} Encantar</button><button class="${tab==='dis'?'on':''}" data-a="antab" data-v="dis" ${SL('anvil')<3?'disabled':''}>${SL('anvil')<3?'🔒':'♻️'} Desmontar</button></div>
   ${scr?`<canvas class="gemc" data-fx="${scr.fx}" width="120" height="120"></canvas>`:''}
   <div class="manv">${AARW?`<button class="mslot big sel" data-a="asel" data-v="i:arrow" title="Tirar"><span class="mi">${IT.arrow.i}</span><b class="mn">${Math.min(10,G.inv.arrow||0)}</b></button>`:o?`<button class="mslot big sel" data-a="asel" data-v="${AIT}" title="Tirar"><span class="mi">${gIcon(o)}</span>${durBar(o)}</button>`:slot('','')}${tab==='dis'?'':'<b>＋</b>'}${tab==='dis'?'':scr?`<button class="mslot big sel" data-a="asel" data-v="g:${scr.id}" title="Tirar"><span class="mi">${gIcon(scr)}</span></button>`:AMAT?`<button class="mslot big sel" data-a="asel" data-v="i:${AMAT}" title="Tirar"><span class="mi">${IT[AMAT].i}</span><b class="mn">2</b></button>`:slot('','')}<b>➜</b>${res}</div>
@@ -5492,10 +5662,10 @@ V.anvil=()=>{
 
 A.openpurse=()=>{G.modal='purse'};
 V.purse=()=>{const c=coinSplit(G.coins);return `<section class="card"><h2>Bolsa de dinheiro</h2><div class="row"><span class="l">${coinI('au')} Moedas de ouro</span><span class="r"><b>${c.au}</b></span></div><div class="row"><span class="l">${coinI('ag')} Moedas de prata</span><span class="r"><b>${c.ag}</b></span></div><div class="row"><span class="l">${coinI('cu')} Moedas de cobre</span><span class="r"><b>${c.cu}</b></span></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
-const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mtunic','mpants','mshoes'],misc:['sbag','sdl','skin','hpot','mpot','hpot2','mpot2','hpot3','mpot3','holy']};
+const CATS={weapon:['sword','axe','cajado','knives','arrows'],armor:['gamb','mail','plate','cap1','cap2','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mrobe','mtunic','mpants','mshoes','book'],misc:['sbag','sdl','skin','hpot','mpot','hpot2','mpot2','hpot3','mpot3','holy']};
 A.ctab=v=>{G.ctab=v};A.atab=v=>{G.atab=v};A.wtab=v=>{G.wtab=v};
 const WSUB={melee:['sword','axe'],ranged:['knives','arrows'],magic:['cajado']};
-const ASUB={mage:['mhat','mrobe','mtunic','mpants','mshoes','cap2','pan0'],war:['gamb','mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['cap1','pan1','bot0','hel0','shd0']};
+const ASUB={mage:['mhat','mrobe','mtunic','mpants','mshoes','book','cap2','pan0'],war:['gamb','mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['cap1','pan1','bot0','hel0','shd0']};
 A.sex=v=>{if(v==='m'||v==='f')G.gender=v};
 const ownN=r=>{if(r.give){const k=Object.keys(r.give)[0];return have(k)}if(r.skin)return SK();if(r.gear){const nm=r.gear().n;const all=[...G.bag,...G.chest.bag,...['wep','arm','helm','cape','shield','pants','boots'].map(k=>G[k]).filter(Boolean)];return all.filter(o=>o.n===nm||(o.n.startsWith(nm)&&o.k==='w')).length}return null};
 const recCard=r=>{const done=(r.build&&G.b[r.build])||(r.skin&&SK()>=3),lk=(RLV[r.id]||1)>SL('craft');const ok=!lk&&!done&&Object.entries(r.need).every(([k,n])=>have(k)>=n)&&(!r.forge||G.b.forge)&&(!r.stove||G.b.stove)&&(!r.repair||dmgd(r.repair).length);
@@ -5584,7 +5754,7 @@ function render(){
   if(G.view==='combat'&&G.scene&&G.scene.en){
     hudo.innerHTML='';
     const S=G.scene;
-    o=`<div class="bx en">${S.en.map((e,ei)=>e.hp<=0&&hpEn(S,e)<=0?'':`<div ${e.hp>0&&alive().length>1?`data-a="tgt" data-v="${ei}" style="cursor:pointer;${TGT()===e?'border-left:3px solid var(--gold);padding-left:3px;':'padding-left:6px;'}"`:''}><b>${TGT()===e&&alive().length>1?'🎯 ':''}${ENM[e.k].n} Nv ${e.lv||1}${e.poison>0?' ☠':''}${e.burn>0?' 🔥':''}${e.frost>0?' ❄':''}${e.stun>0?' 💫':''}${e.bleed>0?' 🩸':''}${e.air?' 🐉✈':''}</b><div class="tr"><i style="width:${Math.max(0,hpEn(S,e)/e.max*100)}%;background:var(--blood)"></i></div><span>${Math.max(0,Math.round(hpEn(S,e)))}/${e.max}</span></div>`).join('')}</div><div class="bx me"><b>${G.gender==='f'?'Heroína':'Herói'} Nv ${lv()}${S.hs?(S.hs.poison>0?' ☠':'')+(S.hs.burn>0?' 🔥':'')+(S.hs.frost>0?' ❄':'')+(S.hs.stun>0?' 💫':''):''}</b><div class="tr"><i style="width:${Math.max(0,hpMe(S)/G.mhp*100)}%;background:var(--blood)"></i></div><span>${Math.max(0,Math.round(hpMe(S)))}/${G.mhp}</span><div class="tr" title="Magia" style="height:4px;margin-top:3px"><i style="width:${Math.max(0,Math.min(100,(G.mana==null?MM():G.mana)/MM()*100))}%;background:var(--mana)"></i></div><span>${Math.round(G.mana==null?MM():G.mana)}/${MM()}</span></div>`;
+    o=`<div class="bx en">${S.en.map((e,ei)=>e.hp<=0&&hpEn(S,e)<=0?'':`<div ${e.hp>0&&alive().length>1?`data-a="tgt" data-v="${ei}" style="cursor:pointer;${TGT()===e?'border-left:3px solid var(--gold);padding-left:3px;':'padding-left:6px;'}"`:''}><b>${TGT()===e&&alive().length>1?'🎯 ':''}${ENM[e.k].n} Nv ${e.lv||1}${e.poison>0&&nowMs()>=(e.fxT||0)?' ☠':''}${e.burn>0&&nowMs()>=(e.fxT||0)?' 🔥':''}${e.frost>0&&nowMs()>=(e.fxT||0)?' ❄':''}${e.stun>0&&nowMs()>=(e.fxT||0)?' 💫':''}${e.bleed>0&&nowMs()>=(e.fxT||0)?' 🩸':''}${e.air?' 🐉✈':''}</b><div class="tr"><i style="width:${Math.max(0,hpEn(S,e)/e.max*100)}%;background:var(--blood)"></i></div><span>${Math.max(0,Math.round(hpEn(S,e)))}/${e.max}</span></div>`).join('')}</div><div class="bx me"><b>${G.gender==='f'?'Heroína':'Herói'} Nv ${lv()}${S.hs?(S.hs.poison>0?' ☠':'')+(S.hs.burn>0?' 🔥':'')+(S.hs.frost>0?' ❄':'')+(S.hs.stun>0?' 💫':''):''}</b><div class="tr"><i style="width:${Math.max(0,hpMe(S)/G.mhp*100)}%;background:var(--blood)"></i></div><span>${Math.max(0,Math.round(hpMe(S)))}/${G.mhp}</span><div class="tr" title="Magia" style="height:4px;margin-top:3px"><i style="width:${Math.max(0,Math.min(100,(G.mana==null?MM():G.mana)/MM()*100))}%;background:var(--mana)"></i></div><span>${Math.round(G.mana==null?MM():G.mana)}/${MM()}</span></div>`;
   }
   ov.innerHTML=o;
   const lp=$('#logp');lp.classList.toggle('cb',G.view==='combat');{const st=lp.scrollTop,h0=lp.dataset.h;lp.innerHTML=(mp||G.view==='over')?'':G.log.slice(0,60).map(l=>`<p>${l}</p>`).join('');const h1=(G.log[0]||'')+G.log.length;lp.dataset.h=h1;lp.scrollTop=h0===h1?st:0}
