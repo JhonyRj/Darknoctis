@@ -888,11 +888,12 @@ I18N_C.push(['Conserta, encanta e desmonta equipamentos.','Repairs, enchants and
 ['Escolha uma pedra de encantamento e a arma (ou as flechas) que será encantada.','Choose an enchantment stone and the weapon (or arrows) to enchant.']);
 I18N_C.push(['Você morreu','You died'],['O tempo recomeça','Time starts over'],['O vampirismo no seu sangue preserva os dias','The vampirism in your blood preserves your days'],['O sangue vampírico preserva seus dias: dia ','The vampiric blood preserves your days: day ']);
 I18N_C.push([' (armazém)',' (storage)']);
+I18N_C.push(['Você está em seu acampamento, um refúgio seguro.','You are in your camp, a safe haven.']);
 I18N_C.push(['Você está em seu acampamento, um refúgio seguro. Em até 3 dias, um mercante viajante virá negociar com você.','You are in your camp, a safe haven. A traveling merchant arrives every 5 days and stays for 1 night.']);
 I18N_C.push(['Libera Consertar','Unlocks Repair'],['Libera Encantar','Unlocks Enchant'],['Libera Desmontar','Unlocks Dismantle']);
 I18N_C.push([' Encantar</button>',' Enchant</button>']);
 I18N_C.push(['Canteiros de ervas e trigo: rendem 1 erva e 2 trigo no depósito a cada 2 dias (no modo normal).','Herb and wheat beds: yield 1 herb and 2 wheat in storage every 2 days (normal mode).']);
-I18N_N.push(['Cachoeira','Waterfall'],['Pedras da cachoeira','Waterfall rocks'],['Caverna da cachoeira','Waterfall cave'],['Ossada de viajante',"Traveler's bones"],['Caixas encharcadas','Soaked crates'],['Baú do contrabandista',"Smuggler's chest"]);
+I18N_N.push(['Arco curto','Short bow'],['Besta leve','Light crossbow'],['Cachoeira','Waterfall'],['Pedras da cachoeira','Waterfall rocks'],['Caverna da cachoeira','Waterfall cave'],['Ossada de viajante',"Traveler's bones"],['Caixas encharcadas','Soaked crates'],['Baú do contrabandista',"Smuggler's chest"]);
 I18N_C.push(['Entrar na caverna','Enter the cave'],["A água despenca de uma rocha alta. Atrás da cortina d'água, há uma caverna.","Water plunges off a tall rock. Behind the curtain of water lies a cave."],["Caverna úmida atrás da cortina d'água, com cristais azuis e o rugido da queda ao fundo.","A damp cave behind the curtain of water, with blue crystals and the roar of the falls in the distance."]);
 I18N_N.push(['Bosque fundo','Deep woodland']);
 I18N_N.push(['Toco de lenhador',"Woodcutter's stump"],['Cabana do caçador',"Hunter's cabin"],['Catre do caçador',"Hunter's cot"],['Armas e armadilhas','Weapons and traps'],['Baú do caçador',"Hunter's chest"]);
@@ -1023,7 +1024,7 @@ const IT={
  holy:{n:'Água benta',i:'✨',w:.5,sell:15},stew:{n:'Ensopado',i:'🍲',w:1,food:40,water:8,sell:7},soup:{n:'Sopa de ervas',i:'🥣',w:1,food:14,water:22,heal:6,sell:4},fang:{n:'Presa',i:'🦷',w:.5,sell:8},pelt:{n:'Pele de lobisomem',i:'🐾',w:.5,sell:24}
 };
 const RAR=[{n:'Comum',m:1,d:20,c:'#b9b19f',b:'#cfd5d9'},{n:'Incomum',m:1.2,d:28,c:'#b9b19f',b:'#cfd5d9'},{n:'Raro',m:1.45,d:36,c:'#b9b19f',b:'#cfd5d9'},{n:'Épico',m:1.8,d:44,c:'#b9b19f',b:'#cfd5d9'},{n:'Lendário',m:2.2,d:56,c:'#b9b19f',b:'#cfd5d9'}];
-const BASES=[{n:'Adaga',a:3,b:5},{n:'Espada curta',a:4,b:7},{n:'Machado',a:5,b:9},{n:'Lança',a:4,b:8},{n:'Maça',a:5,b:8},{n:'Besta',a:12,b:20}];
+const BASES=[{n:'Adaga',a:3,b:5},{n:'Espada curta',a:4,b:7},{n:'Machado',a:5,b:9},{n:'Lança',a:4,b:8},{n:'Maça',a:5,b:8},{n:'Besta',a:12,b:20},{n:'Arco curto',a:6,b:10}];
 const FXS=['sangramento','atordoamento','fogo','veneno','gelo','trovao'];const FXN={trovao:' de trovão',sangramento:' de sangria',atordoamento:' atordoante',fogo:' de fogo',veneno:' de veneno',gelo:' congelante'};for(const f of FXS)IT['arrow_'+f]={n:'Flecha'+FXN[f],i:'🏹',w:.1,sell:3,fx:f,d:'Flecha encantada. Equipe no lugar do escudo.'};
 function mkWeapon(minR=0,base){
   const r=Math.random();let ri=r<.5?0:r<.78?1:r<.92?2:r<.98?3:4;ri=Math.max(ri,minR);
@@ -1153,7 +1154,7 @@ const RGB=()=>[G.arm,G.helm,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0?LG(p)[0
 const ACB=()=>[G.arm,G.helm,G.pants,G.boots].reduce((s,p)=>s+(p&&p.dur>0?LG(p)[1]:0),0);
 const MM=()=>50+4*AT('int')+MG();
 const SL=k=>(G&&G.sl&&G.sl[k])||1;
-const RLV={axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3,mtunic:3,book:2};
+const RLV={xbow:2,axe:2,mail:2,cap2:2,pan2:2,bot1:2,bot2:3,hel1:2,shd1:2,plate:3,mhat:3,mrobe:3,mpants:3,mshoes:3,mtunic:3,book:2};
 const BLV={farm:2,stove:2,anvil:2};
 const SLC={craft:{2:{wood:6,iron:4},3:{wood:10,iron:10,leather:4}},up:{2:{wood:8,iron:4},3:{wood:12,iron:10,coins:30}},chest:{2:{wood:8,leather:2},3:{wood:12,leather:5,iron:4}},anvil:{2:{iron:8,wood:6},3:{iron:14,leather:4,coins:30}},tent:{2:{cloth:6,leather:3},3:{cloth:12,leather:6,wood:6}}};
 const dmgd=k=>(k==='w'?[G.wep]:[G.arm,G.helm,G.cape,G.shield,G.pants,G.boots,]).filter(o=>o&&o.dur<o.max);
@@ -1214,6 +1215,8 @@ const RECIPES=[
  {id:'hel1',n:'Elmo de ferro',need:{iron:6},forge:1,gear:()=>mkPiece('h',1),h:2},
  {id:'shd0',n:'Escudo de madeira',need:{wood:5,leather:1},gear:()=>mkPiece('s',0),h:1},
  {id:'shd1',n:'Escudo de ferro',need:{iron:8,wood:2},forge:1,gear:()=>mkPiece('s',1),h:2},
+ {id:'bow',n:'Arco curto',need:{wood:5,leather:1},gear:()=>mkWeapon(0,{n:'Arco curto',a:6,b:10}),h:1},
+ {id:'xbow',n:'Besta leve',need:{wood:4,iron:4,leather:1},forge:1,gear:()=>mkWeapon(1,{n:'Besta leve',a:10,b:17}),h:2},
  {id:'axe',n:'Machado de ferro',need:{iron:5,wood:2},forge:1,gear:()=>mkWeapon(1,{n:'Machado de ferro',a:5,b:9}),h:2},
  {id:'cajado',n:'Cajado de madeira',need:{wood:6},gear:()=>{const o=mkWeapon(0,{n:'Cajado',a:4,b:7});o.fx=null;o.n='Cajado de madeira';return o},h:1},
  {id:'repair',n:'Consertar arma equipada',need:{iron:2},forge:1,repair:'w',h:1},
@@ -1238,14 +1241,14 @@ const isNight=()=>G&&(G.hour>=18||G.hour<6);
 const FM=()=>{if(!G||!(G.hour>=18||G.hour<6))return false;const d0=G.hour>=18?G.day:G.day-1;return d0>0&&d0%2===0};
 const lg=t=>{if(!t)return;G.log.unshift(t);if(G.log.length>80)G.log.pop()};
 function save(){try{if(G&&G.view!=='over'){localStorage.setItem(KEY,JSON.stringify(typeof arSaveG==='function'?arSaveG():G));localStorage.setItem(KEY+'-t',String(Date.now()));cloudPush()}}catch(e){}}
-function load(){try{const s=localStorage.getItem(KEY);const o=s?JSON.parse(s.split('"n":"Gambeson"').join('"n":"Peitoral de couro"')):null;if(o&&o.scene&&o.scene.ev){const _ev=[...EVS,...LONGEVS,VBEV].find(e=>e&&e.t===o.scene.ev.t);if(_ev)o.scene.ev=_ev;else{o.scene=null;if(o.view==='event')o.view=o.trip?'travel':'camp'}}if(o){if(o.shield&&o.shield.torch)o.shield=null;for(const _k in o)if(Array.isArray(o[_k])&&o[_k].some(x=>x&&x.torch))o[_k]=o[_k].filter(x=>!(x&&x.torch))}if(o&&o.turned&&o.vamp)o.vamp=false;if(o){for(const L of[o.bag,o.chest&&o.chest.bag])if(Array.isArray(L))for(const x of L)if(x&&x.fx==='str'&&/Força/.test(x.n))x.n=x.n.replace('Força','Nível')}if(o){if(!o.op)o.op={};if(!o.opChest)o.opChest={inv:{},bag:[]};if(!o.mys)o.mys=[]}if(o){o.cape=null;const _nc=x=>!(x&&x.k==='c'&&x.def!=null);for(const _k in o)if(Array.isArray(o[_k])&&o[_k].some(x=>!_nc(x)))o[_k]=o[_k].filter(_nc);if(o.chest)for(const _k in o.chest)if(Array.isArray(o.chest[_k])&&o.chest[_k].some(x=>!_nc(x)))o.chest[_k]=o.chest[_k].filter(_nc)}if(o){for(const c of[o.inv,o.chest&&o.chest.inv])if(c)delete c.bandage;for(const T of[o.shop,o.trade])if(T&&T.stock)T.stock=T.stock.filter(s=>s.key!=='bandage')}if(o&&!o.cv2){o.coins=(o.coins||0)%10;o.cv2=1}if(o&&o.wep&&o.wep.n==='Faca enferrujada'&&!o.swv){o.wep={k:'w',id:o.wep.id,n:'Espada longa de aço',ri:1,lvl:1,kills:o.wep.kills||0,dur:40,max:40,a:5,b:9,fx:null};o.swv=1}if(o&&o.inv){delete o.inv.dart}if(o&&!o.hpv3){const m=(o.turned?200:50)+((o.lvl||1)-1)+5*((o.at&&o.at.vit)||0);o.mhp=m;o.hp=Math.min(o.hp||m,m);o.hpv3=1;o.hpv2=1}if(false){const m=100+((o.lvl||1)-1)*10+(o.turned?12:0);o.hp=Math.min(m,(o.hp||0)+(m-(o.mhp||40)));o.mhp=m;o.hpv2=1}if(o&&Array.isArray(o.log))o.log=o.log.map(l=>l==='Você está em seu acampamento, um refúgio seguro. Em até 3 dias, um mercante viajante virá negociar com você.'?'Você está em seu acampamento, um refúgio seguro. Um mercante viajante vem a cada 5 dias e fica 1 noite.':l==='Você acorda num campo de batalha coberto de cinzas. Não lembra quem foi. Só o frio e a fome lembram que você está vivo.'?'Você está em seu acampamento, um refúgio seguro. Um mercante viajante vem a cada 5 dias e fica 1 noite.':l);if(o&&o.turned){o.at=o.at||{};if(o.at.vamp==null){o.at.vamp=10;o.fr=o.fr||{};o.fr.vamp=10}}if(o&&o.lyc){o.at=o.at||{};if(o.at.lobo==null){o.at.lobo=10;o.fr=o.fr||{};o.fr.lobo=10}}if(o&&!o.kit1){o.inv=o.inv||{};o.inv.hpot=(o.inv.hpot||0)+5;if(!o.arm)o.arm={k:'a',id:'k'+Math.random().toString(36).slice(2,8),n:'Armadura de couro leve',def:1,dur:30,max:30,v:10,tier:0};o.kit1=1}if(o){o.mode='casual';if(o.inv)delete o.inv.knife;if(o.wep&&o.shield&&/besta|lança/i.test(o.wep.n)){(o.bag=o.bag||[]).push(o.shield);o.shield=null}o.anvv2=1;{const bz=x=>{if(x&&x.k==='w'&&/besta/i.test(x.n)&&!x.bx){x.a*=2;x.b*=2;x.bx=1}};bz(o.wep);(o.bag||[]).forEach(bz);((o.chest&&o.chest.bag)||[]).forEach(bz);for(const sh of [o.shop,o.vm,o.vs])if(sh&&sh.stock)sh.stock.forEach(s=>bz(s.gear))}o.mods=o.mods||{};o.mods.dark=true;o.diff=o.diff||'hard'}if(o&&!o.atv){o.pts=(o.pts||0)+5*((o.lvl||1)-1);o.atv=1}if(o&&!o.atv3){const fr=o.fr||{},at={};for(const k in fr)at[k]=fr[k];o.at=at;o.pts=5*Math.max(0,(o.lvl||1)-1);const m=(o.turned?200:50)+((o.lvl||1)-1)+(o.wolf?(o.wd||350):0);o.mhp=m;o.hp=Math.min(o.hp||m,m);if(o.mana!=null)o.mana=Math.min(o.mana,50);o.atv3=1}const _sx=[' de trovão',' de sangria',' atordoante',' de fogo',' de veneno',' congelante'],_wf=w=>{if(!w||w.k!=='w')return;if(w.lvl>1){w.a+=w.lvl-1;w.b+=w.lvl-1;w.lvl=1}if(!w.fx)return;w.fx=null;for(const q of _sx)if(w.n.endsWith(q)){w.n=w.n.slice(0,-q.length);break}if(w.n==='Cajado')w.n='Cajado de madeira'};if(o&&!o.wfv1){_wf(o.wep);if(Array.isArray(o.bag))o.bag.forEach(_wf);if(o.chest&&Array.isArray(o.chest.bag))o.chest.bag.forEach(_wf);o.wfv1=1}const _sc=a=>{if(Array.isArray(a))a.forEach(x=>{if(x&&x.k==='sc'&&/^Pergaminho de/.test(x.n))x.n=x.n.replace(/^Pergaminho de/,'Pedra de')})};if(o){_sc(o.bag);if(o.chest)_sc(o.chest.bag)}if(o&&!o.hrv1){if(o.horse){o.horse.hu=o.horse.hu==null?100:o.horse.hu;o.horse.th=o.horse.th==null?100:o.horse.th;o.horse.z=o.horse.z||0}o.hfeed=o.hfeed||{wheat:0,apple:0};o.htank=o.htank||0;o.hrv1=1}return o}catch(e){return null}}
+function load(){try{const s=localStorage.getItem(KEY);const o=s?JSON.parse(s.split('"n":"Gambeson"').join('"n":"Peitoral de couro"')):null;if(o&&o.scene&&o.scene.ev){const _ev=[...EVS,...LONGEVS,VBEV].find(e=>e&&e.t===o.scene.ev.t);if(_ev)o.scene.ev=_ev;else{o.scene=null;if(o.view==='event')o.view=o.trip?'travel':'camp'}}if(o){if(o.shield&&o.shield.torch)o.shield=null;for(const _k in o)if(Array.isArray(o[_k])&&o[_k].some(x=>x&&x.torch))o[_k]=o[_k].filter(x=>!(x&&x.torch))}if(o&&o.turned&&o.vamp)o.vamp=false;if(o){for(const L of[o.bag,o.chest&&o.chest.bag])if(Array.isArray(L))for(const x of L)if(x&&x.fx==='str'&&/Força/.test(x.n))x.n=x.n.replace('Força','Nível')}if(o){if(!o.op)o.op={};if(!o.opChest)o.opChest={inv:{},bag:[]};if(!o.mys)o.mys=[]}if(o){o.cape=null;const _nc=x=>!(x&&x.k==='c'&&x.def!=null);for(const _k in o)if(Array.isArray(o[_k])&&o[_k].some(x=>!_nc(x)))o[_k]=o[_k].filter(_nc);if(o.chest)for(const _k in o.chest)if(Array.isArray(o.chest[_k])&&o.chest[_k].some(x=>!_nc(x)))o.chest[_k]=o.chest[_k].filter(_nc)}if(o){for(const c of[o.inv,o.chest&&o.chest.inv])if(c)delete c.bandage;for(const T of[o.shop,o.trade])if(T&&T.stock)T.stock=T.stock.filter(s=>s.key!=='bandage')}if(o&&!o.cv2){o.coins=(o.coins||0)%10;o.cv2=1}if(o&&o.wep&&o.wep.n==='Faca enferrujada'&&!o.swv){o.wep={k:'w',id:o.wep.id,n:'Espada longa de aço',ri:1,lvl:1,kills:o.wep.kills||0,dur:40,max:40,a:5,b:9,fx:null};o.swv=1}if(o&&o.inv){delete o.inv.dart}if(o&&!o.hpv3){const m=(o.turned?200:50)+((o.lvl||1)-1)+5*((o.at&&o.at.vit)||0);o.mhp=m;o.hp=Math.min(o.hp||m,m);o.hpv3=1;o.hpv2=1}if(false){const m=100+((o.lvl||1)-1)*10+(o.turned?12:0);o.hp=Math.min(m,(o.hp||0)+(m-(o.mhp||40)));o.mhp=m;o.hpv2=1}if(o&&Array.isArray(o.log))o.log=o.log.map(l=>l==='Você está em seu acampamento, um refúgio seguro. Um mercante viajante vem a cada 5 dias e fica 1 noite.'?'Você está em seu acampamento, um refúgio seguro.':l==='Você está em seu acampamento, um refúgio seguro. Em até 3 dias, um mercante viajante virá negociar com você.'?'Você está em seu acampamento, um refúgio seguro.':l==='Você acorda num campo de batalha coberto de cinzas. Não lembra quem foi. Só o frio e a fome lembram que você está vivo.'?'Você está em seu acampamento, um refúgio seguro.':l);if(o&&o.turned){o.at=o.at||{};if(o.at.vamp==null){o.at.vamp=10;o.fr=o.fr||{};o.fr.vamp=10}}if(o&&o.lyc){o.at=o.at||{};if(o.at.lobo==null){o.at.lobo=10;o.fr=o.fr||{};o.fr.lobo=10}}if(o&&!o.kit1){o.inv=o.inv||{};o.inv.hpot=(o.inv.hpot||0)+5;if(!o.arm)o.arm={k:'a',id:'k'+Math.random().toString(36).slice(2,8),n:'Armadura de couro leve',def:1,dur:30,max:30,v:10,tier:0};o.kit1=1}if(o){o.mode='casual';if(o.inv)delete o.inv.knife;if(o.wep&&o.shield&&/besta|lança/i.test(o.wep.n)){(o.bag=o.bag||[]).push(o.shield);o.shield=null}o.anvv2=1;{const bz=x=>{if(x&&x.k==='w'&&/besta/i.test(x.n)&&!x.bx){x.a*=2;x.b*=2;x.bx=1}};bz(o.wep);(o.bag||[]).forEach(bz);((o.chest&&o.chest.bag)||[]).forEach(bz);for(const sh of [o.shop,o.vm,o.vs])if(sh&&sh.stock)sh.stock.forEach(s=>bz(s.gear))}o.mods=o.mods||{};o.mods.dark=true;o.diff=o.diff||'hard'}if(o&&!o.atv){o.pts=(o.pts||0)+5*((o.lvl||1)-1);o.atv=1}if(o&&!o.atv3){const fr=o.fr||{},at={};for(const k in fr)at[k]=fr[k];o.at=at;o.pts=5*Math.max(0,(o.lvl||1)-1);const m=(o.turned?200:50)+((o.lvl||1)-1)+(o.wolf?(o.wd||350):0);o.mhp=m;o.hp=Math.min(o.hp||m,m);if(o.mana!=null)o.mana=Math.min(o.mana,50);o.atv3=1}const _sx=[' de trovão',' de sangria',' atordoante',' de fogo',' de veneno',' congelante'],_wf=w=>{if(!w||w.k!=='w')return;if(w.lvl>1){w.a+=w.lvl-1;w.b+=w.lvl-1;w.lvl=1}if(!w.fx)return;w.fx=null;for(const q of _sx)if(w.n.endsWith(q)){w.n=w.n.slice(0,-q.length);break}if(w.n==='Cajado')w.n='Cajado de madeira'};if(o&&!o.wfv1){_wf(o.wep);if(Array.isArray(o.bag))o.bag.forEach(_wf);if(o.chest&&Array.isArray(o.chest.bag))o.chest.bag.forEach(_wf);o.wfv1=1}const _sc=a=>{if(Array.isArray(a))a.forEach(x=>{if(x&&x.k==='sc'&&/^Pergaminho de/.test(x.n))x.n=x.n.replace(/^Pergaminho de/,'Pedra de')})};if(o){_sc(o.bag);if(o.chest)_sc(o.chest.bag)}if(o&&!o.hrv1){if(o.horse){o.horse.hu=o.horse.hu==null?100:o.horse.hu;o.horse.th=o.horse.th==null?100:o.horse.th;o.horse.z=o.horse.z||0}o.hfeed=o.hfeed||{wheat:0,apple:0};o.htank=o.htank||0;o.hrv1=1}return o}catch(e){return null}}
 function hasSave(){try{return !!localStorage.getItem(KEY)}catch(e){return false}}
 function newGame(mode,mods,gender){
   G={mode,mods,lvl:1,xp:0,look:null,gender:gender||'m',day:1,hour:8,hp:50,mhp:50,diff:(typeof tDiff==='function'?tDiff():'hard'),food:80,water:80,vamp:false,coins:5,
     inv:{bread:1,water:4,hpot:5},bag:[],wep:{k:'w',id:uid(),n:'Espada longa de aço',ri:1,lvl:1,kills:0,dur:40,max:40,a:5,b:9,fx:null},arm:{k:'a',id:uid(),n:'Armadura de couro leve',def:1,dur:30,max:30,v:10,tier:0},
     chest:{inv:{iron:5,wood:5,cloth:5,leather:5},bag:[]},op:{},opChest:{inv:{},bag:[]},mys:[],hfeed:{wheat:0,apple:0},htank:0,hrv1:1,b:{},view:'camp',modal:null,scene:null,log:[],kills:0,note:'',trade:null,
     loc:'camp',sel:null,trip:null,ret:'camp',locDone:{},utab:'build'};
-  lg('Você está em seu acampamento, um refúgio seguro. Um mercante viajante vem a cada 5 dias e fica 1 noite.');
+  lg('Você está em seu acampamento, um refúgio seguro.');
   G.note='Sente-se junto ao fogo. Toque no mapa quando estiver pronto para sair.';
 }
 
@@ -1358,7 +1361,7 @@ function fight(list,then){
 const alive=()=>G.scene.en.filter(e=>e.hp>0);
 const TGT=()=>{const S=G.scene,a=alive();return a.find(e=>S.en.indexOf(e)===S.tgt)||a[0]};
 const cl=t=>G.scene.cl.unshift(t);
-const wepOk=()=>G.wep&&G.wep.dur>0;const WFX=()=>wepOk()?((G.scene&&G.scene.stfno&&/cajado/i.test(G.wep.n))?null:((/besta/i.test(G.wep.n)&&G.qshot)||G.wep.fx)):null;
+const wepOk=()=>G.wep&&G.wep.dur>0;const WFX=()=>wepOk()?((G.scene&&G.scene.stfno&&/cajado/i.test(G.wep.n))?null:(G.wep.fx||((/besta|\barco\b/i.test(G.wep.n))&&G.qshot))):null;
 const nowMs=()=>performance.now();
 const MDG={cyclops:.03,cyclopsb:.03,dhunter:.1,wolf:.12,bear:.04,boar:.06,deer:.2,bandit:.08,deserter:.06,knight:.03,fledgling:.1,vampire:.15,werewolf:.12,witch:.14,bat:.3,whelp:.08,dragon:.02};
 const PDG={cyclops:.05,cyclopsb:.05,dhunter:.1,wolf:.05,bear:.12,boar:.1,deer:.1,bandit:.08,deserter:.1,knight:.12,fledgling:.06,vampire:.05,werewolf:.04,witch:.1,bat:.04,whelp:.05,dragon:.03};
@@ -1432,9 +1435,9 @@ function pAct(a){
   const hp0=G.hp,eh=S.en.map(e=>e.hp);let HT=nowMs(),DUR=0;S.hold=eh;
   if((a==='atk'||a==='heavy')&&G.wolf)return;
   if(a==='atk'||a==='heavy'){
-    if(wepOk()&&/besta/i.test(G.wep.n)){if(!(G.quiver>0)){cl('Sem flechas equipadas: equipe flechas no lugar do escudo.');return}G.qshot=G.qfx||null;G.quiver--;if(!G.quiver){G.qfx=null;G.qk=null}}else G.qshot=null;S.stfno=false;if(wepOk()&&/cajado/i.test(G.wep.n)){if(G.mana==null)G.mana=MM();if(G.mana>=3)G.mana-=3;else{cl('Sem magia: o cajado não funciona sem mana.');return}}
+    if(wepOk()&&/besta|\barco\b/i.test(G.wep.n)){if(!(G.quiver>0)){cl('Sem flechas equipadas: equipe flechas no lugar do escudo.');return}G.qshot=G.qfx||null;G.quiver--;if(!G.quiver){G.qfx=null;G.qk=null}}else G.qshot=null;S.stfno=false;if(wepOk()&&/cajado/i.test(G.wep.n)){if(G.mana==null)G.mana=MM();if(G.mana>=3)G.mana-=3;else{cl('Sem magia: o cajado não funciona sem mana.');return}}
     const swings=1+(turnedNight()&&ch(.3)?1:0);
-    fx.atk=nowMs();HT=fx.atk+200;DUR=520;{const t1=alive()[0];if(t1&&wepOk()&&/besta/i.test(G.wep.n))fx.proj={t:nowMs(),kind:'bolt',ti:S.en.indexOf(t1),hit:true,d:230};if(t1&&!S.stfno&&wepOk()&&/cajado/i.test(G.wep.n)){fx.proj={t:nowMs()+120,kind:'elem',fx:G.wep.fx,ti:S.en.indexOf(t1),hit:true,d:420};HT=fx.atk+560;DUR=820}}
+    fx.atk=nowMs();HT=fx.atk+200;DUR=520;{const t1=alive()[0];if(t1&&wepOk()&&/besta/i.test(G.wep.n))fx.proj={t:nowMs(),kind:'bolt',xb:1,ti:S.en.indexOf(t1),hit:true,d:230};else if(t1&&wepOk()&&/arco/i.test(G.wep.n)){fx.proj={t:nowMs()+260,kind:'bolt',bw:1,ti:S.en.indexOf(t1),hit:true,d:240};HT=fx.atk+500;DUR=780}if(t1&&!S.stfno&&wepOk()&&/cajado/i.test(G.wep.n)){fx.proj={t:nowMs()+120,kind:'elem',fx:G.wep.fx,ti:S.en.indexOf(t1),hit:true,d:420};HT=fx.atk+560;DUR=820}}
     for(let sn=0;sn<swings;sn++){
       if(!alive().length)break;
       const e=TGT(),D=ENM[e.k],heavy=a==='heavy';S.swh=0;
@@ -1442,7 +1445,7 @@ function pAct(a){
       if(S.fgn){cl('A névoa roxa embaça sua visão: você erra o golpe.');if(e.hp>0)fx.nums.push({x:225,y:70,v:'errou',t:nowMs()+200,c:'#b08ad8'})}else if(ch(mDodge(e.k))){cl(`${D.n} esquiva do seu ataque!`);fx.nums.push({x:225+S.en.indexOf(e)*30,y:70,v:'esquivou',t:nowMs()+200,c:'#9ad0ff'})}else if(!ch(heavy?.5:Math.min(.97,.85+.01*AT('agi'))))cl('Você erra o golpe.');
       else{
         let dmg=wepOk()?rnd(G.wep.a,G.wep.b)+(G.wep.lvl-1):rnd(1,3);
-        if(S.hs&&S.hs.frost>0)dmg=Math.round(dmg*.7);if(heavy)dmg=Math.round(dmg*1.7);dmg=Math.round(dmg*(1+.04*AT((wepOk()&&/besta/i.test(G.wep.n))?'des':(wepOk()&&/cajado/i.test(G.wep.n))?'int':'for')+((wepOk()&&/cajado/i.test(G.wep.n))?SP()/100:0)+((wepOk()&&/besta/i.test(G.wep.n))?RGB()/100:0)));if(S.stfno)dmg=Math.max(1,Math.round(dmg*.5));if(G.wolf)dmg=Math.round(dmg*3);
+        if(S.hs&&S.hs.frost>0)dmg=Math.round(dmg*.7);if(heavy)dmg=Math.round(dmg*1.7);dmg=Math.round(dmg*(1+.04*AT((wepOk()&&/besta|arco/i.test(G.wep.n))?'des':(wepOk()&&/cajado/i.test(G.wep.n))?'int':'for')+((wepOk()&&/cajado/i.test(G.wep.n))?SP()/100:0)+((wepOk()&&/besta|arco/i.test(G.wep.n))?RGB()/100:0)));if(S.stfno)dmg=Math.max(1,Math.round(dmg*.5));if(G.wolf)dmg=Math.round(dmg*3);
         if(turnedNight())dmg=Math.round(dmg*1.5);else if(turnedDay())dmg=Math.round(dmg*.7);
         const crit=ch(.1);if(crit)dmg=Math.round(dmg*1.5);
         if(WFX()==='trovao'){if(e.k==='dragon'){dmg+=Math.round(dmg*.6)+4;cl(D.n+' é fraco contra trovão!')}else dmg+=6}if(wepOk()&&G.wep.fx==='gelo')dmg+=5;if(wepOk()&&G.wep.fx==='veneno')dmg+=3;if(wepOk()&&G.wep.fx==='sangramento')dmg+=3;if(WFX()==='fogo'){dmg+=(e.k==='vampire'||e.k==='fledgling')?14:7;if(e.k==='vampire'||e.k==='fledgling')cl(D.n+' é fraco contra o fogo!')}
@@ -1819,7 +1822,7 @@ const A={
  equip(id){
    const CB=G.view==='combat';if(CB){const o1=G.bag.find(o=>o.id===id);if(!o1||BUSY)return}
    if(G.wolf){lg('Em forma de lobisomem você não pode equipar itens.');return}
-   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|lança/i;if(o0.k==='w'&&/cajado/i.test(o0.n)&&!o0.fx){PWARN='Cajado de madeira sem magia: encante-o com uma pedra de encantamento na bigorna antes de equipar.';lg(PWARN);return}if(o0.k==='w'&&TH.test(o0.n)){if(G.shield){const sn=G.shield.n;G.bag.push(G.shield);G.shield=null;PWARN='Você guardou '+sn+' no inventário: '+o0.n+' usa as duas mãos.';lg(PWARN)}}if(o0.k==='s'){if(G.quiver){const qn=G.qfx&&IT[G.qk]?IT[G.qk].n:'Flechas';A.unquiver();PWARN=qn+' voltou para o inventário: o escudo ocupa o lugar delas.';lg(PWARN)}if(G.wep&&TH.test(G.wep.n)){const wn=G.wep.n;G.bag.push(G.wep);G.wep=null;PWARN='Você guardou '+wn+' no inventário: o escudo exige uma mão livre.';lg(PWARN)}}}const o=G.bag.splice(i,1)[0];
+   const i=G.bag.findIndex(o=>o.id===id);if(i<0||!(G.bag[i].dur>0))return;{const o0=G.bag[i],TH=/besta|\barco\b|lança/i;if(o0.k==='w'&&/cajado/i.test(o0.n)&&!o0.fx){PWARN='Cajado de madeira sem magia: encante-o com uma pedra de encantamento na bigorna antes de equipar.';lg(PWARN);return}if(o0.k==='w'&&TH.test(o0.n)){if(G.shield){const sn=G.shield.n;G.bag.push(G.shield);G.shield=null;PWARN='Você guardou '+sn+' no inventário: '+o0.n+' usa as duas mãos.';lg(PWARN)}}if(o0.k==='s'){if(G.quiver){const qn=G.qfx&&IT[G.qk]?IT[G.qk].n:'Flechas';A.unquiver();PWARN=qn+' voltou para o inventário: o escudo ocupa o lugar delas.';lg(PWARN)}if(G.wep&&TH.test(G.wep.n)){const wn=G.wep.n;G.bag.push(G.wep);G.wep=null;PWARN='Você guardou '+wn+' no inventário: o escudo exige uma mão livre.';lg(PWARN)}}}const o=G.bag.splice(i,1)[0];
    if(o.k==='w'){if(G.wep)G.bag.push(G.wep);G.wep=o}else{const sl=SLOT[o.k]||'arm';if(G[sl])G.bag.push(G[sl]);G[sl]=o}
    if(CB){cl('Você troca para '+o.n+'.');SWP=true}
  },
@@ -2118,7 +2121,8 @@ function placeStatic(key,cx,gy,n){
     const gq=gy-20;
     const x0=cx-130,x1=cx+130;
     // rio e poço da queda
-    rc(cx-340,gq,680,gy-gq+3,'#46663a');rc(cx-340,gq,680,2,'#34502c');for(let k=0;k<46;k++)rc(cx-330+h01(k*5)*660,gq+2+h01(k)*(gy-gq),2,1,k%2?'#587a46':'#3a5832');
+    rc(cx-340,gq,680,19,'#46464f');rc(cx-340,gq,680,2,'#34323a');for(let k=0;k<60;k++)rc(cx-330+h01(k*5)*660,gq+2+h01(k)*16,2+k%3,1,k%2?'#5a5e68':'#34323a');
+    
     for(let x=x0;x<x1;x+=.5){const e=Math.min(x-x0,x1-x),f=e<16?Math.sqrt(1-((16-e)/16)**2):1,H=17*f,m=gq+8.5,t0=m-H/2+Math.sin(x/6)*.6*f,b0=m+H/2+Math.sin(x/5+2)*.6*f;rc(x,t0,.5,b0-t0,'#5a86a6');rc(x,t0+1,.5,5,'#6e9ab8');rc(x,t0,.5,1,'#3a5a70');rc(x,b0-1,.5,1,'#4a7490')}
     for(let k=0;k<26;k++){const x=x0+h01(k*3)*260;rc(x,gq+4+h01(k)*10,3,.5,'#a8cce0')}
     // montanha grande com a queda d'água
@@ -2188,16 +2192,16 @@ function placeStatic(key,cx,gy,n){
     rc(cx-34,gy-44,1,6,'#2a2a34');rc(cx-36,gy-38,5,5,'#3a3a46');rc(cx-35,gy-37,3,3,'#f4c85a');
   }else if(key==='fishhut'){
     // lago (erguido para fora da estrada, margens arredondadas como na cachoeira)
-    {const gq=gy-20,x0=cx-130,x1=cx+130;
+    {const gq=gy-30,x0=cx-130,x1=cx+130;
     rc(cx-340,gq,680,gy-gq+3,'#46663a');rc(cx-340,gq,680,2,'#34502c');for(let k=0;k<46;k++)rc(cx-330+h01(k*5)*660,gq+2+h01(k)*(gy-gq),2,1,k%2?'#587a46':'#3a5832');
-    for(let x=x0;x<x1;x+=.5){const e=Math.min(x-x0,x1-x),f=e<16?Math.sqrt(1-((16-e)/16)**2):1,H=17*f,m=gq+8.5,t0=m-H/2+Math.sin(x/6)*.6*f,b0=m+H/2+Math.sin(x/5+2)*.6*f;rc(x,t0,.5,b0-t0,'#4a7494');rc(x,t0,.5,1.5,'#7aa8c4');rc(x,t0+5,.5,1,'#3a5a78');rc(x,b0-1,.5,1,'#3a5a78')}}
+    for(let x=x0;x<x1;x+=.5){const e=Math.min(x-x0,x1-x),f=e<16?Math.sqrt(1-((16-e)/16)**2):1,H=26*f,m=gq+13,t0=m-H/2+Math.sin(x/6)*.6*f,b0=m+H/2+Math.sin(x/5+2)*.6*f;rc(x,t0,.5,b0-t0,'#3f80b4');rc(x,t0,.5,1.5,'#8ccaf0');rc(x,t0+6,.5,1,'#3070a4');rc(x,t0+14,.5,1,'#3070a4');rc(x,b0-1,.5,1,'#2a5f90')}}
     // cabana sobre palafitas
-    const hx=cx-30;VS.fishhut(cx,gy-14,n,sd);
+    const hx=cx-30;VS.fishhut(cx,gy-20,n,sd);
     // píer e barco
     planks(hx-90,gy-20,84,5,'#8a6a3a',sd+4);for(let k=0;k<5;k++)rc(hx-88+k*18,gy-15,3,10,'#5a3e22');
     rc(hx-70,gy-9,34,6,'#5a3e22');rc(hx-72,gy-11,38,3,'#7a5230');rc(hx-70,gy-11,34,1,'#9a6a3c');rc(hx-60,gy-17,2,6,'#c8c8c8');
     // redes e peixes secando
-    for(let k=0;k<14;k++)line(hx+70+k*2,gy-58,hx+70+k*2,gy-34,'#9a8a6a');line(hx+70,gy-58,hx+98,gy-58,'#6a4a2a');for(let k=0;k<4;k++){rc(hx+74+k*6,gy-44,3,7,'#8ab0c8');rc(hx+74+k*6,gy-44,3,1,'#d8e8f0')}
+    for(let k=0;k<14;k++)line(hx+70+k*2,gy-64,hx+70+k*2,gy-40,'#9a8a6a');line(hx+70,gy-64,hx+98,gy-64,'#6a4a2a');for(let k=0;k<4;k++){rc(hx+74+k*6,gy-50,3,7,'#8ab0c8');rc(hx+74+k*6,gy-50,3,1,'#d8e8f0')}
     barrel(hx-100,gy-6);crate(hx+100,gy,10,9);
   }else if(key==='camp'){
     shadowG(cx-30,gy,60,2);for(let r=0;r<36;r++){const ww=8+r*1.7;rc(cx-ww/2,gy-36+r,ww,1,r%7<4?'#b69a64':'#a4885a');if(r%7===0)rc(cx-ww/2,gy-36+r,ww,.5,'#d8c490')}rc(cx-4,gy-14,8,14,'#2a1c10');rc(cx-.5,gy-40,1,5,'#6a4a22');
@@ -2290,9 +2294,9 @@ function placeDyn(key,cx,gy,t,n,h){
     for(let k=0;k<3;k++){const wx=cx-90+k*90+Math.sin(t*.8+k*2)*14,wy=gy-18-Math.abs(Math.sin(t*1.3+k))*10;c.globalAlpha=.7;rc(wx,wy,2,2,'#8ad8f0');c.globalAlpha=.3;rc(wx-1,wy-1,4,4,'#8ad8f0');c.globalAlpha=1;lightAt(wx,wy,14,.25)}
     if(nf>.3)for(let k=0;k<3;k++){const bx=cx-80+((t*26+k*70)%180),by=36+Math.sin(t*5+k)*8+k*10,f2=Math.floor(t*6+k)%2;rc(bx,by,2,1,'#14110e');rc(bx-2,by+(f2?-1:1),2,1,'#14110e');rc(bx+2,by+(f2?-1:1),2,1,'#14110e')}}
   else if(key==='mine'){flameAt(cx-33.5,gy-40,t,.5);lightAt(cx-33,gy-38,30,1);c.globalAlpha=.12;for(let i=0;i<3;i++)rc(cx-20+i*14+Math.sin(t+i)*4,gy-30-i*3,10,16,'#8a8a92');c.globalAlpha=1}
-  else if(key==='fishhut'){for(let k=0;k<16;k++){const X=cx-130+((h01(k)*260+t*8)%260);rc(X,gy-17+h01(k+7)*12,4,1,k%2?'#cfe6f2':'#8ab8d4')}
-    const fp=(t*.4)%3;if(fp<.5){const fx0=cx-60,fy0=gy-10-Math.sin(fp/.5*Math.PI)*8;rc(fx0,fy0,3,1,'#c8d8e0');rc(fx0+3,fy0-1,1,1,'#c8d8e0')}
-    flameAt(cx+8,gy-44,t,.4);lightAt(cx+6,gy-46,34,.8)}
+  else if(key==='fishhut'){for(let k=0;k<16;k++){const X=cx-130+((h01(k)*260+t*8)%260);rc(X,gy-27+h01(k+7)*20,4,1,k%2?'#cfe6f2':'#8ab8d4')}
+    const fp=(t*.4)%3;if(fp<.5){const fx0=cx-60,fy0=gy-14-Math.sin(fp/.5*Math.PI)*8;rc(fx0,fy0,3,1,'#c8d8e0');rc(fx0+3,fy0-1,1,1,'#c8d8e0')}
+    flameAt(cx+8,gy-50,t,.4);lightAt(cx+6,gy-52,34,.8)}
   else if(key==='camp'){flameAt(cx+46,gy-2,t,1.1)}
 }
 const placeCache={};
@@ -3096,7 +3100,7 @@ function horseAct(a){
   }
   enemyTurn();if(G.view==='combat')winCheck();
 }
-try{window.__horse=horseSpr}catch(e){}
+try{window.__horse=(x,g,t,o)=>horseSpr(x,g,t,{...HCOL,...o})}catch(e){}
 
 /* ---- Personagem em camadas (pixel art 16-bit). Cada peça equipada é desenhada por cima do corpo base. ---- */
 const STEEL=()=>mix(P.mist,P.grayB,.35),STEELL=()=>mix(P.mist,P.white,.28),STEELD=()=>mix(P.grayB,P.vio,.4);
@@ -3300,7 +3304,7 @@ function buildHuman(o,K){
   }
   const shO=!!eq.shield&&!sit&&(!eq.shield.book||!!o.dr);
   const SHS=shO&&!!o.hero&&!atk&&!thr&&!o.dr;
-  const shCX=SHS?(o.flip?sx0+3.6:sx0-5.6):sx0+6.6,shCY=SHS?shY+9:py-9.4;
+  const FLT=(!!o.flip)!==(typeof MIR!=='undefined'&&!!MIR),shCX=SHS?(FLT?sx0+3.6:sx0-5.6):sx0+6.6,shCY=SHS?shY+9:py-9.4;
   // ---- grimório (só aparece em batalha, na mão equipada) ----
   if(shO&&eq.shield.book){
     const cx=shCX,cy=shCY,bf=eq.shield.fx,pc=bf&&SCPAL[bf]?SCPAL[bf]:['#7a4aa8','#c8a8f0','#3a2060'];
@@ -3311,14 +3315,16 @@ function buildHuman(o,K){
     for(let i=0;i<4;i++){paint([['r',cx-5.8,cy-3.6+i*2.2,4.4-(i%2),.6]],'#9a8a6a',{nohi:true});paint([['r',cx+1.4,cy-3.6+i*2.2,4.4-((i+1)%2),.6]],'#9a8a6a',{nohi:true})}
     {const rc2=bf&&SCPAL[bf]?SCPAL[bf][0]:'#c8a8f0',rg=_rgb(rc2);dot(cx-3.6,cy-.4,rg,2.6,2.6);dot(cx+3.6,cy-.4,rg,2.6,2.6);dot(cx-3.6,cy-.4,[255,255,255],1.2,1.2);dot(cx+3.6,cy-.4,[255,255,255],1.2,1.2)}
   }
-  const LSD=!!o.flip&&SHS;   // visto do lado esquerdo o escudo fica no lado de perto (à frente do corpo)
+  const LSD=FLT&&SHS;   // visto do lado esquerdo o escudo fica no lado de perto (à frente do corpo)
   const drawSh=()=>{
     const paint=(p,c,q)=>Pn.paint(p,c,Object.assign({edge:true},q||{}));
     const ts=eq.shield.tier||0,scol=ARM_COL(ts);
     const cx=shCX,cy=shCY;
-    paint([['p',[cx-6,cy-7.6,cx,cy-8.4,cx+6,cy-7.6,cx+6.3,cy-1.5,cx+4.2,cy+4.6,cx,cy+9.4,cx-4.2,cy+4.6,cx-6.3,cy-1.5]]],scol,{side:.3,top:.18});
-    paint([['r',cx-.6,cy-7.2,1.2,13.4]],P.gold,{nohi:true});paint([['r',cx-4.6,cy-3.4,9.2,1.2]],P.gold,{nohi:true});
-    if(ts>0){dot(cx-4.2,cy-4.8,[255,255,255],2.4,1)}
+    const bk=!FLT;  // virado para a direita o escudo (braço esquerdo) mostra as costas
+    paint([['p',[cx-6,cy-7.6,cx,cy-8.4,cx+6,cy-7.6,cx+6.3,cy-1.5,cx+4.2,cy+4.6,cx,cy+9.4,cx-4.2,cy+4.6,cx-6.3,cy-1.5]]],bk?mix(scol,'#1a1208',.38):scol,{side:.3,top:.18});
+    if(bk){paint([['r',cx-4.4,cy-5.6,8.8,.9],['r',cx-4.2,cy+2.6,8.4,.9]],mix(scol,'#1a1208',.6),{nohi:true});paint([['r',cx-3.2,cy-5.6,1.4,9.2],['r',cx+1.8,cy-5.6,1.4,9.2]],'#4a2f1a',{nohi:true});paint([['r',cx-1.2,cy-1.4,2.6,2.4]],'#6a4a2c',{nohi:true})}
+    else{paint([['r',cx-.6,cy-7.2,1.2,13.4]],P.gold,{nohi:true});paint([['r',cx-4.6,cy-3.4,9.2,1.2]],P.gold,{nohi:true});
+    if(ts>0){dot(cx-4.2,cy-4.8,[255,255,255],2.4,1)}}
     if(LSD){const hx0=sx0*.4+3.5;paint([['e',hx0+2.5,py-2.5,2.2,2.2]],skin,{})}
   };
   if(shO&&!eq.shield.book&&!LSD)drawSh();
@@ -3340,7 +3346,7 @@ function buildHuman(o,K){
   else if(atk&&o.wep&&o.wep.kind==='staff'){const q=Math.min(1,sw),a=-1.95+q*1.15,ah=-1.2-q*.15,ln=15;const e=[shF[0]+Math.cos(ah+.3)*8,shF[1]+Math.sin(ah+.3)*8];AF={s:shF,e,h:[shF[0]+Math.cos(ah)*ln,shF[1]+Math.sin(ah)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
   else if(atk&&o.wep&&o.wep.kind==='spear'){const a=-.12;const ln=6+Math.sin(Math.min(1,sw)*Math.PI/2)*11;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
   else if(atk){const a=-2.3+sw*3.4;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-30,-10,8.4,8)}
-  else if(thr){const a=(o.wep&&o.wep.kind==='xbow')?-.1:-1.0-sw*.3;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8)}
+  else if(thr){const bw=!!o.wep&&o.wep.kind==='bow',a=(o.wep&&(o.wep.kind==='xbow'||bw))?-.1+(bw?(o.am||0):0):-1.0-sw*.3;const ln=15.5;const e=[shF[0]+Math.cos(a+.25)*8,shF[1]+Math.sin(a+.25)*8];AF={s:shF,e,h:[shF[0]+Math.cos(a)*ln,shF[1]+Math.sin(a)*ln],ang:a};AB=armPts(shB,-10,-4,8.4,8);if(o.wep&&o.wep.kind==='xbow'){const xa=-.1+(o.am||0),ee=[shF[0]+.6,shF[1]+7.2];AF={s:shF,e:ee,h:[ee[0]+Math.cos(-.35)*7.8,ee[1]+Math.sin(-.35)*7.8],ang:xa};AB=ik(shB,[AF.h[0]-Math.cos(xa)*5.5,AF.h[1]-Math.sin(xa)*5.5+1],8.4,7.8,1)}if(bw){const pl=Math.min(1,sw),dd=-4.5-12*pl;AB=ik(shB,[AF.h[0]+Math.cos(a)*dd,AF.h[1]+Math.sin(a)*dd],8.4,7.8,1)}}
   else{AF=armPts(shF,6,26,8.6,8);AB=armPts(shB,-4,10,8.6,8)}
   // arma empunhada: braço da frente estendido à frente, mão no cabo (humanos armados e jogador)
   const SHE=!!wp&&!!o.hero&&!atk&&!thr&&!o.dr;
@@ -3383,7 +3389,7 @@ function buildHuman(o,K){
     // sola
     dot(foot[0]-4.5,foot[1]+1.8,shade(bc,-34),9,.9);
   };
-  const SWB=SHE&&!/^(staff|spear|xbow|bow)$/.test((wp&&wp.kind)||'sword');
+  const SWB=SHE&&(WBH||(wp&&(/^(staff|spear|xbow)$/.test(wp.kind||'')||wp.kind==='bow')));
   if(SWB)drawWep();
   if(!window.__ride)drawLeg(BL,true);
   // pélvis
@@ -3622,7 +3628,7 @@ function buildHuman(o,K){
   function drawWep(){
   if(wp&&!sit){
     const paint=(p,c,q)=>Pn.paint(p,c,Object.assign({edge:true},q||{}));
-    const back=/^(staff|spear|xbow|bow)$/.test(wp.kind||'sword');const ang=SHE?(back?-2.05:2.42):((atk||thr)?AF.ang:-1.15);const hx=SHE?(back?sx0-3:sx0-2):AF.h[0],hy=SHE?(back?shY+14:py-1.5):AF.h[1];
+    const kind0=wp.kind||'sword';const back=/^(staff|spear|xbow|bow)$/.test(wp.kind||'sword');const BWB=SHE&&kind0==='bow';const ang=SHE?(BWB?2.75:back?-2.05:2.42):((atk||thr)?AF.ang:-1.15);const hx=SHE?(BWB?sx0-3.6:back?sx0-3:sx0-2):AF.h[0],hy=SHE?(BWB?shY+8:back?shY+14:py-1.5):AF.h[1];
     const dx=Math.cos(ang),dy=Math.sin(ang),nx=-dy,ny=dx;
     const along=(d,s)=>[hx+dx*d+nx*(s||0),hy+dy*d+ny*(s||0)];
     const strip=(d0,d1,wd)=>{const a=along(d0,-wd),b=along(d1,-wd*.35),c2=along(d1,wd*.35),d2=along(d0,wd);return[a[0],a[1],b[0],b[1],c2[0],c2[1],d2[0],d2[1]]};
@@ -3671,14 +3677,19 @@ function buildHuman(o,K){
       paint([mk(along(13,-10),along(13,10),.3,.3)],P.mist,{nohi:true,nosh:true});
       {const pj=fx&&fx.proj,sh=pj&&pj.kind==='bolt'&&nowMs()-pj.t<430;if(G&&G.quiver>0&&!sh){const pl=SCPAL[G.qfx];paint([mk(along(5),along(22),.55,.55)],mix(P.wood,P.orL,.1),{nohi:true,nosh:true});paint([mk(along(20),along(25),.9,.9)],pl?pl[0]:'#d8dde2',{nohi:true,nosh:true});paint([mk(along(5),along(8),.9,.9)],pl?pl[1]:'#e8e0d0',{nohi:true,nosh:true})}}
     }else{ // arco
-      const bx=along(4,0);const top=along(2,-15),bot=along(2,15);
-      paint([mk(top,bx,1.15,1.15),mk(bx,bot,1.15,1.15)],mix(P.wood,P.orL,.3),{});
-      paint([mk(top,bot,.3,.3)],P.mist,{nohi:true,nosh:true});
+      const R=SHE?12:14,off=SHE?0:-4.5,pts=[];for(let k=0;k<=6;k++){const u=(k/6)*2-1;pts.push(along(off+1.5+4.5*(1-u*u),u*R))}
+      const wdc=mix(P.wood,P.orL,.3);paint(pts.slice(1).map((q,k)=>mk(pts[k],q,k<1||k>4?.8:1.25,k<1||k>4?.8:1.25)),wdc,{});
+      paint([mk(along(5.4+off,-1.5),along(7+off,1.5),1.4,1.4)],'#6a4a28',{nohi:true});
+      if(!SHE&&thr){const pl=Math.min(1,sw),nk=along(off-12*pl,0),pj=fx&&fx.proj,fired=pj&&pj.kind==='bolt'&&nowMs()>=pj.t-5&&nowMs()-pj.t<500;
+        paint([mk(pts[0],nk,.3,.3),mk(nk,pts[6],.3,.3)],P.mist,{nohi:true,nosh:true});
+        if(!fired&&G&&G.quiver>0){paint([mk(nk,along(9,0),.5,.5)],mix(P.wood,P.orL,.1),{nohi:true,nosh:true});paint([mk(along(8.4,0),along(11.5,0),.9,.9)],'#d8dde2',{nohi:true,nosh:true})}
+      }else paint([mk(pts[0],pts[6],.3,.3)],P.mist,{nohi:true,nosh:true});
     }
     if(wp.sh){const L0={sword:26,dagger:12,axe:14,mace:17,spear:30,staff:25}[kind]||0;if(L0){const ph=wp.sp||0;for(let i=0;i<3;i++){const d=L0*(.2+.27*((i+ph)%3)),q=along(d,(i-1)*.9),big=(i+ph)%4===0;dot(q[0]-.5,q[1]-.5,[255,246,180],big?1.8:1.1,big?1.8:1.1)}const tp=along(L0+1,0);if(ph%2===0){dot(tp[0]-1.6,tp[1]-.4,[255,250,200],3.2,.8);dot(tp[0]-.4,tp[1]-1.6,[255,250,200],.8,3.2)}}}
   }
   }
   if(!SWB)drawWep();
+  if(!SHE&&wp&&wp.kind==='bow'&&thr){paint([['c',AF.e[0]+(AF.h[0]-AF.e[0])*.55,AF.e[1]+(AF.h[1]-AF.e[1])*.55,2.5,AF.h[0],AF.h[1],2.4]],sleevePaint,{edge:true});paint([['e',AF.h[0]+.3,AF.h[1]+.2,2.4,2.3]],skin,{edge:true});paint([['c',AB.s[0],AB.s[1],3,AB.e[0],AB.e[1],2.7],['c',AB.e[0],AB.e[1],2.7,AB.h[0],AB.h[1],2.4]],sleevePaint,{edge:true});paint([['e',AB.h[0]+.3,AB.h[1]+.2,2.3,2.2]],skin,{edge:true})}
   richen(Pn);
   return Pn;
 }
@@ -3783,6 +3794,16 @@ function buildFront(o,K){
   const torsoCol=hasA?(isL(eq.arm)?LC:ARM_COL(ta)):hideA?'#3f7a34':shirt,sleeve=hasA?(isL(eq.arm)?LC2:ta===3?'#3b2d78':ta===2?stl:ta===1?stl1:gam):shirt;
   const capeC=eq.cape?['#8a6a3a','#a8504a','#7a4aa8','#4a3a86'][eq.cape.tier||0]:null;
   if(capeC){paint([['p',[-9,-39,9,-39,12.5,-6,-12.5,-6]]],capeC,{side:.25,fn:(i,j)=>((i+j*2)%9===0?'m':null)});dot(-9,-40,P.gold,18,1)}
+  if(o.wep&&o.wep.kind==='xbow'){ // besta nas costas, no mesmo lugar do arco
+    const wood=mix(P.wood,P.orL,.18),X=-11.2;
+    paint([['c',X+.8,-20,1.4,X-.6,-53,1.2]],wood,{});
+    paint([['c',X-6.5,-47,.9,X-.4,-51,.9],['c',X-.4,-51,.9,X+5.5,-47,.9]],mix(P.wood,P.earth,.2),{});
+    paint([['c',X-6.5,-47,.3,X+5.5,-47,.3]],P.mist,{nohi:true,nosh:true})}
+  if(o.wep&&o.wep.kind==='bow'){ // arco nas costas: atrás do ombro e do corpo
+    const wood=mix(P.wood,P.orL,.18),A0=[-9.4,-23],A1=[-9,-51],dx=A1[0]-A0[0],dy=A1[1]-A0[1],ln=Math.hypot(dx,dy),nx=-dy/ln,ny=dx/ln,pts=[];
+    for(let q=0;q<=6;q++){const u=q/6,b=Math.sin(u*Math.PI)*5.2;pts.push([A0[0]+dx*u-nx*b,A0[1]+dy*u-ny*b])}
+    paint(pts.slice(1).map((q,i)=>['c',pts[i][0],pts[i][1],i<1||i>4?.8:1.25,q[0],q[1],i<1||i>4?.8:1.25]),wood,{});
+    paint([['c',A0[0],A0[1],.3,A1[0],A1[1],.3]],P.mist,{nohi:true,nosh:true})}
   const ST=(i,j)=>((i*2+j*3)%9===0?'h':((i+j)%7===0?'m':null)),hsh=shade(hair,-22),hlc=mixc(hair,'#ffffff',.24);
   if(th<2||th>=3){
     if(hsx==='longo')paint([['p',[-6.8,-52,6.8,-52,8.6,-29.6,-8.6,-29.6]]],hair,{side:.3,fn:ST});
@@ -3898,13 +3919,14 @@ function buildFront(o,K){
   // arma (mão direita do herói = esquerda da tela)
   const wp=o.wep;
   if(wp){const hx=-9.6,hy=-18.6,wc=wp.sh?mix(wp.b||'#cfd6dc','#fff2a8',.28+wp.sh*.02):(wp.b||'#cfd6dc'),k=wp.kind||'sword',wood=mix(P.wood,P.orL,.18);
-    paint([['c',hx,hy+3,1.1,hx,hy-2,1.1]],mix(P.wood,P.earth,.3),{});
+    if(k!=='bow')paint([['c',hx,hy+3,1.1,hx,hy-2,1.1]],mix(P.wood,P.earth,.3),{});
     if(k==='sword'||k==='dagger'){const L=k==='sword'?26:12;paint([['c',hx,hy-2.6,.9,hx,hy-2.6,.9],['r',hx-3.6,hy-3.4,7.2,1.6]],P.gold,{});paint([['p',[hx-1.5,hy-4,hx+1.5,hy-4,hx+1.3,hy-4-L,hx,hy-7-L,hx-1.3,hy-4-L]]],wc,{hi:.55,sh:.3});dot(hx-.8,hy-5,[255,255,255],.7,L-2)}
     else if(k==='axe'){paint([['c',hx,hy+14,1.1,hx,hy-16,1.1]],wood,{});paint([['p',[hx,hy-2,hx+9,hy-4,hx+9,hy-16,hx,hy-13]]],wc,{hi:.55,sh:.3})}
     else if(k==='staff'){const pl=SCPAL[wp.fx]||['#9a8a70','#d8ccb0'];paint([['c',hx,hy+21,1.1,hx,hy-21,1.1]],wood,{});paint([['e',hx,hy-25,3.2,3.2]],pl[0],{});dot(hx-1.4,hy-27,pl[1],1.6,1.3)}
-    else if(k==='xbow'){paint([['c',hx,hy+4,1.2,hx,hy-14,1.1]],wood,{});paint([['c',hx-8,hy-12,.9,hx,hy-16,.9],['c',hx,hy-16,.9,hx+8,hy-12,.9]],wood,{});paint([['c',hx-8,hy-12,.4,hx+8,hy-12,.4]],P.mist,{})}
+    else if(k==='xbow'){}
     else if(k==='mace'){paint([['c',hx,hy+14,1.1,hx,hy-12,1.1]],wood,{});paint([['e',hx,hy-17,4,4]],wc,{});dot(hx-2,hy-19,[255,255,255],1.4,1.2)}
     else if(k==='spear'){paint([['c',hx,hy+21,1,hx,hy-21,1]],wood,{});paint([['p',[hx-2.2,hy-21,hx+2.2,hy-21,hx,hy-31]]],wc,{hi:.55,sh:.3})}
+    else if(k==='bow'){}
     else{paint([['c',hx,hy-14,.9,hx+3,hy-2,.9],['c',hx+3,hy-2,.9,hx,hy+10,.9]],wood,{})}
     if(wp.sh){const L0={sword:26,dagger:12,axe:14,mace:17,spear:30}[k]||0;if(L0){const ph=wp.sp||0;for(let i=0;i<3;i++){const d=L0*(.2+.27*((i+ph)%3)),big=(i+ph)%4===0;dot(hx-.5+(i-1)*.5,hy-4-d-.5,[255,246,180],big?1.8:1.1,big?1.8:1.1)}if(ph%2===0){dot(hx-1.6,hy-6-L0,[255,250,200],3.2,.8);dot(hx-.4,hy-7.6-L0,[255,250,200],.8,3.2)}}}
     paint([['e',hx,hy,2.3,2.3]],skin,{});
@@ -3945,14 +3967,14 @@ function person(x,y,o){
   const q={pose:o.pose,t:o.pose==='walk'?(Math.floor((o.t||0)*8)%4)/8:(Math.floor((o.t||0)*1.4)%2)/1.4,swing:o.swing!=null?Math.round(o.swing*12)/12:0,g:o.g,
     skin:o.skin,hair:o.hair,hs:o.hs,bs:o.bs,bc:o.bc,cloth:o.cloth,pants:o.pants,boot:o.boot,capeCol:o.capeCol,nocape:o.nocape,eye:o.eye,bare:o.bare,style:o.style,coat:o.coat,witchHat:o.witchHat,slouch:o.slouch,glow:o.glow,mask:o.mask,
     eq:o.eq?{arm:o.eq.arm&&{L:/couro/i.test(o.eq.arm.n||''),tier:o.eq.arm.tier!=null?o.eq.arm.tier:(o.eq.arm.def>=5?2:o.eq.arm.def>=3?1:0)},helm:o.eq.helm&&{L:/couro/i.test(o.eq.helm.n||''),tier:o.eq.helm.tier||0},cape:o.eq.cape&&{tier:o.eq.cape.tier||0},shield:o.eq.shield&&{tier:o.eq.shield.tier||0,book:o.eq.shield.book?(o.eq.shield.fx||'e'):0},pants:o.eq.pants&&{L:/couro/i.test(o.eq.pants.n||''),tier:o.eq.pants.tier!=null?o.eq.pants.tier:0},boots:o.eq.boots&&{L:/couro/i.test(o.eq.boots.n||''),tier:o.eq.boots.tier||0}}:null,
-    wep:o.wep?{b:o.wep.b,kind:o.wep.kind,fx:o.wep.fx||null,sh:o.wep.sh||0,sp:o.wep.sp||0}:null,flip:!!o.flip,hero:!!o.hero,dr:window.__drawn?1:0,mir:(typeof MIR!=="undefined"&&MIR)?1:0};
+    wep:o.wep?{b:o.wep.b,kind:o.wep.kind,fx:o.wep.fx||null,sh:o.wep.sh||0,sp:o.wep.sp||0}:null,flip:!!o.flip,hero:!!o.hero,dr:window.__drawn?1:0,rd:window.__ride?1:0,am:window.__aim||0,mir:(typeof MIR!=="undefined"&&MIR)?1:0};
   drawRig('human',x,y,q,K,o.anch);
 }
 function wolfRig(x,y,o){
   const q={pose:o.pose,t:(Math.floor((o.t||0)*3.2)%4)/3.2,swing:o.swing!=null?Math.round(o.swing*12)/12:0,flip:!!o.flip};
   drawRig('wolf',x,y,q,1,o.anch);
 }
-try{window.__rig=rigSprite;window.__front=frontSprite}catch(e){}
+try{window.__rig=rigSprite;window.__front=frontSprite;window.__horse=(x,g,t,o)=>horseSpr(x,g,t,{...HCOL,...o})}catch(e){}
 
 /* ================= BESTAS (Painter + cache RIGC) ================= */
 /* poses: stand (respira), walk (8 quadros), atk (swing 0..1), hurt (recuo). Sprites olham para a DIREITA. */
@@ -4635,7 +4657,7 @@ function campComps(obj){
 
 /* ---- mercante viajante: chega a cada 5 dias, fica 1 noite ---- */
 function merchU(){return G.day*24+G.hour-8}
-function merchHere(){if(!G)return false;const u=merchU();return u>=120&&u%120<24}
+function merchHere(){return false;if(!G)return false;const u=merchU();return u>=120&&u%120<24}
 function merchKey(){return Math.floor(merchU()/120)}
 function drawMerch(t,nf){
   const tx=488,ty=166;
@@ -4716,7 +4738,7 @@ function drawCamp(t,h){
   }
   if(merchHere())drawMerch(t,nf);
   // herói sentado
-  heroSprite(131,160,t,'sit',false);
+  heroSprite(131,163,t,'sit',false);
   // vagalumes à noite
   if(nf>.3){for(let i=0;i<16;i++){const fx=((h01(i)*W+Math.sin(t*.7+i)*14)%W),fy=125+h01(i+5)*55+Math.sin(t*1.3+i*2)*5,bl=Math.sin(t*3+i*5)>.1;if(bl){c.globalAlpha=nf;rc(fx,fy,1,1,P.sun);c.globalAlpha=nf*.35;rc(fx-1,fy-1,3,3,P.sun);c.globalAlpha=1;lightAt(fx,fy,9,.25)}}}
   // pássaros de dia
@@ -5243,10 +5265,10 @@ function drawBattle(t,ms){
   if(inPoiB){B=BIO[biome]||BIO.plain;const mC=(G.dir===-1&&!VSC(G.loc));MIR=mC;if(mC){c.save();c.translate(W,0);c.scale(-1,1)}BGNOHERO=true;try{drawLoc(G.loc,t,h)}finally{BGNOHERO=false}if(mC){c.restore();MIR=false}}
   else B=battleBG(biome,h,t);
   const pos=battlePos(N);
-  const HX=76,HY=156;
+  const HX=76,HY=156,ARY=41,ARX=35;
   window.__platSample=inPoiB;plat(HX,HY+2,64,12,B);pos.slice(0,N).forEach(([x,y],i)=>{const e=S.en[i];if(e&&e.hp<=0&&!(fx.e[i]&&ms<fx.e[i]+350))return;plat(x+slide,y+2,46,8,B)});window.__platSample=false;
   // herói
-  let lx=0;if(fx.atk&&!(G.wep&&wepOk()&&/besta|cajado/i.test(G.wep.n))){const d=ms-fx.atk;if(d<420)lx=Math.sin(d/420*Math.PI)*60}
+  let lx=0;if(fx.atk&&!(G.wep&&wepOk()&&/besta|cajado|arco/i.test(G.wep.n))){const d=ms-fx.atk;if(d<420)lx=Math.sin(d/420*Math.PI)*60}
   const th=fx.throw&&ms-fx.throw<350,ph=fx.p&&ms>=fx.p&&ms-fx.p<350&&Math.floor((ms-fx.p)/60)%2===0;
   const sw=fx.atk&&ms-fx.atk<420?Math.sin((ms-fx.atk)/420*Math.PI):0;
   const bd=fx.bf?ms-fx.bf:-1;
@@ -5263,7 +5285,7 @@ function drawBattle(t,ms){
     else if(d<1450){const q=(d-1100)/350,e2=q*q*(3-2*q);batFx(ex+(HX-ex)*e2,ey+(hy-ey)*e2,700,t,1)}
     else{const q=Math.min(1,(d-1450)/250);batFx(HX,hy,Math.max(0,700-(d-1450)*2),t,1);c.save();c.translate(HX,HY);c.globalAlpha=q;heroSprite(0,0,t,'stand',false,0,1);c.restore();c.globalAlpha=1}
   }
-  else{const phk=fx.p&&ms>=fx.p&&ms-fx.p<350?(Math.floor((ms-fx.p)/50)%2?2:-2):0;const xbw=G.wep&&wepOk()&&/besta/i.test(G.wep.n);const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide+phk,HY);window.__drawn=1;heroSprite(0,0,t,sm||sw>0?(xbw?'throw':'atk'):(th||xbw)?'throw':'stand',false,sm?.6:sw,1);window.__drawn=0;
+  else{const phk=fx.p&&ms>=fx.p&&ms-fx.p<350?(Math.floor((ms-fx.p)/50)%2?2:-2):0;const xbw=G.wep&&wepOk()&&/besta|arco/i.test(G.wep.n);const sm=fx.psum&&ms-fx.psum<1300&&ms>=fx.psum?1:0;if(sm)batFx(HX,HY-30,ms-fx.psum+400,t,0);c.save();c.translate(HX+lx-slide+phk,HY);window.__aim=0;if(xbw){const xb=/besta/i.test(G.wep.n),ti=(fx.proj&&(fx.proj.bw||fx.proj.xb)&&pos[fx.proj.ti])?fx.proj.ti:S.en.findIndex(e=>e.hp>0),tp=pos[ti];if(tp)window.__aim=Math.round(Math.atan2(tp[1]-26-(HY-(xb?ARX:ARY)),tp[0]+slide-(HX+16))*25)/25}let bsw=sw;if(xbw&&/arco/i.test(G.wep.n)&&fx.atk){const e=ms-fx.atk;bsw=e<0?0:e<260?e/260:e<430?Math.max(0,1-(e-260)/170):0}window.__drawn=1;heroSprite(0,0,t,sm||bsw>0?(xbw?'throw':'atk'):(th||xbw)?'throw':'stand',false,sm?.6:bsw,1);window.__drawn=0;
     stDraw(S.hs,46,t);c.restore()}
   if(S.ally&&S.ally.hp>0){const al=S.ally,sd=ms-(fx.psum||0);let ax=HX+38,ay=HY-66+Math.sin(t*4)*3;
     if(al.at&&ms>=al.at&&ms-al.at<600&&pos[al.ti]){const q3=Math.sin((ms-al.at)/600*Math.PI),tp=pos[al.ti];ax+=(tp[0]+slide-34-ax)*q3;ay+=(tp[1]-30-ay)*q3}
@@ -5297,8 +5319,8 @@ function drawBattle(t,ms){
   // projétil em voo
   const pj=fx.proj;if(pj&&pos[pj.ti]){const pp=(ms-pj.t)/pj.d;
     if(pp>=0&&pp<=(pj.hit?1:1.5)){
-      const [tx,ty]=pos[pj.ti],sx0=pj.kind==='elem'?HX+22:HX+16,sy0=pj.kind==='elem'?HY-60:HY-32,ex=tx+slide,ey=ty-26;
-      const tcl=(pj.kind==='bolt'&&G.qshot&&SCPAL[G.qshot])?SCPAL[G.qshot][0]:P.white;const draw=(u,al)=>{const x0=sx0+(ex-sx0)*u,arc=pj.kind==='bolt'?0:pj.kind==='arrow'?10:pj.kind==='knife'?16:4,y0=sy0+(ey-sy0)*u-Math.sin(Math.min(1,u)*Math.PI)*arc;
+      const [tx,ty]=pos[pj.ti],sx0=pj.kind==='elem'?HX+22:HX+16,sy0=pj.kind==='elem'?HY-60:pj.bw?HY-ARY:pj.xb?HY-ARX:HY-32,ex=tx+slide,ey=ty-26;
+      const pfx=pj.kind==='bolt'&&G.wep?(G.wep.fx||G.qshot):null,tcl=(pfx&&SCPAL[pfx])?SCPAL[pfx][0]:P.white;const draw=(u,al)=>{const x0=sx0+(ex-sx0)*u,arc=pj.kind==='bolt'?0:pj.kind==='arrow'?10:pj.kind==='knife'?16:4,y0=sy0+(ey-sy0)*u-Math.sin(Math.min(1,u)*Math.PI)*arc;
         const dx=ex-sx0,dy=(ey-sy0)-Math.cos(Math.min(1,u)*Math.PI)*arc*Math.PI/1.0*0,ang=Math.atan2(dy,dx)+(pj.kind==='knife'?u*18:0),ca=Math.cos(ang),sa=Math.sin(ang);
         c.globalAlpha=al;
         if(pj.kind==='elem')ELEMP(pj.fx,x0,y0,u,ca,sa,t,ex,ey,sx0,sy0);else if(pj.kind==='magic'){disc(x0,y0,3,'#5a86ff');disc(x0,y0,2,'#9ad0ff');rc(x0-1,y0-1,2,2,P.white);rc(x0-ca*5,y0-sa*5,2,2,'#5a86ff')}
@@ -5383,9 +5405,10 @@ function ELEMP(f,x,y,u,ca,sa,t,ex,ey,sx,sy){
   }else if(f==='atordoamento'){
     for(let i=0;i<3;i++){const a=t*8+i*2.09,sx2=Math.round(x+Math.cos(a)*6),sy2=Math.round(y+Math.sin(a)*4);rc(sx2-1,sy2-3,2,6,pl[0]);rc(sx2-3,sy2-1,6,2,pl[0]);rc(sx2-1,sy2-1,2,2,pl[1])}
   }else if(f==='trovao'){
-    const N=8,seg=Math.max(1,Math.floor(Math.min(1,u)*N)),sd=Math.floor(t*16);let px=sx,py=sy;
-    for(let k=1;k<=seg;k++){const nx=sx+(ex-sx)*k/N+(k<N?((k+sd)%2?6:-6)+((k*7+sd)%3-1)*2:0),ny=sy+(ey-sy)*k/N;line(px,py,nx,ny,2,pl[0]);line(px,py,nx,ny,1,pl[1]);px=nx;py=ny}
-    rc(Math.round(px)-2,Math.round(py)-2,4,4,'#ffffff')
+    // raio curto viajando como projétil (não é um laser): zigue-zague de ~22px com cabeça brilhante
+    const N=6,sd=Math.floor(t*18),LEN=22,nxv=-sa,nyv=ca;let px=x-ca*LEN*.5,py=y-sa*LEN*.5;
+    for(let k=1;k<=N;k++){const f=k/N,j=k<N?(((k+sd)%2?1:-1)*(3+((k*5+sd)%3))):0,nx=x-ca*LEN*.5+ca*LEN*f+nxv*j,ny=y-sa*LEN*.5+sa*LEN*f+nyv*j;line(px,py,nx,ny,3,'#ffd830');line(px,py,nx,ny,1,'#ffffff');px=nx;py=ny}
+    rc(Math.round(px)-2,Math.round(py)-2,5,5,'#ffd830');rc(Math.round(px)-1,Math.round(py)-1,3,3,'#ffffff')
   }else{disc(x,y,3,'#5a86ff');disc(x,y,2,'#9ad0ff');rc(x-1,y-1,2,2,'#ffffff')}
 }
 
@@ -5649,7 +5672,7 @@ function frame(ms){
         }
       }
     }
-    if(!(G&&G.loc&&G.loc.startsWith('in_')&&(G.view==='poi'||G.view==='combat'))){drawWeather(t,h);
+    if(!(G&&G.loc&&G.loc.startsWith('in_')&&(G.view==='poi'||G.view==='combat'||G.view==='result'||G.view==='event'))){drawWeather(t,h);
     sunLight(h);if(nightF(h)<.7)beams(h,false);if(nightF(h)>.3)beams(h,true);grade(h);moonLight(h)}
     finishFrame(h);
     }
@@ -5719,6 +5742,7 @@ V.trade=()=>{
 /* ===== Ícones pixel art 16x16 (itens, armas, armaduras) ===== */
 const ICP={k:'#1a1008',a:'#8a5a2b',b:'#b8803f',c:'#5a3818',m:'#9aa4ad',n:'#dfe6ea',o:'#5d6872',g:'#e6bd4a',h:'#a67f26',r:'#b53a2a',s:'#e8705a',t:'#7a2218',e:'#4f9a3a',f:'#86c85e',d:'#2d5a24',y:'#f2e6c6',z:'#c8b68a',u:'#4a78c8',v:'#9ac0f4',w:'#ffffff',l:'#7a4a2a',i:'#a9693a',j:'#4a2a14',p:'#c0504a',q:'#ec9a90',B:'#c8863a',E:'#ecbc70',F:'#8a5420',x:'#7d8a3a',X:'#a6b45a',Y:'#5a6628',P:'#6a3a2e',C:'#9a5a30',D:'#c88848'};
 const ICS={
+bow:["....kkk.........","...kbbbk........","...kbbk.n.......","..kbbk...n......","..kbk....n......","..kbk....n......",".kbk.....n......",".kbk.nnnnnnnnmk.",".kbk.....n......",".kbk.....n......","..kbk....n......","..kbk....n......","...kbbk.n.......","...kbbbk........","....kkk.........","................"],
 arrow:["............kkkk","...........kkHHk","..........kkHHHk","..........kHHHHk","..........kaHkkk","..........akkk..",".........a......","........a.......",".......a........","......a.........",".....a..........","....a...........",".FFF............","..FFF...........","..FFF...........","................"],
 raw_meat:["................","................","....kkkkkk......","...kppqqppkk....","..kpqqqppppPk...","..kpqqpppppPk...",".kppppppppPPk...",".kpppppppPPPk...",".kkpppppPPPkkkk.","..kkPPPPPkkywwk.","....kkkkkk.kwwwk","..........kkwwk.","...........kk...","................","................","................"],
 cooked_meat:["................","................","....kkkkkk......","...kCDDDDCkk....","..kCDEDDDCCk....","..kCDDDDDCCCk...",".kCCDDDDCCCCk...",".kCCCDDCCCCFk...",".kkCCCCCCCFkkkk.","..kkFFFFFFkkywk.","....kkkkkk.kwwwk","..........kkwwk.","...........kk...","................","................","................"],
@@ -5803,6 +5827,7 @@ function vR(g,deg,fn){g.save();g.translate(32,32);g.rotate(deg*Math.PI/180);g.tr
 const VW=['#b8803f','#8a5a2b','#5a3818'],VG=['#f2cf5a','#e6bd4a','#a67f26'];
 const vWood=(x,y,w,h)=>[[[x,y],[x+w*.55,y],[x+w*.55,y+h],[x,y+h]],VW[0]],vWoodD=(x,y,w,h)=>[[[x+w*.55,y],[x+w,y],[x+w,y+h],[x+w*.55,y+h]],VW[2]];
 const VEC={
+bow:(g,p)=>{const w=p.w||'#8a5a2b',wl=p.wl||'#b8803f';vL(g,[[[[18,6],[30,10],[40,20],[44,32],[40,44],[30,54],[18,58],[22,50],[32,42],[34,32],[32,22],[22,14]],w],[[[18,6],[30,10],[40,20],[44,32],[41,32],[37,21],[28,13]],wl],[[[17.4,6],[19.4,6],[19.4,58],[17.4,58]],'#dfe6ea'],[[[19,30.4],[52,30.4],[52,33.4],[19,33.4]],'#b8803f'],[[[52,27.5],[61,32],[52,36.5]],p.m||'#9aa4ad'],[[[52,27.5],[61,32],[52,32]],'#dfe6ea'],[[[19,27],[26,31.8],[19,31.8]],'#b53a2a'],[[[19,31.8],[26,31.8],[19,36.6]],'#7a2218']]);vH(g,34,16,41,24,1.6)},
 arrow:(g,p)=>vR(g,45,()=>{vL(g,[[[[30,10],[34,10],[34,54],[30,54]],'#b8803f'],[[[32,2],[25,16],[39,16]],'#c8d2da'],[[[32,2],[39,16],[32,14]],'#7a8692'],[[[30,42],[20,52],[20,60],[30,52]],'#d85a4a'],[[[34,42],[44,52],[44,60],[34,52]],'#a8362a']]);vH(g,32,5,28,14,1.4)}),
 raw_meat:(g)=>{vL(g,[[[[40,34],[50,40],[58,50],[52,56],[42,48],[36,42]],'#efe6cc'],[[[8,26],[14,14],[30,10],[46,16],[54,28],[46,42],[30,48],[14,42]],'#d8566a']]);vL(g,[[[[20,24],[30,18],[42,22],[36,32],[24,34]],'#ee8a98']]);vH(g,16,22,24,16,1.8);g.fillStyle='rgba(255,255,255,.6)';g.fillRect(28,38,10,1.4)},
 cooked_meat:(g)=>{vL(g,[[[[40,34],[50,40],[58,50],[52,56],[42,48],[36,42]],'#efe6cc'],[[[8,26],[14,14],[30,10],[46,16],[54,28],[46,42],[30,48],[14,42]],'#a8622a']]);vL(g,[[[[20,24],[30,18],[42,22],[36,32],[24,34]],'#d08a42']]);vH(g,16,22,24,16,1.8);g.fillStyle='#5a3010';g.fillRect(14,30,12,1.5);g.fillRect(30,40,12,1.5)},
@@ -5941,7 +5966,7 @@ const bookIc=fx=>{const pc=SCPAL[fx];return icoH('book',pc?{M:pc[0],N:pc[1],O:pc
 const gIcon0=o=>{
   if(o.book)return bookIc(o.fx);
   if(o.k==='sc')return scrollIc(o.fx);
-  if(o.k==='w'){const kd=wepKind(o.n),b=(kd==='staff'?(SCPAL[o.fx]||['#9a8a70'])[0]:RAR[o.ri||0].b);const h0=icoH(kd==='bow'?'sword':kd,{m:b,n:mixc(b,'#ffffff',.55),o:mixc(b,'#000000',.45)});return (o.lvl||1)>1?h0.replace('class="ic ',`style="--sh:${Math.min(10,o.lvl)}" class="ic shiny `):h0}
+  if(o.k==='w'){const kd=wepKind(o.n),b=(kd==='staff'?(SCPAL[o.fx]||['#9a8a70'])[0]:RAR[o.ri||0].b);const h0=icoH(kd,{m:b,n:mixc(b,'#ffffff',.55),o:mixc(b,'#000000',.45)});return (o.lvl||1)>1?h0.replace('class="ic ',`style="--sh:${Math.min(10,o.lvl)}" class="ic shiny `):h0}
   const t=Math.max(0,Math.min(2,o.tier!=null?o.tier:(o.def>=5?2:o.def>=3?1:0)));
   if(o.tier===4){return icoH({a:'chest',h:'helm',p:'pants',b:'boots',c:'chest',s:'shield'}[o.k]||'chest',{M:'#3f7a34',N:'#86c85e',O:'#244a1e',G:'#c8a060'})}
   if(o.tier===3||/arcan[oa]s?\b/i.test(o.n||'')){const MP={M:'#4a3a86',N:'#8a76d0',O:'#2a1f55',G:'#e6bd4a'};if(o.k==='h')return icoH('hat',MP);if(o.k==='c')return icoH('cape',{C:'#4a3a86',G:'#8a76d0',D:'#2a1f55',g:'#e6bd4a'});return icoH({p:'pants',b:'boots'}[o.k]||'chest',MP)}
@@ -6049,7 +6074,7 @@ V.info=()=>{
   if(G.food<=0||G.water<=0)st.push(`⚠️ <b>Sem ${G.food<=0&&G.water<=0?'comida e água':G.food<=0?'comida':'água'}</b> · perdendo vida a cada 2h`);
   if(S&&S.hs){const h=S.hs;if(h.bleed>0)st.push(`🩸 <b>Sangrando</b> · ${h.bleed} turno(s), −2 por turno`);if(h.stun>0)st.push(`💫 <b>Atordoado</b> · ${h.stun} turno(s)`);if(h.burn>0)st.push(`🔥 <b>Queimando</b> · ${h.burn} turno(s), −3 por turno`);if(h.poison>0)st.push(`☠️ <b>Envenenado</b> · ${h.poison} turno(s), −2 por turno`);if(h.frost>0)st.push(`❄️ <b>Congelado</b> · ${h.frost} turno(s), −30% de dano`)}
   if(G.bat)st.push('🦇 <b>Forma de morcego</b>');
-  const w=G.wep&&G.wep.dur>0?G.wep:null,rg=!!(w&&/besta/i.test(w.n)),cj=!!(w&&/cajado/i.test(w.n)),fo=rg?AT('des'):cj?AT('int'):AT('for'),de=AT('des'),ag=AT('agi'),vi=AT('vit'),it=AT('int');
+  const w=G.wep&&G.wep.dur>0?G.wep:null,rg=!!(w&&/besta|arco/i.test(w.n)),cj=!!(w&&/cajado/i.test(w.n)),fo=rg?AT('des'):cj?AT('int'):AT('for'),de=AT('des'),ag=AT('agi'),vi=AT('vit'),it=AT('int');
   const ps=[['Peitoral',G.arm],['Elmo',G.helm],['Escudo',G.shield],['Calça',G.pants],['Botas',G.boots]];
   const def=ps.reduce((s,[,p])=>s+(p&&p.dur>0?p.def:0),0);
   const mul=1+.04*fo,nm=G.turned?(isNight()?1.5:.7):1;
@@ -6264,10 +6289,10 @@ V.anvil=()=>{
 
 A.openpurse=()=>{G.modal='purse'};
 V.purse=()=>{const c=coinSplit(G.coins);return `<section class="card"><h2>Bolsa de dinheiro</h2><div class="row"><span class="l">${coinI('au')} Moedas de ouro</span><span class="r"><b>${c.au}</b></span></div><div class="row"><span class="l">${coinI('ag')} Moedas de prata</span><span class="r"><b>${c.ag}</b></span></div><div class="row"><span class="l">${coinI('cu')} Moedas de cobre</span><span class="r"><b>${c.cu}</b></span></div><div class="btns"><button data-a="close">Voltar</button></div></section>`};
-const CATS={weapon:['sword','axe','cajado','arrows'],armor:['gamb','mail','plate','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mtunic','mpants','mshoes','book'],misc:['sbag','sdl','skin','hpot','mpot','hpot2','mpot2','hpot3','mpot3','holy']};
+const CATS={weapon:['sword','axe','cajado','book','bow','xbow','arrows'],armor:['gamb','mail','plate','pan0','pan1','pan2','bot0','bot1','bot2','hel0','hel1','shd0','shd1','mhat','mtunic','mpants','mshoes'],misc:['sbag','sdl','skin','hpot','mpot','hpot2','mpot2','hpot3','mpot3','holy']};
 A.ctab=v=>{G.ctab=v};A.atab=v=>{G.atab=v};A.wtab=v=>{G.wtab=v};
-const WSUB={melee:['sword','axe'],ranged:['knives','arrows'],magic:['cajado']};
-const ASUB={mage:['mhat','mtunic','mpants','mshoes','book','pan0'],war:['mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['gamb','pan1','bot0','hel0','shd0']};
+const WSUB={melee:['sword','axe'],ranged:['bow','xbow','knives','arrows'],magic:['cajado','book']};
+const ASUB={mage:['mhat','mtunic','mpants','mshoes','pan0'],war:['mail','plate','pan2','bot1','bot2','hel1','shd1'],hunt:['gamb','pan1','bot0','hel0','shd0']};
 A.sex=v=>{if(v==='m'||v==='f')G.gender=v};
 const ownN=r=>{if(r.give){const k=Object.keys(r.give)[0];return have(k)}if(r.skin)return SK();if(r.gear){const nm=r.gear().n;const all=[...G.bag,...G.chest.bag,...['wep','arm','helm','cape','shield','pants','boots'].map(k=>G[k]).filter(Boolean)];return all.filter(o=>o.n===nm||(o.n.startsWith(nm)&&o.k==='w')).length}return null};
 const recCard=r=>{const done=(r.build&&(G.b[r.build]||atOp()))||(r.skin&&SK()>=3),lk=(RLV[r.id]||1)>SL('craft');const ok=!lk&&!done&&Object.entries(r.need).every(([k,n])=>have(k)>=n)&&(!r.forge||HB('forge'))&&(!r.stove||HB('stove'))&&(!r.repair||dmgd(r.repair).length);
@@ -7081,7 +7106,7 @@ function arSpawnBot(){const A=AR,w=A.wave,cl=['warrior','warrior','hunter','mage
   A.txt.push({x:A.x,y:A.y-56,v:'⚔ '+nm+ARTX(' entrou na arena!',' joined the arena!'),t:2.6,big:true,c:'#7ad0ff'})}
 function arHowlSpr(f){return arSprite('hwhow'+f,(x,y)=>{const o=fx.wfx;fx.wfx={k:'howl',t:nowMs()-f*100};try{outlined(()=>drawWW(x,y,0,false,{pose:'stand',swing:0},true))}finally{fx.wfx=o}},96,96,48,86)}
 function arBotSpr(m,fr,st,sw){const o=[ARLOOK,ARSIG];ARLOOK=m.look;ARSIG=m.sig;const r=arHeroSprD(m.cls,fr,st,true,sw);ARLOOK=o[0];ARSIG=o[1];return r}
-function arAimAt(px,py,t){const A=AR;return A.aimA==null?(A.face>=0?0:Math.PI):A.aimA}
+function arAimAt(px,py,t){const A=AR;if(t&&!t.dead)return Math.atan2(t.y-A.y,t.x-A.x);return A.aimA==null?(A.face>=0?0:Math.PI):A.aimA}
 function arFaceSet(a){}
 const arAng=(a,b)=>{let d=Math.abs(a-b)%6.2832;return d>3.1416?6.2832-d:d};
 const AR_WT=60,AR_WCD=35;
@@ -7539,21 +7564,17 @@ function arDraw(){
     if(h>88){g.fillStyle='rgba(120,30,40,.18)';g.fillRect(px+8,py+8,6,5)}
   }
   arSzDraw(g,cx,cy);
-  if(A.gas>0){const R=(20+7*(A.gas-1))*A.area,gx=Math.round(A.x-cx),gy=Math.round(A.y-cy-2),T=A.anim,N=30,ry=.5,th=Math.max(4,R*.17);
-    g.save();g.translate(gx,gy);
-    const E=(k,off)=>{const a=k/N*6.2832-T*.9+off;return [Math.cos(a)*R,Math.sin(a)*R*ry,a]};
-    // fumaça cinza no centro
-    for(let i=0;i<6;i++){const a=-T*.5+i*1.05,r=R*.38*(.4+((i*.37)%1));g.globalAlpha=.16;g.fillStyle=i%2?'#7a8a78':'#5f705e';g.beginPath();g.ellipse(Math.cos(a)*r,Math.sin(a)*r*ry,R*.2,R*.1,0,0,6.3);g.fill()}
-    // sombra escura do anel + corpo em 3 camadas (escuro, médio, claro)
-    const layers=[['#16601c',1.25,.42],['#26a030',1,.5],['#7be86a',.45,.42]];
-    for(const [col,wf,al] of layers){g.fillStyle=col;g.globalAlpha=al;
-      for(let k=0;k<N;k++){const [x,y,a]=E(k,0),w=th*wf*(.75+.3*Math.sin(a*3+T*1.6+k)),yy=y-(wf<.5?th*.18:0);g.beginPath();g.ellipse(x,yy,w*.95,w*.62,a+1.57,0,6.3);g.fill()}}
-    // fios/tentáculos de gosma saindo da borda de fora
-    g.strokeStyle='#3ccf48';g.lineWidth=1.3;g.globalAlpha=.4;
-    for(let i=0;i<7;i++){const [x,y,a]=E(i*N/7,.25),ox=Math.cos(a),oy=Math.sin(a)*ry,L=th*(1.2+.6*Math.sin(T*2+i)),wv=Math.sin(T*3+i*2)*2;
-      g.beginPath();g.moveTo(x,y);g.quadraticCurveTo(x+ox*L*.6+wv,y+oy*L*.6-3,x+ox*L*1.1-wv,y+oy*L*1.1-th*.5);g.stroke()}
-    // brilhos
-    g.fillStyle='#e8ffb0';for(let i=0;i<12;i++){const [x,y]=E(i*N/12+.4,0),tw=Math.sin(T*5+i*1.9);if(tw<0)continue;g.globalAlpha=.8*tw;const sz=tw>.7?2:1;g.fillRect(Math.round(x+Math.sin(i*5)*th*.4)-sz/2,Math.round(y+Math.cos(i*3)*th*.3)-sz/2,sz,sz)}
+  if(A.gas>0){const R=(20+7*(A.gas-1))*A.area,gx=Math.round(A.x-cx),gy=Math.round(A.y-cy-2),T=A.anim;
+    // bolhas de veneno (as mesmas do impacto da caveira) circulando em volta do lobo, estourando e renascendo
+    g.save();g.translate(gx,gy);const NB=10+2*A.gas;
+    for(let i=0;i<NB;i++){const ph=(T*.9+i*.37)%1,a=i/NB*6.283+T*1.1,r=R*(.35+.65*((i*.41)%1)),bx=Math.cos(a)*r,by=Math.sin(a)*r*.6-ph*10,sz=3+ph*6;
+      g.globalAlpha=(ph<.8?.62:.62*(1-ph)/.2);g.fillStyle=i%2?'#8fe04a':'#4a9a30';g.beginPath();g.arc(bx,by,sz,0,6.3);g.fill();
+      g.globalAlpha=(ph<.8?.5:.5*(1-ph)/.2);g.fillStyle='#d8ffa0';g.fillRect(Math.round(bx-sz*.4),Math.round(by-sz*.45),2,2);
+      if(ph>.85){g.globalAlpha=(1-ph)/.15;g.fillStyle='#d8ffa0';for(let k=0;k<4;k++){const aa=k*1.571+i;g.fillRect(Math.round(bx+Math.cos(aa)*(sz+3)),Math.round(by+Math.sin(aa)*(sz+3)),2,2)}}}
+    // caveiras menores (mesmas do cajado), tamanhos aleatórios, já nascem sumindo
+    const NS=4+A.gas;for(let i=0;i<NS;i++){const cyc=T*.7+i*.29,ph=cyc%1,ci=Math.floor(cyc),rn=(((ci*7+i*13)*9301+49297)%233280)/233280,rn2=(((ci*5+i*11)*4973+1237)%233280)/233280,sz=.35+rn*.65,a=rn2*6.283+T*.9,r=R*(.3+.7*rn),ox=Math.cos(a)*r,oy=Math.sin(a)*r*.6-ph*12;
+      g.globalAlpha=.7*(1-ph);g.fillStyle='#b6f06a';g.beginPath();g.arc(ox,oy,5*sz,0,6.3);g.fill();g.fillRect(ox-3*sz,oy+2*sz,6*sz,3*sz);
+      g.fillStyle='#16300a';g.fillRect(ox-3*sz,oy-3*sz,2*sz,2.4*sz);g.fillRect(ox+1*sz,oy-3*sz,2*sz,2.4*sz);g.fillRect(ox-1*sz,oy+3*sz,1*sz,2*sz);g.fillRect(ox+1*sz,oy+3*sz,1*sz,2*sz)}
     g.restore();g.globalAlpha=1}
   // gemas
   for(const q of A.gems){const gx=q.x-cx,gy=q.y-cy+Math.sin(A.anim*4+q.ph)*1.5;if(gx<-10||gy<-10||gx>W+10||gy>H+10)continue;
@@ -7728,7 +7749,7 @@ function arLoop(now){
 }
 
 A.arena=()=>arenaOpen();
-try{window.__arena={hs:(c,f,st,w)=>arHeroSprD(c,f,st,false,w).cv,mob:k=>arMobSpr(k,0).cv,mobp:(k,fr,p,sw)=>arMobSpr(k,fr,p,sw).cv,spr:(k,o)=>arSprite('dbg'+k+JSON.stringify(o),(x,y)=>{outlined(()=>person(x,y,Object.assign({anch:false},ARLOOK,o)))},96,96,48,86).cv,open:arenaOpen,get:()=>AR,start:arStart,close:arenaClose,bot:arSpawnBot,mobk:arSpawn,ev:arStartEvent}}catch(e){}
+try{window.__arena={hs:(c,f,st,w)=>arHeroSprD(c,f,st,false,w).cv,mob:k=>arMobSpr(k,0).cv,mobp:(k,fr,p,sw)=>arMobSpr(k,fr,p,sw).cv,spr:(k,o)=>arSprite('dbg'+k+JSON.stringify(o),(x,y)=>{outlined(()=>person(x,y,Object.assign({anch:false},ARLOOK,o)))},96,96,48,86).cv,open:arenaOpen,get:()=>AR,start:arStart,close:arenaClose,bot:arSpawnBot,mobk:arSpawn,atk:arAttack,ev:arStartEvent}}catch(e){}
 
 })();
 </script>
